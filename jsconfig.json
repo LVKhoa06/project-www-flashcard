@@ -1,8 +1,12 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
+    // Module path aliases
     "paths": {
-      "@/*": ["./*"]
+      /* use components:
+      import Foo from '@/components/Foo'
+      */ 
+      "@/components/*": ["components/*"]
     }
   }
 }
