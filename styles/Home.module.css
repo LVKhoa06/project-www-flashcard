@@ -1,0 +1,50 @@
+.container {
+    display: flex;
+    flex-wrap: wrap
+}
+
+.flashcard {
+    background-color: red;
+    width: max-content ;
+    margin: 10px;
+    padding:  0 50px 10px 10px;
+    position: relative;
+}
+
+.flashcard h2 {
+    color: white;
+}
+
+.flashcard h2:hover  {
+    color: wheat;
+}
+
+.flashcard h2:focus  {
+    color: rgb(198, 255, 111) !important;
+    outline: none;
+}
+
+.flashcard span {
+    color: black;
+}
+
+.flashcard span:hover  {
+    color: #333;
+}
+
+.flashcard span:focus  {
+    color: rgb(162, 162, 162) !important;
+    outline: none;
+}
+
+
+.flashcard div {
+    position: absolute;
+    top: 25%;
+    right: 10px;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 3px 6px;
+}   
+
+
