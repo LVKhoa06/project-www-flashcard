@@ -7,7 +7,6 @@ function Navbar() {
             <div className={styles.topnav}>
                 <Link href="/">Home</Link>
                 <Link href="/create">Create</Link>
-                <Link href="/test">Test</Link>
             </div>
         </>
     );

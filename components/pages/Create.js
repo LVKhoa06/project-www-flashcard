@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import formatDateWithLocale from "utils/format-date.";
+import Head from "next/head";
 
 
 function Create() {
@@ -45,6 +46,10 @@ function Create() {
     } //
 
     return (
+        <>
+         <Head>
+                <title>Create Flashcard</title>
+        </Head>
         <form>
             <div>
                 <select
@@ -63,6 +68,8 @@ function Create() {
 
             <button onClick={(e) => handlerCreate(e)}>submit</button>
         </form>
+        </>
+        
     );
 }
 

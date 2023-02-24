@@ -74,7 +74,7 @@ function Home() {
     return (
         <>
             <Head>
-                <title>Create Next App</title>
+                <title>Flashcard</title>
             </Head>
             <div>
                 <div>
