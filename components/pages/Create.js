@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import formatDateWithLocale from "utils/mysql/format-date.";
+import formatDateWithLocale from "utils/format-date.";
 
 
 function Create() {
