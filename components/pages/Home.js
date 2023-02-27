@@ -112,27 +112,33 @@ function Home() {
             <div className={styles.container}>
                 {data.map(item => {
                     const id = item.id;
+                    const topicName = listTopic.find(topic => topic.topic_id == item.topic_id).topic;
+
                     return (
-                        <div className={styles.flashcard} key={id}>
-                            <h2
-                                // disable warning when use contentEditable
-                                suppressContentEditableWarning={true}
-                                onKeyUp={(e) => setSession({ turn: 'term', value: e.target.innerText })}
-                                contentEditable
-                            >
-                                {item.term}
-                            </h2>
-                            <span
-                                suppressContentEditableWarning={true}
-                                onKeyUp={(e) => setSession({ turn: 'descrption', value: e.target.innerText })}
-                                contentEditable
-                            >
-                                {item.descrption}
-                            </span>
+                        <div title={topicName} className={styles.flashcard} key={id}>
+                            <div>
+                                <h2
+                                    // disable warning when use contentEditable
+                                    suppressContentEditableWarning={true}
+                                    onKeyUp={(e) => setSession({ turn: 'term', value: e.target.innerText })}
+                                    contentEditable
+                                >
+                                    {item.term}
+                                </h2>
+                            </div>
+                            <div>
+                                <span
+                                    suppressContentEditableWarning={true}
+                                    onKeyUp={(e) => setSession({ turn: 'descrption', value: e.target.innerText })}
+                                    contentEditable
+                                >
+                                    {item.descrption}
+                                </span>
+                            </div>
                             <button className={''} onClick={() => updateFlashcardHandler(session.value, session.turn, id)}>Ok</button>
-                            <div onClick={() => deleteFlashcardHandler(id)}>x</div>
+                            <div className={styles.delete} onClick={() => deleteFlashcardHandler(id)}>x</div>
                         </div>
-                    )
+                    );
                 })}
             </div>
         </>
