@@ -70,11 +70,10 @@ export async function updateFlashcard(id, field, value) {
     };
 } // getAllFlashcard
 
-export async function getAndSortFlashcard(type, field, orderBy) {
-    let query;
-    if (type === 'topic') {
-        query = `select * from flashcard where flashcard.topic_id = ${field}`
-    } else query = `select * from flashcard order by ${field} ${orderBy}`;
+export async function getFlashcardWithCondition(topic_id, orderBy, direction) {
+    let query = `select * from flashcard 
+    ${topic_id ? `where flashcard.topic_id = ${topic_id}` : ''} 
+    ${orderBy ? `order by ${orderBy} ${direction}` : ''};`
 
     const [data] = await pool().execute(query);
 
@@ -82,4 +81,4 @@ export async function getAndSortFlashcard(type, field, orderBy) {
         return false;
 
     return data;
-} // getAndSortFlashcard
+} // getFlashcardWithCondition
