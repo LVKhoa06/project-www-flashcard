@@ -10,16 +10,21 @@ const CONST_SORT_CASE = {
     alphabeticallyDESC: 1,
     dateASC: 2,
     dateDESC: 3,
+    withLife: 4,
+    withIT: 5,
+    withEconomy: 6,
+    withFood: 7,
 }
 
 function Home() {
-    const { none, alphabeticallyASC, alphabeticallyDESC, dateASC, dateDESC } = CONST_SORT_CASE
+    const { none, alphabeticallyASC, alphabeticallyDESC, dateASC, dateDESC, withEconomy, withFood, withIT, withLife } = CONST_SORT_CASE
     const [data, setData] = useState([]);
-    const [sortConfig, setSortConfig] = useState({ field: 'creation_time', orderBy: 'desc' });
+    const [sortConfig, setSortConfig] = useState({ field: 'creation_time', orderBy: 'desc', type:''});
+    const {field, orderBy, type} = sortConfig;
 
     useEffect(() => {
         const handler = async () => {
-            const data = await axios.get(`api/home?field=${sortConfig.field}&orderBy=${sortConfig.orderBy}`);
+            const data = await axios.get(`api/home?field=${field}&orderBy=${orderBy}&type=${type}`);
             setData(data.data);
         }
         handler();
@@ -45,7 +50,7 @@ function Home() {
                 {
                     id,
                     field,
-                    value
+                    value,
                 },
                 {
                     "Content-Type": "application/json",
@@ -54,20 +59,33 @@ function Home() {
         }
     } // updateFlashcardHandler
 
-    const updateSortConfig = async (value) => {
+    const updateSortConfig = async (type, value) => {
         if (value == none) return;
 
         if (value == alphabeticallyASC)
-            return setSortConfig({ field: 'term', orderBy: 'asc' });
+            return setSortConfig({ field: 'term', orderBy: 'asc', type: 'sort' });
 
         if (value == alphabeticallyDESC)
-            return setSortConfig({ field: 'term', orderBy: 'desc' });
+            return setSortConfig({ field: 'term', orderBy: 'desc', type: 'sort' });
 
         if (value == dateASC)
-            return setSortConfig({ field: 'creation_time', orderBy: 'asc' });
+            return setSortConfig({ field: 'creation_time', orderBy: 'asc', type: 'sort' });
 
         if (value == dateDESC)
-            return setSortConfig({ field: 'creation_time', orderBy: 'desc' });
+            return setSortConfig({ field: 'creation_time', orderBy: 'desc', type: 'sort' });
+
+
+        if (value == withEconomy)
+            return setSortConfig({ field: '3', orderBy: '', type: 'topic' });
+
+        if (value == withFood)
+            return setSortConfig({ field: '2', orderBy: '', type: 'topic' });
+
+        if (value == withIT)
+            return setSortConfig({ field: '1', orderBy: '', type: 'topic' });
+
+        if (value == withLife)
+            return setSortConfig({ field: '4', orderBy: '', type: 'topic' });
 
     } // updateSortConfig
 
@@ -76,21 +94,35 @@ function Home() {
             <Head>
                 <title>Flashcard</title>
             </Head>
+            <div className={styles.filter}>
             <div>
-                <div>
-                    <select
-                        onChange={(e) => updateSortConfig(e.target.value)}
-                    >
-                        <option value={none}>Sắp xếp theo </option>
-                        <option value={dateASC}>Mới nhất</option>
-                        <option value={dateDESC}>Cũ nhất</option>
-                        <option value={alphabeticallyASC}>{`A -> Z`}</option>
-                        <option value={alphabeticallyDESC}>{`Z -> A`}</option>
+                <select
+                    onChange={(e) => updateSortConfig('sort', e.target.value)}
+                >
+                    <option value={none}>Sắp xếp theo </option>
+                    <option value={dateASC}>Mới nhất</option>
+                    <option value={dateDESC}>Cũ nhất</option>
+                    <option value={alphabeticallyASC}>{`A -> Z`}</option>
+                    <option value={alphabeticallyDESC}>{`Z -> A`}</option>
 
-                    </select>
+                </select>
 
-                </div>
             </div>
+            <div>
+                <select
+                    onChange={(e) => updateSortConfig('topic', e.target.value)}
+                >
+                    <option value={none}>Theo chủ đề</option>
+                    <option value={withLife}>Cuộc sống</option>
+                    <option value={withIT}>IT</option>
+                    <option value={withEconomy}>Kinh tế</option>
+                    <option value={withFood}>Thực phẩm</option>
+
+                </select>
+
+            </div>
+            </div>
+          
             <div className={styles.container}>
                 {data.map(item => {
                     const id = item.id;

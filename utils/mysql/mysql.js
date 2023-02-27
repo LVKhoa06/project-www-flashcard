@@ -10,6 +10,16 @@ export async function getAllTopic() {
     return data;
 } // getAllTopic
 
+export async function getAllCollection() {
+    const query = `select * from collection;`;
+    const [data] = await pool().execute(query);
+
+    if (!data)
+        return false;
+
+    return data;
+} // getAllCollection
+
 export async function createFlashcard(topic_id, term, description, date) {
     const query = `insert into flashcard (topic_id, term, descrption, creation_time) values( ?, ?, ?, ?);`;
     const values = [topic_id, term, description, date];
@@ -60,10 +70,14 @@ export async function updateFlashcard(id, field, value) {
     };
 } // getAllFlashcard
 
-export async function getAndSortFlashcard(field, orderBy) {
-    const query = `select * from flashcard order by ${field} ${orderBy}`;
+export async function getAndSortFlashcard(type, field, orderBy) {
+    let query;
+    if (type === 'topic') {
+        query = `select * from flashcard where flashcard.topic_id = ${field}`
+    } else query = `select * from flashcard order by ${field} ${orderBy}`;
+
     const [data] = await pool().execute(query);
-    
+
     if (!data)
         return false;
 

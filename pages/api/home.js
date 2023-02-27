@@ -1,11 +1,11 @@
-import { removeFlashcard, updateFlashcard, getAndSortFlashcard } from "../../utils/mysql/mysql";
+import { removeFlashcard, updateFlashcard, getAndSortFlashcard, getAllCollection } from "../../utils/mysql/mysql";
 
 export default async function handler(req, res) {
   const { url, method, query, body, headers } = req;
 
   switch (method) {
     case "GET":
-      const data = await getAndSortFlashcard(query.field, query.orderBy);
+      const data = await getAndSortFlashcard(query.type, query.field, query.orderBy);
 
       if (!data) return res.status(400).send("Error occured.");
       res.status(201).json(data);
