@@ -1,6 +1,5 @@
 
 .topnav {
-    overflow: hidden;
     background-color: #333;
     display: flex;
     align-items: center;
@@ -19,8 +18,33 @@
     background-color: #ddd;
     color: black;
   }
-  
-  .topnav a.active {
-    background-color: #04AA6D;
-    color: white;
+
+  .container_add{
+    position: relative;
+  }
+
+  .icon {
+    margin-left: 20px;
+    padding: 6px;
+  }
+
+  .menu{
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    z-index: 9999;
+    box-shadow: 0 0 1px;
+    border-radius: 5px;
+  }
+
+  .menu a {
+    cursor: pointer;
+    margin-top: 6px;
+    font-size: 15px;
+    color: black;
+  }
+
+  .container_add:hover .menu{
+    display: flex;
+    flex-direction: column;
   }

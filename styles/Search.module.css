@@ -14,10 +14,6 @@
   width: 40px;
 }
 
-.container {
-
-}
-
 .container_result {
     position: absolute;
     width: 215px;
@@ -28,10 +24,42 @@
     box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
     display: none;
     flex-direction: column;
-    z-index: 999;
+    z-index: 999;    
+    padding: 10px;
 }
 
 .show {
   display: flex;
 }
 
+
+.search_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left_item{
+
+}
+
+.left_item h3{
+
+}
+
+.left_item span{
+
+}
+
+.right_item {
+  font-size: 12px;
+  color: #666;
+}
+
+.close{
+  position: absolute;
+  right: 1px;
+  top: -3px;
+  cursor: pointer;
+  padding: 0 5px;
+}

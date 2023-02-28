@@ -6,8 +6,7 @@ function Search() {
     const [value, setValue] = useState('');
     const [result, setResult] = useState([]);
     const [listTopic, setListTopic] = useState([]);
-
-
+    const [show, setShow] = useState(false);
 
     const submitHandler = async (e) => {
         e.preventDefault();
@@ -18,13 +17,7 @@ function Search() {
             setResult(data.data);
             setListTopic(data2.data);
         }
-
     } // submitHandler
-
-    const foo = (arr) => {
-
-
-    }
 
     useEffect(() => {
         if (listTopic.length) {
@@ -51,25 +44,26 @@ function Search() {
                     type="text"
                     placeholder="Search"
                 />
-                <button onClick={(e) => submitHandler(e)} className={styles.button} type="submit">                        </button>
+                <button onClick={(e) =>{
+                    setShow(true)
+                    submitHandler(e)
+                }} className={styles.button} type="submit">Ok</button>
             </form>
-            <div className={`${styles.container_result} ${result.length ? styles.show : ''}`}>
+            <div className={`${styles.container_result} ${result.length && show ? styles.show : ''}`}>
+                <div onClick={() => setShow(false)} className={styles.close}>x</div>
                 {
                     result.map(item => {
                         const topicName = listTopic[item.topic_id];
-                        console.log(topicName);
                         return (
-                            <div key={item.id}>
-                                <div>
+                            <div className={styles.search_item} key={item.id}>
+                                <div className={styles.left_item}>
                                     <h3>{item.term}</h3>
                                     <span>{item.descrption}</span>
-
                                 </div>
-                                <div>
-                                    <span>{typeof topicName === 'string' ?  listTopic[item.topic_id] : ''}</span>
+                                <div className={styles.right_item}>
+                                    <span>{typeof topicName === 'string' ? listTopic[item.topic_id] : ''}</span>
                                 </div>
                             </div>
-
                         )
                     })
                 }

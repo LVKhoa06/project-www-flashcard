@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import styles from '../styles/Navbar.module.css';
+import Add from './Add';
 import Search from './Search';
 
 function Navbar() {
@@ -7,8 +8,8 @@ function Navbar() {
         <>
             <div className={styles.topnav}>
                 <Link href="/">Home</Link>
-                <Link href="/create">Create Flashcard</Link>
                 <Search/>
+                <Add/>
             </div>
         </>
     );
