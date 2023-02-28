@@ -1,12 +1,14 @@
 import Link from 'next/link';
-import styles from './Navbar.module.css';
+import styles from '../styles/Navbar.module.css';
+import Search from './Search';
 
 function Navbar() {
     return (
         <>
             <div className={styles.topnav}>
                 <Link href="/">Home</Link>
-                <Link href="/create">Create</Link>
+                <Link href="/create">Create Flashcard</Link>
+                <Search/>
             </div>
         </>
     );

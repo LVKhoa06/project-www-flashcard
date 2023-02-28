@@ -82,3 +82,13 @@ export async function getFlashcardWithCondition(topic_id, orderBy, direction) {
 
     return data;
 } // getFlashcardWithCondition
+
+export async function searchFlashcard(key) {
+    const query = `select * from flashcard where flashcard.term like '%${key}%';`;
+    const [data] = await pool().execute(query);
+
+    if (!data)
+        return false;
+
+    return data;
+}
