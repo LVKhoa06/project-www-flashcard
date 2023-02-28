@@ -57,6 +57,7 @@ function Search() {
                 {
                     result.map(item => {
                         const topicName = listTopic[item.topic_id];
+                        console.log(topicName);
                         return (
                             <div key={item.id}>
                                 <div>
@@ -65,7 +66,7 @@ function Search() {
 
                                 </div>
                                 <div>
-                                    <span>{}</span>
+                                    <span>{typeof topicName === 'string' ?  listTopic[item.topic_id] : ''}</span>
                                 </div>
                             </div>
 
