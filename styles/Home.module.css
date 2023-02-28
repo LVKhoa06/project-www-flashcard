@@ -12,7 +12,8 @@
 }
 
 .flashcard h2 {
-    color: white;
+    color: green;
+    white-space: normal;
 }
 
 .flashcard h2:hover  {
@@ -24,8 +25,13 @@
     outline: none;
 }
 
+.flashcard h2:focus ~ .update {
+    display: block;
+}
+
 .flashcard span {
     color: black;
+    white-space: normal;
 }
 
 .flashcard span:hover  {
@@ -37,8 +43,12 @@
     outline: none;
 }
 
+.flashcard span:focus ~ .update {
+    display: block;
+}
 
-.flashcard div {
+
+.delete {
     position: absolute;
     top: 25%;
     right: 10px;
@@ -47,4 +57,20 @@
     padding: 3px 6px;
 }   
 
+.filter{
+    display: flex;
+}
 
+.update {
+    display: none;
+    position: absolute;
+    top: 30%;
+    right: 5px;
+    cursor: pointer;
+    padding: 3px 6px;
+    z-index: 99;
+}
+
+.container_edit{
+    display: flex; 
+}

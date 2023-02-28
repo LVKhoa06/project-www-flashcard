@@ -1,0 +1,37 @@
+.form {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  height: 30px;
+  padding-left: 8px;
+}
+
+.button {
+  height:30px;
+  width: 40px;
+}
+
+.container {
+
+}
+
+.container_result {
+    position: absolute;
+    width: 215px;
+    min-height: 100px;
+    padding-top: 8px;
+    border-radius: 8px;
+    background: rgb(255, 255, 255);
+    box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
+    display: none;
+    flex-direction: column;
+    z-index: 999;
+}
+
+.show {
+  display: flex;
+}
+
