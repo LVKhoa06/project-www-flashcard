@@ -1,9 +1,9 @@
 import axios from 'axios';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import styles from '../../styles/Collection.module.css'
+import styles from '../../styles/ListCollection.module.css'
 
-function Collections() {
+function ListCollections() {
     const [listCollection, setListCollection] = useState([]);
     const [data, setData] = useState([]);
 
@@ -27,7 +27,7 @@ function Collections() {
                                 <h2>{item.collection}</h2>
                             </div>
                             <div className={styles['quantity-container']}>
-                                <span>{data[item.collection_id] || 'Empty'}</span>
+                                <span>{data[item.collection_id - 1] ? `${data[item.collection_id]} flashcard` : 'Empty'}</span>
                             </div>
                         </div>
                     )
@@ -37,5 +37,5 @@ function Collections() {
     )
 }
 
-export default Collections;
+export default ListCollections;
 

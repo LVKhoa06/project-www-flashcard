@@ -1,8 +1,8 @@
-import Collections from "@/components/pages/Collections";
+import ListCollections from "@/components/pages/ListCollections";
 
 
-function CollectionsPage() {
-    return (<Collections />);
+function ListCollectionsPage() {
+    return (<ListCollections />);
 }
 
-export default CollectionsPage;
+export default ListCollectionsPage;

@@ -1,8 +1,7 @@
-import Topics from "@/components/pages/Topics";
+import ListTopics from "@/components/pages/ListTopics";
 
-
-function TopicsPage() {
-    return (<Topics />);
+function ListTopicsPage() {
+    return (<ListTopics />);
 }
 
-export default TopicsPage;
+export default ListTopicsPage;

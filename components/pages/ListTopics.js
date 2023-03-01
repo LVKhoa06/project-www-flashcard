@@ -1,8 +1,9 @@
 import axios from 'axios';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import styles from '../../styles/Topic.module.css'
+import styles from '../../styles/ListTopic.module.css'
 
-function Topics() {
+function ListTopics() {
     const [listTopic, setListTopic] = useState([]);
     const [data, setData] = useState([]);
 
@@ -24,15 +25,15 @@ function Topics() {
             <div className={styles.container}>
                 {listTopic.map(item => {
                     return (
-                        <div className={styles.topic} key={item.topic_id}>
+                        <Link href={`/topics/${item.topic_id}`} className={styles.topic} key={item.topic_id}>
                             <div className={styles['topic-container']}>
                                 <h2>{item.topic}</h2>
                             </div>
 
                             <div className={styles['quantity-container']}>
-                                <span>{data[item.topic_id - 1]} flashcard</span>
+                                <span>{data[item.topic_id - 1] ? `${data[item.topic_id - 1]} flashcard` : 'Empty'}</span>
                             </div>
-                        </div>
+                        </Link>
                     )
                 })}
             </div>
@@ -40,5 +41,5 @@ function Topics() {
     )
 }
 
-export default Topics;
+export default ListTopics;
 
