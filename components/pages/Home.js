@@ -2,7 +2,7 @@ import axios from 'axios';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import styles from '../../styles/Home.module.css';
-import SortAndFilter from '../Sort';
+import SortAndFilter from '../SortAndFilter';
 
 function Home() {
     const configUseSortAndFilter = { sort: true, filter: true }

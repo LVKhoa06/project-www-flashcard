@@ -18,11 +18,13 @@ function SortAndFilter(props) {
     const [topicId, setTopicId] = useState('');
 
     useEffect(() => {
-        const handler = async () => {
-            const data = await axios.get("/api/list-topic");
-            setListTopic(data.data);
+        if(use.filter) {
+            const handler = async () => {
+                const data = await axios.get("/api/list-topic");
+                setListTopic(data.data);
+            }
+            handler();
         }
-        handler();
     }, []);
 
     useEffect(() => {
