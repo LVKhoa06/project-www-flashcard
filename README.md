@@ -5,7 +5,7 @@
 * [x] [Use svg file](#task1) @Mar01 08:50
 * [x] [Get topic & flashcard in a request](#task2) @Mar01 09:20
 * [x] [Search with description](#task3) @Mar01 10:30
-* [ ] [Fix error add topic & collection](#task4) @Mar01 10:40
+* [ ] [Delete feature create collection | topic](#task4) @Mar01 13:10
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`)
@@ -37,11 +37,12 @@
 * [x] <a id="task1">Use svg file</a>
 * [x] <a id="task2">Get topic name from MySQL </a>
 * [x] <a id="task3">Search with description</a> 
-* [x] <a id="task4">Fix error add topic & collection</a> 
 * [ ] Store images ?
 * [ ] Handler error (create, search, update)
 * [ ] Nhập dữ liệu thật
 * [ ] Đồng bộ dữ liệu giữa cloud và env
+* [ ] Collection(youtube) 
+* [ ] <a id="task4">Delete feature create collection | topic</a>
 
 # REFACTOR 
 ...
