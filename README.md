@@ -3,7 +3,8 @@
 
 # 🚀 WORKING ON
 * [x] [Use svg file](#task1) @Mar01 08:50
-* [ ] [Get topic name from MySQL](#task2) @Mar01 09:20
+* [x] [Get topic & flashcard in a request](#task2) @Mar01 09:20
+* [ ] [Search with description](#task3) @Mar01 10:30
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`)
@@ -31,12 +32,12 @@
 * [x] Get topic from database 
 * [x] Click outside
 * [x] Add topic | collection in flashcard   
-* [x] <a id="task1">Use svg file</a>
 * [x] Thể hiện công việc đang làm README.md
-
+* [x] <a id="task1">Use svg file</a>
+* [x] <a id="task2">Get topic name from MySQL </a>
+* [ ] <a id="task3">Search with description</a> 
 * [ ] Store images ?
 * [ ] Handler error (create, search, update)
-* [ ] <a id="task2">Get topic name from MySQL </a>
 * [ ] Nhập dữ liệu thật
 * [ ] Đồng bộ dữ liệu giữa cloud và env
 
