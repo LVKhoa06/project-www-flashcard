@@ -8,7 +8,7 @@
 * [x] [Delete feature create collection | topic](#task4) @Mar01 13:10
 * [x] [Refactor reusable components page](#task6) @Mar01 13:50  
 * [x] [Topics page](#task5) @Mar01 13:40 
-* [ ] [Topic detail page](#task7) @Mar01 15:40 
+* [ ] [Topic detail page](#task7) @Mar01 15:40  !!Defer!!
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`)
