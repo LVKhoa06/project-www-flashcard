@@ -68,7 +68,7 @@ export async function updateFlashcard(id, field, value) {
         success: true,
         message: 'Chỉnh sửa flashcard thành công'
     };
-} // getAllFlashcard
+} // updateFlashcard
 
 export async function getFlashcardWithCondition(topic_id, orderBy, direction) {
     let query = `select * from flashcard 
@@ -92,23 +92,23 @@ export async function searchFlashcard(key) {
     const [created] = await pool().execute(createTable);
 
     // Search data in temporary table
-    const topicResult =`
+    const topicResult = `
     select *
     from search_result 
     inner join topic
     on search_result.topic_id = topic.topic_id;`
     const [topic] = await pool().execute(topicResult);
-    
+
     // Delete temporary table
     const dropTable = `DROP VIEW search_result;`
-    const [ok] = await pool().execute(dropTable);
+    const [end] = await pool().execute(dropTable);
 
     if (!topic)
         return false;
     return topic;
-}
+} // searchFlashcard
 
-export async function createTopic(field, value) {
+export async function addCollection(field, value) {
     const query = `insert into ${field}(${field}) values('${value}');`;
     const [data] = await pool().execute(query);
 
@@ -122,4 +122,20 @@ export async function createTopic(field, value) {
         success: true,
         message: 'Tạo flashcard thành công'
     };
-} // createFlashcard
+} // addCollection
+
+export async function countTopicItem() {
+    const topic = await getAllTopic();
+    let result = [];
+    for (let i = 1; i < topic.length + 1; i++) {
+        const query = `select count(topic_id) as quantity from flashcard where topic_id = ${i};`;
+        const [data] = await pool().execute(query);
+       
+        result.push(data[0].quantity);
+    }
+       
+    if (!result)
+        return false;
+        
+    return result;
+} // addCollection
