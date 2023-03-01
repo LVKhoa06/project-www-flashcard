@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import {  useEffect, useState } from 'react';
 import styles from '../styles/Search.module.css';
 
 function Search() {
@@ -13,11 +13,17 @@ function Search() {
 
         if (value) {
             const data = await axios.get(`/api/search?key=${value}`);
-            const data2 = await axios.get(`/api/create`);
             setResult(data.data);
-            setListTopic(data2.data);
         }
     } // submitHandler
+
+    useEffect(() => {
+        const handler = async () => {
+            const data = await axios.get(`/api/create`);
+            setListTopic(data.data);
+        }
+        handler();
+    }, [])
 
     useEffect(() => {
         if (listTopic.length) {
