@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import styles from '../styles/Navbar.module.css';
-import Icon from './assets/icon-add.js';
+import IconAdd from './assets/icon-add.js';
 import CreateCollection from './Create-collection';
 
 function Add() {
@@ -11,7 +11,7 @@ function Add() {
         <>
             <div className={styles.container_add}>
                 <div className={styles.icon}>
-                    <Icon />
+                    <IconAdd viewBox="0 0 39 24" className={styles['btn-add']}/>
                 </div>
                 <div className={styles.menu}>
                     <Link className={styles.menu_item} href="/create">Flashcard</Link>
@@ -21,8 +21,6 @@ function Add() {
             </div>
             {show ? <CreateCollection /> : ''}
         </>
-
-
     );
 }
 
