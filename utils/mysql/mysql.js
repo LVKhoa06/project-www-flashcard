@@ -93,8 +93,8 @@ export async function searchFlashcard(key) {
     return data;
 }
 
-export async function createTopic(topic) {
-    const query = `insert into topic(topic) values(${topic});`;
+export async function createTopic(topic,field) {
+    const query = `insert into ${field}(${field}) values(${topic});`;
     const [data] = await pool().execute(query);
 
     if (data?.affectedRows !== 1)

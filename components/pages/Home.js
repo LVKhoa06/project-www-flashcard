@@ -136,7 +136,7 @@ function Home() {
                                 </span>
                             </div>
                             <button className={''} onClick={() => updateFlashcardHandler(session.value, session.turn, id)}>Ok</button>
-                            <div className={styles.delete} onClick={() => deleteFlashcardHandler(id)}>x</div>
+                            <div className={styles.delete} onClick={() => deleteFlashcardHandler(id)}>❌</div>
                         </div>
                     );
                 })}

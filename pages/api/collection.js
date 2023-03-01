@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
   switch (method) {
     case "POST":
-      const result = await createTopic(body.topic);
+      const result = await createTopic(body.topic, body.filed);
 
       if (!result) return res.status(400).send("Error occured.");
 
