@@ -7,7 +7,8 @@
 * [x] [Search with description](#task3) @Mar01 10:30
 * [x] [Delete feature create collection | topic](#task4) @Mar01 13:10
 * [x] [Refactor reusable components page](#task6) @Mar01 13:50  
-* [ ] [Topics page](#task5) @Mar01 13:40 
+* [x] [Topics page](#task5) @Mar01 13:40 
+* [ ] [Topic detail page](#task7) @Mar01 15:40 
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`)
@@ -23,9 +24,6 @@
 * [x] Sort by creation_time [DESC | ASC]
 * [x] Only get flashcards in topic
 * [x] Search flashcard term & description
-* [ ] Flashcard details page (Home & Search)
-* [ ] <a id="task5">Topics page</a>
-* [ ] Collections page
 
 ### Collection
 * [x] Add to collection  
@@ -43,12 +41,15 @@
 * [x] <a id="task3">Search with description</a> 
 * [x] <a id="task4">Delete feature create collection | topic</a>
 * [x] <a id="task6"> Refactor reusable components page</a>
+* [x] <a id="task5">Topics page</a>
+* [ ] <a id="task7">Topic detail page</a>
+* [ ] Flashcard details page (Home & Search)
+* [ ] Collections page
 * [ ] Store images ?
 * [ ] Handler error (create, search, update)
 * [ ] Nhập dữ liệu thật
 * [ ] Đồng bộ dữ liệu giữa cloud và env
 * [ ] Collection list(youtube) 
-
 # REFACTOR 
 ...
 
