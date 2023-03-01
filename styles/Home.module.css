@@ -4,11 +4,11 @@
 }
 
 .flashcard {
-    background-color: red;
     width: max-content ;
     margin: 10px;
     padding:  0 50px 10px 10px;
     position: relative;
+    border: 1px solid;
 }
 
 .flashcard h2 {
@@ -21,7 +21,7 @@
 }
 
 .flashcard h2:focus  {
-    color: rgb(198, 255, 111) !important;
+    color: rgb(185, 250, 87) !important;
     outline: none;
 }
 
@@ -39,7 +39,7 @@
 }
 
 .flashcard span:focus  {
-    color: rgb(162, 162, 162) !important;
+    color: rgb(121, 121, 121) !important;
     outline: none;
 }
 
