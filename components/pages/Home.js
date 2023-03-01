@@ -112,7 +112,7 @@ function Home() {
             <div className={styles.container}>
                 {data.map(item => {
                     const id = item.id;
-                    const topicName = listTopic.find(topic => topic.topic_id == item.topic_id).topic;
+                    const topicName = listTopic.find(topic => topic.topic_id == item.topic_id)?.topic;
 
                     return (
                         <div title={topicName} className={styles.flashcard} key={id}>

@@ -8,6 +8,8 @@ function Navbar() {
         <>
             <div className={styles.topnav}>
                 <Link href="/">Home</Link>
+                <Link href="/">Topics</Link>
+                <Link href="/">Collections</Link>
                 <Search/>
                 <Add/>
             </div>
