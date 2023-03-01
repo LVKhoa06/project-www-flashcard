@@ -12,7 +12,7 @@ function Create() {
 
     useEffect(() => {
         const handler = async () => {
-            const data = await axios.get("/api/create");
+            const data = await axios.get("/api/list-topic");
             setListTopic(data.data);
         }
         handler();
