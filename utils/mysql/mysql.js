@@ -21,7 +21,7 @@ export async function getAllCollection() {
 } // getAllCollection
 
 export async function createFlashcard(topic_id, term, description, date) {
-    const query = `insert into flashcard (topic_id, term, descrption, creation_time) values( ?, ?, ?, ?);`;
+    const query = `insert into flashcard (topic_id, term, description, creation_time) values( ?, ?, ?, ?);`;
     const values = [topic_id, term, description, date];
     const [data] = await pool().execute(query, values);
 
@@ -84,12 +84,14 @@ export async function getFlashcardWithCondition(topic_id, orderBy, direction) {
 } // getFlashcardWithCondition
 
 export async function searchFlashcard(key) {
+    // Create temporary table
     const createTable = `
     create view search_result as 
     select * from flashcard
-    having flashcard.term like '%${key}%'`;
+    having flashcard.term like '%${key}%' or description like '%${key}%' limit 50;`;
     const [created] = await pool().execute(createTable);
 
+    // Search data in temporary table
     const topicResult =`
     select *
     from search_result 
@@ -97,6 +99,7 @@ export async function searchFlashcard(key) {
     on search_result.topic_id = topic.topic_id;`
     const [topic] = await pool().execute(topicResult);
     
+    // Delete temporary table
     const dropTable = `DROP VIEW search_result;`
     const [ok] = await pool().execute(dropTable);
 

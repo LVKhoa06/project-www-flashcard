@@ -39,7 +39,7 @@ function Search() {
                             <div className={styles.search_item} key={item.id}>
                                 <div className={styles.left_item}>
                                     <h3>{item.term}</h3>
-                                    <span>{item.descrption}</span>
+                                    <span>{item.description}</span>
                                 </div>
                                 <div className={styles.right_item}>
                                     <span>{item.topic}</span>

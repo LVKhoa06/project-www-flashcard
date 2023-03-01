@@ -129,10 +129,10 @@ function Home() {
                             <div>
                                 <span
                                     suppressContentEditableWarning={true}
-                                    onKeyUp={(e) => setSession({ turn: 'descrption', value: e.target.innerText })}
+                                    onKeyUp={(e) => setSession({ turn: 'description', value: e.target.innerText })}
                                     contentEditable
                                 >
-                                    {item.descrption}
+                                    {item.description}
                                 </span>
                             </div>
                             <button className={''} onClick={() => updateFlashcardHandler(session.value, session.turn, id)}>Ok</button>
