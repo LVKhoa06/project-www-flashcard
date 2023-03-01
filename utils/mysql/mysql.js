@@ -130,12 +130,39 @@ export async function countTopicItem() {
     for (let i = 1; i < topic.length + 1; i++) {
         const query = `select count(topic_id) as quantity from flashcard where topic_id = ${i};`;
         const [data] = await pool().execute(query);
-       
+
         result.push(data[0].quantity);
     }
-       
+
     if (!result)
         return false;
-        
+
     return result;
-} // addCollection
+} // countTopicItem
+
+export async function getCollection() {
+    const query = `select * from collection;`;
+    const [data] = await pool().execute(query);
+
+    if (!data)
+        return false;
+
+    return data;
+} // getCollection
+
+export async function countCollectionItem() {
+    const collection = await getCollection();
+    let result = [];
+    for (let i = 1; i < collection.length + 1; i++) {
+        const query = `select count(collection_id) as quantity from flashcard where collection_id = ${i};`;
+        const [data] = await pool().execute(query);
+
+        result.push(data[0].quantity);
+    }
+
+    if (!result)
+        return false;
+
+    return result;
+} // countCollectionItem
+

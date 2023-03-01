@@ -9,7 +9,7 @@ function Navbar() {
             <div className={styles.topnav}>
                 <Link href="/">Home</Link>
                 <Link href="/topics">Topics</Link>
-                <Link href="/">Collections</Link>
+                <Link href="/collections">Collections</Link>
                 <Search/>
                 <Add/>
             </div>
