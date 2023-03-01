@@ -92,3 +92,19 @@ export async function searchFlashcard(key) {
 
     return data;
 }
+
+export async function createTopic(topic) {
+    const query = `insert into topic(topic) values(${topic});`;
+    const [data] = await pool().execute(query);
+
+    if (data?.affectedRows !== 1)
+        return {
+            success: false,
+            message: "Error occured."
+        };
+
+    return {
+        success: true,
+        message: 'Tạo flashcard thành công'
+    };
+} // createFlashcard
