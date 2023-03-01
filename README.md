@@ -1,3 +1,10 @@
+# File README push dang làm gì
+# Xong 1 task thì push lên 
+
+# 🚀 WORKING ON
+* [x] [Use svg file](#task1) @Mar01 08:50
+* [ ] [Get topic name from MySQL](#task2) @Mar01 09:20
+
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`)
 
@@ -15,8 +22,8 @@
 * [ ] Flashcard details page (Home & Search)
 
 ### Collection
-* [ ] Add to collection (youtube) 
-* [ ] Topic 
+* [x] Add to collection  
+* [x] Topic 
 
 # 💪TODO
 * [x] Button update flashcard
@@ -24,11 +31,14 @@
 * [x] Get topic from database 
 * [x] Click outside
 * [x] Add topic | collection in flashcard   
+* [x] <a id="task1">Use svg file</a>
+* [x] Thể hiện công việc đang làm README.md
 
 * [ ] Store images ?
 * [ ] Handler error (create, search, update)
-* [ ] Get topic name from MySQL
-* [ ] Use svg file
+* [ ] <a id="task2">Get topic name from MySQL </a>
+* [ ] Nhập dữ liệu thật
+* [ ] Đồng bộ dữ liệu giữa cloud và env
 
 # REFACTOR 
 ...
@@ -40,18 +50,3 @@
 * [ ] MySQL => implementations (callback)
 * [ ] API => pattern: code (200 | 201 | 400 | 500...), response, getSession()...
 * [ ] authentication => user-created | private|public | protected API
-
-card | list
-
-flashcard/term ?
-
-
-/topic/-----[id]
-    IT              English
-20 flashcard       30 flashcard  
-
-
-/collection/-----[id]
-    foo                      bar
- 10 flashcard             5 flashcard
-
