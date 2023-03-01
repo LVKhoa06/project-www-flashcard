@@ -84,16 +84,28 @@ export async function getFlashcardWithCondition(topic_id, orderBy, direction) {
 } // getFlashcardWithCondition
 
 export async function searchFlashcard(key) {
-    const query = `select * from flashcard where flashcard.term like '%${key}%';`;
-    const [data] = await pool().execute(query);
+    const createTable = `
+    create view search_result as 
+    select * from flashcard
+    having flashcard.term like '%${key}%'`;
+    const [created] = await pool().execute(createTable);
 
-    if (!data)
+    const topicResult =`
+    select *
+    from search_result 
+    inner join topic
+    on search_result.topic_id = topic.topic_id;`
+    const [topic] = await pool().execute(topicResult);
+    
+    const dropTable = `DROP VIEW search_result;`
+    const [ok] = await pool().execute(dropTable);
+
+    if (!topic)
         return false;
-
-    return data;
+    return topic;
 }
 
-export async function createTopic(topic,field) {
+export async function createTopic(topic, field) {
     const query = `insert into ${field}(${field}) values(${topic});`;
     const [data] = await pool().execute(query);
 

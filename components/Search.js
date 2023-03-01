@@ -1,11 +1,10 @@
 import axios from 'axios';
-import {  useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '../styles/Search.module.css';
 
 function Search() {
     const [value, setValue] = useState('');
     const [result, setResult] = useState([]);
-    const [listTopic, setListTopic] = useState([]);
     const [show, setShow] = useState(false);
 
     const submitHandler = async (e) => {
@@ -17,29 +16,6 @@ function Search() {
         }
     } // submitHandler
 
-    useEffect(() => {
-        const handler = async () => {
-            const data = await axios.get(`/api/create`);
-            setListTopic(data.data);
-        }
-        handler();
-    }, [])
-
-    useEffect(() => {
-        if (listTopic.length) {
-            setListTopic((prev => {
-                let result = {};
-                prev.forEach(elm => {
-                    result = {
-                        ...result,
-                        [elm.topic_id]: elm.topic
-                    }
-                });
-                return result;
-            }))
-        }
-    }, [listTopic])
-
     return (
         <div className={styles.container}>
             <form className={styles.form} method="get" action="">
@@ -50,7 +26,7 @@ function Search() {
                     type="text"
                     placeholder="Search"
                 />
-                <button onClick={(e) =>{
+                <button onClick={(e) => {
                     setShow(true)
                     submitHandler(e)
                 }} className={styles.button} type="submit">Ok</button>
@@ -59,7 +35,6 @@ function Search() {
                 <div onClick={() => setShow(false)} className={styles.close}>x</div>
                 {
                     result.map(item => {
-                        const topicName = listTopic[item.topic_id];
                         return (
                             <div className={styles.search_item} key={item.id}>
                                 <div className={styles.left_item}>
@@ -67,7 +42,7 @@ function Search() {
                                     <span>{item.descrption}</span>
                                 </div>
                                 <div className={styles.right_item}>
-                                    <span>{typeof topicName === 'string' ? listTopic[item.topic_id] : ''}</span>
+                                    <span>{item.topic}</span>
                                 </div>
                             </div>
                         )
