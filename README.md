@@ -10,7 +10,7 @@
 * [x] [Topics page](#task5) @Mar01 13:40
 * [x] [Collections page](#task8) @Mar01 20:00
 * [ ] [Topic detail page](#task7) @Mar01 15:40 !!Defer!!
-* [ ] [Collection list(youtube) ](#task9) @Mar01 20:50
+* [ ] [Collection list (youtube) ](#task9) Start:@Mar01 20:50 !!Defer!! 
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`)
