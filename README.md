@@ -8,8 +8,9 @@
 * [x] [Delete feature create collection | topic](#task4) @Mar01 13:10
 * [x] [Refactor reusable components page](#task6) @Mar01 13:50
 * [x] [Topics page](#task5) @Mar01 13:40
+* [x] [Collections page](#task8) @Mar01 20:00
 * [ ] [Topic detail page](#task7) @Mar01 15:40 !!Defer!!
-* [ ] [Collections page](#task8) @Mar01 20:00
+* [ ] [Collection list(youtube) ](#task9) @Mar01 20:50
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`)
@@ -43,14 +44,14 @@
 * [x] <a id="task4">Delete feature create collection | topic</a>
 * [x] <a id="task6"> Refactor reusable components page</a>
 * [x] <a id="task5">Topics page</a>
+* [x] <a id="task8">Collections page</a>
 * [ ] <a id="task7">Topic detail page</a>
-* [ ] <a id="task8">Collections page</a>
+* [ ] <a id="task9">Collection list(youtube)</a>
 * [ ] Flashcard details page (Home & Search)
 * [ ] Store images ?
 * [ ] Handler error (create, search, update)
 * [ ] Real data
 * [ ] Cloud and local data sync
-* [ ] Collection list(youtube) 
 # REFACTOR 
 ...
 
