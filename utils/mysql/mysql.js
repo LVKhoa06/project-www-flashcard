@@ -120,7 +120,7 @@ export async function addCollection(field, value) {
 
     return {
         success: true,
-        message: 'Tạo flashcard thành công'
+        message: 'Tạo Collection thành công'
     };
 } // addCollection
 

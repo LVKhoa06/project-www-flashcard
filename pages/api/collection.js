@@ -1,4 +1,4 @@
-import { countCollectionItem, createTopic } from "../../utils/mysql/mysql";
+import { countCollectionItem, addCollection } from "../../utils/mysql/mysql";
 
 export default async function handler(req, res) {
   // reusable
@@ -14,7 +14,7 @@ export default async function handler(req, res) {
 
       break;
     case "POST":
-      const result = await createTopic(body.filed, body.value);
+      const result = await addCollection(body.filed, body.value);
 
       if (!result) return res.status(400).send("Error occured.");
 
