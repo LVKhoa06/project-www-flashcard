@@ -84,28 +84,16 @@ export async function getFlashcardWithCondition(topic_id, orderBy, direction) {
 } // getFlashcardWithCondition
 
 export async function searchFlashcard(key) {
-    // Create temporary table
-    const createTable = `
-    create view search_result as 
-    select * from flashcard
-    having flashcard.term like '%${key}%' or description like '%${key}%' limit 50;`;
-    const [created] = await pool().execute(createTable);
+    const query = ` 
+    select * from flashcard f
+    inner join topic t
+    on f.topic_id = t.topic_id
+    where f.term like '%${key}%' or f.description like '%${key}%'`
+    const [result] = await pool().execute(query);
 
-    // Search data in temporary table
-    const topicResult = `
-    select *
-    from search_result 
-    inner join topic
-    on search_result.topic_id = topic.topic_id;`
-    const [topic] = await pool().execute(topicResult);
-
-    // Delete temporary table
-    const dropTable = `DROP VIEW search_result;`
-    const [end] = await pool().execute(dropTable);
-
-    if (!topic)
+    if (!result)
         return false;
-    return topic;
+    return result;
 } // searchFlashcard
 
 export async function addCollection(field, value) {
@@ -125,14 +113,8 @@ export async function addCollection(field, value) {
 } // addCollection
 
 export async function countTopicItem() {
-    const topic = await getAllTopic();
-    let result = [];
-    for (let i = 1; i < topic.length + 1; i++) {
-        const query = `select count(topic_id) as quantity from flashcard where topic_id = ${i};`;
-        const [data] = await pool().execute(query);
-
-        result.push(data[0].quantity);
-    }
+    const query = `select topic_id, count(topic_id) as quantity from flashcard group by topic_id;`;
+    const [result] = await pool().execute(query);
 
     if (!result)
         return false;
@@ -151,18 +133,11 @@ export async function getCollection() {
 } // getCollection
 
 export async function countCollectionItem() {
-    const collection = await getCollection();
-    let result = [];
-    for (let i = 1; i < collection.length + 1; i++) {
-        const query = `select count(collection_id) as quantity from flashcard where collection_id = ${i};`;
-        const [data] = await pool().execute(query);
-
-        result.push(data[0].quantity);
-    }
+    const query = `select collection_id, count(collection_id) as quantity from flashcard group by collection_id;`;
+    const [result] = await pool().execute(query);
 
     if (!result)
         return false;
 
     return result;
 } // countCollectionItem
-

@@ -17,9 +17,6 @@ function ListTopics() {
         handler();
     }, [])
 
-    useEffect(() => {
-    }, [data])
-
     return (
         <>
             <div className={styles.container}>
@@ -31,7 +28,7 @@ function ListTopics() {
                             </div>
 
                             <div className={styles['quantity-container']}>
-                                <span>{data[item.topic_id - 1] ? `${data[item.topic_id - 1]} flashcard` : 'Empty'}</span>
+                                <span>{data[item.topic_id - 1].quantity ? `${data[item.topic_id - 1].quantity} flashcard` : 'Empty'}</span>
                             </div>
                         </Link>
                     )
