@@ -46,8 +46,14 @@
     padding: 10px 0;
 }
 
-.add-collection {
+.add-collection span{
+    font-size: 13px;
+    margin-left: 5px;
+    color: red;
+}
 
+.add-collection span:hover{
+    color: red;
 }
 
 .add-collection input {

@@ -3,20 +3,10 @@ import { useEffect, useState } from 'react';
 import styles from '../styles/Collection.module.css'
 
 function Collection(props) {
-    const { showModal, setShowModal, setShowMenu } = props;
+    const { showModal, setShowModal, setShowMenu, result, setResult } = props;
     const [showCreate, setShowCreate] = useState(false);
     const [value, setValue] = useState('');
-    const [result, setResult] = useState([]);
     const [notification, setNotification] = useState('');
-    const [update, setUpdate] = useState(0);
-
-    useEffect(() => {
-        const handler = async () => {
-            const data = await axios.get(`/api/list-collection`);
-            setResult(data.data);
-        }
-        handler();
-    }, [update]);
 
     const addCollectionHandler = async () => {
         if (value) {
@@ -30,7 +20,10 @@ function Collection(props) {
                     "Content-Type": "application/json",
                 }
             );
-            setUpdate(update + 1)
+
+            const data = await axios.get(`/api/list-collection`);
+            setResult(data.data);
+
             setNotification('')
         } else setNotification('Please enter collection name');
         setValue('');
