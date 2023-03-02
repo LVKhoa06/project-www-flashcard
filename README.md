@@ -2,15 +2,13 @@
 # Xong 1 task thì push lên 
 
 # 🚀 WORKING ON
-* [x] [Use svg file](#task1) @Mar01 08:50
 * [x] [Get topic & flashcard in a request](#task2) @Mar01 09:20
-* [x] [Search with description](#task3) @Mar01 10:30
-* [x] [Delete feature create collection | topic](#task4) @Mar01 13:10
 * [x] [Refactor reusable components page](#task6) @Mar01 13:50
 * [x] [Topics page](#task5) @Mar01 13:40
 * [x] [Collections page](#task8) @Mar01 20:00
-* [ ] [Topic detail page](#task7) @Mar01 15:40 !!Defer!!
+* [ ] [Topic detail page](#task7) @Mar01 15:40 !!Defer!! => Don't use axios // Call mysql's functions directly
 * [ ] [Collection list (youtube) ](#task9) Start:@Mar01 20:50 --- Continue: @Mar02 07:40
+* [ ] [countTopicItem -> groupBy](#task10) @Mar02 14:20
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`)
@@ -47,11 +45,16 @@
 * [x] <a id="task8">Collections page</a>
 * [ ] <a id="task7">Topic detail page</a>
 * [ ] <a id="task9">Collection list(youtube)</a>
+* [ ] <a id="task10">countTopicItem -> groupBy</a>
 * [ ] Flashcard details page (Home & Search)
 * [ ] Store images ?
 * [ ] Handler error (create, search, update)
 * [ ] Real data
 * [ ] Cloud and local data sync
+* [ ] Create flashcard component
+* [ ] useEffect `Collection`
+* [ ] Request collection-list
+* [ ] countTopicItem -> groupBy
 # REFACTOR 
 ...
 
