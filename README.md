@@ -1,4 +1,4 @@
-aaaaa# File README push dang làm gì
+aaaaaaa# File README push dang làm gì
 # Xong 1 task thì push lên 
 
 # 🚀 WORKING ON
@@ -10,7 +10,8 @@ aaaaa# File README push dang làm gì
 * [ ] [Collection list (youtube) ](#task9) Start:@Mar01 20:50 --- Continue: @Mar02 07:40
 * [x] [countTopicItem -> groupBy](#task10) @Mar02 14:20
 * [x] [useEffect `Collection.js`](#task11) @Mar02 14:50
-* [ ] [Create flashcard component](#task12) @Mar02 15:10
+* [x] [Create flashcard component](#task12) @Mar02 15:10
+* [ ] [Request collection-list](#task13) @Mar02 15:20
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`)
@@ -47,7 +48,8 @@ aaaaa# File README push dang làm gì
 * [x] <a id="task8">Collections page</a>
 * [x] <a id="task10">countTopicItem -> groupBy</a>
 * [x] <a id="task11">useEffect `Collection.js`</a>
-* [ ] <a id="task12">Create flashcard component</a>
+* [x] <a id="task12">Create flashcard component</a>
+* [ ] <a id="task13">Request collection-list</a>
 * [ ] <a id="task9">Collection list(youtube)</a>
 * [ ] <a id="task7">Topic detail page</a>
 * [ ] Flashcard details page (Home & Search)
@@ -55,7 +57,6 @@ aaaaa# File README push dang làm gì
 * [ ] Handler error (create, search, update)
 * [ ] Real data
 * [ ] Cloud and local data sync
-* [ ] Request collection-list
 # REFACTOR 
 ...
 
