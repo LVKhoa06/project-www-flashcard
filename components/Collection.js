@@ -1,18 +1,25 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '../styles/Collection.module.css'
 
-function Collection() {
+function Collection({ showModal, setShowModal, setShowMenu }) {
     const [showCreate, setShowCreate] = useState(false);
-    const [showModal, setShowModal] = useState(false);
+
+    const addCollectionHandler = () => {
+
+    } // addCollectionHandler
 
     return (
         <>
             {showModal ?
-                <div className={styles.overlay}>
+                <div onClick={(e) => e.stopPropagation()} className={styles.overlay}>
                     <div className={styles.modal}>
                         <div className={styles.header}>
                             <h3>Lưu vào...</h3>
-                            <span>x</span>
+                            <span onClick={() => {
+                                setShowCreate(false);
+                                setShowModal(false);
+                                setShowMenu(true);
+                            }}>x</span>
                         </div>
                         <div className={styles['collection-list']}>
                             <div className={styles['input-container']}>
@@ -34,7 +41,11 @@ function Collection() {
                                     </div>
                                 </div>
                                 <div className={styles.footer}>
-                                    <button>Create</button>
+                                    <button onClick={() => {
+                                        setShowCreate(false);
+                                        setShowModal(false);
+                                        setShowMenu(true);
+                                    }}>Create</button>
                                 </div>
                             </>
                             :
@@ -43,7 +54,6 @@ function Collection() {
                                 Create new collection
                             </div>
                         }
-
                     </div>
                 </div>
                 : ''}

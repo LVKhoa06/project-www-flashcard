@@ -1,7 +1,10 @@
 import axios from 'axios';
 import Head from 'next/head';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from '../../styles/Home.module.css';
+import IconMenu from '../assets/icon-menu';
+import Collection from '../Collection';
+import MenuFlashcard from '../MenuFlashcard';
 import SortAndFilter from '../SortAndFilter';
 
 function Home() {
@@ -9,17 +12,20 @@ function Home() {
     const [data, setData] = useState([]);
     const [session, setSession] = useState({ value: '', turn: '' });
     const [listTopic, setListTopic] = useState([]);
+    const [showMenu, setShowMenu] = useState(false);
+    const [curId, setCurId] = useState(0);
 
-    const deleteFlashcardHandler = async (id) => {
-        axios.delete(`api/home?id=${id}`);
+    useEffect(() => {
+        const menu = document.querySelector(`#menu-${curId}`);
+        const foo = document.querySelector('.show');
 
-        setData(prev => {
-            return prev.filter(item => {
-                return item.id !== id;
-            })
-        });
-    } // deleteFlashcardHandler
-
+        if (showMenu) {
+            foo?.classList.remove('show')
+            menu?.classList.remove('show');
+        }
+        else menu?.classList.add('show');
+    }, [showMenu, curId])
+    
     const updateFlashcardHandler = async (value, field, id) => {
         await axios.patch(
             'api/home',
@@ -47,7 +53,7 @@ function Home() {
                     const topicName = listTopic.find(topic => topic.topic_id == item.topic_id)?.topic;
 
                     return (
-                        <div title={topicName} className={styles.flashcard} key={id}>
+                        <div id={id} /*title={topicName}*/ className={styles.flashcard} key={id}>
                             <div>
                                 <h2
                                     // disable warning when use contentEditable
@@ -68,7 +74,14 @@ function Home() {
                                 </span>
                             </div>
                             <button className={''} onClick={() => updateFlashcardHandler(session.value, session.turn, id)}>Ok</button>
-                            <div className={styles.delete} onClick={() => deleteFlashcardHandler(id)}>❌</div>
+                            <div
+                                onClick={(e) => {
+                                    setCurId(id);
+                                    setShowMenu(!showMenu);
+                                }} className={styles['menu-container']}>
+                                <IconMenu width='20px' height='20px' />
+                                <MenuFlashcard id={id} setShowMenu={setShowMenu} setData={setData}/>
+                            </div>
                         </div>
                     );
                 })}
