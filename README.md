@@ -8,7 +8,8 @@
 * [x] [Collections page](#task8) @Mar01 20:00
 * [ ] [Topic detail page](#task7) @Mar01 15:40 !!Defer!! => Don't use axios // Call mysql's functions directly
 * [ ] [Collection list (youtube) ](#task9) Start:@Mar01 20:50 --- Continue: @Mar02 07:40
-* [ ] [countTopicItem -> groupBy](#task10) @Mar02 14:20
+* [x] [countTopicItem -> groupBy](#task10) @Mar02 14:20
+* [ ] [useEffect `Collection.js`](#task11) @Mar02 14:50
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`)
@@ -52,9 +53,8 @@
 * [ ] Real data
 * [ ] Cloud and local data sync
 * [ ] Create flashcard component
-* [ ] useEffect `Collection`
+* [ ] <a id="task11">useEffect `Collection.js`</a>
 * [ ] Request collection-list
-* [ ] countTopicItem -> groupBy
 # REFACTOR 
 ...
 
