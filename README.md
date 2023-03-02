@@ -1,6 +1,3 @@
-aaaaaaaaaaa# File README push dang làm gì
-# Xong 1 task thì push lên 
-
 # 🚀 WORKING ON
 * [x] [Get topic & flashcard in a request](#task2) @Mar01 09:20
 * [x] [Topics page](#task5) @Mar01 13:40
@@ -12,6 +9,7 @@ aaaaaaaaaaa# File README push dang làm gì
 * [x] [Request collection-list](#task13) @Mar02 15:20
 * [x] [Topic & Collection detail page](#task14) @Mar02 16:25 
 * [ ] [Collection list (youtube) ](#task9) @Mar02 20:00
+* [ ] [Handler error when working with data(create, search, update)](#task15) @Mar02 10:10
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`)
@@ -54,7 +52,7 @@ aaaaaaaaaaa# File README push dang làm gì
 * [ ] <a id="task9">Collection list(youtube)</a>
 * [ ] Flashcard details page (Home & Search)
 * [ ] Store images ?
-* [ ] Handler error (create, search, update)
+* [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
 * [ ] Real data
 * [ ] Cloud and local data sync
 # REFACTOR 
