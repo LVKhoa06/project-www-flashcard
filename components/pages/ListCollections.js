@@ -22,14 +22,14 @@ function ListCollections() {
             <div className={styles.container}>
                 {listCollection.map(item => {
                     return (
-                        <div className={styles.collection} key={item.collection_id}>
+                        <Link href={`/collections/${item.collection_id}`} className={styles.collection} key={item.collection_id}>
                             <div className={styles}>
                                 <h2>{item.collection}</h2>
                             </div>
                             <div className={styles['quantity-container']}>
-                                <span>{data[item.collection_id - 1] ? `${data[item.collection_id]} flashcard` : 'Empty'}</span>
+                                <span>{data[item?.collection_id - 1]?.collection_id ? `${data[item?.collection_id].collection} flashcard` : 'Empty'}</span>
                             </div>
-                        </div>
+                        </Link>
                     )
                 })}
             </div>
