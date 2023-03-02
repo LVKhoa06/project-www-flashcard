@@ -7,7 +7,8 @@ function Collection(props) {
     const [showCreate, setShowCreate] = useState(false);
     const [value, setValue] = useState('');
     const [result, setResult] = useState([]);
-    const [notification, setNotification] = useState([]);
+    const [notification, setNotification] = useState('');
+    const [update, setUpdate] = useState(0);
 
     useEffect(() => {
         const handler = async () => {
@@ -15,7 +16,7 @@ function Collection(props) {
             setResult(data.data);
         }
         handler();
-    }, [notification]);
+    }, [update]);
 
     const addCollectionHandler = async () => {
         if (value) {
@@ -23,14 +24,16 @@ function Collection(props) {
                 "/api/collection",
                 {
                     filed: 'collection',
-                    value: value
+                    value
                 },
                 {
                     "Content-Type": "application/json",
                 }
             );
+            setUpdate(update + 1)
             setNotification('')
         } else setNotification('Please enter collection name');
+        setValue('');
     } // addCollectionHandler
 
     const closeModalHandler = () => {
