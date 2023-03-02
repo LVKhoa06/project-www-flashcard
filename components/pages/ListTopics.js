@@ -21,14 +21,15 @@ function ListTopics() {
         <>
             <div className={styles.container}>
                 {listTopic.map(item => {
+                    const topicQuantity = data.find(item2 => item2.topic_id === item.topic_id)
+                 
                     return (
                         <Link href={`/topics/${item.topic_id}`} className={styles.topic} key={item.topic_id}>
                             <div className={styles['topic-container']}>
                                 <h2>{item.topic}</h2>
                             </div>
-
                             <div className={styles['quantity-container']}>
-                                <span>{data[item.topic_id - 1].quantity ? `${data[item.topic_id - 1].quantity} flashcard` : 'Empty'}</span>
+                                <span>{topicQuantity?.quantity ? `${topicQuantity?.quantity} flashcard` : 'Empty'}</span>
                             </div>
                         </Link>
                     )

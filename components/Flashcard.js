@@ -5,7 +5,7 @@ import IconMenu from './assets/icon-menu';
 import MenuFlashcard from './MenuFlashcard';
 
 function Flashcard(props) {
-    const {data, setData, listTopic} = props
+    const {data, setData} = props
     const [session, setSession] = useState({ value: '', turn: '' });
     const [showMenu, setShowMenu] = useState(false);
     const [curId, setCurId] = useState(0);
@@ -40,7 +40,6 @@ function Flashcard(props) {
         <>
          {data.map(item => {
                     const id = item.id;
-                    const topicName = listTopic.find(topic => topic.topic_id == item.topic_id)?.topic;
 
                     return (
                         <div id={id} /*title={topicName}*/ className={styles.flashcard} key={id}>
