@@ -4,9 +4,9 @@
 }
 
 .flashcard {
-    width: max-content ;
+    width: max-content;
     margin: 10px;
-    padding:  0 50px 10px 10px;
+    padding: 0 50px 10px 10px;
     position: relative;
     border: 1px solid;
 }
@@ -16,16 +16,16 @@
     white-space: normal;
 }
 
-.flashcard h2:hover  {
+.flashcard h2:hover {
     color: wheat;
 }
 
-.flashcard h2:focus  {
+.flashcard h2:focus {
     color: rgb(185, 250, 87) !important;
     outline: none;
 }
 
-.flashcard h2:focus ~ .update {
+.flashcard h2:focus~.update {
     display: block;
 }
 
@@ -34,30 +34,31 @@
     white-space: normal;
 }
 
-.flashcard span:hover  {
+.flashcard span:hover {
     color: #333;
 }
 
-.flashcard span:focus  {
+.flashcard span:focus {
     color: rgb(121, 121, 121) !important;
     outline: none;
 }
 
-.flashcard span:focus ~ .update {
+.flashcard span:focus~.update {
     display: block;
 }
 
 
 .delete {
     position: absolute;
-    top: 25%;
-    right: 10px;
-    font-weight: 600;
+    top: 35%;
+    right: 0;
     cursor: pointer;
     padding: 3px 6px;
-}   
+    font-size: 13px;
+    display: none;
+}
 
-.filter{
+.filter {
     display: flex;
 }
 
@@ -71,6 +72,34 @@
     z-index: 99;
 }
 
-.container_edit{
-    display: flex; 
+.container_edit {
+    display: flex;
+}
+
+.menu-container {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+    padding: 3px 0px 0px 3px;
+}
+
+.flashcard:hover .delete {
+    display: flex;
+}
+
+.menu-list {
+    position: absolute;
+    z-index: 999;
+    background-color: white;
+    box-shadow: 0 0 5px -2px;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.foo {
+    background-color: red;
+    color: red;
+    width: 20px;
+    height: 20px;
 }

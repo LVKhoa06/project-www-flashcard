@@ -1,0 +1,25 @@
+.menu_list{
+    position: absolute;
+    z-index: 9;
+    background-color: aliceblue;
+    border-radius: 8px;
+    box-shadow: 0 0 8px -5px;
+    width: max-content;
+    display: none;
+    flex-direction: column;
+}
+
+.menu_list h4 {
+    padding: 8px 10px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.menu_list h4:hover {
+    background-color: rgb(227, 227, 227);
+}
+
+.show {
+    display: flex !important;
+}
