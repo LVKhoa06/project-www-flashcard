@@ -70,7 +70,7 @@ export async function updateFlashcard(id, field, value) {
     };
 } // updateFlashcard
 
-export async function getFlashcardWithCondition(topic_id, orderBy, direction) {
+export async function getFlashcardWithCondition(topic_id,field, orderBy, direction) {
     let query = `select * from flashcard 
     ${topic_id ? `where flashcard.topic_id = ${topic_id}` : ''} 
     ${orderBy ? `order by ${orderBy} ${direction}` : ''};`

@@ -1,11 +1,11 @@
-import { removeFlashcard, updateFlashcard, getFlashcardWithCondition, getAllCollection } from "../../utils/mysql/mysql";
+import { removeFlashcard, updateFlashcard, getFlashcardWithCondition } from "../../utils/mysql/mysql";
 
 export default async function handler(req, res) {
   const { url, method, query, body, headers } = req;
 
   switch (method) {
     case "GET":
-      const data = await getFlashcardWithCondition(query.topic_id, query.orderBy, query.direction);
+      const data = await getFlashcardWithCondition(query.topic_id, 'topic_id', query.orderBy, query.direction);
 
       if (!data) return res.status(400).send("Error occured.");
       res.status(201).json(data);

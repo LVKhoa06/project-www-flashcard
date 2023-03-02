@@ -11,14 +11,14 @@ const CONST_SORT_CASE = {
 }
 
 function SortAndFilter(props) {
-    const { setData, setListTopic, listTopic, use } = props
+    const { setData, setListTopic, listTopic, use: config } = props
     const { none, alphabeticallyASC, alphabeticallyDESC, dateASC, dateDESC } = CONST_SORT_CASE
     const [sortConfig, setSortConfig] = useState({ orderBy: 'creation_time', direction: 'desc' });
     const { orderBy, direction } = sortConfig;
     const [topicId, setTopicId] = useState('');
 
     useEffect(() => {
-        if(use.filter) {
+        if (config.filter) {
             const handler = async () => {
                 const data = await axios.get("/api/list-topic");
                 setListTopic(data.data);
@@ -52,38 +52,35 @@ function SortAndFilter(props) {
 
     return (
         <div className={styles.filter}>
-            {use.sort ? 
-            <div>
-                <select
-                    onChange={(e) => updateSortConfig(e.target.value)}
-                >
-                    <option value={none}>Sắp xếp theo </option>
-                    <option value={dateASC}>Mới nhất</option>
-                    <option value={dateDESC}>Cũ nhất</option>
-                    <option value={alphabeticallyASC}>{`A -> Z`}</option>
-                    <option value={alphabeticallyDESC}>{`Z -> A`}</option>
-                </select>
-            </div>
+            {config.sort ?
+                <div>
+                    <select
+                        onChange={(e) => updateSortConfig(e.target.value)}
+                    >
+                        <option value={none}>Sắp xếp theo </option>
+                        <option value={dateASC}>Mới nhất</option>
+                        <option value={dateDESC}>Cũ nhất</option>
+                        <option value={alphabeticallyASC}>{`A -> Z`}</option>
+                        <option value={alphabeticallyDESC}>{`Z -> A`}</option>
+                    </select>
+                </div>
                 : ''}
-            {use.filter ?   
-            <div>
-                <select
-                    onChange={(e) => {
-                        setTopicId(e.target.value);
-                    }}
-                >
-                    <option value="">Theo chủ đề</option>
-                    {listTopic.map(item => {
-                        return <option key={item.topic_id} value={item.topic_id}>{item.topic}</option>
-                    })}
-                </select>
-            </div>
-            :''
-
+            {config.filter ?
+                <div>
+                    <select
+                        onChange={(e) => {
+                            setTopicId(e.target.value);
+                        }}
+                    >
+                        <option value="">Theo chủ đề</option>
+                        {listTopic.map(item => {
+                            return <option key={item.topic_id} value={item.topic_id}>{item.topic}</option>
+                        })}
+                    </select>
+                </div>
+                : ''
             }
-          
         </div>
-
     );
 }
 

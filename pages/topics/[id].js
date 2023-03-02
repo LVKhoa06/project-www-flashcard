@@ -20,7 +20,7 @@ export async function getStaticPaths() {
 
 export const getStaticProps = async (context) => {
   const id = context.params.id;
-  const fetch = await getFlashcardWithCondition(id);
+  const fetch = await getFlashcardWithCondition(id, 'topic_id');
 
   const result = fetch.map(item => {
     return {
@@ -38,7 +38,12 @@ function TopicDetail({ result }) {
 
   return (
     <div className={styles.container}>
-      <Flashcard data={data} setData={setData} />
+      {data.length ?
+        <Flashcard data={data} setData={setData} /> :
+        <div>
+          <h1>Topic Empty</h1>
+        </div>
+      }
     </div>
   );
 }
