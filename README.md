@@ -1,4 +1,4 @@
-# File README push dang làm gì
+aaaaa# File README push dang làm gì
 # Xong 1 task thì push lên 
 
 # 🚀 WORKING ON
@@ -9,7 +9,8 @@
 * [ ] [Topic detail page](#task7) @Mar01 15:40 !!Defer!! => Don't use axios // Call mysql's functions directly
 * [ ] [Collection list (youtube) ](#task9) Start:@Mar01 20:50 --- Continue: @Mar02 07:40
 * [x] [countTopicItem -> groupBy](#task10) @Mar02 14:20
-* [ ] [useEffect `Collection.js`](#task11) @Mar02 14:50
+* [x] [useEffect `Collection.js`](#task11) @Mar02 14:50
+* [ ] [Create flashcard component](#task12) @Mar02 15:10
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`)
@@ -44,16 +45,16 @@
 * [x] <a id="task6"> Refactor reusable components page</a>
 * [x] <a id="task5">Topics page</a>
 * [x] <a id="task8">Collections page</a>
-* [ ] <a id="task7">Topic detail page</a>
+* [x] <a id="task10">countTopicItem -> groupBy</a>
+* [x] <a id="task11">useEffect `Collection.js`</a>
+* [ ] <a id="task12">Create flashcard component</a>
 * [ ] <a id="task9">Collection list(youtube)</a>
-* [ ] <a id="task10">countTopicItem -> groupBy</a>
+* [ ] <a id="task7">Topic detail page</a>
 * [ ] Flashcard details page (Home & Search)
 * [ ] Store images ?
 * [ ] Handler error (create, search, update)
 * [ ] Real data
 * [ ] Cloud and local data sync
-* [ ] Create flashcard component
-* [ ] <a id="task11">useEffect `Collection.js`</a>
 * [ ] Request collection-list
 # REFACTOR 
 ...
