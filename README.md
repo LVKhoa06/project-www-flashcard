@@ -2,9 +2,9 @@
 
 # 🚀 WORKING ON
 * [x] [Refactor reusable components page](#task6) @Mar01 13:50
-* [ ] [Add to collection](#task1) @Mar03 09:10
+* [x] [Add to collection](#task1) @Mar03 09:10
 * [ ] [Handler error when working with data(create, search, update)](#task15) @Mar02 22:10
-* [ ] [Work with MySQL table flashcard_collection_id (flashcard_id, collection_id)](#task2) @Mar03 13:30
+* [x] [Work with MySQL table flashcard_collection_id (flashcard_id, collection_id)](#task2) @Mar03 13:30
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`)
@@ -24,7 +24,6 @@
 ### Collection
 * [ ] <a id="task1">Add to collection</a> 
 * [ ] Delete collection
-* [ ] 
 
 # 💪TODO
 * [x] Button update flashcard
