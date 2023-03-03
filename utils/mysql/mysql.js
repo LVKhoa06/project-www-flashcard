@@ -162,3 +162,20 @@ export async function collection_AddToCollection(collection_id, id) {
         message: 'Successfully added to the collection'
     };
 } // countCollectionItem
+
+export async function collection_AddToCollection2(flashcard_id, collection_id) {
+    const query = `insert into flashcard_collection_id(flashcard_id, collection_id) values(?, ?);`;
+    const values = [flashcard_id, collection_id];
+    const [result] = await pool().execute(query, values);
+
+    if (result?.affectedRows !== 1)
+        return {
+            success: false,
+            message: "Error occured."
+        };
+
+    return {
+        success: true,
+        message: 'Successfully added to the collection'
+    };
+} // countCollectionItem

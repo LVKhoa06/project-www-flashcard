@@ -25,7 +25,7 @@ function Collection(props) {
                     }
                 )
                 console.log('Successfully added to the collection');
-            }[]
+            }
         }
 
         handler();
