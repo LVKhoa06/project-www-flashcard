@@ -6,6 +6,7 @@ import Head from "next/head";
 
 function Create() {
     const [listTopic, setListTopic] = useState([]);
+    const [listFlashcard, setListFlashcard] = useState([]);
     const [topicId, setTopicId] = useState(-1);
     const [term, setTerm] = useState('');
     const [description, setDiscription] = useState('');
@@ -13,7 +14,9 @@ function Create() {
     useEffect(() => {
         const handler = async () => {
             const data = await axios.get("/api/list-topic");
+            const data2 = await axios.get("/api/home");
             setListTopic(data.data);
+            setListFlashcard(data2.data);
         }
         handler();
     }, []);
@@ -25,23 +28,41 @@ function Create() {
 
     async function handlerCreate(e) {
         e.preventDefault();
-        await axios.post(
-            "/api/create",
-            {
-                topic_id: topicId,
-                term,
-                description,
-                date
-            },
-            {
-                "Content-Type": "application/json",
-            }
-        );
-        setTerm('');
-        setDiscription('');
+        let post;
+        listFlashcard.forEach(async item =>  post = await item.term !== term)
+        
+        if (term === '') {
+            return console.log('Please enter Term');
+        }
+
+        if (description === '')
+            return console.log('Please enter Description');
+
+
+        if (post) {
+            await axios.post(
+                "/api/create",
+                {
+                    topic_id: topicId,
+                    term,
+                    description,
+                    date
+                },
+                {
+                    "Content-Type": "application/json",
+                }
+            );
+            setTerm('');
+            setDiscription('');
+        } else {
+            console.log('Term already exist');
+        }
+
+
     } // handlerCreate
 
     return (
+
         <>
             <Head>
                 <title>Create Flashcard</title>
@@ -54,7 +75,6 @@ function Create() {
                         <option value={-1}>Khác</option>
 
                         {listTopic.map(item => {
-                            console.log(item.topic_id)
                             return item.topic_id > 0 ? <option key={item.topic_id} value={item.topic_id}>{item.topic}</option> : ''
 
                         })}
