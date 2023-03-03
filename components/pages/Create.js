@@ -6,7 +6,7 @@ import Head from "next/head";
 
 function Create() {
     const [listTopic, setListTopic] = useState([]);
-    const [topicId, setTopicId] = useState('');
+    const [topicId, setTopicId] = useState(-1);
     const [term, setTerm] = useState('');
     const [description, setDiscription] = useState('');
 
@@ -39,37 +39,35 @@ function Create() {
         );
         setTerm('');
         setDiscription('');
-    }
-
-    const getCurTopic = (event) => {
-        setTopicId(event.target.value)
-    } //
+    } // handlerCreate
 
     return (
         <>
-         <Head>
+            <Head>
                 <title>Create Flashcard</title>
-        </Head>
-        <form>
-            <div>
-                <select
-                    onChange={getCurTopic}
-                >
-                    <option value="">Chọn chủ đề</option>
+            </Head>
+            <form>
+                <div>
+                    <select
+                        onChange={(e) => setTopicId(e.target.value)}
+                    >
+                        <option value={-1}>Khác</option>
 
-                    {listTopic.map(item => {
-                        return <option key={item.topic_id} value={item.topic_id}>{item.topic}</option>
-                    })}
-                </select>
+                        {listTopic.map(item => {
+                            console.log(item.topic_id)
+                            return item.topic_id > 0 ? <option key={item.topic_id} value={item.topic_id}>{item.topic}</option> : ''
 
-            </div>
-            <input value={term} onChange={(e) => setTerm(e.target.value)} placeholder="Thuật ngữ" />
-            <input value={description} onChange={(e) => setDiscription(e.target.value)} placeholder="Giải thích" />
+                        })}
+                    </select>
 
-            <button onClick={(e) => handlerCreate(e)}>submit</button>
-        </form>
+                </div>
+                <input value={term} onChange={(e) => setTerm(e.target.value)} placeholder="Thuật ngữ" />
+                <input value={description} onChange={(e) => setDiscription(e.target.value)} placeholder="Giải thích" />
+
+                <button onClick={(e) => handlerCreate(e)}>submit</button>
+            </form>
         </>
-        
+
     );
 }
 
