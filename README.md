@@ -5,6 +5,7 @@
 * [x] [Add to collection](#task1) @Mar03 09:10
 * [ ] [Handler error when working with data(create, search, update)](#task15) @Mar02 22:10
 * [x] [Work with MySQL table flashcard_collection_id (flashcard_id, collection_id)](#task2) @Mar03 13:30
+* [x] [Create View (collection & topic page) MySQL (id, item_id, count) ](#task3) @Mar03 21:00
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`)
@@ -50,7 +51,7 @@
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
 * [ ] Cloud and local data sync
 * [ ] Topics & Collection page send a request
-* [ ] Create View (collection & topic page) MySQL (id, item_id, count) 
+* [ ] <a id="task2">Create View (collection & topic page) MySQL (id, item_id, count) </a>
 * [ ] <a id="task2">Work with MySQL table flashcard_collection_id (flashcard_id, collection_id)</a>
 
 # REFACTOR 
