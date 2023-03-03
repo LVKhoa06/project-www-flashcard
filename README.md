@@ -4,6 +4,7 @@
 * [x] [Refactor reusable components page](#task6) @Mar01 13:50
 * [ ] [Add to collection](#task1) @Mar03 09:10
 * [ ] [Handler error when working with data(create, search, update)](#task15) @Mar02 22:10
+* [ ] [Work with MySQL table flashcard_collection_id (flashcard_id, collection_id)](#task2) @Mar03 13:30
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`)
@@ -23,6 +24,7 @@
 ### Collection
 * [ ] <a id="task1">Add to collection</a> 
 * [ ] Delete collection
+* [ ] 
 
 # 💪TODO
 * [x] Button update flashcard
@@ -32,7 +34,7 @@
 * [x] Add topic | collection in flashcard   
 * [x] Thể hiện công việc đang làm README.md
 * [x] Use svg file
-* [x] <a id="task2">Get topic & flashcard in a request</a>
+* [x] Get topic & flashcard in a request
 * [x] Search with description 
 * [x] Delete feature create collection | topic
 * [x] <a id="task6"> Refactor reusable components page</a>
@@ -50,6 +52,7 @@
 * [ ] Cloud and local data sync
 * [ ] Topics & Collection page send a request
 * [ ] Create View (collection & topic page) MySQL (id, item_id, count) 
+* [ ] <a id="task2">Work with MySQL table flashcard_collection_id (flashcard_id, collection_id)</a>
 
 # REFACTOR 
 * [ ] Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll) 
