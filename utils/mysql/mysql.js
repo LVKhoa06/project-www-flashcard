@@ -1,5 +1,10 @@
 import pool from './pool';
 
+//#region Flashcard ----------------------------------------------- START
+function flashcard_create() {
+
+}
+//#endregion Flashcard -------------------------------------------- END
 export async function getAllTopic() {
     const query = `select * from topic;`;
     const [data] = await pool().execute(query);
@@ -70,9 +75,9 @@ export async function updateFlashcard(id, field, value) {
     };
 } // updateFlashcard
 
-export async function getFlashcardWithCondition(topic_id,field, orderBy, direction) {
+export async function getFlashcardWithCondition(topic_id, field, orderBy, direction) {
     let query = `select * from flashcard 
-    ${topic_id ? `where flashcard.topic_id = ${topic_id}` : ''} 
+    ${topic_id ? `where flashcard.${field} = ${topic_id}` : ''} 
     ${orderBy ? `order by ${orderBy} ${direction}` : ''};`
 
     const [data] = await pool().execute(query);
@@ -140,4 +145,20 @@ export async function countCollectionItem() {
         return false;
 
     return result;
+} // countCollectionItem
+
+export async function collection_AddToCollection(collection_id, id) {
+    const query = `update flashcard set collection_id = ${collection_id} where id = ${id};`;
+    const [result] = await pool().execute(query);
+
+    if (result?.affectedRows !== 1)
+        return {
+            success: false,
+            message: "Error occured."
+        };
+
+    return {
+        success: true,
+        message: 'Successfully added to the collection'
+    };
 } // countCollectionItem

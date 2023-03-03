@@ -1,4 +1,4 @@
-import { countCollectionItem, addCollection } from "../../utils/mysql/mysql";
+import { countCollectionItem, addCollection, collection_AddToCollection } from "../../utils/mysql/mysql";
 
 export default async function handler(req, res) {
   // reusable
@@ -20,6 +20,13 @@ export default async function handler(req, res) {
 
       res.status(201).json(result);
 
+      break;
+      case "PATCH":
+      const { id, collection_id } = body;
+      const foo = await collection_AddToCollection(collection_id, id);
+
+      if (!foo.success) return res.status(400).send(foo.message);
+      res.status(201).json(foo.message);
       break;
     default:
       break;

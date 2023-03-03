@@ -1,12 +1,55 @@
 import axios from 'axios';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '../styles/Collection.module.css'
 
 function Collection(props) {
-    const { showModal, setShowModal, setShowMenu, result, setResult } = props;
+    const { id, showModal, setShowModal, setShowMenu, result, setResult } = props;
     const [showCreate, setShowCreate] = useState(false);
     const [value, setValue] = useState('');
     const [notification, setNotification] = useState('');
+    const [checkedState, setCheckedState] = useState([]);
+    const [result2, setResult2] = useState([]);
+    const [collectionId, setCollection_id] = useState(0);
+
+    useEffect(() => {
+        const handler = async () => {
+            if (checkedState.length) {
+                axios.patch(
+                    'api/collection',
+                    {
+                        id,
+                        collection_id: collectionId
+                    },
+                    {
+                        "Content-Type": "application/json",
+                    }
+                )
+                console.log('Successfully added to the collection');
+            }[]
+        }
+
+        handler();
+    }, [collectionId])
+
+    useEffect(() => {
+        setResult2(result.filter(item => item.collection_id !== -1));
+    }, [result])
+
+    useEffect(() => {
+        const data = new Array(result2.length).fill(false);
+        data.unshift(false);
+        setCheckedState(data);
+    }, [result2])
+
+
+    const handleOnChangeCheckbox = async (e, i, collection_id) => {
+        const updatedCheckedState = checkedState.map((item, index) => index === i ? !item : item);
+        setCheckedState(updatedCheckedState);
+
+        if (e.target.checked) {
+            setCollection_id(collection_id)
+        }
+    } // handleOnChangeCheckbox
 
     const addCollectionHandler = async () => {
         if (value) {
@@ -46,14 +89,21 @@ function Collection(props) {
                         </div>
                         <div className={styles['collection-list']}>
                             <div className={styles['input-container']}>
-                                <input type="checkbox" />
-                                <span>Khác</span>
+                                <input
+                                    type="checkbox"
+                                    onChange={(e) => {
+                                        handleOnChangeCheckbox(e, 0, -1)
+                                    }}
+                                />
+                                <label>Khác</label>
                             </div>
-                            {result.map(item => {
+                            {result2.map((item, index) => {
                                 return (
                                     <div key={item.collection_id} className={styles['input-container']}>
-                                        <input type="checkbox" />
-                                        <span>{item.collection}</span>
+                                        <input
+                                            type="checkbox"
+                                            onChange={(e) => handleOnChangeCheckbox(e, index + 1, item.collection_id)} />
+                                        <label>{item.collection}</label>
                                     </div>
                                 )
                             })}
