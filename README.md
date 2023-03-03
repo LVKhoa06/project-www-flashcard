@@ -1,15 +1,9 @@
+# Real data @Mon6th
+
 # 🚀 WORKING ON
-* [x] [Get topic & flashcard in a request](#task2) @Mar01 09:20
-* [x] [Topics page](#task5) @Mar01 13:40
 * [x] [Refactor reusable components page](#task6) @Mar01 13:50
-* [x] [Collections page](#task8) @Mar01 20:00
-* [x] [countTopicItem -> groupBy](#task10) @Mar02 14:20
-* [x] [useEffect `Collection.js`](#task11) @Mar02 14:50
-* [x] [Create flashcard component](#task12) @Mar02 15:10
-* [x] [Request collection-list](#task13) @Mar02 15:20
-* [x] [Topic & Collection detail page](#task14) @Mar02 16:25 
-* [ ] [Collection list (youtube) ](#task9) @Mar02 20:00
-* [ ] [Handler error when working with data(create, search, update)](#task15) @Mar02 10:10
+* [ ] [Add to collection](#task1) @Mar03 09:10
+* [ ] [Handler error when working with data(create, search, update)](#task15) @Mar02 22:10
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`)
@@ -27,8 +21,8 @@
 * [x] Search flashcard term & description
 
 ### Collection
-* [x] Add to collection  
-* [x] Topic 
+* [ ] <a id="task1">Add to collection</a> 
+* [ ] Delete collection
 
 # 💪TODO
 * [x] Button update flashcard
@@ -53,10 +47,13 @@
 * [ ] Flashcard details page (Home & Search)
 * [ ] Store images ?
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
-* [ ] Real data
 * [ ] Cloud and local data sync
+* [ ] Topics & Collection page send a request
+* [ ] Create View (collection & topic page) MySQL (id, item_id, count) 
+
 # REFACTOR 
-...
+* [ ] Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll) 
+
 
 # MISC
 * [ ] Color + img: term | topic
