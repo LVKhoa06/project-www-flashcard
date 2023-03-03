@@ -1,7 +1,7 @@
 import Flashcard from "@/components/Flashcard";
 import SortAndFilter from "@/components/SortAndFilter";
 import { useState } from "react";
-import { getAllCollection, getFlashcardWithCondition } from "utils/mysql/mysql";
+import { getAllCollection, getFlashcardWithCollection } from "utils/mysql/mysql";
 import styles from '../../styles/ListCollection.module.css'
 
 export async function getStaticPaths() {
@@ -20,7 +20,7 @@ export async function getStaticPaths() {
 
 export const getStaticProps = async (context) => {
   const id = context.params.id;
-  const fetch = await getFlashcardWithCondition(id, 'collection_id');
+  const fetch = await getFlashcardWithCollection(id);
 
   const result = fetch.map(item => {
     return {

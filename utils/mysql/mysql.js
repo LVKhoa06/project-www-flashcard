@@ -88,12 +88,24 @@ export async function getFlashcardWithCondition(topic_id, field, orderBy, direct
     return data;
 } // getFlashcardWithCondition
 
+
 export async function searchFlashcard(key) {
     const query = ` 
     select * from flashcard f
     inner join topic t
     on f.topic_id = t.topic_id
     where f.term like '%${key}%' or f.description like '%${key}%'`
+    const [result] = await pool().execute(query);
+
+    if (!result)
+        return false;
+    return result;
+} // searchFlashcard
+
+export async function getFlashcardWithCollection(key) {
+    const query = ` 
+    select * from flashcard f inner join flashcard_collection_id fc
+    on f.id = fc.flashcard_id where fc.collection_id = ${key};`
     const [result] = await pool().execute(query);
 
     if (!result)
