@@ -1,4 +1,4 @@
-import { countCollectionItem, addCollection, collection_AddToCollection, collection_AddToCollection2 } from "../../utils/mysql/mysql";
+import { countCollectionItem2, addCollection, collection_AddToCollection, collection_AddToCollection2 } from "../../utils/mysql/mysql";
 
 export default async function handler(req, res) {
   // reusable
@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
   switch (method) {
     case "GET":
-      const data = await countCollectionItem();
+      const data = await countCollectionItem2();
 
       if (!data) return res.status(400).send("Error occured.");
 

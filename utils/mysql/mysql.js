@@ -147,6 +147,17 @@ export async function countCollectionItem() {
     return result;
 } // countCollectionItem
 
+export async function countCollectionItem2() {
+    const query = `select collection_id, count(collection_id) as quantity from flashcard_collection_id group by collection_id;`;
+    const [result] = await pool().execute(query);
+
+    if (!result)
+        return false;
+
+    return result;
+} // countCollectionItem
+
+
 export async function collection_AddToCollection(collection_id, id) {
     const query = `update flashcard set collection_id = ${collection_id} where id = ${id};`;
     const [result] = await pool().execute(query);
