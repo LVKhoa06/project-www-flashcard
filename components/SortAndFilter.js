@@ -34,6 +34,7 @@ function SortAndFilter(props) {
         }
         handler();
     }, [sortConfig, topicId]);
+    
     const updateSortConfig = async (value) => {
         if (value == none) return;
 
@@ -73,8 +74,9 @@ function SortAndFilter(props) {
                         }}
                     >
                         <option value="">Theo chủ đề</option>
+                        <option value={-1}>Khác</option>
                         {listTopic.map(item => {
-                            return <option key={item.topic_id} value={item.topic_id}>{item.topic}</option>
+                            return item.topic_id > 0 ? <option key={item.topic_id} value={item.topic_id}>{item.topic}</option> : ''
                         })}
                     </select>
                 </div>

@@ -21,15 +21,19 @@ function ListCollections() {
         <>
             <div className={styles.container}>
                 {listCollection.map(item => {
+                    const collectionQuantity = data.find(item2 => item2.collection_id === item.collection_id)
+
                     return (
+                        <>
                         <Link href={`/collections/${item.collection_id}`} className={styles.collection} key={item.collection_id}>
-                            <div className={styles}>
+                            <div className={''}>
                                 <h2>{item.collection}</h2>
                             </div>
                             <div className={styles['quantity-container']}>
-                                <span>{data[item?.collection_id - 1]?.collection_id ? `${data[item?.collection_id].collection} flashcard` : 'Empty'}</span>
+                                <span>{collectionQuantity?.quantity ? `${collectionQuantity?.quantity} flashcard` : 'Empty'}</span>
                             </div>
                         </Link>
+                        </>
                     )
                 })}
             </div>

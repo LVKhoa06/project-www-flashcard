@@ -1,4 +1,6 @@
-import axios from "axios";
+import Flashcard from "@/components/Flashcard";
+import SortAndFilter from "@/components/SortAndFilter";
+import { useState } from "react";
 import { getAllCollection, getFlashcardWithCondition } from "utils/mysql/mysql";
 import styles from '../../styles/ListCollection.module.css'
 
@@ -18,21 +20,31 @@ export async function getStaticPaths() {
 
 export const getStaticProps = async (context) => {
   const id = context.params.id;
-  const data = await getFlashcardWithCondition(id, 'collection_id');
+  const fetch = await getFlashcardWithCondition(id, 'collection_id');
 
-  return { props: { data: data } };
+  const result = fetch.map(item => {
+    return {
+      ...item,
+      creation_time: item.creation_time.toString()
+    }
+  })
+
+  return { props: { result } };
 };
 
-function TopicDetail({ data }) {
+function CollectionDetail({ result }) {
+  const [data, setData] = useState(result);
 
   return (
     <div className={styles.container}>
-      {data.length ? 
-      <Flashcard data={data} setData={setData}/> :
-      <h1>Collection Empty</h1>
-        }
+      {data.length ?
+        <Flashcard data={data} setData={setData} /> :
+        <div>
+          <h1>Collection Empty</h1>
+        </div>
+      }
     </div>
   );
 }
 
-export default TopicDetail;
+export default CollectionDetail;

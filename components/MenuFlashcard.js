@@ -37,7 +37,7 @@ function MenuFlashcard(props) {
                 e.stopPropagation();
                 deleteFlashcardHandler(id)
             }}>Delete </h4>
-            <Collection result={result} setResult={setResult} showModal={showModal} setShowModal={setShowModal} setShowMenu={setShowMenu} />
+            <Collection id={id} result={result} setResult={setResult} showModal={showModal} setShowModal={setShowModal} setShowMenu={setShowMenu} />
         </div>
     );
 }

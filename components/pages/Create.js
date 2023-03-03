@@ -28,13 +28,12 @@ function Create() {
 
     async function handlerCreate(e) {
         e.preventDefault();
-        let post;
-        listFlashcard.forEach(async item =>  post = await item.term !== term)
-        
+        let post = listFlashcard.find( item =>  item.term === term)
+
         if (term === '') {
             return console.log('Please enter Term');
         }
-
+        console.log(post);
         if (description === '')
             return console.log('Please enter Description');
 
