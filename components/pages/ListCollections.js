@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styles from '../../styles/ListCollection.module.css'
@@ -19,6 +20,9 @@ function ListCollections() {
 
     return (
         <>
+            <Head>
+                <title>List Collection</title>
+            </Head>
             <div className={styles.container}>
                 {listCollection.map((item, index) => {
                     const collectionQuantity = data.find(item2 => item2.collection_id === item.collection_id)

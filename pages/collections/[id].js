@@ -5,6 +5,7 @@ import images from "assets";
 import IconBin from "assets/icon-bin";
 import IconTick from "assets/icon-tick";
 import axios from "axios";
+import Head from "next/head";
 import { use, useEffect, useState } from "react";
 import { getAllCollection, getFlashcardWithCollection } from "utils/mysql/mysql";
 import styles from '../../styles/ListCollection.module.css'
@@ -55,6 +56,10 @@ function CollectionDetail({ result, collection }) {
   }// submitHandler
 
   return (
+    <>
+    <Head>
+      <title>{collection.collection} - Collection</title>
+    </Head>
     <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles['container-left']}>
@@ -97,6 +102,7 @@ function CollectionDetail({ result, collection }) {
       }
       {showCheck ? <ModalCheck id={collection.collection_id} setShowCheck={setShowCheck}/> : ''} 
     </div>
+    </>
   );
 }
 

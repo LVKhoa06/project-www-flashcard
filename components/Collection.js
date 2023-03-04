@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from '../styles/Collection.module.css'
 
 function Collection(props) {
@@ -10,10 +10,16 @@ function Collection(props) {
     const [checkedState, setCheckedState] = useState([]);
     const [result2, setResult2] = useState([]);
     const [collectionId, setCollection_id] = useState(0);
+    const [foo, setFoo] = useState(true);
+    const [foo2, setFoo2] = useState(true);
+    const [curCheck, setCurCheck] = useState(-1);
 
     useEffect(() => {
         const handler = async () => {
-            if (checkedState.length) {
+            if (checkedState.length > 1 && foo) {
+                console.log('Added');
+                // console.log('Successfully added to the collection');
+                setFoo(false);
                 axios.patch(
                     'api/collection',
                     {
@@ -24,12 +30,11 @@ function Collection(props) {
                         "Content-Type": "application/json",
                     }
                 )
-                console.log('Successfully added to the collection');
             }
         }
 
         handler();
-    }, [collectionId])
+    }, [collectionId, foo2])
 
     useEffect(() => {
         setResult2(result.filter(item => item.collection_id !== -1));
@@ -47,8 +52,16 @@ function Collection(props) {
         setCheckedState(updatedCheckedState);
 
         if (e.target.checked) {
-            setCollection_id(collection_id)
+            setCollection_id(collection_id);
+            setFoo2(!foo2);
         }
+        else {
+            const deleted = await axios.delete(`api/collection?f_id=${id}&c_id=${collection_id}`)
+            // console.log(deleted.data.message);
+            console.log('Deleted');
+            setFoo(true)
+        }
+
     } // handleOnChangeCheckbox
 
     const addCollectionHandler = async () => {
@@ -92,6 +105,7 @@ function Collection(props) {
                                 <input
                                     type="checkbox"
                                     onChange={(e) => {
+                                        setCurCheck(-1)
                                         handleOnChangeCheckbox(e, 0, -1)
                                     }}
                                 />
@@ -102,7 +116,10 @@ function Collection(props) {
                                     <div key={item.collection_id} className={styles['input-container']}>
                                         <input
                                             type="checkbox"
-                                            onChange={(e) => handleOnChangeCheckbox(e, index + 1, item.collection_id)} />
+                                            onChange={(e) => {
+                                                setCurCheck(item.collection_id)
+                                                handleOnChangeCheckbox(e, index + 1, item.collection_id)
+                                            }} />
                                         <label>{item.collection}</label>
                                     </div>
                                 )

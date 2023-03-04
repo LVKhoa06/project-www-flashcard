@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styles from '../../styles/ListTopic.module.css'
@@ -19,6 +20,9 @@ function ListTopics() {
 
     return (
         <>
+            <Head>
+                <title>List Topics</title>
+            </Head>
             <div className={styles.container}>
                 {listTopic.map(item => {
                     const topicQuantity = data.find(item2 => item2.topic_id === item.topic_id)
