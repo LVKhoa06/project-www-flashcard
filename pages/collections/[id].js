@@ -1,8 +1,10 @@
 import Flashcard from "@/components/Flashcard";
+import ModalCheck from "@/components/ModalCheck";
 import SortAndFilter from "@/components/SortAndFilter";
 import images from "assets";
 import IconBin from "assets/icon-bin";
 import IconTick from "assets/icon-tick";
+import axios from "axios";
 import { use, useEffect, useState } from "react";
 import { getAllCollection, getFlashcardWithCollection } from "utils/mysql/mysql";
 import styles from '../../styles/ListCollection.module.css'
@@ -26,7 +28,7 @@ export const getStaticProps = async (context) => {
   const fetch = await getFlashcardWithCollection(id);
   const fetch2 = await getAllCollection();
 
-  const collectionName = fetch2.find(item => item.collection_id == id)
+  const collection = fetch2.find(item => item.collection_id == id)
 
   const result = fetch.map(item => {
     return {
@@ -35,21 +37,21 @@ export const getStaticProps = async (context) => {
     }
   })
 
-  return { props: { result, collectionName: collectionName.collection } };
+  return { props: { result, collection } };
 };
 
-function CollectionDetail({ result, collectionName }) {
+function CollectionDetail({ result, collection }) {
   const [data, setData] = useState(result);
   const [quantity, setQuantity] = useState(data.length);
   const [valueCollection, setValueCollection] = useState('');
   const [valueDescription, setValueDescription] = useState('');
+  const [showCheck, setShowCheck] = useState(false);
 
   useEffect(() => {
     setQuantity(data.length);
   }, [data])
 
   const submitHandler = (e) => {
-
   }// submitHandler
 
   return (
@@ -62,7 +64,7 @@ function CollectionDetail({ result, collectionName }) {
           <div className={styles['collection-name']}>
             <input
               value={valueCollection}
-              placeholder={collectionName}
+              placeholder={collection.collection}
               onChange={(e) => setValueCollection(e.target.value)}
             />
             <span onClick={(e) => submitHandler(e)}>
@@ -71,7 +73,9 @@ function CollectionDetail({ result, collectionName }) {
           </div>
           <div className={styles['collection-info']}>
             <span>{quantity} flashcard</span>
-            <IconBin className={styles['icon-bin']} viewBox='0 0 1024 1024' fill='#555' />
+            <span onClick={(e) => setShowCheck(true)} className={styles['delete-icon']}>
+              <IconBin className={styles['icon-bin']} viewBox='0 0 1024 1024' fill='#555' />
+            </span>
           </div>
           <div className={styles['collection-description']}>
             <input
@@ -91,6 +95,7 @@ function CollectionDetail({ result, collectionName }) {
           <h1>Collection Empty</h1>
         </div>
       }
+      {showCheck ? <ModalCheck id={collection.collection_id} setShowCheck={setShowCheck}/> : ''} 
     </div>
   );
 }

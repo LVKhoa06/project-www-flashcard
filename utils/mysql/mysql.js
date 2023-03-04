@@ -102,10 +102,10 @@ export async function searchFlashcard(key) {
     return result;
 } // searchFlashcard
 
-export async function getFlashcardWithCollection(key) {
+export async function getFlashcardWithCollection(id) {
     const query = ` 
     select * from flashcard f inner join flashcard_collection_id fc
-    on f.id = fc.flashcard_id where fc.collection_id = ${key};`
+    on f.id = fc.flashcard_id where fc.collection_id = ${id};`
     const [result] = await pool().execute(query);
 
     if (!result)
@@ -173,5 +173,24 @@ export async function collection_AddToCollection(flashcard_id, collection_id) {
     return {
         success: true,
         message: 'Successfully added to the collection'
+    };
+} // collection_AddToCollection
+
+export async function collection_list_Delete(id) {
+    const q1 = `delete from flashcard_collection_id where collection_id = ${id};`
+    const [r1] = await pool().execute(q1);
+   
+    const query = `delete from collection where collection_id = ${id};`;
+    const [result] = await pool().execute(query);
+
+    if (result?.affectedRows !== 1)
+        return {
+            success: false,
+            message: "Error occured."
+        };
+
+    return {
+        success: true,
+        message: 'Delete collection Successful'
     };
 } // collection_AddToCollection
