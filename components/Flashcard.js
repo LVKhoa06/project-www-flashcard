@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styles from '../styles/Home.module.css';
-import IconMenu from './assets/icon-menu';
+import IconMenu from '../assets/icon-menu';
 import MenuFlashcard from './MenuFlashcard';
 
 function Flashcard(props) {
