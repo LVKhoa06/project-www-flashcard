@@ -194,3 +194,19 @@ export async function collection_list_Delete(id) {
         message: 'Delete collection Successful'
     };
 } // collection_AddToCollection
+
+export async function collection_DeleteCollection(f_id, c_id) {
+    const q1 = `delete from flashcard_collection_id where flashcard_id = ${f_id} and collection_id = ${c_id};`
+    const [result] = await pool().execute(q1);
+
+    if (result?.affectedRows !== 1)
+        return {
+            success: false,
+            message: "Error occured."
+        };
+
+    return {
+        success: true,
+        message: 'Delete collection Successful'
+    };
+} // collection_AddToCollection

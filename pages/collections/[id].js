@@ -1,5 +1,5 @@
 import Flashcard from "@/components/Flashcard";
-import ModalCheck from "@/components/ModalCheck";
+import ModalCheck from "@/components/ModalDeleteColelction";
 import SortAndFilter from "@/components/SortAndFilter";
 import images from "assets";
 import IconBin from "assets/icon-bin";

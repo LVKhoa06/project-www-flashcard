@@ -1,4 +1,4 @@
-import { countCollectionItem, addCollection, collection_AddToCollection} from "../../utils/mysql/mysql";
+import { countCollectionItem, addCollection, collection_AddToCollection, collection_DeleteCollection} from "../../utils/mysql/mysql";
 
 export default async function handler(req, res) {
   // reusable
@@ -27,6 +27,13 @@ export default async function handler(req, res) {
       
       if (!foo.success) return res.status(400).send(foo.message);
       res.status(201).json(foo.message);
+      case "DELETE":
+        const ok = await collection_DeleteCollection(query.f_id, query.c_id);
+       
+        if (!ok.success) return res.status(400).send(ok.message);
+        res.status(201).json(ok);
+  
+        break;
       break;
     default:
       break;
