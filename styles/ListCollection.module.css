@@ -3,11 +3,11 @@
     display: flex;
 }
 
-.collection{
+.collection {
     width: max-content;
-    height: max-content ;
+    height: max-content;
     margin: 10px;
-    padding:  6px 0px 6px 10px;
+    padding: 6px 0px 6px 10px;
     position: relative;
     border: 1px solid;
     display: flex;
@@ -20,8 +20,77 @@
     align-items: center;
 }
 
-.quantity-container span{
+.quantity-container span {
     padding-right: 20px;
     font-size: 10px;
     margin-left: 20px;
+}
+
+.header {
+    display: flex;
+    width: 100%;
+    height: 201px;
+    border-bottom: 1px solid;
+    margin-bottom: 20px;
+}
+
+.container-left {}
+
+.container-left img {
+    max-width: 260px;
+    border-right: 1px solid;
+}
+
+.container-right {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+}
+
+.collection-name,
+.collection-description {
+    padding: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.collection-name span,
+.collection-description span {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.collection-name input {
+    border: none;
+    outline: none;
+    font-size: 28px;
+    color: #333;
+}
+
+.collection-description input {
+    border: none;
+    outline: none;
+    font-size: 20px;
+    color: #333;
+}
+
+.collection-info {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.collection-info span {
+    color: #333;
+    font-size: 14px;
+}
+
+.icon-bin {
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.header input::placeholder {
+    color: #333;
 }
