@@ -3,9 +3,10 @@
 # 🚀 WORKING ON
 * [x] [Refactor reusable components page](#task6) @Mar01 13:50
 * [x] [Add to collection](#task1) @Mar03 09:10
-* [ ] [Handler error when working with data(create, search, update)](#task15) @Mar02 22:10
 * [x] [Work with MySQL table flashcard_collection_id (flashcard_id, collection_id)](#task2) @Mar03 13:30
+* [ ] [Handler error when working with data(create, search, update)](#task15) @Mar02 22:10
 * [ ] [Create View (collection & topic page) MySQL (id, item_id, count) ](#task3) @Mar03 21:00
+* [ ] [ Collection pages youtubes) ](#task4) @Mar04 07:15
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`)
@@ -53,6 +54,7 @@
 * [ ] Topics & Collection page send a request
 * [ ] <a id="task2">Create View (collection & topic page) MySQL (id, item_id, count) </a>
 * [ ] <a id="task2">Work with MySQL table flashcard_collection_id (flashcard_id, collection_id)</a>
+* [ ] <a id="task2">Collection pages youtube</a>
 
 # REFACTOR 
 * [ ] Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll) 
