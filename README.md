@@ -8,7 +8,8 @@
 * [ ] [Create View (collection & topic page) MySQL (id, item_id, count) ](#task3) @Mar03 21:00
 * [ ] [Handler error when working with data(create, search, update)](#task15) @Mar02 22:10
 * [ ] [Check the selected collection](#task6) @Mar04 11:00
-* [ ] [Add Page title](#task7) @Mar04 19:40
+* [x] [Add Page title](#task7) @Mar04 19:40
+* [ ] [Refactor folder api & component (), 📝`mysql.js`'s functions name by domain](#task9) @Mar04 19:50
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`)
@@ -49,7 +50,6 @@
 * [x] <a id="task12">Create flashcard component</a>
 * [x] <a id="task13">Request collection-list</a>
 * [x] <a id="task14">Topic & Collection detail page (Don't use axios //Call mysql's functions directly)</a>
-* [x] <a id="task9">Collection list(youtube)</a>
 * [x] <a id="task2">Work with MySQL table flashcard_collection_id (flashcard_id, collection_id)</a>
 * [x] Topics & Collection page send a request
 * [x] <a id="task2">Collection pages youtube</a>
@@ -61,10 +61,9 @@
 * [ ] <a id="task6">Check the selected collection</a>
 * [ ] <a id="task7">Disable checkbox collection</a>\
 * [ ] <a id="task8">Add Page title</a>
-* [ ] 
 
 # REFACTOR 
-* [ ] Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll) 
+* [ ] <a id="task9">Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll)</a> 
 
 
 # MISC
