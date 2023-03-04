@@ -20,12 +20,11 @@ function ListCollections() {
     return (
         <>
             <div className={styles.container}>
-                {listCollection.map(item => {
+                {listCollection.map((item, index) => {
                     const collectionQuantity = data.find(item2 => item2.collection_id === item.collection_id)
 
                     return (
-                        <>
-                        <Link href={`/collections/${item.collection_id}`} className={styles.collection} key={item.collection_id}>
+                        <Link href={`/collections/${item.collection_id}`} className={styles.collection} key={index}>
                             <div className={''}>
                                 <h2>{item.collection}</h2>
                             </div>
@@ -33,7 +32,6 @@ function ListCollections() {
                                 <span>{collectionQuantity?.quantity ? `${collectionQuantity?.quantity} flashcard` : 'Empty'}</span>
                             </div>
                         </Link>
-                        </>
                     )
                 })}
             </div>

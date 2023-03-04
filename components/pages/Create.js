@@ -38,7 +38,7 @@ function Create() {
             return console.log('Please enter Description');
 
 
-        if (post) {
+        if (!post) {
             await axios.post(
                 "/api/create",
                 {

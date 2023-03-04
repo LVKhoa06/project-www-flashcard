@@ -52,6 +52,7 @@
     padding: 20px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
 }
 
 .collection-name span,
@@ -59,6 +60,7 @@
     display: flex;
     align-items: center;
     cursor: pointer;
+    margin-right: 8px;
 }
 
 .collection-name input {
@@ -66,11 +68,13 @@
     outline: none;
     font-size: 28px;
     color: #333;
+    width: 90%;
 }
 
 .collection-description input {
     border: none;
     outline: none;
+    width: 90%;
     font-size: 20px;
     color: #333;
 }
@@ -93,4 +97,8 @@
 
 .header input::placeholder {
     color: #333;
+}
+
+.delete-icon{
+    display: flex;
 }
