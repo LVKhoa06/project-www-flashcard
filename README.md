@@ -6,9 +6,10 @@
 * [x] [Work with MySQL table flashcard_collection_id (flashcard_id, collection_id)](#task2) @Mar03 13:30
 * [x] [ Collection pages youtube) ](#task4) @Mar04 07:15
 * [x] [ Delete collection ](#task5) @Mar04 09:00
+* [x] [Disable checkbox collection](#task7) @Mar02 10:30
 * [ ] [Create View (collection & topic page) MySQL (id, item_id, count) ](#task3) @Mar03 21:00
 * [ ] [Handler error when working with data(create, search, update)](#task15) @Mar02 22:10
-* [ ] [Check the selected collection](#task6) @Mar02 10:40
+* [ ] [Check the selected collection](#task6) @Mar02 11:00
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`)
@@ -59,6 +60,7 @@
 * [ ] Cloud and local data sync
 * [ ] Flashcard details page (Home & Search)
 * [ ] <a id="task6">Check the selected collection</a>
+* [x] <a id="task7">Disable checkbox collection</a>
 
 # REFACTOR 
 * [ ] Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll) 
