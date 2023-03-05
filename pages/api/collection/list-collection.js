@@ -1,4 +1,4 @@
-import { collection_delete, collection_getAll } from "../../utils/mysql/mysql";
+import { collection_delete, collection_getAll } from "../../../utils/mysql/mysql";
 
 export default async function handler(req, res) {
   // reusable

@@ -10,8 +10,8 @@ function ListCollections() {
 
     useEffect(() => {
         const handler = async () => {
-            const data = await axios.get("/api/list-collection");
-            const data2 = await axios.get("/api/collection");
+            const data = await axios.get("/api/collection/list-collection");
+            const data2 = await axios.get("/api/collection/collection");
             setListCollection(data.data);
             setData(data2.data);
         }

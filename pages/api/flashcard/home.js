@@ -1,4 +1,4 @@
-import { flashcard_remove, flashcard_update, flashcard_getWithCondition } from "../../utils/mysql/mysql";
+import { flashcard_remove, flashcard_update, flashcard_getWithCondition } from "../../../utils/mysql/mysql";
 
 export default async function handler(req, res) {
   const { url, method, query, body, headers } = req;

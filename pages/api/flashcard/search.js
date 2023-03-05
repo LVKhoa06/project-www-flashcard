@@ -1,4 +1,4 @@
-import { topic_countItem } from "../../utils/mysql/mysql";
+import { flashcard_search } from "../../../utils/mysql/mysql";
 
 export default async function handler(req, res) {
   // reusable
@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
   switch (method) {
     case "GET":
-      const data = await topic_countItem();
+      const data = await flashcard_search(query.key);
       if (!data) return res.status(400).send("Error occured.");
       res.status(201).json(data);
 

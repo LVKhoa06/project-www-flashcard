@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import styles from '../styles/Home.module.css';
+import styles from '../../styles/Home.module.css';
 
 const CONST_SORT_CASE = {
     none: -1,
@@ -20,7 +20,7 @@ function SortAndFilter(props) {
     useEffect(() => {
         if (config.filter) {
             const handler = async () => {
-                const data = await axios.get("/api/list-topic");
+                const data = await axios.get("/api/topic/list-topic");
                 setListTopic(data.data);
             }
             handler();
@@ -29,7 +29,7 @@ function SortAndFilter(props) {
 
     useEffect(() => {
         const handler = async () => {
-            const data = await axios.get(`api/home?topic_id=${topicId}&orderBy=${orderBy}&direction=${direction}`);
+            const data = await axios.get(`api/flashcard/home?topic_id=${topicId}&orderBy=${orderBy}&direction=${direction}`);
             setData(data.data);
         }
         handler();

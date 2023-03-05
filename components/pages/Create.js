@@ -13,8 +13,8 @@ function Create() {
 
     useEffect(() => {
         const handler = async () => {
-            const data = await axios.get("/api/list-topic");
-            const data2 = await axios.get("/api/home");
+            const data = await axios.get("/api/topic/list-topic");
+            const data2 = await axios.get("/api/flashcard/home");
             setListTopic(data.data);
             setListFlashcard(data2.data);
         }
@@ -40,7 +40,7 @@ function Create() {
 
         if (!post) {
             await axios.post(
-                "/api/create",
+                "/api/flashcard/create",
                 {
                     topic_id: topicId,
                     term,

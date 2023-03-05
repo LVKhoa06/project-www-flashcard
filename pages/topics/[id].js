@@ -1,4 +1,4 @@
-import Flashcard from "@/components/Flashcard";
+import Flashcard from "@/components/flashcard/Flashcard";
 import Head from "next/head";
 import { useState } from "react";
 import { topic_getAll, flashcard_getWithCondition } from "utils/mysql/mysql";

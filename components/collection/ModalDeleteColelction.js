@@ -1,12 +1,12 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import styles from '../styles/ModalCheck.module.css'
+import styles from '../../styles/ModalCheck.module.css'
 
 function ModalCheck({ setShowCheck, id }) {
     const router = useRouter();
 
     const deleteHandler = async () => {
-        const deleted = await axios.delete(`/api/list-collection?id=${id}`);
+        const deleted = await axios.delete(`/api/collection/list-collection?id=${id}`);
 
         if (deleted.data.success) setTimeout(() => {
             router.replace('/collections')

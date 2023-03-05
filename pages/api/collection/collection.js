@@ -1,4 +1,4 @@
-import { collection_countItem, collection_add, collection_addItem, collection_deleteItemCollection } from "../../utils/mysql/mysql";
+import { collection_countItem, collection_add, collection_addItem, collection_deleteItemCollection } from "../../../utils/mysql/mysql";
 
 export default async function handler(req, res) {
   // reusable

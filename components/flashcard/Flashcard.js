@@ -1,8 +1,8 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import styles from '../styles/Home.module.css';
-import IconMenu from '../assets/icon-menu';
-import MenuFlashcard from './MenuFlashcard';
+import styles from '../../styles/Home.module.css';
+import IconMenu from '../../assets/icon-menu';
+import MenuFlashcard from '../collection/MenuFlashcard';
 
 function Flashcard(props) {
     const { data, setData } = props
@@ -24,7 +24,7 @@ function Flashcard(props) {
     const updateFlashcardHandler = async (value, field, id) => {
         if (field)
             await axios.patch(
-                'api/home',
+                'api/flashcard/home',
                 {
                     id,
                     field,

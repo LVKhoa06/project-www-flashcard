@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
-import styles from '../styles/Collection.module.css'
+import styles from '../../styles/Collection.module.css'
 
 function Collection(props) {
     const { id, showModal, setShowModal, setShowMenu, result, setResult } = props;
@@ -21,7 +21,7 @@ function Collection(props) {
                 // console.log('Successfully added to the collection');
                 setFoo(false);
                 axios.patch(
-                    'api/collection',
+                    'api/collection/collection',
                     {
                         id,
                         collection_id: collectionId
@@ -56,7 +56,7 @@ function Collection(props) {
             setFoo2(!foo2);
         }
         else {
-            const deleted = await axios.delete(`api/collection?f_id=${id}&c_id=${collection_id}`)
+            const deleted = await axios.delete(`api/collection/collection?f_id=${id}&c_id=${collection_id}`)
             // console.log(deleted.data.message);
             console.log('Deleted');
             setFoo(true)
@@ -67,7 +67,7 @@ function Collection(props) {
     const addCollectionHandler = async () => {
         if (value) {
             await axios.post(
-                "/api/collection",
+                "/api/collection/collection",
                 {
                     filed: 'collection',
                     value
@@ -77,7 +77,7 @@ function Collection(props) {
                 }
             );
 
-            const data = await axios.get(`/api/list-collection`);
+            const data = await axios.get(`/api/collection/list-collection`);
             setResult(data.data);
 
             setNotification('')

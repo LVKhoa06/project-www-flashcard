@@ -10,8 +10,8 @@ function ListTopics() {
 
     useEffect(() => {
         const handler = async () => {
-            const data = await axios.get("/api/list-topic");
-            const data2 = await axios.get("/api/topic");
+            const data = await axios.get("/api/topic/list-topic");
+            const data2 = await axios.get("/api/topic/topic");
             setData(data2.data);
             setListTopic(data.data);
         }

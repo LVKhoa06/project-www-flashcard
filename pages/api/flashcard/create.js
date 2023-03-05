@@ -1,4 +1,4 @@
-import { topic_getAll, flashcard_create } from "../../utils/mysql/mysql";
+import { topic_getAll, flashcard_create } from "../../../utils/mysql/mysql";
 
 export default async function handler(req, res) {
   // reusable

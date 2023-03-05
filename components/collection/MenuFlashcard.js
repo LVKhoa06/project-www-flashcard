@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import styles from '../styles/MenuFlashcard.module.css'
+import styles from '../../styles/MenuFlashcard.module.css'
 import Collection from './Collection';
 
 function MenuFlashcard(props) {
@@ -9,7 +9,7 @@ function MenuFlashcard(props) {
     const [result, setResult] = useState([]);
 
     const deleteFlashcardHandler = async (id) => {
-        axios.delete(`api/home?id=${id}`);
+        axios.delete(`api/flashcard/home?id=${id}`);
         setData(prev => {
             return prev.filter(item => {
                 return item.id !== id;
@@ -19,7 +19,7 @@ function MenuFlashcard(props) {
 
     const requestHandler = () => {
         const handler = async () => {
-            const data = await axios.get(`/api/list-collection`);
+            const data = await axios.get(`/api/collection/list-collection`);
             setResult(data.data);
         }
         handler();

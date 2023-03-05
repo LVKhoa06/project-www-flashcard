@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import styles from '../styles/Search.module.css';
+import styles from '../../styles/Search.module.css';
 
 function Search() {
     const [value, setValue] = useState('');
@@ -11,7 +11,7 @@ function Search() {
         e.preventDefault();
 
         if (value) {
-            const data = await axios.get(`/api/search?key=${value}`);
+            const data = await axios.get(`/api/flashcard/search?key=${value}`);
             setResult(data.data);
         }
     } // submitHandler
