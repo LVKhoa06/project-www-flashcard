@@ -1,4 +1,4 @@
-import { getAllTopic, createFlashcard } from "../../utils/mysql/mysql";
+import { topic_getAll, flashcard_create } from "../../utils/mysql/mysql";
 
 export default async function handler(req, res) {
   // reusable
@@ -6,14 +6,14 @@ export default async function handler(req, res) {
 
   switch (method) {
     case "GET":
-      const data = await getAllTopic();
+      const data = await topic_getAll();
       if (!data) return res.status(400).send("Error occured.");
       res.status(201).json(data);
 
       break;
     case "POST":
       const { topic_id, term, description, date } = body;
-      const result = await createFlashcard(topic_id, term, description, date);
+      const result = await flashcard_create(topic_id, term, description, date);
 
       if (!result) return res.status(400).send("Error occured.");
 

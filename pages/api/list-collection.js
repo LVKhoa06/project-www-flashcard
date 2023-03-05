@@ -1,4 +1,4 @@
-import { collection_list_Delete, getCollection } from "../../utils/mysql/mysql";
+import { collection_delete, collection_getAll } from "../../utils/mysql/mysql";
 
 export default async function handler(req, res) {
   // reusable
@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
   switch (method) {
     case "GET":
-      const data = await getCollection();
+      const data = await collection_getAll();
 
       if (!data) return res.status(400).send("Error occured.");
 
@@ -14,7 +14,7 @@ export default async function handler(req, res) {
 
       break;
       case "DELETE":
-        const result = await collection_list_Delete(query.id);
+        const result = await collection_delete(query.id);
         if (!result.success) return res.status(400).send(result.message);
         res.status(201).json(result);
   
