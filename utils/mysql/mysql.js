@@ -20,6 +20,9 @@ export async function flashcard_create(topic_id, term, description, date) {
 } // createFlashcard
 
 export async function flashcard_remove(id) {
+    const query2 = `delete from flashcard_collection_id where flashcard_id = ${id};`;
+    const [data2] = await pool().execute(query2);
+
     const query = `delete from flashcard where id = ?;`;
     const [data] = await pool().execute(query, [id]);
 
@@ -102,7 +105,7 @@ export async function topic_getAll() {
 } // getAllTopic
 
 export async function topic_countItem() {
-    const query = `select topic_id, count(topic_id) as quantity from flashcard group by topic_id;`;
+    const query = `select * from count_topic;`;
     const [result] = await pool().execute(query);
 
     if (!result)
@@ -161,6 +164,8 @@ export async function collection_delete(id) {
     };
 } // collection_AddToCollection
 
+// flashcard_addToCollection
+// flashcard_removeFromCollection
 export async function collection_addItem(flashcard_id, collection_id) {
     const query = `insert into flashcard_collection_id(flashcard_id, collection_id) values(?, ?);`;
     const values = [flashcard_id, collection_id];
@@ -179,7 +184,7 @@ export async function collection_addItem(flashcard_id, collection_id) {
 } // collection_AddToCollection
 
 export async function collection_countItem() {
-    const query = `select collection_id, count(collection_id) as quantity from flashcard_collection_id group by collection_id;`;
+    const query = `select * from count_collection;`;
     const [result] = await pool().execute(query);
 
     if (!result)
@@ -203,4 +208,14 @@ export async function collection_add(field, value) {
         message: 'Tạo Collection thành công'
     };
 } // addCollection
+
+export async function collection_getSelectedItem(id) {
+    const query = `select * from flashcard_collection_id fc where fc.flashcard_id = ${id};`;
+    const [data] = await pool().execute(query);
+
+    if (!data)
+        return false;
+
+    return data;
+} // collection_getSelectedItem
 //#endregion Collection -------------------------------------------- END
