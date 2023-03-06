@@ -218,4 +218,21 @@ export async function collection_getSelectedItem(id) {
 
     return data;
 } // collection_getSelectedItem
+
+export async function collection_update(id, field, value) {
+    const query = `update collection set ${field} = '${value}' where collection_id = ${id};`;
+    const [data] = await pool().execute(query);
+
+    if (data?.affectedRows !== 1)
+        return {
+            success: false,
+            message: "Error occured."
+        };
+
+    return {
+        success: true,
+        message: 'Rename collection successful'
+    };
+} // collection_update
+
 //#endregion Collection -------------------------------------------- END

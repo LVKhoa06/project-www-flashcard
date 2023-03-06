@@ -44,64 +44,74 @@ export const getStaticProps = async (context) => {
 function CollectionDetail({ result, collection }) {
   const [data, setData] = useState(result);
   const [quantity, setQuantity] = useState(data.length);
-  const [valueCollection, setValueCollection] = useState('');
-  const [valueDescription, setValueDescription] = useState('');
+  const [valueCollection, setValueCollection] = useState(collection.collection);
+  const [valueDescription, setValueDescription] = useState(collection.description || '');
   const [showCheck, setShowCheck] = useState(false);
 
   useEffect(() => {
     setQuantity(data.length);
   }, [data])
 
-  const submitHandler = (e) => {
-  }// submitHandler
+  const submitCollectionName = async (filed) => {
+    await axios.post(
+      `/api/collection/list-collection`,
+      {
+        id: collection.collection_id,
+        filed: filed,
+        value: filed === 'description' ? valueDescription : valueCollection
+      },
+      {
+        "Content-Type": "application/json",
+      }
+    );
+  }// submitCollectionName
 
   return (
     <>
-    <Head>
-      <title>{collection.collection} - Collection</title>
-    </Head>
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <div className={styles['container-left']}>
-          <img src={images.folder.src} />
+      <Head>
+        <title>{collection.collection} - Collection</title>
+      </Head>
+      <div className={styles.container}>
+        <div className={styles.header}>
+          <div className={styles['container-left']}>
+            <img src={images.folder.src} />
+          </div>
+          <div className={styles['container-right']}>
+            <div className={styles['collection-name']}>
+              <input
+                value={valueCollection}
+                onChange={(e) => setValueCollection(e.target.value)}
+              />
+              <span onClick={(e) => submitCollectionName('collection')}>
+                <IconTick />
+              </span>
+            </div>
+            <div className={styles['collection-info']}>
+              <span>{quantity} flashcard</span>
+              <span onClick={(e) => setShowCheck(true)} className={styles['delete-icon']}>
+                <IconBin className={styles['icon-bin']} viewBox='0 0 1024 1024' fill='#555' />
+              </span>
+            </div>
+            <div className={styles['collection-description']}>
+              <input
+                value={valueDescription}
+                placeholder='Desctiprion collection'
+                onChange={(e) => setValueDescription(e.target.value)}
+              />
+              <span onClick={(e) => submitCollectionName('description')}>
+                <IconTick />
+              </span>
+            </div>
+          </div>
         </div>
-        <div className={styles['container-right']}>
-          <div className={styles['collection-name']}>
-            <input
-              value={valueCollection}
-              placeholder={collection.collection}
-              onChange={(e) => setValueCollection(e.target.value)}
-            />
-            <span onClick={(e) => submitHandler(e)}>
-              <IconTick />
-            </span>
+        {data.length ?
+          <Flashcard data={data} setData={setData} /> :
+          <div>
+            <h1>Collection Empty</h1>
           </div>
-          <div className={styles['collection-info']}>
-            <span>{quantity} flashcard</span>
-            <span onClick={(e) => setShowCheck(true)} className={styles['delete-icon']}>
-              <IconBin className={styles['icon-bin']} viewBox='0 0 1024 1024' fill='#555' />
-            </span>
-          </div>
-          <div className={styles['collection-description']}>
-            <input
-              value={valueDescription}
-              placeholder='Desctiprion collection'
-              onChange={(e) => setValueDescription(e.target.value)}
-            />
-            <span onClick={(e) => submitHandler(e)}>
-              <IconTick />
-            </span>
-          </div>
-        </div>
+        }
+        {showCheck ? <ModalCheck id={collection.collection_id} setShowCheck={setShowCheck} /> : ''}
       </div>
-      {data.length ?
-        <Flashcard data={data} setData={setData} /> :
-        <div>
-          <h1>Collection Empty</h1>
-        </div>
-      }
-      {showCheck ? <ModalCheck id={collection.collection_id} setShowCheck={setShowCheck}/> : ''} 
-    </div>
     </>
   );
 }
