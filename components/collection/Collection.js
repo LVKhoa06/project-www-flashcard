@@ -3,23 +3,18 @@ import { useEffect, useRef, useState } from 'react';
 import styles from '../../styles/Collection.module.css'
 
 function Collection(props) {
-    const { id, showModal, setShowModal, setShowMenu, result, setResult } = props;
+    const { id, selected, showModal, setShowModal, setShowMenu, result, setResult } = props;
     const [showCreate, setShowCreate] = useState(false);
     const [value, setValue] = useState('');
     const [notification, setNotification] = useState('');
     const [checkedState, setCheckedState] = useState([]);
     const [result2, setResult2] = useState([]);
     const [collectionId, setCollection_id] = useState(0);
-    const [foo, setFoo] = useState(true);
-    const [foo2, setFoo2] = useState(true);
-    const [curCheck, setCurCheck] = useState(-1);
 
     useEffect(() => {
         const handler = async () => {
-            if (checkedState.length > 1 && foo) {
-                console.log('Added');
-                // console.log('Successfully added to the collection');
-                setFoo(false);
+            if (checkedState.length > 1) {
+                console.log('Successfully added to the collection');
                 axios.patch(
                     'api/collection/collection',
                     {
@@ -32,9 +27,8 @@ function Collection(props) {
                 )
             }
         }
-
         handler();
-    }, [collectionId, foo2])
+    }, [collectionId])
 
     useEffect(() => {
         setResult2(result.filter(item => item.collection_id !== -1));
@@ -51,15 +45,12 @@ function Collection(props) {
         const updatedCheckedState = checkedState.map((item, index) => index === i ? !item : item);
         setCheckedState(updatedCheckedState);
 
-        if (e.target.checked) {
+        if (e.target.checked)
             setCollection_id(collection_id);
-            setFoo2(!foo2);
-        }
         else {
             const deleted = await axios.delete(`api/collection/collection?f_id=${id}&c_id=${collection_id}`)
             // console.log(deleted.data.message);
             console.log('Deleted');
-            setFoo(true)
         }
 
     } // handleOnChangeCheckbox
@@ -103,9 +94,9 @@ function Collection(props) {
                         <div className={styles['collection-list']}>
                             <div className={styles['input-container']}>
                                 <input
+                                    id={-1}
                                     type="checkbox"
                                     onChange={(e) => {
-                                        setCurCheck(-1)
                                         handleOnChangeCheckbox(e, 0, -1)
                                     }}
                                 />
@@ -115,9 +106,10 @@ function Collection(props) {
                                 return (
                                     <div key={item.collection_id} className={styles['input-container']}>
                                         <input
+                                            id={item.collection_id}
                                             type="checkbox"
+                                            defaultChecked={selected.findIndex(entry => entry.collection_id === item.collection_id) > -1}
                                             onChange={(e) => {
-                                                setCurCheck(item.collection_id)
                                                 handleOnChangeCheckbox(e, index + 1, item.collection_id)
                                             }} />
                                         <label>{item.collection}</label>

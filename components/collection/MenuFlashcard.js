@@ -7,6 +7,7 @@ function MenuFlashcard(props) {
     const { id, setShowMenu, setData } = props;
     const [showModal, setShowModal] = useState(false);
     const [result, setResult] = useState([]);
+    const [selected, setSelected] = useState([]);
 
     const deleteFlashcardHandler = async (id) => {
         axios.delete(`api/flashcard/home?id=${id}`);
@@ -20,7 +21,9 @@ function MenuFlashcard(props) {
     const requestHandler = () => {
         const handler = async () => {
             const data = await axios.get(`/api/collection/list-collection`);
+            const data2 = await axios.get(`/api/collection/selected-collection?id=${id}`);
             setResult(data.data);
+            setSelected(data2.data);
         }
         handler();
     }
@@ -37,7 +40,7 @@ function MenuFlashcard(props) {
                 e.stopPropagation();
                 deleteFlashcardHandler(id)
             }}>Delete </h4>
-            <Collection id={id} result={result} setResult={setResult} showModal={showModal} setShowModal={setShowModal} setShowMenu={setShowMenu} />
+            <Collection selected={selected} id={id} result={result} setResult={setResult} showModal={showModal} setShowModal={setShowModal} setShowMenu={setShowMenu} />
         </div>
     );
 }
