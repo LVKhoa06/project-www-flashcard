@@ -2,17 +2,13 @@
 
 # 🚀 WORKING ON
 * [x] [Refactor reusable components page](#task6) @Mar01 13:50
-* [x] [Add to collection](#task1) @Mar03 09:10
-* [x] [Work with MySQL table flashcard_collection_id (flashcard_id, collection_id)](#task2) @Mar03 13:30
-* [ ] [ Collection pages youtube)](#task4) @Mar04 07:15
-* [ ] [Create View (collection & topic page) MySQL (id, item_id, count) ](#task3) @Mar05 18:30
+* [x] [Create View (collection & topic page) MySQL (id, item_id, count) ](#task3) @Mar06 09:20
 * [ ] [Handler error when working with data(create, search, update)](#task15) @Mar02 22:10
-* [ ] [Check the selected collection](#task6) @Mar04 11:00
-* [x] [Add Page title](#task7) @Mar04 19:40
-* [ ] [Refactor folder api & component (), 📝`mysql.js`'s functions name by domain](#task9) @Mar04 19:50
+* [ ] [ Collection pages youtube)](#task4) @Mar04 07:15
+* [ ] [ Rename collection ](#task7) @Mar06 10:00
 
 # 🍀 NOTE
-🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`)
+🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
 
 # ⚙ FEATURE
 ###  Flashcard
@@ -29,7 +25,7 @@
 ### Collection
 * [x] <a id="task1">Add to collection</a> 
 * [x] <a id="task5">Delete collection</a>
-* [ ] Rename collection
+* [ ] <a id="task7">Rename collection</a>
 
 # 💪TODO
 * [x] Button update flashcard
@@ -53,17 +49,18 @@
 * [x] <a id="task2">Work with MySQL table flashcard_collection_id (flashcard_id, collection_id)</a>
 * [x] Topics & Collection page send a request
 * [x] <a id="task2">Collection pages youtube</a>
+* [x] Remove flashcard from collection
+* [x] <a id="task2">Create View (collection & topic page) MySQL (id, item_id, count) </a>
+* [x] Check the selected collection
+* [x] Add Page title
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
-* [ ] <a id="task2">Create View (collection & topic page) MySQL (id, item_id, count) </a>
 * [ ] Store images ?
-* [ ] Cloud and local data sync
 * [ ] Flashcard details page (Home & Search)
-* [ ] <a id="task6">Check the selected collection</a>
-* [ ] <a id="task7">Disable checkbox collection</a>\
-* [ ] <a id="task8">Add Page title</a>
+* [ ] Cloud and local data sync
+* [ ] Unique flashcard in collection
 
 # REFACTOR 
-* [ ] <a id="task9">Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll)</a> 
+* [x] <a id="task9">Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll)</a> 
 
 
 # MISC
@@ -73,3 +70,28 @@
 * [ ] MySQL => implementations (callback)
 * [ ] API => pattern: code (200 | 201 | 400 | 500...), response, getSession()...
 * [ ] authentication => user-created | private|public | protected API
+
+# 💻 Snippet to work with async task
+```jsx
+// Flag
+const [busy, setBusy] = useState(false);
+
+useEffect(() => {
+    if (busy)
+        return alert('Another task is under progress.');
+    
+    setBusy(true);
+
+    const worker = async() => {
+        try {
+            // Some async task: await foo()
+        } catch(ex) {
+
+        } finally {
+            setBusy(false);
+        } // finally
+    } // worker
+
+    worker();
+}, [dependency]);
+```
