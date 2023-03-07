@@ -6,19 +6,34 @@
 .flashcard {
     width: max-content;
     margin: 10px;
-    padding: 0 50px 10px 10px;
+    padding: 8px 50px 8px 8px;
     position: relative;
     border: 1px solid;
     border-radius: 6px;
-    max-width: 230px;
-    min-width: 230px;
+    max-width: 320px;
+    min-width: 320px;
     text-overflow: ellipsis;
     min-height: 100px;
+    display: flex;
+}
+
+.wrap-content{
+    text-overflow: ellipsis;    
+    display: flex;
+    overflow: hidden;
+    flex-direction: column;
+    margin-left: 10px;
 }
 
 .flashcard h2 {
     white-space: nowrap;
     font-size: 21px;
+}
+
+.flashcard img {
+    max-height: 100px;
+    min-width: 75px;
+    border-radius: 5px;
 }
 
 .flashcard h2:hover {
