@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import styles from '../../styles/Home.module.css';
 import IconMenu from '../../assets/icon-menu';
 import MenuFlashcard from '../collection/MenuFlashcard';
+import images from "assets";
 
 function Flashcard(props) {
     const { data, setData } = props
@@ -36,7 +37,7 @@ function Flashcard(props) {
             );
             console.log('Updated');
         }
-        
+
     } // updateFlashcardHandler
 
     const preventEnterKey = (e) => {
@@ -49,33 +50,37 @@ function Flashcard(props) {
         <>
             {data.map(item => {
                 const id = item.id;
-
+                console.log(images.img1.default.src);
                 return (
                     <div id={id} /*title={topicName}*/ className={styles.flashcard} key={id}>
-                        <div className={styles['wrap-title']}>
-                            <h2
-                                // disable warning when use contentEditable
-                                suppressContentEditableWarning={true}
-                                onKeyUp={(e) => {
-                                    updateFlashcardHandler(e, session.value, session.turn, id)
-                                    setSession({ turn: 'term', value: e.target.innerText })
-                                }}
-                                onKeyDown={(e) => {preventEnterKey(e)}}
-                                contentEditable
-                            >
-                                {item.term}
-                            </h2>
+                            <img src={images[`img${Math.ceil(Math.random() * 20)}`].default.src} />
+                        <div className={styles['wrap-content']}>
+                            <div className={styles['wrap-title']}>
+                                <h2
+                                    // disable warning when use contentEditable
+                                    suppressContentEditableWarning={true}
+                                    onKeyUp={(e) => {
+                                        updateFlashcardHandler(e, session.value, session.turn, id)
+                                        setSession({ turn: 'term', value: e.target.innerText })
+                                    }}
+                                    onKeyDown={(e) => { preventEnterKey(e) }}
+                                    contentEditable
+                                >
+                                    {item.term}
+                                </h2>
+                            </div>
+                            <div className={styles['wrap-desc']}>
+                                <span
+                                // suppressContentEditableWarning={true}
+                                // onKeyUp={(e) => setSession({ turn: 'description', value: e.target.innerText })}
+                                // contentEditable
+                                >
+                                    {item.description}
+                                </span>
+                            </div>
                         </div>
-                        <div className={styles['wrap-desc']}>
-                            <span
-                            // suppressContentEditableWarning={true}
-                            // onKeyUp={(e) => setSession({ turn: 'description', value: e.target.innerText })}
-                            // contentEditable
-                            >
-                                {item.description}
-                            </span>
-                        </div>
-                        <button className={styles} onClick={(e) => updateFlashcardHandler(e, session.value, session.turn, id)}>Ok</button>
+
+                        <button className={styles.update} onClick={(e) => updateFlashcardHandler(e, session.value, session.turn, id)}>Ok</button>
                         <div
                             onClick={(e) => {
                                 setCurId(id);
