@@ -37,18 +37,22 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  cursor: pointer;
 }
 
 .left_item{
-
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .left_item h3{
-
+  font-size: 18px;
+  font-weight: 600;
 }
 
 .left_item span{
-
+  white-space: nowrap;
+  font-size: 14px;
 }
 
 .right_item {
