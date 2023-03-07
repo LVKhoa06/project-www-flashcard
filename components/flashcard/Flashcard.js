@@ -21,8 +21,8 @@ function Flashcard(props) {
         else menu?.classList.add('show');
     }, [showMenu, curId])
 
-    const updateFlashcardHandler = async (value, field, id) => {
-        if (field)
+    const updateFlashcardHandler = async (e, value, field, id) => {
+        if (e.key === 'Enter') {
             await axios.patch(
                 'api/flashcard/home',
                 {
@@ -34,7 +34,16 @@ function Flashcard(props) {
                     "Content-Type": "application/json",
                 }
             );
+            console.log('Updated');
+        }
+        
     } // updateFlashcardHandler
+
+    const preventEnterKey = (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+        }
+    }
 
     return (
         <>
@@ -43,26 +52,30 @@ function Flashcard(props) {
 
                 return (
                     <div id={id} /*title={topicName}*/ className={styles.flashcard} key={id}>
-                        <div>
+                        <div className={styles['wrap-title']}>
                             <h2
                                 // disable warning when use contentEditable
                                 suppressContentEditableWarning={true}
-                                onKeyUp={(e) => setSession({ turn: 'term', value: e.target.innerText })}
+                                onKeyUp={(e) => {
+                                    updateFlashcardHandler(e, session.value, session.turn, id)
+                                    setSession({ turn: 'term', value: e.target.innerText })
+                                }}
+                                onKeyDown={(e) => {preventEnterKey(e)}}
                                 contentEditable
                             >
                                 {item.term}
                             </h2>
                         </div>
-                        <div>
+                        <div className={styles['wrap-desc']}>
                             <span
-                                suppressContentEditableWarning={true}
-                                onKeyUp={(e) => setSession({ turn: 'description', value: e.target.innerText })}
-                                contentEditable
+                            // suppressContentEditableWarning={true}
+                            // onKeyUp={(e) => setSession({ turn: 'description', value: e.target.innerText })}
+                            // contentEditable
                             >
                                 {item.description}
                             </span>
                         </div>
-                        <button className={''} onClick={() => updateFlashcardHandler(session.value, session.turn, id)}>Ok</button>
+                        <button className={styles} onClick={(e) => updateFlashcardHandler(e, session.value, session.turn, id)}>Ok</button>
                         <div
                             onClick={(e) => {
                                 setCurId(id);
