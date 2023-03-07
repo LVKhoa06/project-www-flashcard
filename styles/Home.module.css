@@ -9,19 +9,24 @@
     padding: 0 50px 10px 10px;
     position: relative;
     border: 1px solid;
+    border-radius: 6px;
+    max-width: 230px;
+    min-width: 230px;
+    text-overflow: ellipsis;
+    min-height: 100px;
 }
 
 .flashcard h2 {
-    color: green;
-    white-space: normal;
+    white-space: nowrap;
+    font-size: 21px;
 }
 
 .flashcard h2:hover {
-    color: wheat;
+    color: rgb(76, 70, 58);
 }
 
 .flashcard h2:focus {
-    color: rgb(185, 250, 87) !important;
+    color: rgb(65, 76, 48) !important;
     outline: none;
 }
 
@@ -31,7 +36,7 @@
 
 .flashcard span {
     color: black;
-    white-space: normal;
+    white-space: nowrap;
 }
 
 .flashcard span:hover {
@@ -102,4 +107,16 @@
     color: red;
     width: 20px;
     height: 20px;
+}
+
+.wrap-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
+}
+
+.wrap-desc {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap
 }
