@@ -10,6 +10,15 @@ function Flashcard(props) {
     const [session, setSession] = useState({ value: '', turn: '' });
     const [showMenu, setShowMenu] = useState(false);
     const [curId, setCurId] = useState(0);
+    const [imgIndex, setImgIndex] = useState([]);
+
+    useEffect(() => {
+        const item = []
+        data.forEach(i => {
+            item.push((Math.ceil(Math.random() * 20)))
+        });
+        setImgIndex(item)
+    }, [data])
 
     useEffect(() => {
         const menu = document.querySelector(`#menu-${curId}`);
@@ -48,12 +57,12 @@ function Flashcard(props) {
 
     return (
         <>
-            {data.map(item => {
+            {data.map((item, index) => {
                 const id = item.id;
-                console.log(images.img1.default.src);
+                const img = images[`img${imgIndex[index]}`];
                 return (
                     <div id={id} /*title={topicName}*/ className={styles.flashcard} key={id}>
-                            <img src={images[`img${Math.ceil(Math.random() * 20)}`].default.src} />
+                        <img src={img?.src} />
                         <div className={styles['wrap-content']}>
                             <div className={styles['wrap-title']}>
                                 <h2
