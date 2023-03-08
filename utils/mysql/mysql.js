@@ -67,6 +67,16 @@ export async function flashcard_getWithCondition(topic_id, field, orderBy, direc
     return data;
 } // getFlashcardWithCondition
 
+export async function flashcard_getAFlashcard(id) {
+    let query = `select * from flashcard where id = ${id}`
+    const [data] = await pool().execute(query);
+
+    if (!data)
+        return false;
+
+    return data;
+} // getFlashcardWithCondition
+
 export async function flashcard_search(key) {
     const query = ` 
     select * from flashcard f

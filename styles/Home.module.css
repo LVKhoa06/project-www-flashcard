@@ -12,7 +12,7 @@
     border-radius: 6px;
     max-width: 320px;
     min-width: 320px;
-    text-overflow: ellipsis;
+    /* text-overflow: ellipsis; */
     min-height: 100px;
     display: flex;
 }
@@ -133,5 +133,8 @@
 .wrap-desc {
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap
+    white-space: nowrap;
+    margin-top: 10px;
 }
+
+

@@ -95,7 +95,7 @@ function CollectionDetail({ result, collection }) {
             <div className={styles['collection-description']}>
               <input
                 value={valueDescription}
-                placeholder='Desctiprion collection'
+                placeholder='Description collection'
                 onChange={(e) => setValueDescription(e.target.value)}
               />
               <span onClick={(e) => submitCollectionName('description')}>
@@ -104,6 +104,7 @@ function CollectionDetail({ result, collection }) {
             </div>
           </div>
         </div>
+        {/* <SortAndFilter setData={setData} use={{sort:true}}/> */}
         {data.length ?
           <Flashcard data={data} setData={setData} /> :
           <div>
