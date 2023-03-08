@@ -9,6 +9,7 @@ import Head from "next/head";
 import { use, useEffect, useState } from "react";
 import { collection_getAll, flashcard_getWithCollection } from "utils/mysql/mysql";
 import styles from '../../styles/ListCollection.module.css'
+import FlashcardDetail from "@/components/flashcard/Detail";
 
 export async function getStaticPaths() {
   const data = await collection_getAll();
@@ -47,6 +48,17 @@ function CollectionDetail({ result, collection }) {
   const [valueCollection, setValueCollection] = useState(collection.collection);
   const [valueDescription, setValueDescription] = useState(collection.description || '');
   const [showCheck, setShowCheck] = useState(false);
+  const [imgIndex, setImgIndex] = useState([]);
+  const [curDetailId, setCurDetailId] = useState(0);
+  const [detailFlashcard, setDetailFlashcard] = useState(false);
+
+  useEffect(() => {
+    const item = []
+    data.forEach(i => {
+      item.push((Math.ceil(Math.random() * 20)))
+    });
+    setImgIndex(item)
+  }, [data]);
 
   useEffect(() => {
     setQuantity(data.length);
@@ -106,7 +118,11 @@ function CollectionDetail({ result, collection }) {
         </div>
         {/* <SortAndFilter setData={setData} use={{sort:true}}/> */}
         {data.length ?
-          <Flashcard data={data} setData={setData} /> :
+          <>
+            {detailFlashcard ? <FlashcardDetail imgIndex={imgIndex} index={curDetailId} data={data[curDetailId]} /> : ''}
+            <Flashcard imgIndex={imgIndex} setDetailFlashcard={setDetailFlashcard} setCurDetailId={setCurDetailId} data={data} setData={setData} />
+          </>
+          :
           <div>
             <h1>Collection Empty</h1>
           </div>

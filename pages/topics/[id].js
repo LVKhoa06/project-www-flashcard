@@ -1,6 +1,7 @@
+import FlashcardDetail from "@/components/flashcard/Detail";
 import Flashcard from "@/components/flashcard/Flashcard";
 import Head from "next/head";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { topic_getAll, flashcard_getWithCondition } from "utils/mysql/mysql";
 import styles from '../../styles/ListTopic.module.css'
 
@@ -34,26 +35,40 @@ export const getStaticProps = async (context) => {
 
   })
 
-  return { props: { result, topic} };
+  return { props: { result, topic } };
 };
 
 function TopicDetail({ result, topic }) {
   const [data, setData] = useState(result);
+  const [imgIndex, setImgIndex] = useState([]);
+  const [curDetailId, setCurDetailId] = useState(0);
+  const [detailFlashcard, setDetailFlashcard] = useState(false);
+
+  useEffect(() => {
+    const item = []
+    data.forEach(i => {
+      item.push((Math.ceil(Math.random() * 20)))
+    });
+    setImgIndex(item)
+  }, [data]);
 
   return (
-   <>
-   <Head>
-      <title>{topic.topic} - Topic</title>
-   </Head>
-    <div className={styles.container}>
-      {data.length ?
-        <Flashcard data={data} setData={setData} /> :
-        <div>
-          <h1>Topic Empty</h1>
-        </div>
-      }
-    </div>
-   </>
+    <>
+      <Head>
+        <title>{topic.topic} - Topic</title>
+      </Head>
+      <div className={styles.container}>
+        {data.length ?
+          <>
+            {detailFlashcard ? <FlashcardDetail imgIndex={imgIndex} index={curDetailId} data={data[curDetailId]} /> : ''}
+            <Flashcard imgIndex={imgIndex} setDetailFlashcard={setDetailFlashcard} setCurDetailId={setCurDetailId} data={data} setData={setData} />
+          </> :
+          <div>
+            <h1>Topic Empty</h1>
+          </div>
+        }
+      </div>
+    </>
   );
 }
 

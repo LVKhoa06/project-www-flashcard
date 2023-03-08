@@ -7,7 +7,7 @@ import styles from '../../styles/ListTopic.module.css'
 function ListTopics() {
     const [listTopic, setListTopic] = useState([]);
     const [data, setData] = useState([]);
-
+   
     useEffect(() => {
         const handler = async () => {
             const data = await axios.get("/api/topic/list-topic");
