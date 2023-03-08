@@ -1,6 +1,7 @@
 .container {
     display: flex;
-    flex-wrap: wrap
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .flashcard {
@@ -8,13 +9,15 @@
     margin: 10px;
     padding: 8px 50px 8px 8px;
     position: relative;
-    border: 1px solid;
+    border: 1px solid #999;
     border-radius: 6px;
     max-width: 320px;
     min-width: 320px;
     /* text-overflow: ellipsis; */
     min-height: 100px;
     display: flex;
+    background-color: #fff;
+    cursor: pointer;
 }
 
 .wrap-content{
@@ -28,6 +31,7 @@
 .flashcard h2 {
     white-space: nowrap;
     font-size: 21px;
+    cursor: text;
 }
 
 .flashcard img {
@@ -101,7 +105,7 @@
     top: 0px;
     right: 0px;
     cursor: pointer;
-    padding: 3px 0px 0px 3px;
+    padding: 5px 2px 5px 5px;
 }
 
 .flashcard:hover .delete {
