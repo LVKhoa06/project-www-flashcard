@@ -5,6 +5,7 @@
 * [ ] [Handler error when working with data(create, search, update)](#task15) @Mar02 22:10
 * [ ] [ Collection pages youtube)](#task4) @Mar04 07:15
 * [ ] [ Styles ](#task4) @Mar07 11:30
+* [ ] [ Flashcard details page (Home & Search) ](#task10) @Mar08 09:20
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
@@ -40,7 +41,7 @@
 * [x] <a id="task6"> Refactor reusable components page</a>
 * [x] <a id="task5">Topics page</a>
 * [x] Collections page
-* [x] <a id="task10">countTopicItem -> groupBy</a>
+* [x] countTopicItem -> groupBy
 * [x] <a id="task11">useEffect `Collection.js`</a>
 * [x] <a id="task12">Create flashcard component</a>
 * [x] <a id="task13">Request collection-list</a>
@@ -54,7 +55,7 @@
 * [x] Add Page title
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
 * [ ] Store images ?
-* [ ] Flashcard details page (Home & Search)
+* [ ] <a id="task10">Flashcard details page (Home & Search)</a>
 * [ ] Cloud and local data sync
 * [ ] Unique flashcard in collection
 * [ ] <a id="task2">Styles</a>
