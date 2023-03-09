@@ -4,8 +4,8 @@
 * [x] [Refactor reusable components page](#task6) @Mar01 13:50
 * [ ] [Handler error when working with data(create, search, update)](#task15) @Mar02 22:10
 * [ ] [ Collection pages youtube)](#task4) @Mar04 07:15
-* [ ] [ Styles ](#task4) @Mar07 11:30
-* [ ] [ Flashcard details page (Home & Search) ](#task10) @Mar08 09:20
+* [ ] [ Flashcard details ](#task10) @Mar08 09:20
+* [ ] [ Styles responsive ](#task1) @Mar09 18:00
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
@@ -23,7 +23,7 @@
 * [x] Search flashcard term & description
 
 ### Collection
-* [x] <a id="task1">Add to collection</a> 
+* [x] Add to collection
 * [x] <a id="task5">Delete collection</a>
 * [ ] <a id="task7">Rename collection</a>
 
@@ -56,10 +56,11 @@
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
 * [ ] Store images ?
 * [ ] <a id="task10">Flashcard details page (Home & Search)</a>
-* [ ] Cloud and local data sync
+* [x] Cloud and local data sync
 * [ ] Unique flashcard in collection
 * [ ] <a id="task2">Styles</a>
-* [ ] Mobile friendly
+* [ ] <a id="task1">Responsive</a>
+
 
 # REFACTOR 
 * [x] <a id="task9">Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll)</a> 
