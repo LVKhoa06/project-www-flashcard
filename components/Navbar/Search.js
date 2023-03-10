@@ -18,9 +18,6 @@ function Search() {
 
     return (
         <>
-            <div className={styles.menu}> 
-                Menu
-            </div>
             <div className={styles.container}>
 
                 <form className={styles.form} method="get" action="">

@@ -34,6 +34,10 @@
   fill: rgb(5, 203, 237);
 }
 
+.menu {
+  display: none;
+}
+
 @media (max-width: 760px) {
   .item {
     display: none;
@@ -41,5 +45,12 @@
 
   .topnav {
     justify-content: space-between;
+  }
+
+  .menu {
+    padding: 12px 10px;
+    margin: 0 10px;
+    display: flex;
+    cursor: pointer;
   }
 }

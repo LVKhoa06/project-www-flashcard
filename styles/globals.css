@@ -33,9 +33,12 @@ a {
 }
 
 input,
-textarea {
+textarea,
+select,
+option {
   font-family: 'Nunito', sans-serif;
 }
+
 
 .show {
   display: flex !important;
