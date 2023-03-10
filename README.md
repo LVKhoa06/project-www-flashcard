@@ -4,7 +4,8 @@
 * [x] [ Add favicon ](#task2) @Mar10 10:20
 * [x] [ Font family input & textarea ](#task3) @Mar10 10:40
 * [x] [ Styles scrollbar ](#task4) @Mar10 10:50
-* [ ] [ Input description use `<textarea></textarea>` ](#task5) @Mar10 11:00
+* [x] [ Input description use `<textarea></textarea>` ](#task5) @Mar10 11:00
+* [x] [ Responsive header ](#task6) @Mar10
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
@@ -37,7 +38,7 @@
 * [x] Get topic & flashcard in a request
 * [x] Search with description 
 * [x] Delete feature create collection | topic
-* [x] <a id="task6"> Refactor reusable components page</a>
+* [x] Refactor reusable components page
 * [x] Topics page
 * [x] Collections page
 * [x] countTopicItem -> groupBy
@@ -56,7 +57,8 @@
 * [x] <a id="task3">Font family input & textarea</a>
 * [x] <a id="task4">Styles scrollbar</a>
 * [x] Cloud and local data sync
-* [ ] <a id="task5">Input description use `<textarea></textarea>`</a>
+* [x] <a id="task5">Input description use `<textarea></textarea>`</a>
+* [x] <a id="task6">Responsive header</a>
 * [ ] Flashcard detail in modal
 * [ ] Store images ?
 * [ ] Unique flashcard in collection
