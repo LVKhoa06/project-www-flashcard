@@ -8,11 +8,11 @@ function Add() {
     return (
         <>
             <div className={styles.container_add}>
-                <div className={styles.icon}>
+                <Link href="/create" className={styles.icon}>
                     <IconAdd viewBox="0 0 39 24" className={styles['btn-add']}/>
-                </div>
+                </Link>
                 <div className={styles.menu}>
-                    <Link className={styles.menu_item} href="/create">Flashcard</Link>
+                    
                 </div>
             </div>
         </>

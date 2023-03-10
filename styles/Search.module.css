@@ -7,11 +7,19 @@
 .input {
   height: 30px;
   padding-left: 8px;
+  border-top-left-radius: 6px;
+  border-bottom-left-radius: 6px;
+  border: 1px solid #666;
+  border-right: none;
+  outline-color: #888;
 }
 
 .button {
   height:30px;
   width: 40px;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border: 1px solid #666;
 }
 
 .container_result {
