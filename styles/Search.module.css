@@ -15,7 +15,7 @@
 }
 
 .button {
-  height:30px;
+  height: 30px;
   width: 40px;
   border-top-right-radius: 6px;
   border-bottom-right-radius: 6px;
@@ -23,23 +23,22 @@
 }
 
 .container_result {
-    position: absolute;
-    width: 215px;
-    min-height: 100px;
-    padding-top: 8px;
-    border-radius: 8px;
-    background: rgb(255, 255, 255);
-    box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
-    display: none;
-    flex-direction: column;
-    z-index: 999;    
-    padding: 10px;
+  position: absolute;
+  width: 215px;
+  min-height: 100px;
+  padding-top: 8px;
+  border-radius: 8px;
+  background: rgb(255, 255, 255);
+  box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
+  display: none;
+  flex-direction: column;
+  z-index: 999;
+  padding: 10px;
 }
 
 .show {
   display: flex;
 }
-
 
 .search_item {
   display: flex;
@@ -48,17 +47,17 @@
   cursor: pointer;
 }
 
-.left_item{
+.left_item {
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.left_item h3{
+.left_item h3 {
   font-size: 18px;
   font-weight: 600;
 }
 
-.left_item span{
+.left_item span {
   white-space: nowrap;
   font-size: 14px;
 }
@@ -68,10 +67,26 @@
   color: #666;
 }
 
-.close{
+.close {
   position: absolute;
   right: 1px;
   top: -3px;
   cursor: pointer;
   padding: 0 5px;
+}
+
+@media (max-width: 760px) {
+  .input {
+    width: 100%;
+  }
+
+  .container {
+      width: 100%;
+  }
+
+  .menu{
+    padding: 12px 10px;
+    margin: 0 10px;
+  }
+
 }

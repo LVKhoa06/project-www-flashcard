@@ -17,40 +17,46 @@ function Search() {
     } // submitHandler
 
     return (
-        <div className={styles.container}>
-            <form className={styles.form} method="get" action="">
-                <input
-                    value={value}
-                    onChange={(e) => setValue(e.target.value)}
-                    className={styles.input}
-                    type="text"
-                    placeholder="Search"
-                />
-                <button onClick={(e) => {
-                    setShow(true)
-                    submitHandler(e)
-                }} className={styles.button} type="submit">Ok</button>
-            </form>
-            <div className={`${styles.container_result} ${result.length && show ? styles.show : ''}`}>
-                <div onClick={() => setShow(false)} className={styles.close}>x</div>
-                {
-                    result.map(item => {
-                        return (
-                            <div className={styles.search_item} key={item.id}>
-                                <div className={styles.left_item}>
-                                    <h3>{item.term}</h3>
-                                    <span>{item.description}</span>
-                                </div>
-                                <div className={styles.right_item}>
-                                    <span>{item.topic}</span>
-                                </div>
-                            </div>
-                        )
-                    })
-                }
+        <>
+            <div className={styles.menu}> 
+                Menu
             </div>
-        </div>
+            <div className={styles.container}>
 
+                <form className={styles.form} method="get" action="">
+                    <input
+                        value={value}
+                        onChange={(e) => setValue(e.target.value)}
+                        className={styles.input}
+                        type="text"
+                        placeholder="Search"
+                    />
+                    <button onClick={(e) => {
+                        setShow(true)
+                        submitHandler(e)
+                    }} className={styles.button} type="submit">Ok</button>
+                </form>
+                <div className={`${styles.container_result} ${result.length && show ? styles.show : ''}`}>
+                    <div onClick={() => setShow(false)} className={styles.close}>x</div>
+                    {
+                        result.map(item => {
+                            return (
+                                <div className={styles.search_item} key={item.id}>
+                                    <div className={styles.left_item}>
+                                        <h3>{item.term}</h3>
+                                        <span>{item.description}</span>
+                                    </div>
+                                    <div className={styles.right_item}>
+                                        <span>{item.topic}</span>
+                                    </div>
+                                </div>
+                            )
+                        })
+                    }
+                </div>
+            </div>
+
+        </>
     );
 }
 

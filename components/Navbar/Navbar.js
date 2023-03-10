@@ -7,9 +7,9 @@ function Navbar() {
     return (
         <>
             <div className={styles.topnav}>
-                <Link href="/">Home</Link>
-                <Link href="/topics">Topics</Link>
-                <Link href="/collections">Collections</Link>
+                <Link className={styles.item} href="/">Home</Link>
+                <Link className={styles.item} href="/topics">Topics</Link>
+                <Link className={styles.item} href="/collections">Collections</Link>
                 <Search/>
                 <Add/>
             </div>
