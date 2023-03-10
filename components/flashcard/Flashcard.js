@@ -70,8 +70,8 @@ function Flashcard(props) {
                                     // disable warning when use contentEditable
                                     suppressContentEditableWarning={true}
                                     onKeyUp={(e) => {
-                                        updateFlashcardHandler(e, session.value, session.turn, id)
                                         setSession({ turn: 'term', value: e.target.innerText })
+                                        updateFlashcardHandler(e, session.value, session.turn, id)
                                     }}
                                     onKeyDown={(e) => preventEnterKey(e)}
                                     onClick={(e) => e.stopPropagation()}
