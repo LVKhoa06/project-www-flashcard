@@ -1,5 +1,6 @@
 const images = {
     folder: require('../assets/folder.jpg'),
+    logo: require('../assets/logo.svg').default,
     img1: require('../assets/img/img1.jpg').default,
     img2: require('../assets/img/img2.jpg').default,
     img3: require('../assets/img/img3.jpg').default,
