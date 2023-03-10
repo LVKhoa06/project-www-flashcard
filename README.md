@@ -1,11 +1,10 @@
-# Real data @Mon6th
-
 # 🚀 WORKING ON
-* [x] [Refactor reusable components page](#task6) @Mar01 13:50
-* [ ] [Handler error when working with data(create, search, update)](#task15) @Mar02 22:10
-* [ ] [ Collection pages youtube)](#task4) @Mar04 07:15
-* [ ] [ Flashcard details ](#task10) @Mar08 09:20
-* [ ] [ Styles responsive ](#task1) @Mar09 18:00
+* [x] [ Flashcard details ](#task10) @Mar08 09:20
+* [ ] [ Styles responsive ](#task1) w/ `SASS` | `Tailwind` | `styled-components` @Mar09 18:00
+* [x] [ Add favicon ](#task2) @Mar10 10:20
+* [x] [ Font family input & textarea ](#task3) @Mar10 10:40
+* [x] [ Styles scrollbar ](#task4) @Mar10 10:50
+* [ ] [ Input description use `<textarea></textarea>` ](#task5) @Mar10 11:00
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
@@ -24,8 +23,8 @@
 
 ### Collection
 * [x] Add to collection
-* [x] <a id="task5">Delete collection</a>
-* [ ] <a id="task7">Rename collection</a>
+* [x] Delete collection
+* [x] <a id="task7">Rename collection</a>
 
 # 💪TODO
 * [x] Button update flashcard
@@ -39,27 +38,32 @@
 * [x] Search with description 
 * [x] Delete feature create collection | topic
 * [x] <a id="task6"> Refactor reusable components page</a>
-* [x] <a id="task5">Topics page</a>
+* [x] Topics page
 * [x] Collections page
 * [x] countTopicItem -> groupBy
 * [x] <a id="task11">useEffect `Collection.js`</a>
 * [x] <a id="task12">Create flashcard component</a>
 * [x] <a id="task13">Request collection-list</a>
 * [x] <a id="task14">Topic & Collection detail page (Don't use axios //Call mysql's functions directly)</a>
-* [x] <a id="task2">Work with MySQL table flashcard_collection_id (flashcard_id, collection_id)</a>
+* [x] Work with MySQL table flashcard_collection_id (flashcard_id, collection_id)
 * [x] Topics & Collection page send a request
-* [x] <a id="task2">Collection pages youtube</a>
+* [x] Collection pages youtube
 * [x] Remove flashcard from collection
 * [x] Create View (collection & topic page) MySQL (id, item_id, count)
 * [x] Check the selected collection
 * [x] Add Page title
-* [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
-* [ ] Store images ?
-* [ ] <a id="task10">Flashcard details page (Home & Search)</a>
+* [x] <a id="task2">Add Favicon</a>
+* [x] <a id="task3">Font family input & textarea</a>
+* [x] <a id="task4">Styles scrollbar</a>
 * [x] Cloud and local data sync
+* [ ] <a id="task5">Input description use `<textarea></textarea>`</a>
+* [ ] Flashcard detail in modal
+* [ ] Store images ?
 * [ ] Unique flashcard in collection
-* [ ] <a id="task2">Styles</a>
 * [ ] <a id="task1">Responsive</a>
+* [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
+
+
 
 
 # REFACTOR 
