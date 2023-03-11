@@ -6,6 +6,7 @@
 * [x] [ Styles scrollbar ](#task4) @Mar10 10:50
 * [x] [ Input description use `<textarea></textarea>` ](#task5) @Mar10 11:00
 * [x] [ Responsive header ](#task6) @Mar10
+* [ ] [Flashcard detail in modal](#task7)  @Mar11 21:30
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
@@ -25,7 +26,7 @@
 ### Collection
 * [x] Add to collection
 * [x] Delete collection
-* [x] <a id="task7">Rename collection</a>
+* [x] Rename collection
 
 # 💪TODO
 * [x] Button update flashcard
@@ -66,7 +67,7 @@
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
 
 # REFACTOR 
-* [x] <a id="task9">Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll)</a> 
+* [x] Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll)
 
 # MISC
 * [ ] Color + img: term | topic
