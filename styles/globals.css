@@ -39,6 +39,10 @@ option {
   font-family: 'Nunito', sans-serif;
 }
 
+select {
+  background-color: #fff;
+}
+
 
 .show {
   display: flex !important;

@@ -37,7 +37,6 @@ function Flashcard(props) {
             );
             console.log('Updated');
         }
-
     } // updateFlashcardHandler
 
     const preventEnterKey = (e) => {

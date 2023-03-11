@@ -106,4 +106,8 @@
     display: flex;
 }
 
-
+@media (max-width: 700px) {
+    .collection h2 {
+        font-size: 17px;
+    }
+}
