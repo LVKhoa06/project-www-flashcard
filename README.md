@@ -6,7 +6,8 @@
 * [x] [ Styles scrollbar ](#task4) @Mar10 10:50
 * [x] [ Input description use `<textarea></textarea>` ](#task5) @Mar10 11:00
 * [x] [ Responsive header ](#task6) @Mar10
-* [ ] [Flashcard detail in modal](#task7)  @Mar11 21:30
+* [x] [Flashcard detail in modal](#task7)  @Mar11 21:30
+* [ ] [Components\Notification](#task8)  @Mar11 10:00
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
@@ -60,11 +61,12 @@
 * [x] Cloud and local data sync
 * [x] <a id="task5">Input description use `<textarea></textarea>`</a>
 * [x] <a id="task6">Responsive header</a>
-* [ ] Flashcard detail in modal
+* [x] <a id="task7">Flashcard detail in modal</a>
 * [ ] Store images ?
 * [ ] Unique flashcard in collection
 * [ ] <a id="task1">Responsive</a>
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
+* [ ] <a id="task8">Components\Notification</a>
 
 # REFACTOR 
 * [x] Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll)
