@@ -106,7 +106,7 @@
     display: flex;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 600px) {
     .collection h2 {
         font-size: 17px;
     }

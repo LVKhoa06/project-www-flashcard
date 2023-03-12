@@ -1,28 +1,40 @@
 .overlay {
-    background-color: #fff;
-    margin: 30px 60px;
-    box-shadow: 0 0 11px -6px;
-    border-radius: 15px;
-    max-width: 100%;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 0px 8px;
+    cursor: pointer;
 }
 
 .container {
     display: flex;
-    margin: 20px 20px 0 20px;
-    padding: 20px;
-    max-height: 600px;
-    max-width: 80%;
-}
-
-.containerF {
-    width: 100%;
+    padding: 20px 30px 20px 20px;
+    max-height: 100%;
+    max-width: 100%;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 8px 0px #999;
+    position: relative;
 }
 
 .img-fc {
-    max-width: 150px;
-    min-width: 150px;
-    max-height: 220px;
-    min-height: 220px;
+    max-width: 130px;
+    min-width: 130px;
+    max-height: 250px;
+    min-height: 250px;
     border-radius: 10px;
     margin-right: 20px;
 }
@@ -30,36 +42,34 @@
 .content {
     display: flex;
     flex-direction: column;
-    max-width: 85%;
+    max-width: 75%;
 }
-
 
 .content input {
     border: none;
     outline: none;
     max-width: 300px;
     height: 40px;
-    font-size: 28px;
+    font-size: 25px;
 }
 
 .content textarea {
     min-width: 300px;
     max-width: 100%;
-    min-height: 150px;
+    min-height: 185px;
     max-height: 82%;
     padding: 5px;
     border-top-left-radius: 5px;
     border-top-right-radius: 5px;
     border-bottom: none;
     outline: none;
-    font-size: 16px;
+    font-size: 15px;
 }
 
 
 .content button {
     background-color: #fff;
     border: 1px solid #999;
-    /* border-top: none; */
     height: 25px;
     cursor: pointer;
     border-bottom-left-radius: 5px;
@@ -77,8 +87,7 @@
     border-top: 1px solid #555;
 }
 
-@media (max-width: 700px) {
-
+@media (max-width: 600px) {
     .overlay {
         width: 100%;
         margin: 0;
@@ -91,7 +100,7 @@
 
     .content input {
         font-size: 16px;
-        font-weight:800;
+        font-weight: 800;
     }
 
     .img-fc {
@@ -107,5 +116,4 @@
         min-height: 115px;
         font-size: 13px;
     }
-
 }

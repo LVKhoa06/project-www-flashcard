@@ -38,7 +38,7 @@
   display: none;
 }
 
-@media (max-width: 700px) {
+@media (max-width: 600px) {
   .item {
     display: none;
   }
