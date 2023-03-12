@@ -1,4 +1,3 @@
-import FlashcardDetail from "@/components/flashcard/Detail";
 import Flashcard from "@/components/flashcard/Flashcard";
 import Head from "next/head";
 import { useEffect, useState } from "react";
@@ -40,17 +39,6 @@ export const getStaticProps = async (context) => {
 
 function TopicDetail({ result, topic }) {
   const [data, setData] = useState(result);
-  const [imgIndex, setImgIndex] = useState([]);
-  const [curDetailId, setCurDetailId] = useState(0);
-  const [detailFlashcard, setDetailFlashcard] = useState(false);
-
-  useEffect(() => {
-    const item = []
-    data.forEach(i => {
-      item.push((Math.ceil(Math.random() * 20)))
-    });
-    setImgIndex(item)
-  }, [data]);
 
   return (
     <>
@@ -60,8 +48,7 @@ function TopicDetail({ result, topic }) {
       <div className={styles.container}>
         {data.length ?
           <>
-            {detailFlashcard ? <FlashcardDetail imgIndex={imgIndex} index={curDetailId} data={data[curDetailId]} /> : ''}
-            <Flashcard imgIndex={imgIndex} setDetailFlashcard={setDetailFlashcard} setCurDetailId={setCurDetailId} data={data} setData={setData} />
+            <Flashcard data={data} setData={setData} />
           </> :
           <div>
             <h1>Topic Empty</h1>

@@ -1,10 +1,12 @@
 import images from "assets";
+import IconClose from "assets/icon-close";
 import axios from "axios";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import styles from '../../styles/Flashcard.module.css'
 
-function FlashcardDetail({ data, imgIndex, index }) {
+function FlashcardDetail(props) {
+    const { data, imgIndex, index, setShow } = props;
     const [result, setResult] = useState([data]);
     const [valueTerm, setValueTerm] = useState('');
     const [valueDesc, setValueDesc] = useState('');
@@ -38,35 +40,33 @@ function FlashcardDetail({ data, imgIndex, index }) {
 
     return (
         <>
+            <Head>
+                <title>Flashcard - {result[0]?.term}</title>
+            </Head>
             {result.map(item => {
                 const img = images[`img${imgIndex[index]}`];
 
                 return (
-                    <div className={styles.containerF} key={item.id}>
-                        <Head>
-                            <title>Flashcard - {item?.term}</title>
-                        </Head>
-                        <div className={styles.overlay}>
-                            <div className={styles.container}>
-                                <img className={styles['img-fc']} src={img?.src} />
-                                <div className={styles.content}>
-                                    <input
-                                        onChange={(e) => setValueTerm(e.target.value)}
-                                        onKeyUp={(e) => updateFlashcardHandler(e, 'term', item.id)}
-                                        defaultValue={data?.term}
-                                    />
-                                    <textarea
-                                        onChange={(e) => setValueDesc(e.target.value)}
-                                        defaultValue={data?.description}
-                                    />
-                                    <button
-                                        onClick={(e) => updateFlashcardHandler(e, 'description', item.id)}
-                                    >Update</button>
-                                </div>
+                    <div className={styles.overlay} key={item.id}>
+                        <div className={styles.container}>
+                            <h1 onClick={() => setShow(false)} className={styles.close}><IconClose /></h1>
+                            <img className={styles['img-fc']} src={img?.src} />
+                            <div className={styles.content}>
+                                <input
+                                    onChange={(e) => setValueTerm(e.target.value)}
+                                    onKeyUp={(e) => updateFlashcardHandler(e, 'term', item.id)}
+                                    defaultValue={data?.term}
+                                />
+                                <textarea
+                                    onChange={(e) => setValueDesc(e.target.value)}
+                                    defaultValue={data?.description}
+                                />
+                                <button
+                                    onClick={(e) => updateFlashcardHandler(e, 'description', item.id)}
+                                >Update</button>
                             </div>
                         </div>
                     </div>
-
                 )
             })}
 

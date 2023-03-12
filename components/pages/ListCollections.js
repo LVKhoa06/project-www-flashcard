@@ -26,7 +26,6 @@ function ListCollections() {
             <div className={styles.container}>
                 {listCollection.map((item, index) => {
                     const collectionQuantity = data.find(item2 => item2.collection_id === item.collection_id)
-
                     return (
                         <Link href={`/collections/${item.collection_id}`} className={styles.collection} key={index}>
                             <div className={''}>
