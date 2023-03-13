@@ -82,7 +82,7 @@ export async function flashcard_search(key) {
     select * from flashcard f
     inner join topic t
     on f.topic_id = t.topic_id
-    where f.term like '%${key}%' or f.description like '%${key}%'`
+    where f.term like '%${key}%' or f.description like '%${key}%' limit 5`
     const [result] = await pool().execute(query);
 
     if (!result)

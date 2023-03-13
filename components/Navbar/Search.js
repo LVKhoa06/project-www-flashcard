@@ -1,40 +1,58 @@
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import useDebounce from 'utils/useDebounce';
 import styles from '../../styles/Search.module.scss';
 
 function Search() {
     const [value, setValue] = useState('');
     const [result, setResult] = useState([]);
-    const [show, setShow] = useState(false);
+    const [isFocus, setIsFocus] = useState(false);
+    // const debouncedValue = useDebounce(result, 300); // Delay 
 
     const submitHandler = async (e) => {
-        e.preventDefault();
-
+        // page search result
         if (value) {
             const data = await axios.get(`/api/flashcard/search?key=${value}`);
             setResult(data.data);
         }
     } // submitHandler
 
+    const searchHandler = async (v) => {
+        if (v) {
+            const data = await axios.get(`/api/flashcard/search?key=${v}`);
+            setResult(data.data);
+        } else setResult([])
+    } // searchHandler
+
+
     return (
         <>
             <div className={styles.container}>
-
-                <form className={styles.form} method="get" action="">
+                <div className={styles.form} method="get" action="">
                     <input
                         value={value}
-                        onChange={(e) => setValue(e.target.value)}
+                        onChange={(e) => {
+                            searchHandler(e.target.value)
+                            setValue(e.target.value)
+                        }}
+
                         className={styles.input}
                         type="text"
                         placeholder="Search"
+                        onFocus={() => setIsFocus(true)}
+                        onBlur={() => {
+                            setIsFocus(false);
+                        }}
                     />
                     <button onClick={(e) => {
-                        setShow(true)
+                        setIsFocus(true);
                         submitHandler(e)
                     }} className={styles.button} type="submit">Ok</button>
-                </form>
-                <div className={`${styles.container_result} ${result.length && show ? styles.show : ''}`}>
-                    <div onClick={() => setShow(false)} className={styles.close}>x</div>
+                </div>
+                <div
+                    className={`${styles.container_result} ${value.length && isFocus ? styles.show : ''}`}
+                    onClick={(e) => e.stopPropagation()}
+                >
                     {
                         result.map(item => {
                             return (
