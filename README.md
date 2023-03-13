@@ -1,8 +1,9 @@
 # 🚀 WORKING ON
 * [x] [ Flashcard details ](#task10) @Mar08 09:20
-* [x] [ Styles responsive ](#task1) w/ `SASS` | `Tailwind` | `styled-components` @Mar09 18:00
-* [x] [Textarea max width + height](#task3) @Mar13 09:30
-* [ ] [Click overlay close modal, menu, search](#task2) @Mar13 09:45
+* [x] [Search on typing ](#task4) @Mar13 09:45
+* [x] [Click overlay close modal, menu, search](#task2) @Mar13 09:45
+* [ ] [ Search styles](#task5) @Mar13 11:10
+
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
 🟢 Display Component ({&& <Component />})
@@ -52,23 +53,25 @@
 * [x] Add Page title
 * [x] Add Favicon
 * [x] Font family input & textarea
-* [x] <a id="task4">Styles scrollbar</a>
+* [x] Styles scrollbar
 * [x] Cloud and local data sync
-* [x] <a id="task5">Input description use `<textarea></textarea>`</a>
+* [x] Input description use `<textarea></textarea>`
 * [x] <a id="task6">Responsive header</a>
 * [x] <a id="task7">Flashcard detail in modal</a>
+* [x] <a id="task4">Search on typing</a>
 * [ ] Store images ?
 * [ ] Unique flashcard in collection
 * [ ] <a id="task1">Responsive</a>
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
 * [ ] <a id="task8">Components\Notification</a>
-* [ ] Click overlay close modal, menu, search
-* [ ] Textarea max width + height
+* [x] Click overlay close modal, menu, search
+* [x] Textarea max width + height
 * [ ] Search detail flashcard
 * [ ] Change topic
-* [ ] Styles search
-* [ ] Topics id -1 change color (use class)
-
+* [ ] <a id="task5">Styles search</a>
+* [ ] Page search result
+* [ ] Deboundce search 
+ 
 # REFACTOR 
 * [x] Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll)
 
@@ -103,4 +106,30 @@ useEffect(() => {
 
     worker();
 }, [dependency]);
+```
+
+# Snippet to work with `useDebounce()` hook
+```jsx
+import { useState } from 'react';
+import useDebounce from 'lib/debounce';
+
+export default function Component() {
+    const [keyword, setKeyword] = useState('');
+    const [debounced, setDebounced] = useDebounce(keyword, 1_000);
+
+    useEffect(() => {
+        const request = async() => {
+
+        } // request
+
+        request();
+    }, [debounced]);
+
+    return <>
+        <input
+            value={keyword}
+            onChange={(event) => setKeyword(event.target.value)}
+        />
+    </>
+} // Component
 ```
