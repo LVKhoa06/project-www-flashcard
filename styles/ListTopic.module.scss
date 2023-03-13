@@ -1,4 +1,6 @@
-.container {
+ $res_600 : "only screen and (max-width: 600px)";
+
+ .container {
     flex-wrap: wrap;
     display: flex;
 }
@@ -28,12 +30,18 @@
     margin-left: 20px;
 }
 
-@media (max-width: 600px) {
+@mixin responsive_600() {
+    @media #{$res_600} {
+        @content;
+    }
+}
+
+@include responsive_600{
     .quantity-container span{
         font-size: 10px;
     }
     .topic h2{
         font-size: 18px;
     }
-    
+
 }

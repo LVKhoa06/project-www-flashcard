@@ -3,7 +3,7 @@ import IconClose from "assets/icon-close";
 import axios from "axios";
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import styles from '../../styles/Flashcard.module.css'
+import styles from '../../styles/Flashcard.module.scss'
 
 function FlashcardDetail(props) {
     const { data, imgIndex, index, setShow } = props;

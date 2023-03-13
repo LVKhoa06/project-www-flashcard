@@ -1,6 +1,6 @@
 import IconHome from 'assets/icon-home';
 import IconCreate from 'assets/icon-create';
-import styles from '../../styles/NavMobile.module.css';
+import styles from '../../styles/NavMobile.module.scss';
 import IconCollection from 'assets/icon-collection';
 import IconTopic from 'assets/icon-topic';
 import IconSetting from 'assets/icon-setting';

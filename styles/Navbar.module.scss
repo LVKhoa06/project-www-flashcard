@@ -1,8 +1,11 @@
-.topnav {
+ $res_600 : "only screen and (max-width: 600px)";
+ 
+ .topnav {
   background-color: #fff;
   display: flex;
   align-items: center;
   overflow: auto;
+  border: 1px solid #999;
 }
 
 .topnav .item {
@@ -38,7 +41,13 @@
   display: none;
 }
 
-@media (max-width: 600px) {
+@mixin responsive_600() {
+    @media #{$res_600} {
+        @content;
+    }
+}
+
+@include responsive_600{
   .item {
     display: none;
   }
@@ -53,4 +62,5 @@
     display: flex;
     cursor: pointer;
   }
+
 }

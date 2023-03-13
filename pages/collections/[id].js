@@ -8,7 +8,7 @@ import axios from "axios";
 import Head from "next/head";
 import { use, useEffect, useState } from "react";
 import { collection_getAll, flashcard_getWithCollection } from "utils/mysql/mysql";
-import styles from '../../styles/ListCollection.module.css'
+import styles from '../../styles/ListCollection.module.scss'
 
 export async function getStaticPaths() {
   const data = await collection_getAll();

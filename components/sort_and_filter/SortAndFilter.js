@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import styles from '../../styles/SortAndFilter.module.css';
+import styles from '../../styles/SortAndFilter.module.scss';
 
 const CONST_SORT_CASE = {
     none: -1,

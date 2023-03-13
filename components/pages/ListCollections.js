@@ -2,7 +2,7 @@ import axios from 'axios';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import styles from '../../styles/ListCollection.module.css'
+import styles from '../../styles/ListCollection.module.scss'
 
 function ListCollections() {
     const [listCollection, setListCollection] = useState([]);

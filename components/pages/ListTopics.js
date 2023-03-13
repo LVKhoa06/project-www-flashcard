@@ -2,7 +2,7 @@ import axios from 'axios';
 import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import styles from '../../styles/ListTopic.module.css'
+import styles from '../../styles/ListTopic.module.scss'
 
 function ListTopics() {
     const [listTopic, setListTopic] = useState([]);

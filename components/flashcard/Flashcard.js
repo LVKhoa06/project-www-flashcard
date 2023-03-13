@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import styles from '../../styles/Home.module.css';
+import styles from '../../styles/Flashcard.module.scss';
 import IconMenu from '../../assets/icon-menu';
 import MenuFlashcard from '../collection/MenuFlashcard';
 import images from "assets";
@@ -58,23 +58,24 @@ function Flashcard(props) {
     }
 
     const detailHandler = (e, index) => {
-        e.stopPropagation()
-        document.querySelector('body').scrollTo({
-            top: 0,
-            behavior: `smooth`
-        });
+        // e.stopPropagation()
+        // document.querySelector('body').scrollTo({
+        //     top: 0,
+        //     behavior: `smooth`
+        // });
         setCurDetailId(index);
         setShow(true);
     }
 
     return (
         <>
+            {show && <FlashcardDetail show={show} setShow={setShow} imgIndex={imgIndex} index={curDetailId} data={data[curDetailId]} />}
             {data.map((item, index) => {
                 const id = item.id;
                 const img = images[`img${imgIndex[index]}`];
                 return (
                     <>
-                        <div onClick={(e) => detailHandler(e, index)} id={id} /*title={topicName}*/ className={styles.flashcard} key={id}>
+                        <div onClick={(e) => detailHandler(e, index)} id={id} /*title={topicName}*/ className={`${styles.flashcard}`} key={id}>
                             <img src={img?.src} />
                             <div className={styles['wrap-content']}>
                                 <div className={styles['wrap-title']}>
@@ -88,6 +89,7 @@ function Flashcard(props) {
                                         onKeyDown={(e) => preventEnterKey(e)}
                                         onClick={(e) => e.stopPropagation()}
                                         contentEditable
+                                        className={`${styles.title} ${item.topic_id < 0 ? 'underline' : ''}`}
                                     >
                                         {item.term}
                                     </h2>
@@ -108,7 +110,6 @@ function Flashcard(props) {
                                 <MenuFlashcard id={id} setShowMenu={setShowMenu} setData={setData} />
                             </div>
                         </div>
-                        {show ? <FlashcardDetail show={show} setShow={setShow} imgIndex={imgIndex} index={curDetailId} data={data[curDetailId]} /> : ''} 
                     </>
                 );
             })}

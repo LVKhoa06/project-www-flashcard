@@ -1,4 +1,6 @@
-.form {
+ $res_600 : "only screen and (max-width: 600px)";
+ 
+ .form {
   height: 50px;
   display: flex;
   align-items: center;
@@ -75,7 +77,13 @@
   padding: 0 5px;
 }
 
-@media (max-width: 600px) {
+@mixin responsive_600() {
+    @media #{$res_600} {
+        @content;
+    }
+}
+
+@include responsive_600{
   .input {
     width: 100%;
   }
@@ -83,4 +91,5 @@
   .container {
       width: 100%;
   }
+
 }

@@ -1,0 +1,265 @@
+$res_600 : "only screen and (max-width: 600px)";
+
+.overlay {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .container {
+        display: flex;
+        padding: 20px 30px 20px 20px;
+        max-height: 100%;
+        max-width: 100%;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 4px 0px #999;
+        position: relative;
+
+        .close {
+            position: absolute;
+            right: 0;
+            top: 0;
+            padding: 0px 8px;
+            cursor: pointer;
+        }
+
+        .img-fc {
+            max-width: 130px;
+            min-width: 130px;
+            max-height: 250px;
+            min-height: 250px;
+            border-radius: 10px;
+            margin-right: 20px;
+        }
+
+        .content {
+            display: flex;
+            flex-direction: column;
+            max-width: 75%;
+
+            input {
+                border: none;
+                outline: none;
+                max-width: 300px;
+                height: 40px;
+                font-size: 25px;
+            }
+
+            textarea {
+                min-width: 300px;
+                max-width: 100%;
+                min-height: 185px;
+                max-height: 82%;
+                padding: 5px;
+                border-top-left-radius: 5px;
+                border-top-right-radius: 5px;
+                border-bottom: none;
+                outline: none;
+                font-size: 15px;
+            }
+
+            button {
+                background-color: #fff;
+                border: 1px solid #999;
+                height: 25px;
+                cursor: pointer;
+                border-bottom-left-radius: 5px;
+                border-bottom-right-radius: 5px;
+                color: #333;
+            }
+
+            textarea:focus {
+                border: 2px solid #555;
+                border-bottom: none;
+            }
+
+            textarea:focus~button {
+                border: 2px solid #555;
+                border-top: 1px solid #555;
+            }
+        }
+    }
+}
+
+.flashcard {
+    width: max-content;
+    margin: 10px;
+    padding: 8px 50px 8px 8px;
+    position: relative;
+    border: 1px solid #999;
+    border-radius: 6px;
+    max-width: 320px;
+    min-width: 320px;
+    min-height: 100px;
+    display: flex;
+    background-color: #fff;
+    cursor: pointer;
+
+    .wrap-title {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap
+    }
+
+    .wrap-desc {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        margin-top: 10px;
+    }
+
+    .wrap-content {
+        text-overflow: ellipsis;
+        display: flex;
+        overflow: hidden;
+        flex-direction: column;
+        margin-left: 10px;
+    }
+
+    h2 {
+        white-space: nowrap;
+        font-size: 21px;
+        cursor: text;
+    }
+
+    img {
+        max-height: 100px;
+        min-width: 75px;
+        border-radius: 5px;
+    }
+
+    h2:hover {
+        color: rgb(76, 70, 58);
+    }
+
+    h2:focus {
+        color: rgb(65, 76, 48) !important;
+        outline: none;
+    }
+
+    h2:focus~.update {
+        display: block;
+    }
+
+    span {
+        color: black;
+        white-space: nowrap;
+    }
+
+    span:hover {
+        color: #333;
+    }
+
+    span:focus {
+        color: rgb(121, 121, 121) !important;
+        outline: none;
+    }
+
+    span:focus~.update {
+        display: block;
+    }
+
+}
+
+.update {
+    display: none;
+    position: absolute;
+    top: 30%;
+    right: 5px;
+    cursor: pointer;
+    padding: 3px 6px;
+    z-index: 99;
+}
+
+// .delete {
+//     position: absolute;
+//     top: 35%;
+//     right: 0;
+//     cursor: pointer;
+//     padding: 3px 6px;
+//     font-size: 13px;
+//     display: none;
+// }
+
+.filter {
+    display: flex;
+}
+
+.container_edit {
+    display: flex;
+}
+
+.menu-container {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    cursor: pointer;
+    padding: 5px 2px 5px 5px;
+}
+
+.flashcard:hover .delete {
+    display: flex;
+}
+
+.menu-list {
+    position: absolute;
+    z-index: 999;
+    background-color: white;
+    box-shadow: 0 0 5px -2px;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.blue {
+    color: rgb(133, 133, 235);
+}
+
+.title {
+    font-size: 20px !important;
+}
+
+@mixin responsive_600() {
+    @media #{$res_600} {
+        @content;
+    }
+}
+
+@include responsive_600 {
+    .overlay {
+        width: 100%;
+        margin: 0;
+
+        .container {
+            margin: 10px 0 0 0;
+            padding: 10px;
+
+            .content {
+                input {
+                    font-size: 16px;
+                    font-weight: 800;
+                }
+
+                textarea {
+                    min-width: 80px;
+                    min-height: 115px;
+                    font-size: 13px;
+                }
+            }
+
+            .img-fc {
+                max-width: 100px;
+                min-width: 100px;
+                max-height: 180px;
+                min-height: 180px;
+                margin-right: 10px;
+            }
+        }
+    }
+}

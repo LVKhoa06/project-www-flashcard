@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
-import styles from '../../styles/Collection.module.css'
+import styles from '../../styles/Collection.module.scss'
 
 function Collection(props) {
     const { id, selected, showModal, setShowModal, setShowMenu, result, setResult } = props;

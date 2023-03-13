@@ -1,3 +1,5 @@
+$res_600 : "only screen and (max-width: 600px)";
+
 .container {
     flex-wrap: wrap;
     display: flex;
@@ -36,8 +38,6 @@
     margin-bottom: 20px;
     background-color: #fff;
 }
-
-.container-left {}
 
 .container-left img {
     max-width: 260px;
@@ -106,7 +106,15 @@
     display: flex;
 }
 
-@media (max-width: 600px) {
+ // Variable
+
+@mixin responsive_600() {
+    @media #{$res_600} {
+        @content;
+    }
+}
+
+@include responsive_600{
     .collection h2 {
         font-size: 17px;
     }

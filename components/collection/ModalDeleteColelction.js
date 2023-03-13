@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useRouter } from 'next/router';
-import styles from '../../styles/ModalCheck.module.css'
+import styles from '../../styles/ModalCheck.module.scss'
 
 function ModalCheck({ setShowCheck, id }) {
     const router = useRouter();

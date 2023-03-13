@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import formatDateWithLocale from "utils/format-date.";
 import Head from "next/head";
-import styles from '../../styles/CreateFlashcard.module.css'
+import styles from '../../styles/CreateFlashcard.module.scss'
 
 
 function Create() {

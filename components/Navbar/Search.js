@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import styles from '../../styles/Search.module.css';
+import styles from '../../styles/Search.module.scss';
 
 function Search() {
     const [value, setValue] = useState('');

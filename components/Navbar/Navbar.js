@@ -2,7 +2,7 @@ import images from 'assets';
 import IconMenuNav from 'assets/icon-menu-nav';
 import Link from 'next/link';
 import { useState } from 'react';
-import styles from '../../styles/Navbar.module.css';
+import styles from '../../styles/Navbar.module.scss';
 import Add from './Add';
 import NavMobile from './NavMobile';
 import Search from './Search';

@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
-import styles from '../../styles/Home.module.css';
+import styles from '../../styles/Home.module.scss';
 import Flashcard from '../flashcard/Flashcard';
 import SortAndFilter from '../sort_and_filter/SortAndFilter';
 

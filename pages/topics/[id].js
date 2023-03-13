@@ -2,7 +2,7 @@ import Flashcard from "@/components/flashcard/Flashcard";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import { topic_getAll, flashcard_getWithCondition } from "utils/mysql/mysql";
-import styles from '../../styles/ListTopic.module.css'
+import styles from '../../styles/ListTopic.module.scss'
 
 export async function getStaticPaths() {
   const data = await topic_getAll();

@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { useState } from 'react';
-import styles from '../../styles/Navbar.module.css';
+import styles from '../../styles/Navbar.module.scss';
 import IconAdd from '../../assets/icon-add.js';
 
 function Add() {
