@@ -1,16 +1,11 @@
 # 🚀 WORKING ON
 * [x] [ Flashcard details ](#task10) @Mar08 09:20
-* [ ] [ Styles responsive ](#task1) w/ `SASS` | `Tailwind` | `styled-components` @Mar09 18:00
-* [x] [ Add favicon ](#task2) @Mar10 10:20
-* [x] [ Font family input & textarea ](#task3) @Mar10 10:40
-* [x] [ Styles scrollbar ](#task4) @Mar10 10:50
-* [x] [ Input description use `<textarea></textarea>` ](#task5) @Mar10 11:00
-* [x] [ Responsive header ](#task6) @Mar10
-* [x] [Flashcard detail in modal](#task7)  @Mar11 21:30
-* [ ] [Components\Notification](#task8)  @Mar11 10:00
-
+* [x] [ Styles responsive ](#task1) w/ `SASS` | `Tailwind` | `styled-components` @Mar09 18:00
+* [ ] [Click overlay close modal, menu, search](#task2) @Mar13 
+* [ ] [Textarea max width + height](#task3) @Mar13 09:30
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
+🟢 Display Component ({&& <Component />})
 
 # ⚙ FEATURE
 ###  Flashcard
@@ -55,8 +50,8 @@
 * [x] Create View (collection & topic page) MySQL (id, item_id, count)
 * [x] Check the selected collection
 * [x] Add Page title
-* [x] <a id="task2">Add Favicon</a>
-* [x] <a id="task3">Font family input & textarea</a>
+* [x] Add Favicon
+* [x] Font family input & textarea
 * [x] <a id="task4">Styles scrollbar</a>
 * [x] Cloud and local data sync
 * [x] <a id="task5">Input description use `<textarea></textarea>`</a>
@@ -67,6 +62,12 @@
 * [ ] <a id="task1">Responsive</a>
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
 * [ ] <a id="task8">Components\Notification</a>
+* [ ] Click overlay close modal, menu, search
+* [ ] Textarea max width + height
+* [ ] Search detail flashcard
+* [ ] Change topic
+* [ ] Styles search
+* [ ] Topics id -1 change color (use class)
 
 # REFACTOR 
 * [x] Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll)
