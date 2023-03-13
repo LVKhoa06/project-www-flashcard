@@ -18,19 +18,13 @@ function Flashcard(props) {
 
     useEffect(() => {
         const closeElm = () => {
-            setShowMenu(true);
-            console.log('hi');
+            setShowMenu(false);
         }
 
         document.addEventListener('click', closeElm);
 
         return () => document.removeEventListener('click', closeElm)
     }, [])
-
-    
-    useEffect(() => {
-        console.log(showMenu);
-    }, [showMenu]);
 
     useEffect(() => {
         const item = []
@@ -44,7 +38,7 @@ function Flashcard(props) {
         const menu = document.querySelector(`#menu-${curId}`);
         const elm = document.querySelector('.show');
 
-        if (showMenu) {
+        if (!showMenu) {
             elm?.classList.remove('show')
             menu?.classList.remove('show');
         }
@@ -86,7 +80,6 @@ function Flashcard(props) {
                 const id = item.id;
                 const img = images[`img${imgIndex[index]}`];
                 return (
-                    <>
                         <div onClick={(e) => detailHandler(e, index)} id={id} /*title={topicName}*/ className={`${styles.flashcard}`} key={id}>
                             <img src={img?.src} />
                             <div className={styles['wrap-content']}>
@@ -122,7 +115,6 @@ function Flashcard(props) {
                                 <MenuFlashcard id={id} setShowMenu={setShowMenu} setData={setData} />
                             </div>
                         </div>
-                    </>
                 );
             })}
         </>

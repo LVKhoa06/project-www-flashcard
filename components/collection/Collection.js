@@ -79,7 +79,7 @@ function Collection(props) {
     const closeModalHandler = () => {
         setShowCreate(false);
         setShowModal(false);
-        setShowMenu(true);
+        setShowMenu(false);
     } // closeModalHandler
 
     return (
