@@ -1,8 +1,8 @@
 # 🚀 WORKING ON
 * [x] [ Flashcard details ](#task10) @Mar08 09:20
 * [x] [ Styles responsive ](#task1) w/ `SASS` | `Tailwind` | `styled-components` @Mar09 18:00
-* [ ] [Click overlay close modal, menu, search](#task2) @Mar13 
-* [ ] [Textarea max width + height](#task3) @Mar13 09:30
+* [x] [Textarea max width + height](#task3) @Mar13 09:30
+* [ ] [Click overlay close modal, menu, search](#task2) @Mar13 09:45
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
 🟢 Display Component ({&& <Component />})
