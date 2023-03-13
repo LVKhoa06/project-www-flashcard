@@ -5,6 +5,7 @@ import IconMenu from '../../assets/icon-menu';
 import MenuFlashcard from '../collection/MenuFlashcard';
 import images from "assets";
 import FlashcardDetail from "./Detail";
+import RenderResult from "next/dist/server/render-result";
 
 function Flashcard(props) {
     const { data, setData } = props
@@ -14,6 +15,22 @@ function Flashcard(props) {
     const [show, setShow] = useState(false);
     const [curDetailId, setCurDetailId] = useState(0);
     const [imgIndex, setImgIndex] = useState([]);
+
+    useEffect(() => {
+        const closeElm = () => {
+            setShowMenu(true);
+            console.log('hi');
+        }
+
+        document.addEventListener('click', closeElm);
+
+        return () => document.removeEventListener('click', closeElm)
+    }, [])
+
+    
+    useEffect(() => {
+        console.log(showMenu);
+    }, [showMenu]);
 
     useEffect(() => {
         const item = []
@@ -58,11 +75,6 @@ function Flashcard(props) {
     }
 
     const detailHandler = (e, index) => {
-        // e.stopPropagation()
-        // document.querySelector('body').scrollTo({
-        //     top: 0,
-        //     behavior: `smooth`
-        // });
         setCurDetailId(index);
         setShow(true);
     }

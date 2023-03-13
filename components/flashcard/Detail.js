@@ -47,8 +47,13 @@ function FlashcardDetail(props) {
                 const img = images[`img${imgIndex[index]}`];
 
                 return (
-                    <div className={styles.overlay} key={item.id}>
-                        <div className={styles.container}>
+                    <div
+                        onClick={() => setShow(false)}
+                        className={styles.overlay} key={item.id}>
+                        <div
+                            onClick={(e) => e.stopPropagation()}
+                            className={styles.container}
+                        >
                             <h1 onClick={() => setShow(false)} className={styles.close}><IconClose /></h1>
                             <img className={styles['img-fc']} src={img?.src} />
                             <div className={styles.content}>
