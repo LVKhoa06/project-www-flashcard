@@ -44,7 +44,7 @@ function FlashcardDetail(props) {
                 <title>Flashcard - {result[0]?.term}</title>
             </Head>
             {result.map(item => {
-                const img = images[`img${imgIndex[index]}`];
+                const img = images[`img${imgIndex ? imgIndex[index] : Math.ceil(Math.random() * 20)}`];
 
                 return (
                     <div

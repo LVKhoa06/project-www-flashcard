@@ -95,8 +95,8 @@ $res_600 : "only screen and (max-width: 600px)";
     position: relative;
     border: 1px solid #999;
     border-radius: 6px;
-    max-width: 320px;
-    min-width: 320px;
+    max-width: 300px;
+    min-width: 300px;
     min-height: 100px;
     display: flex;
     background-color: #fff;
@@ -131,7 +131,7 @@ $res_600 : "only screen and (max-width: 600px)";
 
     img {
         max-height: 100px;
-        min-width: 75px;
+        min-width: 65px;
         border-radius: 5px;
     }
 
@@ -178,15 +178,6 @@ $res_600 : "only screen and (max-width: 600px)";
     z-index: 99;
 }
 
-// .delete {
-//     position: absolute;
-//     top: 35%;
-//     right: 0;
-//     cursor: pointer;
-//     padding: 3px 6px;
-//     font-size: 13px;
-//     display: none;
-// }
 
 .filter {
     display: flex;
