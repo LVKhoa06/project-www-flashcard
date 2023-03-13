@@ -28,7 +28,7 @@
         flex-direction: column;
 
         .input-term {
-            width: 300px;
+            width: 330px;
             height: 28px;
             padding-left: 8px;
             border-radius: 6px;
@@ -70,10 +70,10 @@
         }
 
         textarea {
-            min-width: 300px;
-            max-width: 100%;
-            min-height: 100px;
-            max-height: 600px;
+            min-width: 330px;
+            max-width: 330px;
+            min-height: 150px;
+            max-height: 150px;
         }
     }
 

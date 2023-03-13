@@ -53,11 +53,11 @@ $res_600 : "only screen and (max-width: 600px)";
             }
 
             textarea {
-                min-width: 300px;
-                max-width: 100%;
+                min-width: 350px;
+                max-width: 350px;
                 min-height: 185px;
-                max-height: 82%;
-                padding: 5px;
+                max-height: 185px;
+                padding: 5px 5px 5px 10px;
                 border-top-left-radius: 5px;
                 border-top-right-radius: 5px;
                 border-bottom: none;
@@ -239,25 +239,30 @@ $res_600 : "only screen and (max-width: 600px)";
         .container {
             margin: 10px 0 0 0;
             padding: 10px;
+            width: 96%;
+            height: 230px;
 
             .content {
+                width: 100%;
                 input {
                     font-size: 16px;
                     font-weight: 800;
                 }
 
                 textarea {
-                    min-width: 80px;
-                    min-height: 115px;
+                    min-width: 100%;
+                    max-width: 100%;
+                    min-height: 140px;
+                    max-height: 140px;
                     font-size: 13px;
                 }
             }
 
             .img-fc {
-                max-width: 100px;
-                min-width: 100px;
-                max-height: 180px;
-                min-height: 180px;
+                max-width: 120px;
+                min-width: 120px;
+                max-height: 210px;
+                min-height: 210px;
                 margin-right: 10px;
             }
         }
