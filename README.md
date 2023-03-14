@@ -1,8 +1,10 @@
 # 🚀 WORKING ON
 * [x] [ Flashcard details ](#task10) @Mar08 09:20
-* [x] [Search on typing ](#task4) @Mar13 09:45
-* [x] [Click overlay close modal, menu, search](#task2) @Mar13 09:45
+* [x] [ Search on typing ](#task4) @Mar13 09:45
+* [x] [ Click overlay close modal, menu, search](#task2) @Mar13 09:45
 * [ ] [ Search styles](#task5) @Mar13 11:10
+* [x] [Search detail flashcard](#task1) @Mar13
+* [ ] [Page search result](#task2) @Mar14 08:00
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
