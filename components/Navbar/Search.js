@@ -13,7 +13,7 @@ function Search() {
     const [show, setShow] = useState(false);
     const [data, setData] = useState({});
     const router = useRouter();
-    // const debouncedValue = useDebounce(result, 300); // Delay 
+    const debouncedValue = useDebounce(value, 1500); // Delay 
 
     useEffect(() => {
         const closeElm = () => setIsFocus(false);
@@ -23,6 +23,16 @@ function Search() {
         return () => document.removeEventListener('click', closeElm)
     }, [])
 
+    useEffect(() => {
+        const handler = async () => {
+            if (debouncedValue.length) {
+                const data = await axios.get(`/api/flashcard/search?key=${debouncedValue}`);
+                setResult(data.data);
+
+            } else setResult([])
+        }
+        handler();
+    }, [debouncedValue])
 
     const submitHandler = async () => {
         if (value.length)
@@ -31,14 +41,6 @@ function Search() {
         setIsFocus(false);
     } // submitHandler
 
-    const searchHandler = async (v) => {
-        if (v) {
-            const data = await axios.get(`/api/flashcard/search?key=${v}`);
-            setResult(data.data);
-        } else setResult([])
-    } // searchHandler
-
-
     return (
         <>
             <div onClick={(e) => e.stopPropagation()} className={styles.container}>
@@ -46,8 +48,8 @@ function Search() {
                     <input
                         value={value}
                         onChange={(e) => {
-                            searchHandler(e.target.value)
                             setValue(e.target.value)
+                            setResult([])
                         }}
 
                         className={styles.input}
@@ -60,9 +62,10 @@ function Search() {
                     }} className={styles.button} type="submit"><IconSearch /></button>
                 </div>
                 <div
-                    className={`${styles.container_result} ${value.length && isFocus && result.length ? 'show' : ''}`}
+                    className={`${styles.container_result} ${value.length && isFocus ? 'show' : ''} ${value.length && isFocus && !result.length ? 'flicker' : ''}`}
                 >
-                    {result.length ?
+                    {!result.length ? <p>Looking for flashcards matching ' {value} '</p> : ''}
+                    {
                         result.map(item => {
                             return (
                                 <div onClick={() => {
@@ -78,18 +81,10 @@ function Search() {
                                     </div>
                                 </div>
                             )
-                        }) : <p>Loading...</p>
+                        })
                     }
                     {show && data && <FlashcardDetail show={show} setShow={setShow} data={data} />}
                 </div>
-
-                {useDebounce(
-                    value.length && isFocus && !result.length &&
-                    <div className={`${styles.container_result} show ${styles['not-found']}`}>
-                        <h2>No flashcards found matching " {value} "</h2>
-                    </div>
-                    , 1500) ||
-                    <></>}
             </div>
 
         </>
