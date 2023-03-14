@@ -5,7 +5,7 @@
 * [ ] [ Search styles](#task5) @Mar13 11:10
 * [x] [Search detail flashcard](#task1) @Mar13
 * [x] [Page search result](#task3) @Mar14 08:00
-* [ ] [Debounce search](#task6) @Mar14 09:20
+* [x] [Debounce search](#task6) @Mar14 09:20
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
@@ -66,7 +66,7 @@
 * [x] <a id="task2">Click overlay close modal, menu, search</a>
 * [x] Textarea max width + height
 * [x] <a  id="task1">Search detail flashcard</a>
-* [ ] <a  id="task6">Debounce search</a> 
+* [x] <a  id="task6">Debounce search</a> 
 * [ ] Store images ?
 * [ ] Unique flashcard in collection
 * [ ] <a id="task1">Responsive</a>
