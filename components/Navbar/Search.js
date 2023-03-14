@@ -1,5 +1,6 @@
 import IconSearch from 'assets/icon-search';
 import axios from 'axios';
+import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import useDebounce from 'utils/useDebounce';
 import styles from '../../styles/Search.module.scss';
@@ -11,12 +12,11 @@ function Search() {
     const [isFocus, setIsFocus] = useState(false);
     const [show, setShow] = useState(false);
     const [data, setData] = useState({});
+    const router = useRouter();
     // const debouncedValue = useDebounce(result, 300); // Delay 
 
     useEffect(() => {
-        const closeElm = () => {
-            setIsFocus(false);
-        }
+        const closeElm = () => setIsFocus(false);
 
         document.addEventListener('click', closeElm);
 
@@ -24,12 +24,11 @@ function Search() {
     }, [])
 
 
-    const submitHandler = async (e) => {
-        // page search result
-        if (value) {
-            const data = await axios.get(`/api/flashcard/search?key=${value}`);
-            setResult(data.data);
-        }
+    const submitHandler = async () => {
+        if (value.length)
+            router.push(`/search?keyword=${value}`)
+
+        setIsFocus(false);
     } // submitHandler
 
     const searchHandler = async (v) => {
@@ -83,7 +82,7 @@ function Search() {
                     }
                     {show && data && <FlashcardDetail show={show} setShow={setShow} data={data} />}
                 </div>
-                    
+
                 {useDebounce(
                     value.length && isFocus && !result.length &&
                     <div className={`${styles.container_result} show ${styles['not-found']}`}>

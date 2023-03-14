@@ -100,6 +100,16 @@ export async function flashcard_getWithCollection(id) {
         return false;
     return result;
 } // searchFlashcard
+
+export async function flashcard_getWithKeyword(key) {
+    const query = ` 
+    select * from flashcard where description like '%${key}%' or term like '%${key}%'`
+    const [result] = await pool().execute(query);
+
+    if (!result)
+        return false;
+    return result;
+} // searchFlashcard
 //#endregion Flashcard -------------------------------------------- END
 
 
