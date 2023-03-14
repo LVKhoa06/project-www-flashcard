@@ -28,14 +28,15 @@
  }
 
  .input:focus {
-   outline-style: solid;
-   outline-color: #05cbed;
+   border: 2px double #05cbed;
+   border-right: none;
+   outline: none;
  }
 
  .input:focus~.button {
-   outline-style: solid;
-   outline-color: #05cbed;
-
+   border: 2px double #05cbed;
+   border-left: none;
+   outline: none;
  }
 
  .button {
@@ -69,16 +70,8 @@
    flex-direction: column;
    z-index: 999;
    padding: 10px;
- }
-
- .not-found {
-    align-items: center;
-    justify-content: center;
-    color: #555;
- }
-
- .show {
-   display: flex;
+   align-items: center;
+   justify-content: center;
  }
 
  .search_item {
@@ -94,7 +87,6 @@
    overflow: hidden;
    text-overflow: ellipsis;
    width: 85%;
-
  }
 
  .left_item h3 {
@@ -126,21 +118,6 @@
      @content;
    }
  }
- @mixin responsive_750() {
-  @media #{$res_750} {
-    @content;
-  }
-}
-@mixin responsive_820() {
-  @media #{$res_820} {
-    @content;
-  }
-}
-@mixin responsive_950() {
-  @media #{$res_950} {
-    @content;
-  }
-}
 
  @include responsive_600 {
    .input {
@@ -151,15 +128,3 @@
      width: 100%;
    }
  }
-
- @include responsive_750() {
-  
-}
-
-@include responsive_820() {
-  
-}
-
-@include responsive_950() {
-  
-}

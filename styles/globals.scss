@@ -1,10 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800&display=swap');
 
-:root {
+:root {}
 
-}
-
-#__next{
+#__next {
   height: 100%;
 }
 
@@ -65,4 +63,18 @@ html *::-webkit-scrollbar-track {
 
 .underline {
   text-decoration: underline;
+}
+
+.flicker {
+  animation: flickerBackground 1s infinite;
+}
+
+@keyframes flickerBackground {
+  0% {
+    background-color: #ffffff;
+  }
+
+  100% {
+    background-color: #f7f7f7;
+  }
 }
