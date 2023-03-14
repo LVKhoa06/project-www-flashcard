@@ -4,7 +4,8 @@
 * [x] [ Click overlay close modal, menu, search](#task2) @Mar13 09:45
 * [ ] [ Search styles](#task5) @Mar13 11:10
 * [x] [Search detail flashcard](#task1) @Mar13
-* [ ] [Page search result](#task2) @Mar14 08:00
+* [x] [Page search result](#task3) @Mar14 08:00
+* [ ] [Debounce search](#task6) @Mar14 09:20
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
@@ -42,10 +43,10 @@
 * [x] Topics page
 * [x] Collections page
 * [x] countTopicItem -> groupBy
-* [x] <a id="task11">useEffect `Collection.js`</a>
-* [x] <a id="task12">Create flashcard component</a>
-* [x] <a id="task13">Request collection-list</a>
-* [x] <a id="task14">Topic & Collection detail page (Don't use axios //Call mysql's functions directly)</a>
+* [x] useEffect `Collection.js`
+* [x] Create flashcard component
+* [x] Request collection-list
+* [x] Topic & Collection detail page (Don't use axios //Call mysql's functions directly)
 * [x] Work with MySQL table flashcard_collection_id (flashcard_id, collection_id)
 * [x] Topics & Collection page send a request
 * [x] Collection pages youtube
@@ -58,21 +59,21 @@
 * [x] Styles scrollbar
 * [x] Cloud and local data sync
 * [x] Input description use `<textarea></textarea>`
-* [x] <a id="task6">Responsive header</a>
-* [x] <a id="task7">Flashcard detail in modal</a>
+* [x] Responsive header
+* [x] Flashcard detail in modal
 * [x] <a id="task4">Search on typing</a>
+* [x] <a id="task3">Page search result</a>
+* [x] <a id="task2">Click overlay close modal, menu, search</a>
+* [x] Textarea max width + height
+* [x] <a  id="task1">Search detail flashcard</a>
+* [ ] <a  id="task6">Debounce search</a> 
 * [ ] Store images ?
 * [ ] Unique flashcard in collection
 * [ ] <a id="task1">Responsive</a>
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
 * [ ] <a id="task8">Components\Notification</a>
-* [x] Click overlay close modal, menu, search
-* [x] Textarea max width + height
-* [ ] Search detail flashcard
 * [ ] Change topic
 * [ ] <a id="task5">Styles search</a>
-* [ ] Page search result
-* [ ] Deboundce search 
  
 # REFACTOR 
 * [x] Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll)
