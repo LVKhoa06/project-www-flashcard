@@ -1,6 +1,18 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800&display=swap');
 
-:root {}
+:root {
+  --primary-color: #00c8ff;
+  --color-white-0: #fff;
+  --color-white-1: #f7f7f7;
+  --color-white-2: #ececec;
+  --color-white-3: #cacaca;
+  --color-black-0: #111;
+  --color-black-1: #333;
+  --color-black-2: #555;
+  --color-grey-0: #999;
+  --color-grey-1: #888;
+  --color-grey-2: #777;
+}
 
 #__next {
   height: 100%;
@@ -38,7 +50,7 @@ option {
 }
 
 select {
-  background-color: #fff;
+  background-color: var(--color-white-0);
 }
 
 .show {
@@ -71,10 +83,10 @@ html *::-webkit-scrollbar-track {
 
 @keyframes flickerBackground {
   0% {
-    background-color: #ffffff;
+    background-color: var(--color-white-0);
   }
 
   100% {
-    background-color: #f7f7f7;
+    background-color: var(--color-white-1);
   }
 }

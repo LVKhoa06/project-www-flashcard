@@ -11,11 +11,11 @@ $res_600 : "only screen and (max-width: 600px)";
     margin: 10px;
     padding: 6px 0px 6px 10px;
     position: relative;
-    border: 1px solid #999;
+    border: 1px solid var(--color-grey-0);
     border-radius: 5px;
     display: flex;
     align-items: center;
-    background-color: #fff;
+    background-color: var(--color-white-0);
 }
 
 .quantity-container {
@@ -36,7 +36,7 @@ $res_600 : "only screen and (max-width: 600px)";
     height: 201px;
     border-bottom: 1px solid;
     margin-bottom: 20px;
-    background-color: #fff;
+    background-color: var(--color-white-0);
 }
 
 .container-left img {
@@ -70,7 +70,7 @@ $res_600 : "only screen and (max-width: 600px)";
     border: none;
     outline: none;
     font-size: 28px;
-    color: #333;
+    color: var(--color-black-1);
     width: 90%;
 }
 
@@ -79,7 +79,7 @@ $res_600 : "only screen and (max-width: 600px)";
     outline: none;
     width: 90%;
     font-size: 20px;
-    color: #333;
+    color: var(--color-black-1);
 }
 
 .collection-info {
@@ -89,7 +89,7 @@ $res_600 : "only screen and (max-width: 600px)";
 }
 
 .collection-info span {
-    color: #333;
+    color: var(--color-black-1);
     font-size: 14px;
 }
 
@@ -99,7 +99,7 @@ $res_600 : "only screen and (max-width: 600px)";
 }
 
 .header input::placeholder {
-    color: #333;
+    color: var(--color-black-1);
 }
 
 .delete-icon{
