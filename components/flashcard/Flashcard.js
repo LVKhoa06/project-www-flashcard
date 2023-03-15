@@ -5,7 +5,6 @@ import IconMenu from '../../assets/icon-menu';
 import MenuFlashcard from '../collection/MenuFlashcard';
 import images from "assets";
 import FlashcardDetail from "./Detail";
-import RenderResult from "next/dist/server/render-result";
 
 function Flashcard(props) {
     const { data, setData } = props
@@ -31,7 +30,7 @@ function Flashcard(props) {
         data.forEach(i => {
             item.push((Math.ceil(Math.random() * 20)))
         });
-        setImgIndex(item)
+        setImgIndex(item);
     }, [data]);
 
     useEffect(() => {

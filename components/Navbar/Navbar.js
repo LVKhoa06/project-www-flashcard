@@ -26,8 +26,12 @@ function Navbar() {
                 </div>
                 <div className={styles['top-right']}>
                     <Add />
-                    <Link className={styles['log-in']} href="/">Sign-in</Link>
-                    <Link className={styles['log-in']} href="/">Sign-up</Link>
+                    <Link className={styles['sign-in']} href="/">
+                        <span>Sign-in</span>
+                    </Link>
+                    <Link className={styles['sign-up']} href="/">
+                        <span>Sign-up</span>
+                    </Link>
                 </div>
             </div>
             <NavMobile show={show} setShow={setShow} />
