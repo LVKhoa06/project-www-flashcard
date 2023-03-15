@@ -6,13 +6,18 @@ function ModalCheck({ setShowCheck, id }) {
     const router = useRouter();
 
     const deleteHandler = async () => {
-        const deleted = await axios.delete(`/api/collection/list-collection?id=${id}`);
+        if (id === -1) {
+            alert('Unable to delete Topic default')
+        } else {
+            const deleted = await axios.delete(`/api/collection/list-collection?id=${id}`);
 
-        if (deleted.data.success) setTimeout(() => {
-            router.replace('/collections')
-        }, 300)
+            if (deleted.data.success) setTimeout(() => {
+                router.replace('/collections')
+            }, 300)
+        }
 
-        setShowCheck(false);
+
+        return setShowCheck(false);
     } // deleteHandler
 
     return (

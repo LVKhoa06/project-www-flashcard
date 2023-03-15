@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '../../styles/Collection.module.scss'
 
 function Collection(props) {
@@ -8,48 +8,34 @@ function Collection(props) {
     const [value, setValue] = useState('');
     const [notification, setNotification] = useState('');
     const [checkedState, setCheckedState] = useState([]);
-    const [result2, setResult2] = useState([]);
-    const [collectionId, setCollection_id] = useState(0);
 
     useEffect(() => {
-        const handler = async () => {
-            if (checkedState.length > 1) {
-                console.log('Successfully added to the collection');
-                axios.patch(
-                    'api/collection/collection',
-                    {
-                        id,
-                        collection_id: collectionId
-                    },
-                    {
-                        "Content-Type": "application/json",
-                    }
-                )
-            }
-        }
-        handler();
-    }, [collectionId])
-
-    useEffect(() => {
-        setResult2(result.filter(item => item.collection_id !== -1));
-    }, [result])
-
-    useEffect(() => {
-        const data = new Array(result2.length).fill(false);
-        data.unshift(false);
+        const data = new Array(result.length).fill(false);
         setCheckedState(data);
-    }, [result2])
-
+    }, [result])
 
     const handleOnChangeCheckbox = async (e, i, collection_id) => {
         const updatedCheckedState = checkedState.map((item, index) => index === i ? !item : item);
         setCheckedState(updatedCheckedState);
 
-        if (e.target.checked)
-            setCollection_id(collection_id);
+        if (e.target.checked) {
+            if (checkedState.length > 1) {
+                await axios.patch(
+                    'api/collection/collection',
+                    {
+                        id,
+                        collection_id
+                    },
+                    {
+                        "Content-Type": "application/json",
+                    }
+                )
+                console.log('Successfully added to the collection');
+            }
+        }
+
         else {
-            const deleted = await axios.delete(`api/collection/collection?f_id=${id}&c_id=${collection_id}`)
-            // console.log(deleted.data.message);
+            await axios.delete(`api/collection/collection?f_id=${id}&c_id=${collection_id}`)
             console.log('Deleted');
         }
 
@@ -85,24 +71,14 @@ function Collection(props) {
     return (
         <>
             {showModal ?
-                <div onClick={(e) => e.stopPropagation()} className={styles.overlay}>
-                    <div className={styles.modal}>
+                <div onClick={() => setShowModal(false)} className={styles.overlay}>
+                    <div onClick={(e) => e.stopPropagation()} className={styles.modal}>
                         <div className={styles.header}>
                             <h3>Lưu vào...</h3>
                             <span onClick={() => closeModalHandler()}>x</span>
                         </div>
                         <div className={styles['collection-list']}>
-                            <div className={styles['input-container']}>
-                                <input
-                                    id={-1}
-                                    type="checkbox"
-                                    onChange={(e) => {
-                                        handleOnChangeCheckbox(e, 0, -1)
-                                    }}
-                                />
-                                <label>Khác</label>
-                            </div>
-                            {result2.map((item, index) => {
+                            {result.map((item, index) => {
                                 return (
                                     <div key={item.collection_id} className={styles['input-container']}>
                                         <input
