@@ -13,7 +13,7 @@ function Search() {
     const [show, setShow] = useState(false);
     const [data, setData] = useState({});
     const router = useRouter();
-    const debouncedValue = useDebounce(value, 1500); // Delay 
+    const debouncedValue = useDebounce(value, 1500);  
 
     useEffect(() => {
         const closeElm = () => setIsFocus(false);
