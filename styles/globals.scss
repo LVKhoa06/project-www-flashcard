@@ -90,3 +90,44 @@ html *::-webkit-scrollbar-track {
     background-color: var(--color-white-1);
   }
 }
+
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: max-content;
+    min-width: 300px;
+    height: 60px;
+    display: none;
+    border-radius: 8px;
+    align-items: center;
+    color: var(--color-white-0);
+    text-shadow: 0 0 10px 15px var(--color-black-0);
+    cursor: pointer;
+    box-shadow: 0 0 5px -3px var(--color-grey-1);
+    background-color: var(--color-white-0);
+    padding: 0px 30px;
+
+    p {
+      font-size: 15px;
+      font-weight: 700;
+      text-shadow: 0px 0px 1px var(--color-grey-1);
+    }
+
+    span {
+      display: flex;
+      margin-right: 15px;
+    }
+}
+
+.warning {
+  background-color: #f6f600;
+}
+
+.success {
+  background-color: #00e200;
+}
+
+.error {
+  background-color: red;
+}
