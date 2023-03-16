@@ -4,8 +4,9 @@
 * [x] [Collection "Khac"](#task9) @Mar14
 * [ ] [Search styles](#task5) @Mar13 11:10
 * [x] [Components\Notification](#task10) @Mar15 
-* [ ] [Notification deployment](#task11) @Mar16 
-* [ ] [Notification responsive](task12) @Mar16
+* [x] [Notification deployment](#task11) @Mar16 
+* [x] [Notification responsive](task12) @Mar16
+* [ ] [Change Topic](task12) @Mar16 7:00
 
 
 # 🍀 NOTE
@@ -72,12 +73,12 @@
 * [x] <a id="task8">Add to collection </a>
 * [x] <a id="task9">Search reload page</a>
 * [x] <a id="task8">Components\Notification</a>
-* [ ] <a id="task11">Notification deployment</a>
-* [ ] <a id="task12">Notification responsive</a>
+* [x] <a id="task11">Notification deployment</a>
+* [x] <a id="task12">Notification responsive</a>
+* [ ] <a id="task13">Change topic</a>
 * [ ] <a id="task1">Responsive</a>
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
 * [ ] <a id="task5">Styles search</a>
-* [ ] Change topic
 * [ ] Unique flashcard in collection
 * [ ] Store images ?
  
