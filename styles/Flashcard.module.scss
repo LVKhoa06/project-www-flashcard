@@ -201,7 +201,7 @@ $res_600 : "only screen and (max-width: 600px)";
 .menu-list {
     position: absolute;
     z-index: 999;
-    background-color: white;
+    background-color: var(--color-white-0);
     box-shadow: 0 0 5px -2px;
     border-radius: 5px;
     padding: 20px;

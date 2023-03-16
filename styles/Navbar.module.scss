@@ -7,7 +7,14 @@
    display: flex;
    align-items: center;
    border: 1px solid var(--color-grey-0);
+   border-left: none;
+   border-right: none;
    justify-content: space-between;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   z-index: 99;
  }
 
  .top-left {
@@ -134,17 +141,17 @@
    }
 
    .top-left {
-     width: 10%;
+     width: 12%;
      display: flex;
      justify-content: center;
    }
 
    .top-center {
-     width: 78%;
+     width: 74%;
    }
 
    .top-right {
-     width: 10%;
+     width: 12%;
      display: flex;
      justify-content: center;
    }
