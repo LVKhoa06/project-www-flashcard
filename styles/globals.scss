@@ -107,6 +107,7 @@ html *::-webkit-scrollbar-track {
     box-shadow: 0 0 5px -3px var(--color-grey-1);
     background-color: var(--color-white-0);
     padding: 0px 30px;
+    z-index: 999999;
 
     p {
       font-size: 15px;

@@ -34,18 +34,45 @@
    font-size: 17px;
  }
 
- .log-in {
+ .sign-up {
    color: var(--color-black-2);
    text-align: center;
-   padding: 14px 16px;
+   //  padding: 0px 16px;
    text-decoration: none;
    font-size: 17px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   margin-right: 5px;
+
+   span {
+     padding: 7px 12px;
+     margin: 4px;
+     color: var(--color-white-1);
+     border-radius: 8px;
+     font-size: 15px;
+     background-color: var(--primary-color);
+   }
  }
 
- .log-in:hover {
-   background-color: var(--color-white-2);
-   color: var(--color-black-0);
- }  
+ .sign-in {
+   color: var(--color-black-2);
+   text-align: center;
+   //  padding: 0px 16px;
+   text-decoration: none;
+   font-size: 17px;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   span {
+     padding: 5px 12px;
+     margin: 4px;
+     color: var(--color-black-2);
+     border-radius: 8px;
+     font-size: 15px;
+   }
+ }
 
  .topnav .item:hover {
    background-color: var(--color-white-2);
@@ -122,7 +149,11 @@
      justify-content: center;
    }
 
-   .log-in {
+   .sign-in {
+     display: none;
+   }
+
+   .sign-up {
      display: none;
    }
 
