@@ -1,11 +1,11 @@
 # 🚀 WORKING ON
-* [x] [ Flashcard details ](#task10) @Mar08 09:20
-* [x] [ Search on typing ](#task4) @Mar13 09:45
-* [x] [ Click overlay close modal, menu, search](#task2) @Mar13 09:45
-* [ ] [ Search styles](#task5) @Mar13 11:10
-* [x] [Search detail flashcard](#task1) @Mar13
-* [x] [Page search result](#task3) @Mar14 08:00
 * [x] [Debounce search](#task6) @Mar14 09:20
+* [x] [Add to collection ](#task8) @Mar14
+* [x] [Collection "Khac"](#task9) @Mar14
+* [ ] [Search styles](#task5) @Mar13 11:10
+* [x] [Components\Notification](#task10) @Mar15 
+* [ ] [Notification deployment](#task11) @Mar15 end @Mar16 
+
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
@@ -65,15 +65,19 @@
 * [x] <a id="task3">Page search result</a>
 * [x] <a id="task2">Click overlay close modal, menu, search</a>
 * [x] Textarea max width + height
-* [x] <a  id="task1">Search detail flashcard</a>
-* [x] <a  id="task6">Debounce search</a> 
-* [ ] Store images ?
-* [ ] Unique flashcard in collection
+* [x] <a id="task1">Search detail flashcard</a>
+* [x] <a id="task6">Debounce search</a> 
+* [x] <a id="task7">Collection "Khac"</a>
+* [x] <a id="task8">Add to collection </a>
+* [x] <a id="task9">Search reload page</a>
+* [x] <a id="task8">Components\Notification</a>
+* [ ] <a id="task11">Notification deployment</a>
 * [ ] <a id="task1">Responsive</a>
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
-* [ ] <a id="task8">Components\Notification</a>
-* [ ] Change topic
 * [ ] <a id="task5">Styles search</a>
+* [ ] Change topic
+* [ ] Unique flashcard in collection
+* [ ] Store images ?
  
 # REFACTOR 
 * [x] Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll)
@@ -118,7 +122,7 @@ import useDebounce from 'lib/debounce';
 
 export default function Component() {
     const [keyword, setKeyword] = useState('');
-    const [debounced, setDebounced] = useDebounce(keyword, 1_000);
+    const debounced = useDebounce(keyword, 1_000);
 
     useEffect(() => {
         const request = async() => {
