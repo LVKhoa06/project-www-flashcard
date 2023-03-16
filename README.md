@@ -5,6 +5,7 @@
 * [ ] [Search styles](#task5) @Mar13 11:10
 * [x] [Components\Notification](#task10) @Mar15 
 * [ ] [Notification deployment](#task11) @Mar16 
+* [ ] [Notification responsive](task12) @Mar16
 
 
 # 🍀 NOTE
@@ -72,6 +73,7 @@
 * [x] <a id="task9">Search reload page</a>
 * [x] <a id="task8">Components\Notification</a>
 * [ ] <a id="task11">Notification deployment</a>
+* [ ] <a id="task12">Notification responsive</a>
 * [ ] <a id="task1">Responsive</a>
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
 * [ ] <a id="task5">Styles search</a>
