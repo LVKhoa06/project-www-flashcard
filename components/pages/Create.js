@@ -3,6 +3,7 @@ import axios from "axios";
 import formatDateWithLocale from "utils/format-date.";
 import Head from "next/head";
 import styles from '../../styles/CreateFlashcard.module.scss'
+import Notification from "../notification/Notification";
 
 
 function Create() {
@@ -11,6 +12,9 @@ function Create() {
     const [topicId, setTopicId] = useState(-1);
     const [term, setTerm] = useState('');
     const [description, setDiscription] = useState('');
+    const [message, setMessage] = useState('');
+    const [type, setType] = useState();
+    const [showNotification, setShowNotification] = useState(false);
 
     useEffect(() => {
         const handler = async () => {
@@ -32,12 +36,16 @@ function Create() {
         let post = listFlashcard.find(item => item.term === term)
 
         if (term === '') {
-            return console.log('Please enter Term');
+            setMessage('Please enter Term');
+            setShowNotification(!showNotification);
+            return setType('warning');
         }
-        console.log(post);
-        if (description === '')
-            return console.log('Please enter Description');
 
+        if (description === '') {
+            setShowNotification(!showNotification);
+            setMessage('Please enter Description');
+            return setType('warning');
+        }
 
         if (!post) {
             await axios.post(
@@ -54,13 +62,19 @@ function Create() {
             );
             setTerm('');
             setDiscription('');
+            setShowNotification(!showNotification);
+            setMessage('Create flashcard successfuly');
+            return setType('success');
         } else {
-            console.log('Term already exist');
+            setShowNotification(!showNotification);
+            setMessage('Term already exist');
+            return setType('error');
         }
     } // handlerCreate
 
     return (
         <>
+            <Notification showNotification={showNotification} message={message} type={type} />
             <Head>
                 <title>Create Flashcard</title>
             </Head>
@@ -76,7 +90,6 @@ function Create() {
 
                             {listTopic.map(item => {
                                 return item.topic_id > 0 ? <option key={item.topic_id} value={item.topic_id}>{item.topic}</option> : ''
-
                             })}
                         </select>
                     </div>

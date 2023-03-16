@@ -4,7 +4,7 @@
 * [x] [Collection "Khac"](#task9) @Mar14
 * [ ] [Search styles](#task5) @Mar13 11:10
 * [x] [Components\Notification](#task10) @Mar15 
-* [ ] [Notification deployment](#task11) @Mar15 end @Mar16 
+* [ ] [Notification deployment](#task11) @Mar16 
 
 
 # 🍀 NOTE

@@ -4,18 +4,20 @@ import styles from '../../styles/MenuFlashcard.module.scss'
 import Collection from './Collection';
 
 function MenuFlashcard(props) {
-    const { id, setShowMenu, setData } = props;
+    const { id, setShowMenu, setData, setDelected } = props;
     const [showModal, setShowModal] = useState(false);
     const [result, setResult] = useState([]);
     const [selected, setSelected] = useState([]);
 
     const deleteFlashcardHandler = async (id) => {
-        axios.delete(`api/flashcard/home?id=${id}`);
+        await axios.delete(`api/flashcard/home?id=${id}`);
         setData(prev => {
             return prev.filter(item => {
                 return item.id !== id;
             })
         });
+
+        setDelected((prev) => !prev);
     } // deleteFlashcardHandler
 
     const requestHandler = () => {
@@ -29,19 +31,22 @@ function MenuFlashcard(props) {
     }
 
     return (
-        <div id={`menu-${id}`} className={`${styles.menu_list}`}>
-            <h4 onClick={(e) => {
-                e.stopPropagation();
-                setShowModal(true);
-                requestHandler();
-            }}>Add to collection</h4>
+        <>
+            <div id={`menu-${id}`} className={`${styles.menu_list}`}>
+                <h4 onClick={(e) => {
+                    e.stopPropagation();
+                    setShowModal(true);
+                    requestHandler();
+                }}>Add to collection</h4>
 
-            <h4 onClick={(e) => {
-                e.stopPropagation();
-                deleteFlashcardHandler(id)
-            }}>Delete </h4>
-            <Collection selected={selected} id={id} result={result} setResult={setResult} showModal={showModal} setShowModal={setShowModal} setShowMenu={setShowMenu} />
-        </div>
+                <h4 onClick={(e) => {
+                    e.stopPropagation();
+                    deleteFlashcardHandler(id)
+                }}>Delete </h4>
+                <Collection selected={selected} id={id} result={result} setResult={setResult} showModal={showModal} setShowModal={setShowModal} setShowMenu={setShowMenu} />
+            </div>
+        </>
+
     );
 }
 

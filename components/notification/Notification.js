@@ -4,7 +4,7 @@ import IconWarning from 'assets/icon-warning';
 import { useEffect, useState } from 'react';
 
 function Notification(props) {
-    const { type, message } = props;
+    const { type, message, showNotification } = props;
     const [show, setShow] = useState(false);
 
     useEffect(() => {
@@ -12,10 +12,10 @@ function Notification(props) {
             setShow(true);
             const timer = setTimeout(() => {
                 setShow(false);
-            }, 100000);
+            }, 5000);
             return () => clearTimeout(timer);
         }
-    }, [message]);
+    }, [showNotification]);
 
     const getClassNames = () => {
         let className = '';
