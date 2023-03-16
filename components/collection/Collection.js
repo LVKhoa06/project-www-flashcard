@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import styles from '../../styles/Collection.module.scss'
+import Notification from '../notification/Notification';
 
 function Collection(props) {
     const { id, selected, showModal, setShowModal, setShowMenu, result, setResult } = props;
@@ -8,6 +9,9 @@ function Collection(props) {
     const [value, setValue] = useState('');
     const [notification, setNotification] = useState('');
     const [checkedState, setCheckedState] = useState([]);
+    const [message, setMessage] = useState('');
+    const [type, setType] = useState();
+    const [showNotification, setShowNotification] = useState(false);
 
     useEffect(() => {
         const data = new Array(result.length).fill(false);
@@ -30,13 +34,17 @@ function Collection(props) {
                         "Content-Type": "application/json",
                     }
                 )
-                console.log('Successfully added to the collection');
+                setMessage('Successfully added to the collection');
+                setType('success');
+                setShowNotification(true);
             }
         }
 
         else {
             await axios.delete(`api/collection/collection?f_id=${id}&c_id=${collection_id}`)
-            console.log('Deleted');
+            setMessage('Flashcard removed from collection');
+            setType('success');
+            setShowNotification(false);
         }
 
     } // handleOnChangeCheckbox
@@ -70,6 +78,7 @@ function Collection(props) {
 
     return (
         <>
+            <Notification type={type} message={message} showNotification={showNotification} />
             {showModal ?
                 <div onClick={() => setShowModal(false)} className={styles.overlay}>
                     <div onClick={(e) => e.stopPropagation()} className={styles.modal}>

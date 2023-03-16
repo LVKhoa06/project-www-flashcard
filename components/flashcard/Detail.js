@@ -4,13 +4,17 @@ import axios from "axios";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import styles from '../../styles/Flashcard.module.scss'
+import Notification from "../notification/Notification";
 
 function FlashcardDetail(props) {
     const { data, imgIndex, index, setShow } = props;
     const [result, setResult] = useState([data]);
     const [valueTerm, setValueTerm] = useState('');
     const [valueDesc, setValueDesc] = useState('');
-
+    const [message, setMessage] = useState('');
+    const [type, setType] = useState();
+    const [showNotification, setShowNotification] = useState(false);
+  
     useEffect(() => {
         setResult([data]);
     }, [data]);
@@ -28,7 +32,9 @@ function FlashcardDetail(props) {
                     "Content-Type": "application/json",
                 }
             );
-            console.log('Updated');
+            setMessage('Update flashcard successfully.');
+            setType('success');
+            setShowNotification(!showNotification);
         }
 
         if (e.key === 'Enter' && field === 'term')
@@ -40,6 +46,7 @@ function FlashcardDetail(props) {
 
     return (
         <>
+            <Notification type={type} message={message} showNotification={showNotification} />
             <Head>
                 <title>Flashcard - {result[0]?.term}</title>
             </Head>

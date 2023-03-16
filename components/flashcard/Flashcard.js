@@ -17,8 +17,8 @@ function Flashcard(props) {
     const [imgIndex, setImgIndex] = useState([]);
     const [message, setMessage] = useState('');
     const [type, setType] = useState();
-    const [deleted, setDelected] = useState(false);
     const [showNotification, setShowNotification] = useState(false);
+    const [deleted, setDelected] = useState(false);
 
     useEffect(() => {
         const closeElm = () => {
@@ -54,30 +54,7 @@ function Flashcard(props) {
             setShowNotification((prev) => !prev);
         }
 
-    }, [deleted])
-
-    const updateFlashcardHandler = async (e, value, field, id) => {
-        if (e.key === 'Enter') {
-            await axios.patch(
-                'api/flashcard/home',
-                {
-                    id,
-                    field,
-                    value,
-                },
-                {
-                    "Content-Type": "application/json",
-                }
-            );
-            console.log('Updated');
-        }
-    } // updateFlashcardHandler
-
-    const preventEnterKey = (e) => {
-        if (e.key === 'Enter') {
-            e.preventDefault();
-        }
-    }
+    }, [deleted]);
 
     const detailHandler = (e, index) => {
         setCurDetailId(index);
@@ -97,15 +74,6 @@ function Flashcard(props) {
                         <div className={styles['wrap-content']}>
                             <div className={styles['wrap-title']}>
                                 <h2
-                                    // disable warning when use contentEditable
-                                    suppressContentEditableWarning={true}
-                                    onKeyUp={(e) => {
-                                        setSession({ turn: 'term', value: e.target.innerText })
-                                        updateFlashcardHandler(e, session.value, session.turn, id)
-                                    }}
-                                    onKeyDown={(e) => preventEnterKey(e)}
-                                    onClick={(e) => e.stopPropagation()}
-                                    contentEditable
                                     className={`${styles.title} ${item.topic_id < 0 ? 'underline' : ''}`}
                                 >
                                     {item.term}
@@ -115,8 +83,6 @@ function Flashcard(props) {
                                 <span>{item.description}</span>
                             </div>
                         </div>
-
-                        <button className={styles.update} onClick={(e) => updateFlashcardHandler(e, session.value, session.turn, id)}>Ok</button>
                         <div
                             onClick={(e) => {
                                 e.stopPropagation();
