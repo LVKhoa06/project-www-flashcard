@@ -203,7 +203,8 @@ $res_600 : "only screen and (max-width: 600px)";
     top: 0px;
     right: 0px;
     cursor: pointer;
-    padding: 5px 2px 5px 5px;
+    margin: -2px -2px 0 0;
+    padding: 7px 4px 5px 5px;
 }
 
 .flashcard:hover .delete {
