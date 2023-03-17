@@ -8,13 +8,17 @@ function Notification(props) {
     const [show, setShow] = useState(false);
 
     useEffect(() => {
+        const timer = setTimeout(() => {
+            setShow(false);
+        }, 5000);
+
         if (message) {
             setShow(true);
-            const timer = setTimeout(() => {
-                setShow(false);
-            }, 5000);
             return () => clearTimeout(timer);
-        }
+        } else
+            setShow(false)
+            return () => clearTimeout(timer);
+
     }, [showNotification]);
 
     const getClassNames = () => {
@@ -37,7 +41,7 @@ function Notification(props) {
 
     return (
         <>
-            <div className={`notification ${getClassNames()} ${show ? 'show' : ''}` } onClick={() => { setShow(false) }}>
+            <div className={`notification ${getClassNames()} ${show ? 'show' : ''}`} onClick={() => { setShow(false) }}>
                 <span>
                     {type === 'warning' && <IconWarning />}
                     {type === 'error' && <IconError />}

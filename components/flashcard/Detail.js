@@ -70,7 +70,6 @@ function FlashcardDetail(props) {
     } // updateFlashcardHandler
 
     const changeTopic = async (e) => {
-
         await axios.patch(
             'api/topic/cur-topic',
             {
@@ -81,6 +80,10 @@ function FlashcardDetail(props) {
                 "Content-Type": "application/json",
             }
         )
+
+        setMessage('Update flashcard topic successfully.');
+        setType('success');
+        setShowNotification(!showNotification);
 
     } // changeTopic
 
@@ -102,15 +105,14 @@ function FlashcardDetail(props) {
                             className={styles.container}
                         >
                             <h1 onClick={() => setShow(false)} className={styles.close}><IconClose /></h1>
-                            <div className={styles['container-left']}> 
+                            <div className={styles['container-left']}>
                                 <img className={styles['img-fc']} src={img?.src} />
                                 <select
                                     onChange={(e) => changeTopic(e)}
                                 >
                                     <option value={curTopic ? curTopic[0]?.topic_id : ''}>{curTopic ? curTopic[0]?.topic : ''}</option>
-                                    <option value={-1}>Khác</option>
                                     {listTopic.map(item => {
-                                        return item.topic_id > 0 ? <option key={item.topic_id} value={item.topic_id}>{item.topic}</option> : ''
+                                        return <option key={item.topic_id} value={item.topic_id}>{item.topic}</option>
                                     })}
                                 </select>
                             </div>

@@ -51,7 +51,7 @@ function Flashcard(props) {
         if (curId) {
             setMessage('Delete Flashcard Successfully');
             setType('success');
-            setShowNotification((prev) => !prev);
+            setShowNotification(!showNotification);
         }
 
     }, [deleted]);
