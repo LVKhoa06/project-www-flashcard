@@ -4,49 +4,49 @@ import styles from '../../styles/Collection.module.scss'
 import Notification from '../notification/Notification';
 
 function Collection(props) {
-    const { id, selected, showModal, setShowModal, setShowMenu, result, setResult } = props;
+    const { id, selected: initializedChecked, showModal, setShowModal, setShowMenu, result: collections, setResult: setCollections } = props;
     const [showCreate, setShowCreate] = useState(false);
     const [value, setValue] = useState('');
     const [notification, setNotification] = useState('');
-    const [checkedState, setCheckedState] = useState([]);
     const [message, setMessage] = useState('');
-    const [type, setType] = useState();
+    const [type, setType] = useState('');
     const [showNotification, setShowNotification] = useState(false);
-
+    const [checkedStates, setCheckedStates] = useState([]);
+    
     useEffect(() => {
-        const data = new Array(result.length).fill(false);
-        setCheckedState(data);
-    }, [result])
+        let defaultCheckedState = [];
 
-    const handleOnChangeCheckbox = async (e, i, collection_id) => {
-        const updatedCheckedState = checkedState.map((item, index) => index === i ? !item : item);
-        setCheckedState(updatedCheckedState);
+        collections?.forEach(item => {
+            defaultCheckedState.push(initializedChecked.findIndex(entry => entry.collection_id === item.collection_id) > -1)
+        });
+
+        setCheckedStates(defaultCheckedState);
+    }, [initializedChecked])
+
+    const handlerOnChangeCheckbox = async (e, i, collection_id) => {
+        const updatedCheckedState = checkedStates?.map((item, index) => index === i ? !item : item);
+        setCheckedStates(updatedCheckedState);
 
         if (e.target.checked) {
-            if (checkedState.length > 1) {
-                await axios.patch(
-                    'api/collection/collection',
-                    {
-                        id,
-                        collection_id
-                    },
-                    {
-                        "Content-Type": "application/json",
-                    }
-                )
-                setMessage('Successfully added to the collection');
-                setType('success');
-                setShowNotification(true);
-            }
-        }
-
-        else {
+            await axios.patch(
+                'api/collection/collection',
+                {
+                    id,
+                    collection_id
+                },
+                {
+                    "Content-Type": "application/json",
+                }
+            )
+            setMessage('Successfully added to the collection');
+            setType('success');
+            setShowNotification(!showNotification);
+        } else {
             await axios.delete(`api/collection/collection?f_id=${id}&c_id=${collection_id}`)
             setMessage('Flashcard removed from collection');
-            setType('success');
-            setShowNotification(false);
+            setType('warning');
+            setShowNotification(!showNotification);
         }
-
     } // handleOnChangeCheckbox
 
     const addCollectionHandler = async () => {
@@ -63,7 +63,7 @@ function Collection(props) {
             );
 
             const data = await axios.get(`/api/collection/list-collection`);
-            setResult(data.data);
+            setCollections(data.data);
 
             setNotification('')
         } else setNotification('Please enter collection name');
@@ -74,28 +74,30 @@ function Collection(props) {
         setShowCreate(false);
         setShowModal(false);
         setShowMenu(false);
+        setMessage('');
+        setShowNotification(!showNotification)
     } // closeModalHandler
 
     return (
         <>
             <Notification type={type} message={message} showNotification={showNotification} />
             {showModal ?
-                <div onClick={() => setShowModal(false)} className={styles.overlay}>
+                <div onClick={() => closeModalHandler()} className={styles.overlay}>
                     <div onClick={(e) => e.stopPropagation()} className={styles.modal}>
                         <div className={styles.header}>
                             <h3>Lưu vào...</h3>
                             <span onClick={() => closeModalHandler()}>x</span>
                         </div>
                         <div className={styles['collection-list']}>
-                            {result.map((item, index) => {
+                            {collections.map((item, index) => {
                                 return (
                                     <div key={item.collection_id} className={styles['input-container']}>
                                         <input
                                             id={item.collection_id}
                                             type="checkbox"
-                                            defaultChecked={selected.findIndex(entry => entry.collection_id === item.collection_id) > -1}
+                                            checked={checkedStates[index]}
                                             onChange={(e) => {
-                                                handleOnChangeCheckbox(e, index + 1, item.collection_id)
+                                                handlerOnChangeCheckbox(e, index, item.collection_id)
                                             }} />
                                         <label>{item.collection}</label>
                                     </div>
