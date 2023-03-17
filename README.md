@@ -1,13 +1,9 @@
 # 🚀 WORKING ON
-* [x] [Debounce search](#task6) @Mar14 09:20
-* [x] [Add to collection ](#task8) @Mar14
-* [x] [Collection "Khac"](#task9) @Mar14
+* [x] [Collection ](#task8) @Mar14
+* [x] [Components\Notification](#task10) @Mar15
+* [x] [Collection error default checked](#task1) @Mar17 
 * [ ] [Search styles](#task5) @Mar13 11:10
-* [x] [Components\Notification](#task10) @Mar15 
-* [x] [Notification deployment](#task11) @Mar16 
-* [x] [Notification responsive](task12) @Mar16
-* [x] [Change Topic](task12) @Mar16 19:30
-
+* [ ] [Bin](#task2) @Mar17 
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
@@ -75,12 +71,15 @@
 * [x] <a id="task8">Components\Notification</a>
 * [x] <a id="task11">Notification deployment</a>
 * [x] <a id="task12">Notification responsive</a>
-* [ ] <a id="task13">Change topic</a>
+* [x] <a id="task13">Change topic</a>
+* [ ] <a id="task1">Collection error default checked</a>
 * [ ] <a id="task1">Responsive</a>
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
 * [ ] <a id="task5">Styles search</a>
-* [ ] Unique flashcard in collection
+* [ ] <a id="task2">Bin</a> 
 * [ ] Store images ?
+* [ ] Component select / options
+* [ ] C
  
 # REFACTOR 
 * [x] Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll)
