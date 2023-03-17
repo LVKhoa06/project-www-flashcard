@@ -14,10 +14,35 @@ function FlashcardDetail(props) {
     const [message, setMessage] = useState('');
     const [type, setType] = useState();
     const [showNotification, setShowNotification] = useState(false);
-  
+    const [listTopic, setListTopic] = useState([]);
+    const [curTopic, setCurtopic] = useState();
+
+    useEffect(() => {
+        const handler = async () => {
+            const data1 = await axios.get("/api/topic/list-topic");
+            const data2 = await axios.get(`/api/topic/cur-topic?id=${data.id}`);
+            setListTopic(data1.data);
+            setCurtopic(data2.data);
+        }
+        handler();
+    }, []);
+
+
     useEffect(() => {
         setResult([data]);
     }, [data]);
+
+    useEffect(() => {
+        if (!curTopic)
+            return;
+
+        const list = listTopic.filter(item => {
+            return item.topic !== curTopic[0].topic;
+        });
+
+        setListTopic(list);
+    }, [curTopic]);
+
 
     const updateFlashcardHandler = async (e, field, id) => {
         const handler = async (value) => {
@@ -44,6 +69,21 @@ function FlashcardDetail(props) {
             return handler(valueDesc);
     } // updateFlashcardHandler
 
+    const changeTopic = async (e) => {
+
+        await axios.patch(
+            'api/topic/cur-topic',
+            {
+                id: data.id,
+                topic_id: +e.target.value
+            },
+            {
+                "Content-Type": "application/json",
+            }
+        )
+
+    } // changeTopic
+
     return (
         <>
             <Notification type={type} message={message} showNotification={showNotification} />
@@ -62,7 +102,18 @@ function FlashcardDetail(props) {
                             className={styles.container}
                         >
                             <h1 onClick={() => setShow(false)} className={styles.close}><IconClose /></h1>
-                            <img className={styles['img-fc']} src={img?.src} />
+                            <div className={styles['container-left']}> 
+                                <img className={styles['img-fc']} src={img?.src} />
+                                <select
+                                    onChange={(e) => changeTopic(e)}
+                                >
+                                    <option value={curTopic ? curTopic[0]?.topic_id : ''}>{curTopic ? curTopic[0]?.topic : ''}</option>
+                                    <option value={-1}>Khác</option>
+                                    {listTopic.map(item => {
+                                        return item.topic_id > 0 ? <option key={item.topic_id} value={item.topic_id}>{item.topic}</option> : ''
+                                    })}
+                                </select>
+                            </div>
                             <div className={styles.content}>
                                 <input
                                     onChange={(e) => setValueTerm(e.target.value)}

@@ -134,6 +134,32 @@ export async function topic_countItem() {
     return result;
 } // countTopicItem
 
+export async function topic_curTopic(id) {
+    const query = `select f.id, f.topic_id, t.topic from flashcard f left join topic t on t.topic_id = f.topic_id where f.id = ${id};`;
+    const [result] = await pool().execute(query);
+
+    if (!result)
+        return false;
+
+    return result;
+} // topic_curTopic
+
+export async function topic_changeTopic(id, topic_id) {
+    const query = `update flashcard set topic_id = ? where id = ${id};`;
+    const [result] = await pool().execute(query, [topic_id]);
+
+    if (result?.affectedRows !== 1)
+        return {
+            success: false,
+            message: "Error occured."
+        };
+
+    return {
+        success: true,
+        message: 'Change topic collection Successfull'
+    };
+} // topic_changeTopic
+
 //#endregion Topic -------------------------------------------- END
 
 
@@ -160,7 +186,7 @@ export async function collection_deleteItemCollection(f_id, c_id) {
 
     return {
         success: true,
-        message: 'Delete collection Successful'
+        message: 'Delete collection Successfull'
     };
 } // collection_AddToCollection
 
