@@ -6,7 +6,7 @@
 * [x] [Components\Notification](#task10) @Mar15 
 * [x] [Notification deployment](#task11) @Mar16 
 * [x] [Notification responsive](task12) @Mar16
-* [ ] [Change Topic](task12) @Mar16 7:00
+* [x] [Change Topic](task12) @Mar16 19:30
 
 
 # 🍀 NOTE

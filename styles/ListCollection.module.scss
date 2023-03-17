@@ -3,6 +3,7 @@ $res_600 : "only screen and (max-width: 600px)";
 .container {
     flex-wrap: wrap;
     display: flex;
+    margin-top: 60px;
 }
 
 .collection {

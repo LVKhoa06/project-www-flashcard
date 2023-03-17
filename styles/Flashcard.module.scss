@@ -22,21 +22,33 @@ $res_600 : "only screen and (max-width: 600px)";
         box-shadow: 0 0 4px 0px var(--color-grey-0);
         position: relative;
 
+        .container-left{
+            display: flex;
+            flex-direction: column-reverse;
+
+            .img-fc {
+                max-width: 112px;
+                min-width: 112px;
+                max-height: 210px;
+                min-height: 210px;
+                border-radius: 10px;
+                margin: 10px 20px 0 0;
+            }
+
+            select {
+                max-width: 112px;
+                border-radius: 3px;
+                outline: none;
+                color: var(--color-black-2);
+            }
+        }
+
         .close {
             position: absolute;
             right: 0;
             top: 0;
             padding: 0px 8px;
             cursor: pointer;
-        }
-
-        .img-fc {
-            max-width: 130px;
-            min-width: 130px;
-            max-height: 250px;
-            min-height: 250px;
-            border-radius: 10px;
-            margin-right: 20px;
         }
 
         .content {
