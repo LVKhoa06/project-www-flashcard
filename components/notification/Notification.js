@@ -4,8 +4,8 @@ import IconWarning from 'assets/icon-warning';
 import { useEffect, useState } from 'react';
 
 function Notification(props) {
-    const { type, message, showNotification } = props;
-    const [show, setShow] = useState(false);
+    const { show, message, type } = props.config
+    const [showx, setShow] = useState(false);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -17,9 +17,9 @@ function Notification(props) {
             return () => clearTimeout(timer);
         } else
             setShow(false)
-            return () => clearTimeout(timer);
+        return () => clearTimeout(timer);
 
-    }, [showNotification]);
+    }, [show]);
 
     const getClassNames = () => {
         let className = '';
@@ -41,7 +41,7 @@ function Notification(props) {
 
     return (
         <>
-            <div className={`notification ${getClassNames()} ${show ? 'show' : ''}`} onClick={() => { setShow(false) }}>
+            <div className={`notification ${getClassNames()} ${showx ? 'show' : ''}`} onClick={() => { setShow(false) }}>
                 <span>
                     {type === 'warning' && <IconWarning />}
                     {type === 'error' && <IconError />}

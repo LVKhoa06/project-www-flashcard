@@ -8,9 +8,6 @@ function Collection(props) {
     const [showCreate, setShowCreate] = useState(false);
     const [value, setValue] = useState('');
     const [notification, setNotification] = useState('');
-    const [message, setMessage] = useState('');
-    const [type, setType] = useState('');
-    const [showNotification, setShowNotification] = useState(false);
     const [checkedStates, setCheckedStates] = useState([]);
 
     const [notificationConfig, setNotificationConfig] = useState({
@@ -18,7 +15,7 @@ function Collection(props) {
         type: '',
         message: ''
     })
-    
+
     useEffect(() => {
         let defaultCheckedState = [];
 
@@ -31,7 +28,7 @@ function Collection(props) {
 
     const handlerOnChangeCheckbox = async (e, i, collection_id) => {
         const updatedCheckedState = checkedStates?.map((item, index) => index === i ? !item : item);
-        setCheckedStates(updatedCheckedState);
+
 
         if (e.target.checked) {
             await axios.patch(
@@ -44,14 +41,20 @@ function Collection(props) {
                     "Content-Type": "application/json",
                 }
             )
-            setMessage('Successfully added to the collection');
-            setType('success');
-            setShowNotification(!showNotification);
+            setCheckedStates(updatedCheckedState);
+            setNotificationConfig({
+                message: 'Successfully added to the collection',
+                type: 'success',
+                show: !notificationConfig.show
+            })
         } else {
             await axios.delete(`api/collection/collection?f_id=${id}&c_id=${collection_id}`)
-            setMessage('Flashcard removed from collection');
-            setType('warning');
-            setShowNotification(!showNotification);
+
+            setNotificationConfig({
+                message: 'Flashcard removed from collection',
+                type: 'warning',
+                show: !notificationConfig.show
+            })
         }
     } // handleOnChangeCheckbox
 
@@ -80,13 +83,16 @@ function Collection(props) {
         setShowCreate(false);
         setShowModal(false);
         setShowMenu(false);
-        setMessage('');
-        setShowNotification(!showNotification)
+        setNotificationConfig({
+            message:'',
+            show: !notificationConfig.show,
+            type:''
+        })
     } // closeModalHandler
 
     return (
         <>
-            <Notification type={type} message={message} showNotification={showNotification} />
+            <Notification config={notificationConfig} />
             {showModal ?
                 <div onClick={() => closeModalHandler()} className={styles.overlay}>
                     <div onClick={(e) => e.stopPropagation()} className={styles.modal}>

@@ -9,15 +9,11 @@ import Notification from "../notification/Notification";
 
 function Flashcard(props) {
     const { data, setData } = props
-    const [session, setSession] = useState({ value: '', turn: '' });
     const [showMenu, setShowMenu] = useState(false);
     const [curId, setCurId] = useState(0);
     const [show, setShow] = useState(false);
     const [curDetailId, setCurDetailId] = useState(0);
     const [imgIndex, setImgIndex] = useState([]);
-    const [message, setMessage] = useState('');
-    const [type, setType] = useState();
-    const [showNotification, setShowNotification] = useState(false);
     const [deleted, setDelected] = useState(false);
 
     const [notificationConfig, setNotificationConfig] = useState({
@@ -54,11 +50,13 @@ function Flashcard(props) {
     }, [showMenu, curId])
 
     useEffect(() => {
-        if (curId) {
-            setMessage('Delete Flashcard Successfully');
-            setType('success');
-            setShowNotification(!showNotification);
-        }
+        if (curId) 
+            setNotificationConfig({
+                message: 'Delete Flashcard Successfully',
+                type: 'success',
+                show: !notificationConfig.show
+            })
+        
 
     }, [deleted]);
 
@@ -69,7 +67,7 @@ function Flashcard(props) {
 
     return (
         <>
-            {message && <Notification showNotification={showNotification} type={type} message={message} />}
+            {<Notification config={notificationConfig} />}
             {show && <FlashcardDetail show={show} setShow={setShow} imgIndex={imgIndex} index={curDetailId} data={data[curDetailId]} />}
             {data.map((item, index) => {
                 const id = item.id;

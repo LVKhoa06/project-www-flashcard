@@ -2,7 +2,7 @@ import axios from 'axios';
 import styles from '../../styles/ModalCheck.module.scss'
 
 function ModalCheck1(props) {
-    const { setShow, setData, id , setShowNotification, setType, setMessage, showNotification } = props;
+    const { setShow, setData, id, setNotificationConfig, notificationConfig } = props;
 
     const deleteHandler = async () => {
         await axios.patch(
@@ -17,9 +17,12 @@ function ModalCheck1(props) {
 
         setShow(false);
         setData(prev => prev.filter(item => item.id !== id));
-        setMessage('Delete flashcard successfull');
-        setType('warning')
-        setShowNotification(!showNotification)
+
+        setNotificationConfig({
+            message: 'Delete flashcard successfull',
+            type: 'warning',
+            show: !notificationConfig.show
+        })
     }
 
     return (

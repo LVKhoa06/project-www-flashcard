@@ -11,10 +11,6 @@ function Bin() {
     const [data, setData] = useState([]);
     const [show, setShow] = useState(false);
     const [curId, setCurId] = useState();
-    const [message, setMessage] = useState('');
-    const [type, setType] = useState('');
-    const [showNotification, setShowNotification] = useState(false);
-
     const [notificationConfig, setNotificationConfig] = useState({
         show: false,
         type: '',
@@ -35,17 +31,19 @@ function Bin() {
         setData(prev => prev.filter(item => item.id !== id));
         setCurId(id);
 
-        setMessage('Recover flashcard successfull');
-        setType('success');
-        setShowNotification(!showNotification);
+        setNotificationConfig({
+            type:'success',
+            show: !notificationConfig.show,
+            message: 'Recover flashcard successfull'
+        })
     }// recoverhandler
 
 
 
     return (
         <>
-            <Notification type={type} message={message} showNotification={showNotification} />
-            {show && <ModalCheck1 setShow={setShow} setData={setData} id={curId} setMessage={setMessage} setType={setType} setShowNotification={setShowNotification} showNotification={showNotification}/>}
+            <Notification config={notificationConfig} />
+            {show && <ModalCheck1 setShow={setShow} setData={setData} id={curId} notificationConfig={notificationConfig} setNotificationConfig={setNotificationConfig} />}
             <Head>
                 <title>Flashcard Bin</title>
             </Head>

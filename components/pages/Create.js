@@ -13,10 +13,6 @@ function Create() {
     const [topicId, setTopicId] = useState(-1);
     const [term, setTerm] = useState('');
     const [description, setDiscription] = useState('');
-    const [message, setMessage] = useState('');
-    const [type, setType] = useState();
-    const [showNotification, setShowNotification] = useState(false);
-
     const [notificationConfig, setNotificationConfig] = useState({
         show: false,
         type: '',
@@ -43,15 +39,21 @@ function Create() {
         let post = listFlashcard.find(item => item.term === term)
 
         if (term === '') {
-            setMessage('Please enter Term');
-            setShowNotification(!showNotification);
-            return setType('warning');
+            setNotificationConfig({
+                message:'Please enter Term',
+                type:'warning',
+                show: !notificationConfig.show
+            })
+            return;
         }
 
         if (description === '') {
-            setShowNotification(!showNotification);
-            setMessage('Please enter Description');
-            return setType('warning');
+            setNotificationConfig({
+                message:'Please enter Description',
+                type:'warning',
+                show: !notificationConfig.show
+            })
+            return;
         }
 
         if (!post) {
@@ -69,19 +71,27 @@ function Create() {
             );
             setTerm('');
             setDiscription('');
-            setShowNotification(!showNotification);
-            setMessage('Create flashcard successfuly');
-            return setType('success');
+            setNotificationConfig({
+                message:'Create flashcard successfuly',
+                type:'success',
+                show: !notificationConfig.show
+            })
+            
+            return;
         } else {
-            setShowNotification(!showNotification);
-            setMessage('Term already exist');
-            return setType('error');
+            setNotificationConfig({
+                message:'Term already exist',
+                type:'error',
+                show: !notificationConfig.show
+            })
+            
+            return;
         }
     } // handlerCreate
 
     return (
         <>
-            <Notification showNotification={showNotification} message={message} type={type} />
+            <Notification config={notificationConfig}/>
             <Head>
                 <title>Create Flashcard</title>
             </Head>

@@ -19,6 +19,7 @@ export async function flashcard_create(topic_id, term, description, date) {
     };
 } // createFlashcard
 
+// stored proc. // trigger
 export async function flashcard_remove(id) {
     const query1 = `insert into flashcard_bin select * from flashcard where id = ${id};`;
     const [data1] = await pool().execute(query1);
@@ -34,8 +35,8 @@ export async function flashcard_remove(id) {
     const query3 = `delete from flashcard_collection_id where flashcard_id = ${id};`;
     const [data3] = await pool().execute(query3);
 
-    const query = `delete from flashcard where id = ${id};`;
-    const [data] = await pool().execute(query);
+    const query4 = `delete from flashcard where id = ${id};`;
+    const [data] = await pool().execute(query4);
 
     if (data?.affectedRows !== 1)
         return {

@@ -14,14 +14,14 @@ export default async function handler(req, res) {
 
       break;
     case "PATCH":
-      const foo = await bin_remove(body.id);
+      const foo = await bin_recover(query.id);
 
       if (!foo.success) return res.status(400).send(foo.message);
       res.status(201).json(foo.message);
       break;
 
     case "DELETE":
-      const ok = await bin_recover(query.id);
+      const ok = await bin_remove(body.id);
 
       if (!ok.success) return res.status(400).send(ok.message);
       res.status(201).json(ok);

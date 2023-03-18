@@ -12,9 +12,6 @@ function FlashcardDetail(props) {
     const [result, setResult] = useState([data]);
     const [valueTerm, setValueTerm] = useState('');
     const [valueDesc, setValueDesc] = useState('');
-    const [message, setMessage] = useState('');
-    const [type, setType] = useState();
-    const [showNotification, setShowNotification] = useState(false);
     const [listTopic, setListTopic] = useState([]);
     const [curTopic, setCurtopic] = useState();
 
@@ -64,9 +61,12 @@ function FlashcardDetail(props) {
                     "Content-Type": "application/json",
                 }
             );
-            setMessage('Update flashcard successfully.');
-            setType('success');
-            setShowNotification(!showNotification);
+        
+            setNotificationConfig({
+                message:'Update flashcard successfully.',
+                type:'success',
+                show: !notificationConfig.show
+            })
         }
 
         if (e.key === 'Enter' && field === 'term')
@@ -88,15 +88,17 @@ function FlashcardDetail(props) {
             }
         )
 
-        setMessage('Update flashcard topic successfully.');
-        setType('success');
-        setShowNotification(!showNotification);
+        setNotificationConfig({
+            message:'Update flashcard topic successfully.',
+            type:'success',
+            show: !notificationConfig.show
+        })
 
     } // changeTopic
 
     return (
         <>
-            <Notification type={type} message={message} showNotification={showNotification} />
+            <Notification config={notificationConfig} />
             <Head>
                 <title>Flashcard - {result[0]?.term}</title>
             </Head>
