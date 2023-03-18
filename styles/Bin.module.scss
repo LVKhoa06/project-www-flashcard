@@ -1,0 +1,82 @@
+$res_600 : "only screen and (max-width: 600px)";
+
+.container {
+    margin-top: 100px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .item {
+        display: flex;  
+        align-items: center;
+        margin: 10px 15px;
+        cursor: pointer;
+        width: 500px;
+        height: 90px;
+        justify-content: space-between;
+        border-radius: 10px;
+        box-shadow: 0 0 5px -1px var(--primary-color);
+        padding-bottom: 4px;
+
+        .container-icon {
+            margin-right: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            justify-content: space-evenly;
+
+            .icon-recover {
+                display: flex;
+                align-items: center;
+
+                svg {
+                    height: 30px;
+                }
+            }
+
+            .icon-bin {
+                display: flex;
+                align-items: center;
+
+                svg {
+                    height: 19px;
+                }
+            }
+        }
+
+        .container-content {
+            margin-left: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100%;
+            justify-content: space-evenly;
+
+            p {
+                color: var(--color-black-2);
+                font-size: 14px;
+            }
+
+            h2 {
+                color: var(--color-black-2);
+            }
+        }
+
+    }
+}
+
+@mixin responsive_600() {
+    @media #{$res_600} {
+        @content;
+    }
+}
+
+@include responsive_600 {
+    .item{
+        min-width: 330px;
+        max-width: 330px;
+    }
+}
