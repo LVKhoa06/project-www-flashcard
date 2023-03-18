@@ -4,7 +4,7 @@
 * [x] [Collection error default checked](#task1) @Mar17 
 * [x] [Component select / options](##task3) @Mar18
 * [ ] [Search styles](#task5) @Mar13 11:10
-* [ ] [Bin](#task2) @Mar17 
+* [x] [Bin](#task2) @Mar17 
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 

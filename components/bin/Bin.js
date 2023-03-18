@@ -38,33 +38,33 @@ function Bin() {
 
     return (
         <>
-        <Head>
-            <title>Flashcard Bin</title>
-        </Head>
-        <div className={styles.container}>
-            {
-                data.map(item => {
-                    return (
-                        <div className={styles.item}>
-                            <div className={styles['container-content']}>
-                                <h2>{item.term}</h2>
-                                <p>{item.description}</p>
-                            </div>
-                            <div className={styles['container-icon']}>
-                                <div title='Recover' onClick={() => recoverhandler(item.id)} className={styles['icon-recover']}>
-                                    <IconRecover fill="#555" viewBox="0 0 64 64" version="1.1" fillRule="evenodd" clipRule="evenodd" strokeLinejoin="round" strokeMiterlimit="2" />
+            <Head>
+                <title>Flashcard Bin</title>
+            </Head>
+            <div className={styles.container}>
+                {
+                    data.map(item => {
+                        return (
+                            <div className={styles.item}>
+                                <div className={styles['container-content']}>
+                                    <h2>{item.term}</h2>
+                                    <p>{item.description}</p>
                                 </div>
-                                <div title='Remove' onClick={() => removeHandler(item.id)} className={styles['icon-bin']}>
-                                    <IconBin viewBox='0 0 1024 1024' fill='#555' />
+                                <div className={styles['container-icon']}>
+                                    <div title='Recover' onClick={() => recoverhandler(item.id)} className={styles['icon-recover']}>
+                                        <IconRecover fill="#555" viewBox="0 0 64 64" version="1.1" fillRule="evenodd" clipRule="evenodd" strokeLinejoin="round" strokeMiterlimit="2" />
+                                    </div>
+                                    <div title='Remove' onClick={() => removeHandler(item.id)} className={styles['icon-bin']}>
+                                        <IconBin viewBox='0 0 1024 1024' fill='#555' />
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    )
-                })
-            }
-        </div>
+                        )
+                    })
+                }
+            </div>
         </>
-        
+
     );
 }
 

@@ -39,8 +39,17 @@
 .item span {
     margin-left: 15px;
     font-weight: 700;
+    display: flex;
 }
 
 .item:hover {
     background-color: #ffa;    
+}
+
+.recover {
+    svg {
+        margin-left: -4px;
+        width: 30px;
+        height: 30px;
+    }
 }
