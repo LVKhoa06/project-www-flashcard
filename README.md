@@ -2,9 +2,11 @@
 * [x] [Collection ](#task8) @Mar14
 * [x] [Components\Notification](#task10) @Mar15
 * [x] [Collection error default checked](#task1) @Mar17 
-* [x] [Component select / options](##task3) @Mar18
+* [x] [Component select / options](#task3) @Mar18
 * [ ] [Search styles](#task5) @Mar13 11:10
-* [ ] [Bin](#task2) @Mar17 
+* [x] [Bin](#task2) @Mar17 
+* [ ] [Notification config object](#task4) @Mar18 20:00
+* [ ] [Term unique error](#task6) @Mar18 20:00
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
@@ -53,19 +55,22 @@
 * [x] <a id="task10">Components\Notification</a>
 * [x] <a id="task1">Collection error default checked</a>
 * [x] <a id="task3">Component select / options</a>
-* [ ] <a id="task2">Bin</a> 
+* [x] <a id="task2">Bin</a> 
 * [ ] <a id="task1">Responsive</a>
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
 * [ ] <a id="task5">Styles search</a>
 * [ ] Store images ?
 * [ ] Notification config object
+* [ ] Term unique error
+* [ ] stored proc. // trigger 
+* [ ] option selected
  
 # REFACTOR 
 * [x] Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll)
 
 # MISC
 * [ ] Color + img: term | topic
-* [ ] Notification w/ color indicator: created | updated | deleted
+* [X] Notification w/ color indicator: created | updated | deleted
 * [ ] mobile-friendly: swipes...
 * [ ] MySQL => implementations (callback)
 * [ ] API => pattern: code (200 | 201 | 400 | 500...), response, getSession()...
