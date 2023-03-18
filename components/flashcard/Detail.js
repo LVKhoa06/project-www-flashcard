@@ -18,6 +18,12 @@ function FlashcardDetail(props) {
     const [listTopic, setListTopic] = useState([]);
     const [curTopic, setCurtopic] = useState();
 
+    const [notificationConfig, setNotificationConfig] = useState({
+        show: false,
+        type: '',
+        message: ''
+    })
+
     useEffect(() => {
         const handler = async () => {
             const data1 = await axios.get("/api/topic/list-topic");

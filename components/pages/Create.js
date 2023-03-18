@@ -17,6 +17,12 @@ function Create() {
     const [type, setType] = useState();
     const [showNotification, setShowNotification] = useState(false);
 
+    const [notificationConfig, setNotificationConfig] = useState({
+        show: false,
+        type: '',
+        message: ''
+    })
+
     useEffect(() => {
         const handler = async () => {
             const data = await axios.get("/api/topic/list-topic");

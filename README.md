@@ -4,7 +4,7 @@
 * [x] [Collection error default checked](#task1) @Mar17 
 * [x] [Component select / options](##task3) @Mar18
 * [ ] [Search styles](#task5) @Mar13 11:10
-* [x] [Bin](#task2) @Mar17 
+* [ ] [Bin](#task2) @Mar17 
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
@@ -58,6 +58,7 @@
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
 * [ ] <a id="task5">Styles search</a>
 * [ ] Store images ?
+* [ ] Notification config object
  
 # REFACTOR 
 * [x] Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll)

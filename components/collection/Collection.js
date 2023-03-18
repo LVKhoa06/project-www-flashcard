@@ -12,6 +12,12 @@ function Collection(props) {
     const [type, setType] = useState('');
     const [showNotification, setShowNotification] = useState(false);
     const [checkedStates, setCheckedStates] = useState([]);
+
+    const [notificationConfig, setNotificationConfig] = useState({
+        show: false,
+        type: '',
+        message: ''
+    })
     
     useEffect(() => {
         let defaultCheckedState = [];

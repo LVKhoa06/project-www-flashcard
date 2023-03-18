@@ -20,6 +20,12 @@ function Flashcard(props) {
     const [showNotification, setShowNotification] = useState(false);
     const [deleted, setDelected] = useState(false);
 
+    const [notificationConfig, setNotificationConfig] = useState({
+        show: false,
+        type: '',
+        message: ''
+    })
+
     useEffect(() => {
         const closeElm = () => {
             setShowMenu(false);

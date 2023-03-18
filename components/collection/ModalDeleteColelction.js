@@ -28,7 +28,7 @@ function ModalCheck({ setShowCheck, id }) {
                 </div>
                 <div className={styles.center}>
                     <p>Are you sure you want to delete Collection?</p>
-                    <p>Note: Deleting a collection is a permanent action and cannot be undone.</p>
+                    <p>Note: This is a deleting permanent action and cannot be undone.</p>
                 </div>
                 <div className={styles.bottom}>
                     <button onClick={() => setShowCheck(false)} className={styles.cancel}>Cancel</button>

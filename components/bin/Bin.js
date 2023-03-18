@@ -4,9 +4,22 @@ import axios from 'axios';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import styles from '../../styles/Bin.module.scss'
+import Notification from '../notification/Notification';
+import ModalCheck1 from './checkDeleting';
 
 function Bin() {
     const [data, setData] = useState([]);
+    const [show, setShow] = useState(false);
+    const [curId, setCurId] = useState();
+    const [message, setMessage] = useState('');
+    const [type, setType] = useState('');
+    const [showNotification, setShowNotification] = useState(false);
+
+    const [notificationConfig, setNotificationConfig] = useState({
+        show: false,
+        type: '',
+        message: ''
+    })
 
     useEffect(() => {
         const handler = async () => {
@@ -19,25 +32,20 @@ function Bin() {
     const recoverhandler = async (id) => {
         await axios.delete(`api/bin/bin?id=${id}`);
 
-        setData(prev => prev.filter(item => item.id !== id))
+        setData(prev => prev.filter(item => item.id !== id));
+        setCurId(id);
+
+        setMessage('Recover flashcard successfull');
+        setType('success');
+        setShowNotification(!showNotification);
     }// recoverhandler
 
-    const removeHandler = async (id) => {
-        await axios.patch(
-            `api/bin/bin`,
-            {
-                id
-            },
-            {
-                "Content-Type": "application/json",
-            }
-        );
 
-        setData(prev => prev.filter(item => item.id !== id))
-    }// recoverhandler
 
     return (
         <>
+            <Notification type={type} message={message} showNotification={showNotification} />
+            {show && <ModalCheck1 setShow={setShow} setData={setData} id={curId} setMessage={setMessage} setType={setType} setShowNotification={setShowNotification} showNotification={showNotification}/>}
             <Head>
                 <title>Flashcard Bin</title>
             </Head>
@@ -51,10 +59,17 @@ function Bin() {
                                     <p>{item.description}</p>
                                 </div>
                                 <div className={styles['container-icon']}>
-                                    <div title='Recover' onClick={() => recoverhandler(item.id)} className={styles['icon-recover']}>
+                                    <div title='Recover' onClick={() => {
+                                        recoverhandler(item.id)
+                                    }
+                                    } className={styles['icon-recover']}>
                                         <IconRecover fill="#555" viewBox="0 0 64 64" version="1.1" fillRule="evenodd" clipRule="evenodd" strokeLinejoin="round" strokeMiterlimit="2" />
                                     </div>
-                                    <div title='Remove' onClick={() => removeHandler(item.id)} className={styles['icon-bin']}>
+                                    <div title='Remove' onClick={() => {
+                                        setShow(true);
+                                        setCurId(item.id);
+                                    }
+                                    } className={styles['icon-bin']}>
                                         <IconBin viewBox='0 0 1024 1024' fill='#555' />
                                     </div>
                                 </div>
