@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import styles from '../../styles/SortAndFilter.module.scss';
+import Select from "../select";
 
 const CONST_SORT_CASE = {
     none: -1,
@@ -21,7 +22,7 @@ function SortAndFilter(props) {
         if (config.filter) {
             const handler = async () => {
                 const data = await axios.get("/api/topic/list-topic");
-                setListTopic(data.data);
+                setListTopic(data.data.filter(item => item.topic_id !== -1));
             }
             handler();
         }
@@ -34,7 +35,7 @@ function SortAndFilter(props) {
         }
         handler();
     }, [sortConfig, topicId]);
-    
+
     const updateSortConfig = async (value) => {
         if (value == none) return;
 
@@ -68,17 +69,10 @@ function SortAndFilter(props) {
                 : ''}
             {config.filter ?
                 <div>
-                    <select
-                        onChange={(e) => {
-                            setTopicId(e.target.value);
-                        }}
-                    >
+                    <Select func={setTopicId} data={listTopic}>
                         <option value="">Theo chủ đề</option>
                         <option value={-1}>Khác</option>
-                        {listTopic.map(item => {
-                            return item.topic_id > 0 ? <option key={item.topic_id} value={item.topic_id}>{item.topic}</option> : ''
-                        })}
-                    </select>
+                    </Select>
                 </div>
                 : ''
             }

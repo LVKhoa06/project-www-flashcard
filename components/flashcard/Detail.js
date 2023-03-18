@@ -5,6 +5,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import styles from '../../styles/Flashcard.module.scss'
 import Notification from "../notification/Notification";
+import Select from "../select";
 
 function FlashcardDetail(props) {
     const { data, imgIndex, index, setShow } = props;
@@ -69,12 +70,12 @@ function FlashcardDetail(props) {
             return handler(valueDesc);
     } // updateFlashcardHandler
 
-    const changeTopic = async (e) => {
+    const changeTopic = async (value) => {
         await axios.patch(
             'api/topic/cur-topic',
             {
                 id: data.id,
-                topic_id: +e.target.value
+                topic_id: value
             },
             {
                 "Content-Type": "application/json",
@@ -107,14 +108,9 @@ function FlashcardDetail(props) {
                             <h1 onClick={() => setShow(false)} className={styles.close}><IconClose /></h1>
                             <div className={styles['container-left']}>
                                 <img className={styles['img-fc']} src={img?.src} />
-                                <select
-                                    onChange={(e) => changeTopic(e)}
-                                >
+                                <Select data={listTopic} func={changeTopic}>
                                     <option value={curTopic ? curTopic[0]?.topic_id : ''}>{curTopic ? curTopic[0]?.topic : ''}</option>
-                                    {listTopic.map(item => {
-                                        return <option key={item.topic_id} value={item.topic_id}>{item.topic}</option>
-                                    })}
-                                </select>
+                                </Select>
                             </div>
                             <div className={styles.content}>
                                 <input

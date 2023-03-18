@@ -4,6 +4,7 @@ import formatDateWithLocale from "utils/format-date.";
 import Head from "next/head";
 import styles from '../../styles/CreateFlashcard.module.scss'
 import Notification from "../notification/Notification";
+import Select from "../select";
 
 
 function Create() {
@@ -20,7 +21,7 @@ function Create() {
         const handler = async () => {
             const data = await axios.get("/api/topic/list-topic");
             const data2 = await axios.get("/api/flashcard/home");
-            setListTopic(data.data);
+            setListTopic(data.data.filter(item => item.topic_id !== -1));
             setListFlashcard(data2.data);
         }
         handler();
@@ -83,15 +84,9 @@ function Create() {
                 <form className={styles} >
                     <div className={styles['container-option']} >
                         <span>Topic:</span>
-                        <select
-                            onChange={(e) => setTopicId(e.target.value)}
-                        >
+                        <Select func={setTopicId} data={listTopic} >
                             <option value={-1}>Khác</option>
-
-                            {listTopic.map(item => {
-                                return item.topic_id > 0 ? <option key={item.topic_id} value={item.topic_id}>{item.topic}</option> : ''
-                            })}
-                        </select>
+                        </Select>
                     </div>
                     <div className={styles['container-input']}>
                         <input className={styles['input-term']} value={term} onChange={(e) => setTerm(e.target.value)} placeholder="Term" />

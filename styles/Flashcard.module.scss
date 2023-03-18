@@ -54,7 +54,7 @@ $res_600 : "only screen and (max-width: 600px)";
         .content {
             display: flex;
             flex-direction: column;
-            max-width: 70%;
+            max-width: 73%;
 
             input {
                 border: none;
@@ -107,8 +107,8 @@ $res_600 : "only screen and (max-width: 600px)";
     position: relative;
     border: 1px solid var(--color-grey-0);
     border-radius: 6px;
-    max-width: 300px;
-    min-width: 300px;
+    max-width: 285px;
+    min-width: 285px;
     min-height: 100px;
     display: flex;
     background-color: var(--color-white-0);
@@ -138,11 +138,15 @@ $res_600 : "only screen and (max-width: 600px)";
     h2 {
         white-space: nowrap;
         font-size: 21px;
+        overflow: hidden;
+        text-overflow: ellipsis;
     }
 
     img {
+        min-height: 100px;
         max-height: 100px;
-        min-width: 65px;
+        min-width: 60px;
+        max-width: 60px;
         border-radius: 5px;
     }
 
