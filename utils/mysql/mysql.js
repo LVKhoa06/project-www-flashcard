@@ -20,11 +20,22 @@ export async function flashcard_create(topic_id, term, description, date) {
 } // createFlashcard
 
 export async function flashcard_remove(id) {
-    const query2 = `delete from flashcard_collection_id where flashcard_id = ${id};`;
-    const [data2] = await pool().execute(query2);
+    const query1 = `insert into flashcard_bin select * from flashcard where id = ${id};`;
+    const [data1] = await pool().execute(query1);
 
-    const query = `delete from flashcard where id = ?;`;
-    const [data] = await pool().execute(query, [id]);
+    if (data1?.affectedRows !== 1)
+        return {
+            success: false,
+            message: "Error occured."
+        };
+
+    const query2 = `insert into flashcard_collection_id_bin select * from flashcard_collection_id where flashcard_id = ${id};`;
+    const [data2] = await pool().execute(query2);
+    const query3 = `delete from flashcard_collection_id where flashcard_id = ${id};`;
+    const [data3] = await pool().execute(query3);
+
+    const query = `delete from flashcard where id = ${id};`;
+    const [data] = await pool().execute(query);
 
     if (data?.affectedRows !== 1)
         return {
@@ -36,7 +47,7 @@ export async function flashcard_remove(id) {
         success: true,
         message: 'Xóa flashcard thành công'
     };
-} // getAllFlashcard
+} // flashcard_remove
 
 export async function flashcard_update(id, field, value) {
     const query = `update flashcard set ${field} = ? where id = ${id};`;
@@ -280,5 +291,69 @@ export async function collection_update(id, field, value) {
         message: 'Rename collection successful'
     };
 } // collection_update
+
+//#endregion Collection -------------------------------------------- END
+
+//#region Collection -------------------------------------------- START
+
+export async function bin_getAll() {
+    const query = `select * from flashcard_bin;`;
+    const [data] = await pool().execute(query);
+
+    if (!data)
+        return false;
+
+    return data;
+} // bin_getAll
+
+export async function bin_remove(id) {
+    const query1 = `delete from flashcard_collection_id_bin where flashcard_id = ${id};`;
+    const [data1] = await pool().execute(query1);
+
+    const query = `delete from flashcard_bin where id = ${id};`;
+    const [data] = await pool().execute(query);
+
+    if (data?.affectedRows !== 1)
+        return {
+            success: false,
+            message: "Error occured."
+        };
+
+    return {
+        success: true,
+        message: 'Xóa flashcard thành công'
+    };
+} // bin_getAll
+
+
+export async function bin_recover(id) {
+    const query1 = `insert into flashcard select * from flashcard_bin where id = ${id};`;
+    const [data1] = await pool().execute(query1);
+
+    if (data1?.affectedRows !== 1)
+        return {
+            success: false,
+            message: "Error occured."
+        };
+
+    const query2 = `insert into flashcard_collection_id select * from flashcard_collection_id_bin where flashcard_id = ${id};`;
+    const [data2] = await pool().execute(query2);
+    const query3 = `delete from flashcard_collection_id_bin where flashcard_id = ${id};`;
+    const [data3] = await pool().execute(query3);
+
+    const query = `delete from flashcard_bin where id = ${id};`;
+    const [data] = await pool().execute(query);
+
+    if (data?.affectedRows !== 1)
+        return {
+            success: false,
+            message: "Error occured."
+        };
+
+    return {
+        success: true,
+        message: 'Xóa flashcard thành công'
+    };
+} // bin_recover
 
 //#endregion Collection -------------------------------------------- END
