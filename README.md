@@ -7,7 +7,7 @@
 * [x] [Notification config object](#task4) @Mar18 
 * [x] [Api request error `bin`](#task1) @Mar19
 * [ ] [Search styles](#task5) @Mar13 11:10
-* [ ] [Term unique error](#task6) @Mar18 
+* [x] [Term unique error](#task6) @Mar18 
 * [ ] [stored proc. // trigger](#task7) @Mar19
 
 # 🍀 NOTE
@@ -62,7 +62,7 @@
 * [ ] <a id="task1">Responsive</a>
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
 * [ ] <a id="task5">Styles search</a>
-* [ ] <a id="task6">Term unique error</a>
+* [x] <a id="task6">Term unique error</a>
 * [ ] Store images ?
 * [ ] stored proc. // trigger 
 * [ ] Option selected

@@ -36,7 +36,6 @@ function Create() {
 
     async function handlerCreate(e) {
         e.preventDefault();
-        let post = listFlashcard.find(item => item.term === term)
 
         if (term === '') {
             setNotificationConfig({
@@ -55,6 +54,9 @@ function Create() {
             })
             return;
         }
+
+        const data2 = await axios.get("/api/flashcard/home");
+        let post = data2.data.find(item => item.term.toUpperCase() === term.toUpperCase());
 
         if (!post) {
             await axios.post(
@@ -79,6 +81,7 @@ function Create() {
             
             return;
         } else {
+
             setNotificationConfig({
                 message:'Term already exist',
                 type:'error',
