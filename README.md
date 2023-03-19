@@ -5,6 +5,7 @@
 * [x] [Component select / options](#task3) @Mar18
 * [x] [Bin](#task2) @Mar17 
 * [x] [Notification config object](#task4) @Mar18 
+* [x] [Api request error `bin`](#task1) @Mar19
 * [ ] [Search styles](#task5) @Mar13 11:10
 * [ ] [Term unique error](#task6) @Mar18 
 * [ ] [stored proc. // trigger](#task7) @Mar19

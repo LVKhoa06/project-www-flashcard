@@ -26,7 +26,15 @@ function Bin() {
     }, [])
 
     const recoverhandler = async (id) => {
-        await axios.delete(`api/bin/bin?id=${id}`);
+        await axios.patch(
+            `api/bin/bin`,
+            {
+                id
+            },
+            {
+                "Content-Type": "application/json",
+            }
+            );
 
         setData(prev => prev.filter(item => item.id !== id));
         setCurId(id);

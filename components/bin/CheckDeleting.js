@@ -5,15 +5,7 @@ function ModalCheck1(props) {
     const { setShow, setData, id, setNotificationConfig, notificationConfig } = props;
 
     const deleteHandler = async () => {
-        await axios.patch(
-            `api/bin/bin`,
-            {
-                id
-            },
-            {
-                "Content-Type": "application/json",
-            }
-        );
+        await axios.delete(`api/bin/bin?id=${id}`);
 
         setShow(false);
         setData(prev => prev.filter(item => item.id !== id));
