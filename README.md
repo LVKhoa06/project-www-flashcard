@@ -7,6 +7,7 @@
 * [x] [Notification config object](#task4) @Mar18 
 * [ ] [Search styles](#task5) @Mar13 11:10
 * [ ] [Term unique error](#task6) @Mar18 
+* [ ] [stored proc. // trigger](#task7) @Mar19
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
