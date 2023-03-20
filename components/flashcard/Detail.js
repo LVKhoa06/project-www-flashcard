@@ -12,7 +12,6 @@ function FlashcardDetail(props) {
     const [result, setResult] = useState([data]);
     const [valueTerm, setValueTerm] = useState('');
     const [valueDesc, setValueDesc] = useState('');
-    const [listTopic, setListTopic] = useState([]);
     const [curTopic, setCurtopic] = useState();
 
     const [notificationConfig, setNotificationConfig] = useState({
@@ -23,9 +22,7 @@ function FlashcardDetail(props) {
 
     useEffect(() => {
         const handler = async () => {
-            const data1 = await axios.get("/api/topic/list-topic");
             const data2 = await axios.get(`/api/topic/cur-topic?id=${data.id}`);
-            setListTopic(data1.data);
             setCurtopic(data2.data);
         }
         handler();
@@ -36,19 +33,7 @@ function FlashcardDetail(props) {
         setResult([data]);
     }, [data]);
 
-    useEffect(() => {
-        if (!curTopic)
-            return;
-
-        const list = listTopic.filter(item => {
-            return item.topic !== curTopic[0].topic;
-        });
-
-        setListTopic(list);
-    }, [curTopic]);
-
-
-    const updateFlashcardHandler = async (e, field, id) => {
+   const updateFlashcardHandler = async (e, field, id) => {
         const handler = async (value) => {
             await axios.patch(
                 'api/flashcard/home',
@@ -93,7 +78,6 @@ function FlashcardDetail(props) {
             type:'success',
             show: !notificationConfig.show
         })
-
     } // changeTopic
 
     return (
@@ -116,9 +100,7 @@ function FlashcardDetail(props) {
                             <h1 onClick={() => setShow(false)} className={styles.close}><IconClose /></h1>
                             <div className={styles['container-left']}>
                                 <img className={styles['img-fc']} src={img?.src} />
-                                <Select data={listTopic} func={changeTopic}>
-                                    <option value={curTopic ? curTopic[0]?.topic_id : ''}>{curTopic ? curTopic[0]?.topic : ''}</option>
-                                </Select>
+                                <Select onChange={changeTopic} indicator={curTopic ? curTopic[0].topic_id : ''} />
                             </div>
                             <div className={styles.content}>
                                 <input

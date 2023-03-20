@@ -6,8 +6,9 @@
 * [x] [Bin](#task2) @Mar17 
 * [x] [Notification config object](#task4) @Mar18 
 * [x] [Api request error `bin`](#task1) @Mar19
-* [ ] [Search styles](#task5) @Mar13 11:10
 * [x] [Term unique error](#task6) @Mar18 
+* [x] [Option selected](#task9) @Mar19
+* [ ] [Search styles](#task5) @Mar13
 * [ ] [stored proc. // trigger](#task7) @Mar19
 
 # 🍀 NOTE
@@ -59,13 +60,13 @@
 * [x] <a id="task3">Component select / options</a>
 * [x] <a id="task2">Bin</a> 
 * [x] <a id="task4">Notification config object</a>
-* [ ] <a id="task1">Responsive</a>
+* [x] <a id="task1">Responsive</a>
+* [x] <a id="task6">Term unique error</a>
+* [x] <a id="task9">Option selected</a>
+* [ ] <a id="task7">stored proc. // trigger </a>
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
 * [ ] <a id="task5">Styles search</a>
-* [x] <a id="task6">Term unique error</a>
 * [ ] Store images ?
-* [ ] stored proc. // trigger 
-* [ ] Option selected
  
 # REFACTOR 
 * [x] Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll)

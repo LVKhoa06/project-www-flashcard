@@ -12,7 +12,7 @@ const CONST_SORT_CASE = {
 }
 
 function SortAndFilter(props) {
-    const { setData, setListTopic, listTopic, use: config } = props
+    const { setData, setListTopic, use: config } = props
     const { none, alphabeticallyASC, alphabeticallyDESC, dateASC, dateDESC } = CONST_SORT_CASE
     const [sortConfig, setSortConfig] = useState({ orderBy: 'creation_time', direction: 'desc' });
     const { orderBy, direction } = sortConfig;
@@ -69,9 +69,8 @@ function SortAndFilter(props) {
                 : ''}
             {config.filter ?
                 <div>
-                    <Select func={setTopicId} data={listTopic}>
+                    <Select onChange={setTopicId}>
                         <option value="">Theo chủ đề</option>
-                        <option value={-1}>Khác</option>
                     </Select>
                 </div>
                 : ''

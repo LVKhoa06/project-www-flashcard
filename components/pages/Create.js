@@ -8,8 +8,6 @@ import Select from "../select";
 
 
 function Create() {
-    const [listTopic, setListTopic] = useState([]);
-    const [listFlashcard, setListFlashcard] = useState([]);
     const [topicId, setTopicId] = useState(-1);
     const [term, setTerm] = useState('');
     const [description, setDiscription] = useState('');
@@ -18,16 +16,6 @@ function Create() {
         type: '',
         message: ''
     })
-
-    useEffect(() => {
-        const handler = async () => {
-            const data = await axios.get("/api/topic/list-topic");
-            const data2 = await axios.get("/api/flashcard/home");
-            setListTopic(data.data.filter(item => item.topic_id !== -1));
-            setListFlashcard(data2.data);
-        }
-        handler();
-    }, []);
 
     const date = formatDateWithLocale({
         format: "YYYY-MM-DD",
@@ -103,7 +91,7 @@ function Create() {
                 <form className={styles} >
                     <div className={styles['container-option']} >
                         <span>Topic:</span>
-                        <Select func={setTopicId} data={listTopic} >
+                        <Select onChange={setTopicId} >
                             <option value={-1}>Khác</option>
                         </Select>
                     </div>

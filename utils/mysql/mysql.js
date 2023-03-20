@@ -127,7 +127,7 @@ export async function flashcard_getWithKeyword(key) {
 
 //#region Topic ----------------------------------------------- START
 export async function topic_getAll() {
-    const query = `select * from topic;`;
+    const query = `select * from topic ORDER BY topic_id ASC;`;
     const [data] = await pool().execute(query);
 
     if (!data)
