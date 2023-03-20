@@ -10,7 +10,7 @@
 * [x] [Select component & option selected](#task9) @Mar19
 * [x] [Check term unique response 0 | 1](#task6) @Mar20 
 * [ ] [Search styles](#task5) @Mar13
-* [ ] [Store images URL | base64](#task11) @Mar20
+* [x] [Store images URL | base64](#task11) @Mar20
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
@@ -65,9 +65,11 @@
 * [x] <a id="task6">Term unique error</a>
 * [x] <a id="task9">Select component & option selected</a>
 * [x] Check term unique response 0 | 1
-* [ ] <a id="task11">Store images URL | base64 </a>
+* [x] <a id="task11">Store images URL | base64 </a>
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
 * [ ] <a id="task5">Styles search</a>
+* [ ] Fix flashcard term | description = ""
+* [ ] Change img flashcard
  
 # REFACTOR 
 * [x] Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll)

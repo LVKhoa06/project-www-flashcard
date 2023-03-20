@@ -13,6 +13,7 @@ function FlashcardDetail(props) {
     const [valueTerm, setValueTerm] = useState('');
     const [valueDesc, setValueDesc] = useState('');
     const [curTopic, setCurtopic] = useState();
+    const [url, setUrl] = useState('');
 
     const [notificationConfig, setNotificationConfig] = useState({
         show: false,
@@ -33,7 +34,7 @@ function FlashcardDetail(props) {
         setResult([data]);
     }, [data]);
 
-   const updateFlashcardHandler = async (e, field, id) => {
+    const updateFlashcardHandler = async (e, field, id) => {
         const handler = async (value) => {
             await axios.patch(
                 'api/flashcard/home',
@@ -46,10 +47,10 @@ function FlashcardDetail(props) {
                     "Content-Type": "application/json",
                 }
             );
-        
+
             setNotificationConfig({
-                message:'Update flashcard successfully.',
-                type:'success',
+                message: 'Update flashcard successfully.',
+                type: 'success',
                 show: !notificationConfig.show
             })
         }
@@ -74,11 +75,40 @@ function FlashcardDetail(props) {
         )
 
         setNotificationConfig({
-            message:'Update flashcard topic successfully.',
-            type:'success',
+            message: 'Update flashcard topic successfully.',
+            type: 'success',
             show: !notificationConfig.show
         })
     } // changeTopic
+
+    const convertImgToBase64 = async (id, value) => {
+        const elm = document.getElementById('test');
+        const file = elm?.files[0];
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+
+        reader.onload = () => {
+            setUrl(reader.result)
+        }
+    } // 
+
+    useEffect(() => {
+        const handler = async () => {
+            await axios.patch(
+                'api/flashcard/home',
+                {
+                    id: data.id,
+                    field: 'img',
+                    value: url
+                },
+                {
+                    "Content-Type": "application/json",
+                }
+            );
+        }
+
+        if (url) handler();
+    }, [url])
 
     return (
         <>
@@ -92,11 +122,20 @@ function FlashcardDetail(props) {
                 return (
                     <div
                         onClick={() => setShow(false)}
-                        className={styles.overlay} key={item.id}>
+                        className={styles.overlay} key={item.id}
+                        style={{
+                            backgroundImage: `url("${url ? url : ''}")`
+                        }}
+                    >
                         <div
                             onClick={(e) => e.stopPropagation()}
                             className={styles.container}
                         >
+                            <div onClick={() => { }} className={styles.demo}>
+                                <input id="test" onChange={() => {
+                                    convertImgToBase64(item.id);
+                                }} type="file" />
+                            </div>
                             <h1 onClick={() => setShow(false)} className={styles.close}><IconClose /></h1>
                             <div className={styles['container-left']}>
                                 <img className={styles['img-fc']} src={img?.src} />
