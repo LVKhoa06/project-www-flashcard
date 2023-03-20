@@ -7,9 +7,10 @@
 * [x] [Notification config object](#task4) @Mar18 
 * [x] [Api request error `bin`](#task1) @Mar19
 * [x] [Term unique error](#task6) @Mar18 
-* [x] [Option selected](#task9) @Mar19
+* [x] [Select component & option selected](#task9) @Mar19
+* [x] [Check term unique response 0 | 1](#task6) @Mar20 
 * [ ] [Search styles](#task5) @Mar13
-* [ ] [stored proc. // trigger](#task7) @Mar19
+* [ ] [Store images URL | base64](#task11) @Mar20
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
@@ -62,11 +63,11 @@
 * [x] <a id="task4">Notification config object</a>
 * [x] <a id="task1">Responsive</a>
 * [x] <a id="task6">Term unique error</a>
-* [x] <a id="task9">Option selected</a>
-* [ ] <a id="task7">stored proc. // trigger </a>
+* [x] <a id="task9">Select component & option selected</a>
+* [x] Check term unique response 0 | 1
+* [ ] <a id="task11">Store images URL | base64 </a>
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
 * [ ] <a id="task5">Styles search</a>
-* [ ] Store images ?
  
 # REFACTOR 
 * [x] Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll)
