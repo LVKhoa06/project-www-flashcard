@@ -1,7 +1,7 @@
 import axios from 'axios';
 import styles from '../../styles/ModalCheck.module.scss'
 
-function ModalCheck1(props) {
+function ModalCheck(props) {
     const { setShow, setData, id, setNotificationConfig, notificationConfig } = props;
 
     const deleteHandler = async () => {
@@ -38,4 +38,4 @@ function ModalCheck1(props) {
     );
 }
 
-export default ModalCheck1;
+export default ModalCheck;

@@ -5,7 +5,7 @@ import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import styles from '../../styles/Bin.module.scss'
 import Notification from '../notification/Notification';
-import ModalCheck1 from './checkDeleting';
+import ModalCheck from './CheckDeleting';
 
 function Bin() {
     const [data, setData] = useState([]);
@@ -51,7 +51,7 @@ function Bin() {
     return (
         <>
             <Notification config={notificationConfig} />
-            {show && <ModalCheck1 setShow={setShow} setData={setData} id={curId} notificationConfig={notificationConfig} setNotificationConfig={setNotificationConfig} />}
+            {show && <ModalCheck setShow={setShow} setData={setData} id={curId} notificationConfig={notificationConfig} setNotificationConfig={setNotificationConfig} />}
             <Head>
                 <title>Flashcard Bin</title>
             </Head>
