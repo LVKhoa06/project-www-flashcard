@@ -51,6 +51,14 @@ $res_600 : "only screen and (max-width: 600px)";
             cursor: pointer;
         }
 
+        .demo {
+            position: absolute;
+            right: 30px;
+            top: -3px;
+            cursor: pointer;
+            padding: 0 5px;
+        }
+
         .content {
             display: flex;
             flex-direction: column;
@@ -142,12 +150,13 @@ $res_600 : "only screen and (max-width: 600px)";
         text-overflow: ellipsis;
     }
 
-    img {
+    .img {
         min-height: 100px;
         max-height: 100px;
         min-width: 60px;
         max-width: 60px;
         border-radius: 5px;
+        background-size: cover
     }
 
     h2:hover {
