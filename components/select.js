@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 
 function Select(props) {
-    const { onChange, indicator } = props;
+    const { onChange, selected } = props;
     const [listTopic, setListTopic] = useState([]);
 
     useEffect(() => {
@@ -18,7 +18,7 @@ function Select(props) {
             <select onChange={(e) => onChange(e.target.value)}>
                 {props.children}
                 {listTopic.map(item => {
-                    return <option selected={item?.topic_id === indicator ? true : false} key={item.topic_id} value={item.topic_id}>{item.topic}</option>
+                    return <option selected={item?.topic_id === selected ? true : false} key={item.topic_id} value={item.topic_id}>{item.topic}</option>
                 })}
             </select>
         </>

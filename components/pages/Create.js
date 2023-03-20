@@ -43,10 +43,9 @@ function Create() {
             return;
         }
 
-        const data2 = await axios.get("/api/flashcard/home");
-        let post = data2.data.find(item => item.term.toUpperCase() === term.toUpperCase());
-
-        if (!post) {
+        const checkTermAlreadyExitOrNot = await axios.get(`/api/flashcard/check-term?term=${term}`);
+        
+        if (!checkTermAlreadyExitOrNot.data[0].term) {
             await axios.post(
                 "/api/flashcard/create",
                 {

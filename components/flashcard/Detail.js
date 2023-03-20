@@ -100,7 +100,7 @@ function FlashcardDetail(props) {
                             <h1 onClick={() => setShow(false)} className={styles.close}><IconClose /></h1>
                             <div className={styles['container-left']}>
                                 <img className={styles['img-fc']} src={img?.src} />
-                                <Select onChange={changeTopic} indicator={curTopic ? curTopic[0].topic_id : ''} />
+                                <Select onChange={changeTopic} selected={curTopic ? curTopic[0].topic_id : ''} />
                             </div>
                             <div className={styles.content}>
                                 <input

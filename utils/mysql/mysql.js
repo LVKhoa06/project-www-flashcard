@@ -19,6 +19,16 @@ export async function flashcard_create(topic_id, term, description, date) {
     };
 } // createFlashcard
 
+export async function flashcard_checkTermAlreadyExistOrNot(term) {
+    const query = `select count(term) as term from flashcard where term = '${term}'`;
+    const [data] = await pool().execute(query);
+
+    if (!data)
+        return false;
+
+    return data;
+} // createFlashcard
+
 // stored proc. // trigger
 export async function flashcard_remove(id) {
     const query1 = `insert into flashcard_bin select * from flashcard where id = ${id};`;
