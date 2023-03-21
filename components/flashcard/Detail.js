@@ -4,6 +4,7 @@ import axios from "axios";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import styles from '../../styles/Flashcard.module.scss'
+import GetImg from "../image/GetImg";
 import Notification from "../notification/Notification";
 import Select from "../select";
 
@@ -13,7 +14,8 @@ function FlashcardDetail(props) {
     const [valueTerm, setValueTerm] = useState('');
     const [valueDesc, setValueDesc] = useState('');
     const [curTopic, setCurtopic] = useState();
-    const [url, setUrl] = useState('');
+    const [showChangeImg, setShowChangeImg] = useState(false);
+    const [curImg, setCurImg] = useState(data.img);
 
     const [notificationConfig, setNotificationConfig] = useState({
         show: false,
@@ -82,7 +84,6 @@ function FlashcardDetail(props) {
             })
         }
         if (valueDesc.trim().length === 0) {
-            console.log('2');
             return setNotificationConfig({
                 message: 'Not be to empty description',
                 type: 'warning',
@@ -110,35 +111,6 @@ function FlashcardDetail(props) {
         })
     } // changeTopic
 
-    const convertImgToBase64 = async () => {
-        const elm = document.getElementById('test');
-        const file = elm?.files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-
-        reader.onload = () => {
-            setUrl(reader.result)
-        }
-    } // 
-
-    useEffect(() => {
-        const handler = async () => {
-            await axios.patch(
-                'api/flashcard/home',
-                {
-                    id: data.id,
-                    field: 'img',
-                    value: url
-                },
-                {
-                    "Content-Type": "application/json",
-                }
-            );
-        }
-
-        if (url) handler();
-    }, [url])
-
     return (
         <>
             <Notification config={notificationConfig} />
@@ -147,27 +119,33 @@ function FlashcardDetail(props) {
             </Head>
             {result.map(item => {
                 const img = images[`img${imgIndex ? imgIndex[index] : Math.ceil(Math.random() * 20)}`];
-
                 return (
                     <div
                         onClick={() => setShow(false)}
                         className={styles.overlay} key={item.id}
-                        style={{
-                            backgroundImage: `url("${url ? url : ''}")`
-                        }}
                     >
                         <div
-                            onClick={(e) => e.stopPropagation()}
+                            onClick={(e) => {
+                                setShowChangeImg(false);
+                                e.stopPropagation()
+                            }}
                             className={styles.container}
                         >
-                            <div onClick={() => { }} className={styles.demo}>
-                                <input id="test" onChange={() => {
-                                    convertImgToBase64();
-                                }} type="file" />
-                            </div>
                             <h1 onClick={() => setShow(false)} className={styles.close}><IconClose /></h1>
                             <div className={styles['container-left']}>
-                                <img className={styles['img-fc']} src={img?.src} />
+                                <div
+                                    className={styles['img-fc']}
+                                    onClick={(e) => {
+                                        e.stopPropagation()
+                                        setShowChangeImg(!showChangeImg)
+                                    }}
+                                    style={{
+                                        backgroundImage: `url("${curImg ? curImg : img?.src}")`,
+                                    }}
+                                >
+                                    {showChangeImg && <GetImg setImg={setCurImg} id={data.id} setShow={setShowChangeImg} />}
+
+                                </div>
                                 <Select onChange={changeTopic} selected={curTopic ? curTopic[0].topic_id : ''} />
                             </div>
                             <div className={styles.content}>

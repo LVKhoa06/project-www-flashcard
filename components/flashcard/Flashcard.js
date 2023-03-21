@@ -74,7 +74,12 @@ function Flashcard(props) {
                 const img = images[`img${imgIndex[index]}`];
                 return (
                     <div onClick={(e) => detailHandler(e, index)} id={id} /*title={topicName}*/ className={`${styles.flashcard}`} key={id}>
-                        <img src={img?.src} />
+                        <div
+                        style={{
+                            backgroundImage: `url("${item.img ? item.img : img?.src}")`,
+                        }}
+                         className={styles.img}
+                         ></div>
                         <div className={styles['wrap-content']}>
                             <div className={styles['wrap-title']}>
                                 <h2
