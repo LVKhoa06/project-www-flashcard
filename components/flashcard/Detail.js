@@ -55,11 +55,40 @@ function FlashcardDetail(props) {
             })
         }
 
-        if (e.key === 'Enter' && field === 'term')
-            return handler(valueTerm);
+        if (e.key === 'Enter' && field === 'term' && valueTerm.trim().length) {
+            await handler(valueTerm);
 
-        if (field === 'description')
-            return handler(valueDesc);
+            return setNotificationConfig({
+                message: 'Update flashcard term successfully.',
+                type: 'success',
+                show: !notificationConfig.show
+            })
+        }
+
+        if (field === 'description' && valueDesc.trim().length) {
+            await handler(valueDesc);
+            return setNotificationConfig({
+                message: 'Update flashcard description successfully.',
+                type: 'success',
+                show: !notificationConfig.show
+            })
+        }
+
+        if (valueTerm.trim().length === 0) {
+            return setNotificationConfig({
+                message: 'Not be to empty term',
+                type: 'warning',
+                show: !notificationConfig.show
+            })
+        }
+        if (valueDesc.trim().length === 0) {
+            console.log('2');
+            return setNotificationConfig({
+                message: 'Not be to empty description',
+                type: 'warning',
+                show: !notificationConfig.show
+            })
+        }
     } // updateFlashcardHandler
 
     const changeTopic = async (value) => {
@@ -81,7 +110,7 @@ function FlashcardDetail(props) {
         })
     } // changeTopic
 
-    const convertImgToBase64 = async (id, value) => {
+    const convertImgToBase64 = async () => {
         const elm = document.getElementById('test');
         const file = elm?.files[0];
         const reader = new FileReader();
@@ -133,7 +162,7 @@ function FlashcardDetail(props) {
                         >
                             <div onClick={() => { }} className={styles.demo}>
                                 <input id="test" onChange={() => {
-                                    convertImgToBase64(item.id);
+                                    convertImgToBase64();
                                 }} type="file" />
                             </div>
                             <h1 onClick={() => setShow(false)} className={styles.close}><IconClose /></h1>
