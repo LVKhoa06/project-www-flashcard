@@ -1,5 +1,6 @@
 # 🚀 WORKING ON
 * [ ] [ Authentication ](#task1) @Mar22
+* [ ] [ Flashcard detail term update unique error  ](#task2) @Mar22
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
@@ -60,8 +61,10 @@
 * [x] <a id="task14">Update image list flashcard</a>  
 * [x] <a id="task16">Check file name is image format</a> 
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
-* [ ] <a id="task5">Styles search</a>
-* [ ] Flashcard detail term update error 
+* [x] <a id="task5">Styles search</a>
+* [ ] Flashcard detail term update unique error 
+* [ ] List-collection request
+* [ ] Topic & collection detail update (`api`)
  
 # REFACTOR 
 * [x] Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll)
@@ -73,6 +76,7 @@
 * [ ] MySQL => implementations (callback)
 * [ ] API => pattern: code (200 | 201 | 400 | 500...), response, getSession()...
 * [ ] authentication => user-created | private|public | protected API
+
 
 # 💻 Snippet to work with async task
 ```jsx
