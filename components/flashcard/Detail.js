@@ -11,8 +11,8 @@ import Select from "../select";
 function FlashcardDetail(props) {
     const { data, imgIndex, index, setShow, setData } = props;
     const [result, setResult] = useState([data]);
-    const [valueTerm, setValueTerm] = useState('');
-    const [valueDesc, setValueDesc] = useState('');
+    const [valueTerm, setValueTerm] = useState(data.term);
+    const [valueDesc, setValueDesc] = useState(data.description);
     const [curTopic, setCurtopic] = useState();
     const [showChangeImg, setShowChangeImg] = useState(false);
     const [curImg, setCurImg] = useState('');
@@ -60,16 +60,25 @@ function FlashcardDetail(props) {
         }
 
         if (e.key === 'Enter' && field === 'term' && valueTerm.trim().length) {
-            await handler(valueTerm);
+            const checkTermAlreadyExitOrNot = await axios.get(`/api/flashcard/check-term?term=${valueTerm}`);
 
-            return setNotificationConfig({
-                message: 'Update flashcard term successfully.',
-                type: 'success',
-                show: !notificationConfig.show
-            })
+            if (!checkTermAlreadyExitOrNot.data[0].term) {
+                await handler(valueTerm);
+                return setNotificationConfig({
+                    message: 'Update flashcard term successfully.',
+                    type: 'success',
+                    show: !notificationConfig.show
+                })
+            } else {
+                return setNotificationConfig({
+                    message: 'Term already exist.',
+                    type: 'error',
+                    show: !notificationConfig.show
+                })
+            }
         }
 
-        if (field === 'description' && valueDesc.trim().length) {
+        if (field === 'description' && valueDesc.trim().length && e.type === 'click') {
             await handler(valueDesc);
             return setNotificationConfig({
                 message: 'Update flashcard description successfully.',
@@ -78,14 +87,14 @@ function FlashcardDetail(props) {
             })
         }
 
-        if (valueTerm.trim().length === 0) {
+        if (valueTerm.trim().length === 0 && e.key === 'Enter') {
             return setNotificationConfig({
                 message: 'Not be to empty term',
                 type: 'warning',
                 show: !notificationConfig.show
             })
         }
-        if (valueDesc.trim().length === 0) {
+        if (valueDesc.trim().length === 0 && e.type === 'click') {
             return setNotificationConfig({
                 message: 'Not be to empty description',
                 type: 'warning',
@@ -161,7 +170,9 @@ function FlashcardDetail(props) {
                                     defaultValue={data?.description}
                                 />
                                 <button
-                                    onClick={(e) => updateFlashcardHandler(e, 'description', item.id)}
+                                    onClick={(e) => {
+                                        updateFlashcardHandler(e, 'description', item.id)
+                                    }}
                                 >Update</button>
                             </div>
                         </div>
