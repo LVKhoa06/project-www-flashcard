@@ -1,4 +1,35 @@
 import pool from './pool';
+import bcrypt from "bcrypt";
+
+//#region Flashcard ----------------------------------------------- START
+
+export async function signIn(nickname, passwordPlain) {
+    const query = `select * from users where nickname = '${nickname}';`;
+    const [users] = await pool().execute(query);
+  
+    if (!users.length) return {
+      success: false,
+      message: 'Account does not exist',
+      data: ''
+    };
+  
+    const password_hashed_database = users[0].password_hashed;
+    const matched = await bcrypt.compare(passwordPlain, password_hashed_database);
+  
+    if (!matched) return {
+      success: false,
+      message: 'Sai mật khẩu',
+      data: ''
+    };
+  
+    return {
+      success: true,
+      message: '',
+      data: users[0]
+    };
+  } // signIn
+//#regionend Flashcard ----------------------------------------------- END
+
 
 //#region Flashcard ----------------------------------------------- START
 
