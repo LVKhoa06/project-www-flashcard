@@ -1,5 +1,6 @@
 import images from 'assets';
 import IconMenuNav from 'assets/icon-menu-nav';
+import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
 import { useState } from 'react';
 import styles from '../../styles/Navbar.module.scss';
@@ -9,6 +10,7 @@ import Search from './Search';
 
 function Navbar() {
     const [show, setShow] = useState(false);
+    const { data: session, status } = useSession();
 
     return (
         <>
@@ -26,12 +28,19 @@ function Navbar() {
                 </div>
                 <div className={styles['top-right']}>
                     <Add />
-                    <Link className={styles['sign-in']} href="/">
+                    <Link className={styles['sign-in']} href="/sign-in">
                         <span>Sign-in</span>
                     </Link>
-                    <Link className={styles['sign-up']} href="/">
-                        <span>Sign-up</span>
-                    </Link>
+                    {session ?
+                        <Link onClick={() => signOut({ callbackUrl: "/" })} className={styles['sign-up']} href="/">
+                            <span>Sign-out</span>
+                        </Link>
+                        :
+                        <Link className={styles['sign-up']} href="/">
+                            <span>Sign-up</span>
+                        </Link>
+                    }
+
                 </div>
             </div>
             <NavMobile show={show} setShow={setShow} />
@@ -40,3 +49,4 @@ function Navbar() {
 }
 
 export default Navbar;
+

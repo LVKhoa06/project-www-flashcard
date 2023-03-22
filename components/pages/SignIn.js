@@ -14,29 +14,24 @@ const STATUS = {
 
 export default function SignIn() {
   const { data: session, status } = useSession();
-  const [condition, setCondition] = useState({ code: STATUS.UNKNOWN, message: '' });
   const refPass = useRef();
   const refUser = useRef();
   const router = useRouter();
   const redirect_to = router.query?.redirect_to;
   console.log(redirect_to);
 
-  const transferRegisterPage = () => {
-    router.replace("/register");
-  };
-
   async function signInHandler() {
     const nickname = refUser.current.value.trim();
     const password = refPass.current.value.trim();
 
     if (!nickname && !password)
-      return setCondition({ code: STATUS.ERROR, message: 'Vui lòng nhập thông tin của bạn' });
+      return;
 
     if (!nickname)
-      return setCondition({ code: STATUS.ERROR, message: 'Vui lòng nhập tên đăng nhập' });
+      return;
 
     if (!password)
-      return setCondition({ code: STATUS.ERROR, message: 'Vui lòng nhập mật khẩu' });
+      return;
 
     const result = await signIn("credentials", {
       redirect: false,
@@ -50,7 +45,6 @@ export default function SignIn() {
     else if (ok) {
       router.replace('/');
     }
-    setCondition({ code: STATUS.ERROR, message: error });
   } // signInHandler
 
   const keyEnterHandler = (event) => {
@@ -80,19 +74,16 @@ export default function SignIn() {
         <h2>Login</h2>
         <div className={styles.form}>
           <div className={styles.user_box}>
-            <input onKeyDown={(event) => keyEnterHandler(event)} ref={refUser} type="text" />
-            <label>Username</label>
+            <input placeholder="Nickname" onKeyDown={(event) => keyEnterHandler(event)} ref={refUser} type="text" />
           </div>
           <div className={styles.user_box}>
-            <input onKeyDown={(event) => keyEnterHandler(event)} ref={refPass} type="password" />
-            <label>Password</label>
+            <input placeholder="Password" onKeyDown={(event) => keyEnterHandler(event)} ref={refPass} type="password" />
           </div>
-          <span className={styles.notification}>{condition.message}</span>
           <div className={styles.contain_btn}>
             <button onClick={signInHandler}>
               Sign in
             </button>
-            <button onClick={transferRegisterPage}>
+            <button>
               Register
             </button>
           </div>
