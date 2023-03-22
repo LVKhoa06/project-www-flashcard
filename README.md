@@ -10,9 +10,11 @@
 * [x] [Select component & option selected](#task9) @Mar19
 * [x] [Check term unique response 0 | 1](#task6) @Mar20 
 * [x] [Store images URL | base64](#task11) @Mar20
+* [x] [Change img flashcard](#task12) @Mar20
+* [x] [Fix term | description = "" in flashcard  detail](#task13) @Mar21
 * [ ] [Search styles](#task5) @Mar13
-* [ ] [Change img flashcard](#task12) @Mar20
-* [ ] [Fix term | description = "" in flashcard  detail](#task13) @Mar21
+* [x] [Update image flashcard list ](#task14) @Mar21
+* [x] [Check file name is image format](#task16) @Mar21
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
@@ -68,8 +70,10 @@
 * [x] <a id="task9">Select component & option selected</a>
 * [x] Check term unique response 0 | 1
 * [x] <a id="task11">Store images URL | base64 </a>
-* [ ] <a id="task12">Change img flashcard</a>
-* [ ] <a id="task13">Fix term | description = "" in flashcard  detail</a>
+* [x] <a id="task13">Fix term | description = "" in flashcard  detail</a>
+* [x] <a id="task12">Change img flashcard</a>
+* [x] <a id="task14">Update image list flashcard</a>  
+* [x] <a id="task16">Check file name is image format</a> 
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
 * [ ] <a id="task5">Styles search</a>
  

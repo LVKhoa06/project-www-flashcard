@@ -4,7 +4,7 @@ import styles from '../../styles/GetImg.module.scss'
 import Notification from "../notification/Notification";
 
 function GetImg(props) {
-    const { setShow, id, setImg } = props;
+    const { id, setImg, setData } = props;
     const regexCheckUrlImage = /^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp)(\?(.*))?$/gmi;
     const [url, setUrl] = useState('');
     const [notificationConfig, setNotificationConfig] = useState({
@@ -14,6 +14,9 @@ function GetImg(props) {
     })
 
     useEffect(() => {
+        if (!url)
+            return;
+
         const handler = async () => {
             await axios.patch(
                 'api/flashcard/home',
@@ -31,12 +34,20 @@ function GetImg(props) {
                 type: 'success',
                 show: !notificationConfig.show,
                 message: 'Change image successfull'
-            })
+            });
 
-            setImg(url)
+            setImg(url);
+            setData(prev => {
+                return prev.map(item => {
+                    return {
+                        ...item,
+                        img: item.id === id ? url : item.img
+                    }
+                })
+            })
         }
 
-        if (url) handler();
+        handler();
     }, [url])
 
     const checkImgUrl = async () => {
@@ -80,8 +91,21 @@ function GetImg(props) {
         const reader = new FileReader();
         reader.readAsDataURL(file);
 
-        reader.onload = () => {
-            setUrl(reader.result)
+        function isFileImage(file) {
+            console.log(file['type']);
+            return file && file['type'].split('/')[0] === 'image';
+        }
+
+        if (isFileImage(file))
+            reader.onload = () => {
+                setUrl(reader.result);
+            }
+        else {
+            setNotificationConfig({
+                type: 'warning',
+                show: !notificationConfig.show,
+                message: "Please select a file in image format"
+            })
         }
     } // convertImgToBase64
 
