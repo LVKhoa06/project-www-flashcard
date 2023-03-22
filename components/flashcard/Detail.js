@@ -9,13 +9,13 @@ import Notification from "../notification/Notification";
 import Select from "../select";
 
 function FlashcardDetail(props) {
-    const { data, imgIndex, index, setShow } = props;
+    const { data, imgIndex, index, setShow, setData } = props;
     const [result, setResult] = useState([data]);
     const [valueTerm, setValueTerm] = useState('');
     const [valueDesc, setValueDesc] = useState('');
     const [curTopic, setCurtopic] = useState();
     const [showChangeImg, setShowChangeImg] = useState(false);
-    const [curImg, setCurImg] = useState(data.img);
+    const [curImg, setCurImg] = useState('');
 
     const [notificationConfig, setNotificationConfig] = useState({
         show: false,
@@ -29,6 +29,8 @@ function FlashcardDetail(props) {
             setCurtopic(data2.data);
         }
         handler();
+
+        setCurImg(data.img);
     }, []);
 
 
@@ -143,7 +145,7 @@ function FlashcardDetail(props) {
                                         backgroundImage: `url("${curImg ? curImg : img?.src}")`,
                                     }}
                                 >
-                                    {showChangeImg && <GetImg setImg={setCurImg} id={data.id} setShow={setShowChangeImg} />}
+                                    {showChangeImg && <GetImg setImg={setCurImg} id={data.id} setData={setData} />}
 
                                 </div>
                                 <Select onChange={changeTopic} selected={curTopic ? curTopic[0].topic_id : ''} />

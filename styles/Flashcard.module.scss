@@ -36,6 +36,7 @@ $res_600 : "only screen and (max-width: 600px)";
                 background-size: cover;
                 background-position: center;
                 position: relative;
+                cursor: pointer;
             }
 
             select {
@@ -285,6 +286,7 @@ $res_600 : "only screen and (max-width: 600px)";
                 max-height: 210px;
                 min-height: 210px;
                 margin-right: 10px;
+                cursor: pointer;
             }
         }
     }

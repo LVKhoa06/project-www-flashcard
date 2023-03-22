@@ -56,8 +56,6 @@ function Flashcard(props) {
                 type: 'success',
                 show: !notificationConfig.show
             })
-        
-
     }, [deleted]);
 
     const detailHandler = (e, index) => {
@@ -68,7 +66,7 @@ function Flashcard(props) {
     return (
         <>
             {<Notification config={notificationConfig} />}
-            {show && <FlashcardDetail show={show} setShow={setShow} imgIndex={imgIndex} index={curDetailId} data={data[curDetailId]} />}
+            {show && <FlashcardDetail setData={setData} show={show} setShow={setShow} imgIndex={imgIndex} index={curDetailId} data={data[curDetailId]} />}
             {data.map((item, index) => {
                 const id = item.id;
                 const img = images[`img${imgIndex[index]}`];
