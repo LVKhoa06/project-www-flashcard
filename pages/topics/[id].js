@@ -3,6 +3,7 @@ import Head from "next/head";
 import { useEffect, useState } from "react";
 import { topic_getAll, flashcard_getWithCondition } from "utils/mysql/mysql";
 import styles from '../../styles/ListTopic.module.scss'
+import Protector from "@/components/Protector";
 
 export async function getStaticPaths() {
   const data = await topic_getAll();
@@ -41,7 +42,7 @@ function TopicDetail({ result, topic }) {
   const [data, setData] = useState(result);
 
   return (
-    <>
+    <Protector>
       <Head>
         <title>{topic.topic} - Topic</title>
       </Head>
@@ -55,7 +56,7 @@ function TopicDetail({ result, topic }) {
           </div>
         }
       </div>
-    </>
+    </Protector>
   );
 }
 

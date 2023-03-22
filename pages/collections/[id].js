@@ -1,12 +1,12 @@
 import Flashcard from "@/components/flashcard/Flashcard";
+import Protector from "@/components/Protector";
 import ModalCheck from "@/components/collection/ModalDeleteColelction";
-import SortAndFilter from "@/components/sort_and_filter/SortAndFilter";
 import images from "assets";
 import IconBin from "assets/icon-bin";
 import IconTick from "assets/icon-tick";
 import axios from "axios";
 import Head from "next/head";
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { collection_getAll, flashcard_getWithCollection } from "utils/mysql/mysql";
 import styles from '../../styles/ListCollection.module.scss'
 
@@ -67,7 +67,7 @@ function CollectionDetail({ result, collection }) {
   }// submitCollectionName
 
   return (
-    <>
+    <Protector>
       <Head>
         <title>{collection.collection} - Collection</title>
       </Head>
@@ -116,7 +116,7 @@ function CollectionDetail({ result, collection }) {
         }
         {showCheck ? <ModalCheck id={collection.collection_id} setShowCheck={setShowCheck} /> : ''}
       </div>
-    </>
+    </Protector>
   );
 }
 

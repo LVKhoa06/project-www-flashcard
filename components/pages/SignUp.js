@@ -70,9 +70,9 @@ function SignUp() {
       signUpHandler();
   } // keyEnterHandler
 
-  const backLSignInPage = () => {
+  const backSignInPage = () => {
     router.replace("/sign-in");
-  }; // backLoginPage
+  }; // backSignInPage
 
   return (
     <>
@@ -133,7 +133,7 @@ function SignUp() {
               <button onClick={signUpHandler}>
                 Submit
               </button>
-              <button onClick={backLSignInPage}>
+              <button onClick={backSignInPage}>
                 {'Sign-in>'}
               </button>
             </div>

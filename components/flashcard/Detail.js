@@ -25,8 +25,8 @@ function FlashcardDetail(props) {
 
     useEffect(() => {
         const handler = async () => {
-            const data = await axios.get(`/api/topic/cur-topic?id=${data.id}`);
-            setCurtopic(data.data);
+            const fetch = await axios.get(`/api/topic/cur-topic?id=${data.id}`);
+            setCurtopic(fetch.data);
         }
         handler();
 

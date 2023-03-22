@@ -71,7 +71,7 @@ export default function SignIn() {
       </Head>
       <div className={styles.overlay}>
         <div className={styles.login_box}>
-          <h2>Login</h2>
+          <h2>Sign-in</h2>
           <div className={styles.form}>
             <div className={styles.user_box}>
               <input placeholder="Username" onKeyDown={(event) => keyEnterHandler(event)} ref={refUser} type="text" />
