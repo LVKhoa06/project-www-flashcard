@@ -1,4 +1,5 @@
 import '../styles/globals.scss'
+import { SessionProvider } from "next-auth/react";
 import Head from 'next/head'
 import Navbar from '@/components/Navbar/Navbar';
 import images from 'assets';
@@ -11,8 +12,11 @@ export default function App({ Component, pageProps }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href={images.logo.src} />
       </Head>
-      <Navbar></Navbar>
-      <Component {...pageProps} />
+      <SessionProvider session={pageProps.session}>
+        <Navbar></Navbar>
+        <Component {...pageProps} />
+      </SessionProvider>
+
     </>
   );
 }
