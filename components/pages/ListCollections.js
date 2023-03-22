@@ -5,15 +5,12 @@ import { useEffect, useState } from 'react';
 import styles from '../../styles/ListCollection.module.scss'
 
 function ListCollections() {
-    const [listCollection, setListCollection] = useState([]);
     const [data, setData] = useState([]);
 
     useEffect(() => {
         const handler = async () => {
-            const data = await axios.get("/api/collection/list-collection");
-            const data2 = await axios.get("/api/collection/collection");
-            setListCollection(data.data);
-            setData(data2.data);
+            const data = await axios.get("/api/collection/collection");
+            setData(data.data);
         }
         handler();
     }, [])
@@ -24,15 +21,14 @@ function ListCollections() {
                 <title>List Collection</title>
             </Head>
             <div className={styles.container}>
-                {listCollection.map((item, index) => {
-                    const collectionQuantity = data.find(item2 => item2.collection_id === item.collection_id)
+                {data.map((item, index) => {
                     return (
                         <Link href={`/collections/${item.collection_id}`} className={styles.collection} key={index}>
                             <div className={''}>
                                 <h2>{item.collection}</h2>
                             </div>
                             <div className={styles['quantity-container']}>
-                                <span>{collectionQuantity?.quantity ? `${collectionQuantity?.quantity} flashcard` : 'Empty'}</span>
+                                <span>{item.quantity ? `${item.quantity} flashcard` : 'Empty'}</span>
                             </div>
                         </Link>
                     )
