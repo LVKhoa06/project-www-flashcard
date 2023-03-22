@@ -1,7 +1,7 @@
 import pool from './pool';
 import bcrypt from "bcrypt";
 
-//#region Flashcard ----------------------------------------------- START
+//#region Authentication----------------------------------------------- START
 
 export async function signIn(nickname, passwordPlain) {
     const query = `select * from users where nickname = '${nickname}';`;
@@ -18,7 +18,7 @@ export async function signIn(nickname, passwordPlain) {
   
     if (!matched) return {
       success: false,
-      message: 'Sai mật khẩu',
+      message: 'Wrong password.',
       data: ''
     };
   
@@ -28,7 +28,40 @@ export async function signIn(nickname, passwordPlain) {
       data: users[0]
     };
   } // signIn
-//#regionend Flashcard ----------------------------------------------- END
+
+  
+export async function signUp(id, nickname, mat_khau) {
+    const password_hashed = await bcrypt.hash(mat_khau, 10);
+    const querySelectNickname = `select nickname from users where nickname = ?;`;
+    const [users] = await pool().execute(querySelectNickname, [nickname]);
+  
+    if (users.length)
+      return {
+        success: false,
+        message: 'Account already exists.',
+      }
+  
+    const query = `insert into users (id, nickname, mat_khau, password_hashed) values (?, ?, ?, ?)`;
+    const values = [
+      id,
+      nickname,
+      mat_khau,
+      password_hashed,
+    ];
+    const [result] = await pool().execute(query, values);
+  
+    if (result?.affectedRows !== 1)
+      return {
+        success: false,
+        message: "Error occured."
+      };
+  
+    return {
+      success: true,
+      message: 'Account successfully created'
+    };
+  } // register
+//#regionend Authentication----------------------------------------------- END
 
 
 //#region Flashcard ----------------------------------------------- START
@@ -336,7 +369,8 @@ export async function collection_update(id, field, value) {
 
 //#endregion Collection -------------------------------------------- END
 
-//#region Collection -------------------------------------------- START
+
+//#region Bin -------------------------------------------- START
 
 export async function bin_getAll() {
     const query = `select * from flashcard_bin;`;

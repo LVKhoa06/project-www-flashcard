@@ -1,4 +1,3 @@
-import images from 'assets';
 import IconMenuNav from 'assets/icon-menu-nav';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
@@ -36,7 +35,7 @@ function Navbar() {
                             <span>Sign-out</span>
                         </Link>
                         :
-                        <Link className={styles['sign-up']} href="/">
+                        <Link className={styles['sign-up']} href="/sign-up">
                             <span>Sign-up</span>
                         </Link>
                     }

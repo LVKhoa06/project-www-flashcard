@@ -54,7 +54,7 @@ function NavMobile(props) {
                             <span>Sign-out</span>
                         </Link>
                         :
-                        <Link href='/' onClick={() => setShow(false)} className={styles['item']}>
+                        <Link href='/sign-up' onClick={() => setShow(false)} className={styles['item']}>
                             <span ><IconCreate stroke='#3688ff' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' /></span>
                             <span>Sign-up</span>
                         </Link>
