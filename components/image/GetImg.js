@@ -7,6 +7,7 @@ function GetImg(props) {
     const { id, setImg, setData } = props;
     const regexCheckUrlImage = /^http[^\?]*.(jpg|jpeg|gif|png|tiff|bmp)(\?(.*))?$/gmi;
     const [url, setUrl] = useState('');
+    const ref = useRef();
     const [notificationConfig, setNotificationConfig] = useState({
         show: false,
         type: '',
@@ -86,8 +87,8 @@ function GetImg(props) {
     }
 
     const convertImgToBase64 = async () => {
-        const elm = document.getElementById('file');
-        const file = elm?.files[0];
+        // const elm = document.getElementById('file');
+        const file = ref.current?.files[0];
         const reader = new FileReader();
         reader.readAsDataURL(file);
 
@@ -118,7 +119,7 @@ function GetImg(props) {
                 </div>
                 <div className={styles.item}>
                     <span>Get image from file
-                        <input onChange={convertImgToBase64} id='file' type="file" />
+                        <input ref={ref} onChange={convertImgToBase64} id='file' type="file" />
                     </span>
                 </div>
             </div>

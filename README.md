@@ -1,20 +1,5 @@
 # 🚀 WORKING ON
-* [x] [Collection ](#task8) @Mar14
-* [x] [Components\Notification](#task10) @Mar15
-* [x] [Collection error default checked](#task1) @Mar17 
-* [x] [Component select / options](#task3) @Mar18
-* [x] [Bin](#task2) @Mar17 
-* [x] [Notification config object](#task4) @Mar18 
-* [x] [Api request error `bin`](#task1) @Mar19
-* [x] [Term unique error](#task6) @Mar18 
-* [x] [Select component & option selected](#task9) @Mar19
-* [x] [Check term unique response 0 | 1](#task6) @Mar20 
-* [x] [Store images URL | base64](#task11) @Mar20
-* [x] [Change img flashcard](#task12) @Mar20
-* [x] [Fix term | description = "" in flashcard  detail](#task13) @Mar21
-* [ ] [Search styles](#task5) @Mar13
-* [x] [Update image flashcard list ](#task14) @Mar21
-* [x] [Check file name is image format](#task16) @Mar21
+* [ ] [ Authentication ](#task1) @Mar22
 
 # 🍀 NOTE
 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
@@ -76,13 +61,14 @@
 * [x] <a id="task16">Check file name is image format</a> 
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
 * [ ] <a id="task5">Styles search</a>
+* [ ] Flashcard detail term update error 
  
 # REFACTOR 
 * [x] Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll)
 
 # MISC
 * [ ] Color + img: term | topic
-* [X] Notification w/ color indicator: created | updated | deleted
+* [X] Notification w/ color indicator: created | updated | deleted contex
 * [ ] mobile-friendly: swipes...
 * [ ] MySQL => implementations (callback)
 * [ ] API => pattern: code (200 | 201 | 400 | 500...), response, getSession()...

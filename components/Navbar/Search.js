@@ -83,6 +83,7 @@ function Search() {
                             )
                         })
                     }
+                    {!result.length}
                     {show && data && <FlashcardDetail show={show} setShow={setShow} data={data} />}
                 </div>
             </div>

@@ -5,9 +5,11 @@ import Head from "next/head";
 import styles from '../../styles/CreateFlashcard.module.scss'
 import Notification from "../notification/Notification";
 import Select from "../select";
+import { useSession } from "next-auth/react";
 
 
 function Create() {
+    const { data: session, status } = useSession();
     const [topicId, setTopicId] = useState(-1);
     const [term, setTerm] = useState('');
     const [description, setDiscription] = useState('');
@@ -15,7 +17,7 @@ function Create() {
         show: false,
         type: '',
         message: ''
-    })
+    });
 
     const date = formatDateWithLocale({
         format: "YYYY-MM-DD",
@@ -27,8 +29,8 @@ function Create() {
 
         if (term === '') {
             setNotificationConfig({
-                message:'Please enter Term',
-                type:'warning',
+                message: 'Please enter Term',
+                type: 'warning',
                 show: !notificationConfig.show
             })
             return;
@@ -36,15 +38,15 @@ function Create() {
 
         if (description === '') {
             setNotificationConfig({
-                message:'Please enter Description',
-                type:'warning',
+                message: 'Please enter Description',
+                type: 'warning',
                 show: !notificationConfig.show
             })
             return;
         }
 
         const checkTermAlreadyExitOrNot = await axios.get(`/api/flashcard/check-term?term=${term}`);
-        
+
         if (!checkTermAlreadyExitOrNot.data[0].term) {
             await axios.post(
                 "/api/flashcard/create",
@@ -61,27 +63,27 @@ function Create() {
             setTerm('');
             setDiscription('');
             setNotificationConfig({
-                message:'Create flashcard successfuly',
-                type:'success',
+                message: 'Create flashcard successfuly',
+                type: 'success',
                 show: !notificationConfig.show
             })
-            
+
             return;
         } else {
 
             setNotificationConfig({
-                message:'Term already exist',
-                type:'error',
+                message: 'Term already exist',
+                type: 'error',
                 show: !notificationConfig.show
             })
-            
+
             return;
         }
     } // handlerCreate
 
     return (
         <>
-            <Notification config={notificationConfig}/>
+            <Notification config={notificationConfig} />
             <Head>
                 <title>Create Flashcard</title>
             </Head>
@@ -90,9 +92,12 @@ function Create() {
                 <form className={styles} >
                     <div className={styles['container-option']} >
                         <span>Topic:</span>
-                        <Select onChange={setTopicId} >
-                            <option value={-1}>Khác</option>
-                        </Select>
+                        {session &&
+                            <Select onChange={setTopicId} >
+                                <option value={-1}>Khác</option>
+                            </Select>
+                        }
+
                     </div>
                     <div className={styles['container-input']}>
                         <input className={styles['input-term']} value={term} onChange={(e) => setTerm(e.target.value)} placeholder="Term" />
@@ -101,7 +106,6 @@ function Create() {
                             <button className={styles} onClick={(e) => handlerCreate(e)}>Create</button>
                         </div>
                     </div>
-
                 </form>
             </div>
         </>
