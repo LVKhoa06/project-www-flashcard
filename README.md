@@ -1,12 +1,13 @@
 # 🚀 WORKING ON
-* [ ] [ Authentication ](#task1) @Mar22
 * [x] [ Flashcard detail term update unique error  ](#task2) @Mar22
-* [x] [ Collections & topics request ](#task3) @Mar22
-* [ ] [ Topic & collection detail update ](#task4) @Mar22
+* [x] [ Collections & topics request (list-topics|collection) ](#task3) @Mar22
+* [x] [ Topic & collection page (Flashcard detail update error)](#task4) @Mar22
+* [ ] [ Authentication ](#task1) @Mar22
 
 # 🍀 NOTE
-🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
-🟢 Display Component ({&& <Component />})
+* 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 
+* 🟢 Display Component ({&& <Component />})
+* 🟢 Use `/` before `api/` when calling API => `/api/...`.
 
 # ⚙ FEATURE
 ###  Flashcard
@@ -54,8 +55,9 @@
 * [x] Check file name is image format
 * [ ] <a id="task15">Handler error when working with data(create, search, update)</a>
 * [x] <a id="task2">Flashcard detail term update unique error</a> 
-* [x] <a id="task3">Collections & topics request</a>
-* [ ] <a id="task4">Topic & collection detail update (`api`)</a>
+* [x] <a id="task3">Collections & topics request (list-topics|collection)</a>
+* [x] <a id="task4">Topic & collection page (Flashcard detail update error)</a>
+* [ ] <a id="task1">Authentication</a>
  
 # REFACTOR 
 * [x] Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll)
