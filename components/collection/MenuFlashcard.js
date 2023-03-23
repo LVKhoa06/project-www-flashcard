@@ -10,7 +10,7 @@ function MenuFlashcard(props) {
     const [selected, setSelected] = useState([]);
 
     const deleteFlashcardHandler = async (id) => {
-        await axios.delete(`api/flashcard/home?id=${id}`);
+        await axios.delete(`/api/flashcard/home?id=${id}`);
         setData(prev => {
             return prev.filter(item => {
                 return item.id !== id;

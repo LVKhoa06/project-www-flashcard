@@ -19,7 +19,7 @@ function Bin() {
 
     useEffect(() => {
         const handler = async () => {
-            const fetch = await axios.get('api/bin/bin');
+            const fetch = await axios.get('/api/bin/bin');
             setData(fetch.data);
         }
         handler();
@@ -27,7 +27,7 @@ function Bin() {
 
     const recoverhandler = async (id) => {
         await axios.patch(
-            `api/bin/bin`,
+            `/api/bin/bin`,
             {
                 id
             },

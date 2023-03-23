@@ -20,7 +20,7 @@ function GetImg(props) {
 
         const handler = async () => {
             await axios.patch(
-                'api/flashcard/home',
+                '/api/flashcard/home',
                 {
                     id,
                     field: 'img',

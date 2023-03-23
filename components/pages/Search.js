@@ -16,7 +16,7 @@ function Search() {
             return;
 
         const handler = async () => {
-            const fetch = await axios.get(`api/search/search?keyword=${keyword}`)
+            const fetch = await axios.get(`/api/search/search?keyword=${keyword}`)
             setData(fetch.data);
         }
 

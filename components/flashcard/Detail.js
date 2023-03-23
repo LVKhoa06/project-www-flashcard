@@ -41,7 +41,7 @@ function FlashcardDetail(props) {
     const updateFlashcardHandler = async (e, field, id) => {
         const handler = async (value) => {
             await axios.patch(
-                'api/flashcard/home',
+                '/api/flashcard/home',
                 {
                     id,
                     field,
@@ -105,7 +105,7 @@ function FlashcardDetail(props) {
 
     const changeTopic = async (value) => {
         await axios.patch(
-            'api/topic/cur-topic',
+            '/api/topic/cur-topic',
             {
                 id: data.id,
                 topic_id: value

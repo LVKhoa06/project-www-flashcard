@@ -32,7 +32,7 @@ function Collection(props) {
 
         if (e.target.checked) {
             await axios.patch(
-                'api/collection/collection',
+                '/api/collection/collection',
                 {
                     id,
                     collection_id
@@ -48,7 +48,7 @@ function Collection(props) {
                 show: !notificationConfig.show
             })
         } else {
-            await axios.delete(`api/collection/collection?f_id=${id}&c_id=${collection_id}`)
+            await axios.delete(`/api/collection/collection?f_id=${id}&c_id=${collection_id}`)
 
             setNotificationConfig({
                 message: 'Flashcard removed from collection',

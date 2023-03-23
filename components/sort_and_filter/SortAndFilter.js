@@ -30,7 +30,7 @@ function SortAndFilter(props) {
 
     useEffect(() => {
         const handler = async () => {
-            const data = await axios.get(`api/flashcard/home?topic_id=${topicId}&orderBy=${orderBy}&direction=${direction}`);
+            const data = await axios.get(`/api/flashcard/home?topic_id=${topicId}&orderBy=${orderBy}&direction=${direction}`);
             setData(data.data);
         }
         handler();
