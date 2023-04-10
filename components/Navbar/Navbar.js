@@ -31,7 +31,7 @@ function Navbar() {
                         <span>Sign-in</span>
                     </Link>
                     {session ?
-                        <Link onClick={() => signOut({ callbackUrl: "/" })} className={styles['sign-up']} href="/">
+                        <Link onClick={() => signOut({ callbackUrl: "/sign-in" })} className={styles['sign-up']} href="/">
                             <span>Sign-out</span>
                         </Link>
                         :

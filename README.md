@@ -2,7 +2,7 @@
 * [x] [ Flashcard detail term update unique error  ](#task2) @Mar22
 * [x] [ Collections & topics request (list-topics|collection) ](#task3) @Mar22
 * [x] [ Topic & collection page (Flashcard detail update error)](#task4) @Mar22
-* [ ] [ Authentication ](#task1) @Mar22
+* [ ] [ Authentication ](#task1) 
 
 # 🍀 NOTE
 * 🟢 Axios `DELETE` method use axios.delete(`api/url?id=${id}`) 

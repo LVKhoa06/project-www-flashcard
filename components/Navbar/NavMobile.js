@@ -47,7 +47,7 @@ function NavMobile(props) {
 
                     {session ?
                         <Link href='/' onClick={() => {
-                            signOut({ callbackUrl: "/" })
+                            signOut({ callbackUrl: "/sign-in" })
                             setShow(false)
                         }} className={styles['item']}>
                             <span ><IconCreate stroke='#3688ff' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' /></span>

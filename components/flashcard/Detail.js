@@ -1,6 +1,7 @@
 import images from "assets";
 import IconClose from "assets/icon-close";
 import axios from "axios";
+import { useSession } from "next-auth/react";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import styles from '../../styles/Flashcard.module.scss'

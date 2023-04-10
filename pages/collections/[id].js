@@ -7,7 +7,7 @@ import IconTick from "assets/icon-tick";
 import axios from "axios";
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { collection_getAll, flashcard_getWithCollection } from "utils/mysql/mysql";
+import { collection_getAll, collection_getOneCollection, flashcard_getWithCollection } from "utils/mysql/mysql";
 import styles from '../../styles/ListCollection.module.scss'
 
 export async function getStaticPaths() {
@@ -27,9 +27,7 @@ export async function getStaticPaths() {
 export const getStaticProps = async (context) => {
   const id = context.params.id;
   const fetch = await flashcard_getWithCollection(id);
-  const fetch2 = await collection_getAll();
-
-  const collection = fetch2.find(item => item.collection_id == id)
+  const fetch2 = await collection_getOneCollection(id);
 
   const result = fetch.map(item => {
     return {
@@ -38,7 +36,7 @@ export const getStaticProps = async (context) => {
     }
   })
 
-  return { props: { result, collection } };
+  return { props: { result, collection: fetch2[0] } };
 };
 
 function CollectionDetail({ result, collection }) {

@@ -63,7 +63,6 @@ function Collection(props) {
             await axios.post(
                 "/api/collection/collection",
                 {
-                    filed: 'collection',
                     value
                 },
                 {

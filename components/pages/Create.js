@@ -93,9 +93,7 @@ function Create() {
                     <div className={styles['container-option']} >
                         <span>Topic:</span>
                         {session &&
-                            <Select onChange={setTopicId} >
-                                <option value={-1}>Khác</option>
-                            </Select>
+                            <Select onChange={setTopicId} />
                         }
 
                     </div>

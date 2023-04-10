@@ -26,9 +26,9 @@ function Search() {
     return (
         <>
             <Head>
-                <title>Flashcard</title>
+                <title>Search Result</title>
             </Head>
-            <div className={styles.container}>
+            <div className={styles.container_search}>
                 <Flashcard data={data} setData={setData} />
             </div>
         </>

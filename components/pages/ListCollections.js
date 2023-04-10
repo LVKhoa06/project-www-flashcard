@@ -5,12 +5,16 @@ import { useEffect, useState } from 'react';
 import styles from '../../styles/ListCollection.module.scss'
 
 function ListCollections() {
-    const [data, setData] = useState([]);
+    const [dataCountCollection, setDataCountCollection] = useState([]);
+    const [listCollection, setListCollection] = useState([]);
 
     useEffect(() => {
         const handler = async () => {
-            const data = await axios.get("/api/collection/collection");
-            setData(data.data);
+            const data1 = await axios.get("/api/collection/collection");
+            const data2 = await axios.get("/api/collection/list-collection");
+
+            setListCollection(data2.data);
+            setDataCountCollection(data1.data);
         }
         handler();
     }, [])
@@ -21,14 +25,16 @@ function ListCollections() {
                 <title>List Collection</title>
             </Head>
             <div className={styles.container}>
-                {data.map((item, index) => {
+                {listCollection.map((item, index) => {
+                    const quantity = dataCountCollection.find(itemx => itemx.collection == item.collection)
+
                     return (
                         <Link href={`/collections/${item.collection_id}`} className={styles.collection} key={index}>
                             <div className={''}>
                                 <h2>{item.collection}</h2>
                             </div>
                             <div className={styles['quantity-container']}>
-                                <span>{item.quantity ? `${item.quantity} flashcard` : 'Empty'}</span>
+                                <span>{quantity ? `${quantity.quantity} flashcard` : 'Empty'}</span>
                             </div>
                         </Link>
                     )

@@ -1,12 +1,15 @@
 import { collection_countItem, collection_add, collection_addItem, collection_deleteItemCollection } from "../../../utils/mysql/mysql";
+import { getSession } from "next-auth/react";
+
 
 export default async function handler(req, res) {
-  // reusable
   const { url, method, query, body, headers } = req;
+  const session = await getSession({req});
+  const username = session.user.nickname;
 
   switch (method) {
     case "GET":
-      const data = await collection_countItem();
+      const data = await collection_countItem(username);
 
       if (!data) return res.status(400).send("Error occured.");
 
@@ -14,7 +17,7 @@ export default async function handler(req, res) {
 
       break;
     case "POST":
-      const result = await collection_add(body.filed, body.value);
+      const result = await collection_add(body.value, username);
 
       if (!result) return res.status(400).send("Error occured.");
 
@@ -23,7 +26,7 @@ export default async function handler(req, res) {
       break;
     case "PATCH":
       const { id, collection_id } = body;
-      const foo = await collection_addItem(id, collection_id);
+      const foo = await collection_addItem(id, collection_id, username);
 
       if (!foo.success) return res.status(400).send(foo.message);
       res.status(201).json(foo.message);

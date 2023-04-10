@@ -6,69 +6,69 @@ import bcrypt from "bcrypt";
 export async function signIn(nickname, passwordPlain) {
     const query = `select * from users where nickname = '${nickname}';`;
     const [users] = await pool().execute(query);
-  
+
     if (!users.length) return {
-      success: false,
-      message: 'Account does not exist',
-      data: ''
+        success: false,
+        message: 'Account does not exist',
+        data: ''
     };
-  
+
     const password_hashed_database = users[0].password_hashed;
     const matched = await bcrypt.compare(passwordPlain, password_hashed_database);
-  
-    if (!matched) return {
-      success: false,
-      message: 'Wrong password.',
-      data: ''
-    };
-  
-    return {
-      success: true,
-      message: '',
-      data: users[0]
-    };
-  } // signIn
 
-  
+    if (!matched) return {
+        success: false,
+        message: 'Wrong password.',
+        data: ''
+    };
+
+    return {
+        success: true,
+        message: '',
+        data: users[0]
+    };
+} // signIn
+
+
 export async function signUp(id, nickname, mat_khau) {
     const password_hashed = await bcrypt.hash(mat_khau, 10);
     const querySelectNickname = `select nickname from users where nickname = ?;`;
     const [users] = await pool().execute(querySelectNickname, [nickname]);
-  
+
     if (users.length)
-      return {
-        success: false,
-        message: 'Account already exists.',
-      }
-  
+        return {
+            success: false,
+            message: 'Account already exists.',
+        }
+
     const query = `insert into users (id, nickname, mat_khau, password_hashed) values (?, ?, ?, ?)`;
     const values = [
-      id,
-      nickname,
-      mat_khau,
-      password_hashed,
+        id,
+        nickname,
+        mat_khau,
+        password_hashed,
     ];
     const [result] = await pool().execute(query, values);
-  
+
     if (result?.affectedRows !== 1)
-      return {
-        success: false,
-        message: "Error occured."
-      };
-  
+        return {
+            success: false,
+            message: "Error occured."
+        };
+
     return {
-      success: true,
-      message: 'Account successfully created'
+        success: true,
+        message: 'Account successfully created'
     };
-  } // register
+} // signUp
 //#regionend Authentication----------------------------------------------- END
 
 
 //#region Flashcard ----------------------------------------------- START
 
-export async function flashcard_create(topic_id, term, description, date) {
-    const query = `insert into flashcard (topic_id, term, description, creation_time) values( ?, ?, ?, ?);`;
-    const values = [topic_id, term, description, date];
+export async function flashcard_create(topic_id, term, description, date, username) {
+    const query = `insert into flashcard (topic_id, term, description, creation_time, username) values( ?, ?, ?, ?, ?);`;
+    const values = [topic_id, term, description, date, username];
     const [data] = await pool().execute(query, values);
 
     if (data?.affectedRows !== 1)
@@ -83,8 +83,8 @@ export async function flashcard_create(topic_id, term, description, date) {
     };
 } // createFlashcard
 
-export async function flashcard_checkTermAlreadyExistOrNot(term) {
-    const query = `select count(term) as term from flashcard where term = '${term}'`;
+export async function flashcard_checkTermAlreadyExistOrNot(term, username) {
+    const query = `select count(term) as term from flashcard where term = '${term}' and username = '${username}'`;
     const [data] = await pool().execute(query);
 
     if (!data)
@@ -140,9 +140,11 @@ export async function flashcard_update(id, field, value) {
     };
 } // updateFlashcard
 
-export async function flashcard_getWithCondition(topic_id, field, orderBy, direction) {
+export async function flashcard_getWithCondition(topic_id, orderBy, direction, username) {
     let query = `select * from flashcard 
-    ${topic_id ? `where flashcard.${field} = ${topic_id}` : ''} 
+    ${topic_id && username ? `where topic_id = ${topic_id} and username = '${username}'` :
+            `where username = '${username}'`
+        } 
     ${orderBy ? `order by ${orderBy} ${direction}` : ''};`
 
     const [data] = await pool().execute(query);
@@ -153,22 +155,12 @@ export async function flashcard_getWithCondition(topic_id, field, orderBy, direc
     return data;
 } // getFlashcardWithCondition
 
-export async function flashcard_getAFlashcard(id) {
-    let query = `select * from flashcard where id = ${id}`
-    const [data] = await pool().execute(query);
-
-    if (!data)
-        return false;
-
-    return data;
-} // getFlashcardWithCondition
-
-export async function flashcard_search(key) {
+export async function flashcard_search(key, username) {
     const query = ` 
     select * from flashcard f
     inner join topic t
     on f.topic_id = t.topic_id
-    where f.term like '%${key}%' or f.description like '%${key}%' limit 5`
+    where username = '${username}' and (f.term like '%${key}%' or f.description like '%${key}%') limit 5`
     const [result] = await pool().execute(query);
 
     if (!result)
@@ -187,9 +179,9 @@ export async function flashcard_getWithCollection(id) {
     return result;
 } // searchFlashcard
 
-export async function flashcard_getWithKeyword(key) {
+export async function flashcard_getWithKeyword(key, username) {
     const query = ` 
-    select * from flashcard where description like '%${key}%' or term like '%${key}%'`
+    select * from flashcard where username = '${username}' and (description like '%${key}%' or term like '%${key}%')`
     const [result] = await pool().execute(query);
 
     if (!result)
@@ -210,8 +202,15 @@ export async function topic_getAll() {
     return data;
 } // getAllTopic
 
-export async function topic_countItem() {
-    const query = `select * from count_topic;`;
+export async function topic_countItem(username) {
+    const query = `select 
+    t.topic AS topic,
+    f.topic_id AS topic_id,
+    count(f.topic_id) AS quantity
+    from (flashcard f
+    join topic t on((t.topic_id = f.topic_id))) 
+    where f.username = '${username}' 
+    group by f.topic_id, t.topic;`;
     const [result] = await pool().execute(query);
 
     if (!result)
@@ -250,8 +249,8 @@ export async function topic_changeTopic(id, topic_id) {
 
 
 //#region Collection ----------------------------------------------- START
-export async function collection_getAll() {
-    const query = `select * from collection;`;
+export async function collection_getAll(username) {
+    const query = `select * from collection where username = '${username}' or username = '';`;
     const [data] = await pool().execute(query);
 
     if (!data)
@@ -259,6 +258,16 @@ export async function collection_getAll() {
 
     return data;
 } // getAllCollection
+
+export async function collection_getOneCollection(id) {
+    const query = `select * from collection where collection_id = ${id}`;
+    const [data] = await pool().execute(query);
+
+    if (!data)
+        return false;
+
+    return data;
+} // collection_getOneCollection
 
 export async function collection_deleteItemCollection(f_id, c_id) {
     const q1 = `delete from flashcard_collection_id where flashcard_id = ${f_id} and collection_id = ${c_id};`
@@ -298,9 +307,9 @@ export async function collection_delete(id) {
 
 // flashcard_addToCollection
 // flashcard_removeFromCollection
-export async function collection_addItem(flashcard_id, collection_id) {
-    const query = `insert into flashcard_collection_id(flashcard_id, collection_id) values(?, ?);`;
-    const values = [flashcard_id, collection_id];
+export async function collection_addItem(flashcard_id, collection_id, username) {
+    const query = `insert into flashcard_collection_id(flashcard_id, collection_id, username) values(?, ?, ?);`;
+    const values = [flashcard_id, collection_id, username];
     const [result] = await pool().execute(query, values);
 
     if (result?.affectedRows !== 1)
@@ -315,8 +324,15 @@ export async function collection_addItem(flashcard_id, collection_id) {
     };
 } // collection_AddToCollection
 
-export async function collection_countItem() {
-    const query = `select * from count_collection;`;
+export async function collection_countItem(username) {
+    const query = `select 
+    c.collection AS collection,
+    fc.collection_id AS collection_id,
+    count(fc.collection_id) AS quantity
+    from (flashcard_collection_id fc
+    join collection c on((c.collection_id = fc.collection_id))) 
+    where fc.username = '${username}' or fc.username = ''
+    group by fc.collection_id, c.collection ORDER BY c.collection_id;`;
     const [result] = await pool().execute(query);
 
     if (!result)
@@ -325,9 +341,9 @@ export async function collection_countItem() {
     return result;
 } // countCollectionItem
 
-export async function collection_add(field, value) {
-    const query = `insert into ${field}(${field}) values('${value}');`;
-    const [data] = await pool().execute(query);
+export async function collection_add(collection, username) {
+    const query = `insert into collection (collection, username) values(?, ?);`;
+    const [data] = await pool().execute(query, [collection, username]);
 
     if (data?.affectedRows !== 1)
         return {
@@ -372,8 +388,8 @@ export async function collection_update(id, field, value) {
 
 //#region Bin -------------------------------------------- START
 
-export async function bin_getAll() {
-    const query = `select * from flashcard_bin;`;
+export async function bin_getAll(username) {
+    const query = `select * from flashcard_bin where username = '${username}';`;
     const [data] = await pool().execute(query);
 
     if (!data)
@@ -433,3 +449,16 @@ export async function bin_recover(id) {
 } // bin_recover
 
 //#endregion Collection -------------------------------------------- END
+
+
+/*
+select 
+t.topic AS topic,
+f.topic_id AS topic_id,
+count(f.topic_id) AS quantity
+from (flashcard f
+join topic t on((t.topic_id = f.topic_id))) 
+where f.username = 'foo' 
+group by f.topic_id, t.topic;
+
+*/

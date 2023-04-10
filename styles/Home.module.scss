@@ -1,7 +1,12 @@
-.container {
+.container, 
+.container_search{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     padding-top: 10px;
     padding-bottom: 60px;
+}
+
+.container_search {
+    margin-top: 60px;
 }

@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import styles from '../../styles/SortAndFilter.module.scss';
 import Select from "../select";
+import { useSession } from 'next-auth/react';
 
 const CONST_SORT_CASE = {
     none: -1,
@@ -17,7 +18,11 @@ function SortAndFilter(props) {
     const [sortConfig, setSortConfig] = useState({ orderBy: 'creation_time', direction: 'desc' });
     const { orderBy, direction } = sortConfig;
     const [topicId, setTopicId] = useState('');
+    const { data: session, status } = useSession();
 
+    useEffect(() => {
+        console.log(session?.user.nickname);
+    }, [session])
     useEffect(() => {
         if (config.filter) {
             const handler = async () => {
@@ -30,11 +35,13 @@ function SortAndFilter(props) {
 
     useEffect(() => {
         const handler = async () => {
-            const data = await axios.get(`/api/flashcard/home?topic_id=${topicId}&orderBy=${orderBy}&direction=${direction}`);
-            setData(data.data);
+            if (session) {
+                const data = await axios.get(`/api/flashcard/home?topic_id=${topicId}&orderBy=${orderBy}&direction=${direction}&username=${session?.user.nickname}`);
+                setData(data.data);
+            }
         }
         handler();
-    }, [sortConfig, topicId]);
+    }, [sortConfig, topicId, session]);
 
     const updateSortConfig = async (value) => {
         if (value == none) return;
