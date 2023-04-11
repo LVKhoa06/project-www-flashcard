@@ -140,11 +140,10 @@ export async function flashcard_update(id, field, value) {
     };
 } // updateFlashcard
 
-export async function flashcard_getWithCondition(topic_id, orderBy, direction, username) {
+export async function flashcard_getWithCondition(topic_id, username, orderBy, direction) {
     let query = `select * from flashcard 
     ${topic_id && username ? `where topic_id = ${topic_id} and username = '${username}'` :
-            `where username = '${username}'`
-        } 
+            `where username = '${username}'`}
     ${orderBy ? `order by ${orderBy} ${direction}` : ''};`
 
     const [data] = await pool().execute(query);

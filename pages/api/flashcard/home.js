@@ -5,7 +5,7 @@ export default async function handler(req, res) {
 
   switch (method) {
     case "GET":
-      const data = await flashcard_getWithCondition(query.topic_id, query.orderBy, query.direction, query.username);
+      const data = await flashcard_getWithCondition(query.topic_id, query.username, query.orderBy, query.direction);
 
       if (!data) return res.status(400).send("Error occured.");
       res.status(201).json(data);
