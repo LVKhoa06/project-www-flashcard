@@ -201,6 +201,16 @@ export async function topic_getAll() {
     return data;
 } // getAllTopic
 
+export async function topic_getOneTopic(id) {
+    const query = `select * from topic where topic_id = ${id};`;
+    const [data] = await pool().execute(query);
+
+    if (!data)
+        return false;
+
+    return data;
+} // getAllTopic
+
 export async function topic_countItem(username) {
     const query = `select 
     t.topic AS topic,

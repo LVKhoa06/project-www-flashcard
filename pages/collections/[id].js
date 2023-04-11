@@ -4,51 +4,47 @@ import ModalCheck from "@/components/collection/ModalDeleteColelction";
 import images from "assets";
 import IconBin from "assets/icon-bin";
 import IconTick from "assets/icon-tick";
-import axios from "axios";
 import Head from "next/head";
 import { useEffect, useState } from "react";
-import { collection_getAll, collection_getOneCollection, flashcard_getWithCollection } from "utils/mysql/mysql";
-import styles from '../../styles/ListCollection.module.scss'
+import styles from '../../styles/ListCollection.module.scss';
+import { useRouter } from "next/router";
+import axios from "axios";
 
-export async function getStaticPaths() {
-  const data = await collection_getAll();
-  const paths = data.map((item) => {
-    return {
-      params: { id: item.collection_id.toString() },
-    };
-  });
-
-  return {
-    paths,
-    fallback: false,
-  };
-}
-
-export const getStaticProps = async (context) => {
-  const id = context.params.id;
-  const fetch = await flashcard_getWithCollection(id);
-  const fetch2 = await collection_getOneCollection(id);
-
-  const result = fetch.map(item => {
-    return {
-      ...item,
-      creation_time: item.creation_time.toString()
-    }
-  })
-
-  return { props: { result, collection: fetch2[0] } };
-};
-
-function CollectionDetail({ result, collection }) {
-  const [data, setData] = useState(result);
+function CollectionDetail() {
+  const router = useRouter();
+  const [data, setData] = useState([]);
   const [quantity, setQuantity] = useState(data.length);
-  const [valueCollection, setValueCollection] = useState(collection.collection);
-  const [valueDescription, setValueDescription] = useState(collection.description || '');
+  const [collection, setCollection] = useState({});
+  const [valueCollection, setValueCollection] = useState('');
+  const [valueDescription, setValueDescription] = useState('');
   const [showCheck, setShowCheck] = useState(false);
+
+  useEffect(() => {
+    if (!router.query.id)
+      return;
+
+    const handler = async () => {
+      const fetch1 = await axios.get(`/api/collection/collection-detail?id=${router.query.id}`);
+
+      if (!fetch1.data.data1.length || !fetch1.data.data2.length) {
+        return router.push('/404');
+      }
+
+      setData(fetch1.data.data1);
+      setCollection(fetch1.data.data2[0]);
+    }
+
+    handler();
+  }, [router])
 
   useEffect(() => {
     setQuantity(data.length);
   }, [data])
+
+  useEffect(() => {
+    setValueCollection(collection.collection);
+    setValueDescription(collection.description);
+  }, [collection])
 
   const submitCollectionName = async (filed) => {
     await axios.post(
@@ -67,7 +63,7 @@ function CollectionDetail({ result, collection }) {
   return (
     <Protector>
       <Head>
-        <title>{collection.collection} - Collection</title>
+        <title>{collection?.collection} - Collection</title>
       </Head>
       <div className={styles.container}>
         <div className={styles.header}>
@@ -102,7 +98,6 @@ function CollectionDetail({ result, collection }) {
             </div>
           </div>
         </div>
-        {/* <SortAndFilter setData={setData} use={{sort:true}}/> */}
         {data.length ?
           <>
             <Flashcard data={data} setData={setData} />
