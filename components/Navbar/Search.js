@@ -5,6 +5,7 @@ import { useEffect, useRef, useState } from 'react';
 import useDebounce from 'utils/useDebounce';
 import styles from '../../styles/Search.module.scss';
 import FlashcardDetail from '../flashcard/Detail';
+import { useSession } from 'next-auth/react';
 
 function Search() {
     const [value, setValue] = useState('');
@@ -13,17 +14,20 @@ function Search() {
     const [show, setShow] = useState(false);
     const [data, setData] = useState({});
     const router = useRouter();
-    const debouncedValue = useDebounce(value, 1500);  
+    const debouncedValue = useDebounce(value, 1500);
+    const { data: session, status } = useSession();
 
     useEffect(() => {
         const closeElm = () => setIsFocus(false);
-
         document.addEventListener('click', closeElm);
-
+        
         return () => document.removeEventListener('click', closeElm)
     }, [])
 
     useEffect(() => {
+        if (!session)
+            return;
+
         const handler = async () => {
             if (debouncedValue.length) {
                 const data = await axios.get(`/api/flashcard/search?key=${debouncedValue}`);
@@ -35,6 +39,9 @@ function Search() {
     }, [debouncedValue])
 
     const submitHandler = async () => {
+        if (!session)
+            return;
+
         if (value.length)
             router.push(`/search?keyword=${value}`)
 

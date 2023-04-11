@@ -93,7 +93,6 @@ function GetImg(props) {
         reader.readAsDataURL(file);
 
         function isFileImage(file) {
-            console.log(file['type']);
             return file && file['type'].split('/')[0] === 'image';
         }
 

@@ -6,7 +6,6 @@ export default async function handler(req, res) {
   const session = await getSession({req});
   const username = session.user.nickname;
 
-
   switch (method) {
     case "GET":
       const data = await bin_getAll(username);

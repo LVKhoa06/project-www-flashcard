@@ -16,7 +16,6 @@ export default function App({ Component, pageProps }) {
         <Navbar></Navbar>
         <Component {...pageProps} />
       </SessionProvider>
-
     </>
   );
 }

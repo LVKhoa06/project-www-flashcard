@@ -60,7 +60,6 @@ function SignUp() {
         setConfirmPassword("");
       } // else
     } catch (ex) {
-      console.log(ex.message);
       setCondition({ code: STATUS.OTHER, message: ex.message });
     }
   } // registerHandler

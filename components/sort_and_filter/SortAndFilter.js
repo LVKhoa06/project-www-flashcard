@@ -21,9 +21,6 @@ function SortAndFilter(props) {
     const { data: session, status } = useSession();
 
     useEffect(() => {
-        console.log(session?.user.nickname);
-    }, [session])
-    useEffect(() => {
         if (config.filter) {
             const handler = async () => {
                 const data = await axios.get("/api/topic/list-topic");

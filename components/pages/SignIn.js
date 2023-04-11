@@ -40,9 +40,8 @@ export default function SignIn() {
     const { error, ok } = result;
     if (ok && redirect_to)
       return router.replace(redirect_to);
-    else if (ok) {
+    else if (ok)
       router.replace('/');
-    }
     setCondition({ code: STATUS.ERROR, message: error });
   } // signInHandler
 
