@@ -27,7 +27,6 @@ const Auth = (req, res) =>
         }, // authorize
       }), // CredentialsProviders
     ], // providers
-    secret: process.env.NEXT_PUBLIC_SECRET,
 
     callbacks: {
       async session({ session, token, user }) {
