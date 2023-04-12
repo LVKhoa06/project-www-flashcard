@@ -40,10 +40,7 @@ function NavMobile(props) {
                         <span className={styles.recover}><IconRecover fill="#3688ff" viewBox="0 0 64 64" version="1.1" fillRule="evenodd" clipRule="evenodd" strokeLinejoin="round" strokeMiterlimit="2" /></span>
                         <span>Bin</span>
                     </Link>
-                    <Link href="/sign-in" onClick={() => setShow(false)} className={styles['item']}>
-                        <span><IconCreate stroke='#3688ff' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' /></span>
-                        <span>Sign-in</span>
-                    </Link>
+
 
                     {session ?
                         <Link href='/' onClick={() => {
@@ -54,10 +51,16 @@ function NavMobile(props) {
                             <span>Sign-out</span>
                         </Link>
                         :
-                        <Link href='/sign-up' onClick={() => setShow(false)} className={styles['item']}>
-                            <span ><IconCreate stroke='#3688ff' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' /></span>
-                            <span>Sign-up</span>
-                        </Link>
+                        <>
+                            <Link href="/sign-in" onClick={() => setShow(false)} className={styles['item']}>
+                                <span><IconCreate stroke='#3688ff' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' /></span>
+                                <span>Sign-in</span>
+                            </Link>
+                            <Link href='/sign-up' onClick={() => setShow(false)} className={styles['item']}>
+                                <span ><IconCreate stroke='#3688ff' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' /></span>
+                                <span>Sign-up</span>
+                            </Link>
+                        </>
 
                     }
                     <div>

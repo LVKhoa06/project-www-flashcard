@@ -3,7 +3,7 @@ import { useSession } from "next-auth/react";
 import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "../../styles/Sign-in.module.scss";
 
 const STATUS = {
@@ -20,6 +20,12 @@ export default function SignIn() {
   const router = useRouter();
   const redirect_to = router.query?.redirect_to;
   const [condition, setCondition] = useState({ code: STATUS.UNKNOWN, message: "" });
+
+  useEffect(() => {
+    if (session)
+      router.back();
+
+  }, [session])
 
   const signInHandler = async () => {
     const username = refUser.current.value.trim();

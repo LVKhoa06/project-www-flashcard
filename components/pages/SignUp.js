@@ -1,9 +1,10 @@
 import axios from "axios";
 import Head from "next/head";
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../../styles/Sign-in.module.scss";
 import crypto from 'crypto';
+import { useSession } from "next-auth/react";
 
 const STATUS = {
   UNKNOWN: -1,
@@ -13,11 +14,18 @@ const STATUS = {
 };
 
 function SignUp() {
+  const { data: session, status } = useSession();
   const router = useRouter();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [condition, setCondition] = useState({ code: STATUS.UNKNOWN, message: "" });
+
+  useEffect(() => {
+    if (session)
+      router.back();
+
+  }, [session]);
 
   const signUpHandler = async () => {
     if (!username)

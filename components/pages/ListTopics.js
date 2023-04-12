@@ -3,11 +3,14 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styles from '../../styles/ListTopic.module.scss'
+import { useSession } from 'next-auth/react';
 
 function ListTopics() {
     const [data, setData] = useState([]);
-   
+    const { data: session, status } = useSession();
+
     useEffect(() => {
+        if (!session) return;
         const handler = async () => {
             const data = await axios.get("/api/topic/topic");
             setData(data.data);

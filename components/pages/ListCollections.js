@@ -3,12 +3,17 @@ import Head from 'next/head';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styles from '../../styles/ListCollection.module.scss'
+import { useSession } from 'next-auth/react';
 
 function ListCollections() {
     const [dataCountCollection, setDataCountCollection] = useState([]);
     const [listCollection, setListCollection] = useState([]);
+    const { data: session, status } = useSession();
 
     useEffect(() => {
+        if (!session) 
+            return;
+
         const handler = async () => {
             const data1 = await axios.get("/api/collection/collection");
             const data2 = await axios.get("/api/collection/list-collection");

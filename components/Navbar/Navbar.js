@@ -27,17 +27,19 @@ function Navbar() {
                 </div>
                 <div className={styles['top-right']}>
                     <Add />
-                    <Link className={styles['sign-in']} href="/sign-in">
-                        <span>Sign-in</span>
-                    </Link>
                     {session ?
                         <Link onClick={() => signOut({ callbackUrl: "/sign-in" })} className={styles['sign-up']} href="/">
                             <span>Sign-out</span>
                         </Link>
                         :
-                        <Link className={styles['sign-up']} href="/sign-up">
-                            <span>Sign-up</span>
-                        </Link>
+                        <>
+                            <Link className={styles['sign-in']} href="/sign-in">
+                                <span>Sign-in</span>
+                            </Link>
+                            <Link className={styles['sign-up']} href="/sign-up">
+                                <span>Sign-up</span>
+                            </Link>
+                        </>
                     }
 
                 </div>
