@@ -12,7 +12,7 @@ const Auth = (req, res) =>
       strategy: "jwt",
     },
 
-    secret: process.env.NEXT_PUBLIC_SECRET,
+    secret: process.env.SECRET,
 
     providers: [
       CredentialsProviders({
