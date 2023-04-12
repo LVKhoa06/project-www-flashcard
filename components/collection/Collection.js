@@ -50,6 +50,7 @@ function Collection(props) {
         } else {
             await axios.delete(`/api/collection/collection?f_id=${id}&c_id=${collection_id}`)
 
+            setCheckedStates(updatedCheckedState);
             setNotificationConfig({
                 message: 'Flashcard removed from collection',
                 type: 'warning',
