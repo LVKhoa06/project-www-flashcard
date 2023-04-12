@@ -167,10 +167,11 @@ export async function flashcard_search(key, username) {
     return result;
 } // searchFlashcard
 
-export async function flashcard_getWithCollection(id) {
-    const query = ` 
-    select * from flashcard f inner join flashcard_collection_id fc
-    on f.id = fc.flashcard_id where fc.collection_id = ${id};`
+export async function flashcard_getWithCollection(id, username) {
+    const query = `select * from flashcard f 
+    inner join flashcard_collection_id fc
+    on f.id = fc.flashcard_id 
+    where fc.collection_id = ${id} and f.username = '${username}';`
     const [result] = await pool().execute(query);
 
     if (!result)
@@ -457,17 +458,4 @@ export async function bin_recover(id) {
     };
 } // bin_recover
 
-//#endregion Collection -------------------------------------------- END
-
-
-/*
-select 
-t.topic AS topic,
-f.topic_id AS topic_id,
-count(f.topic_id) AS quantity
-from (flashcard f
-join topic t on((t.topic_id = f.topic_id))) 
-where f.username = 'foo' 
-group by f.topic_id, t.topic;
-
-*/
+//#endregion Bin -------------------------------------------- END

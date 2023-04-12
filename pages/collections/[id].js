@@ -9,37 +9,39 @@ import { useEffect, useState } from "react";
 import styles from '../../styles/ListCollection.module.scss';
 import { useRouter } from "next/router";
 import axios from "axios";
+import { useSession } from "next-auth/react";
 
 function CollectionDetail() {
   const router = useRouter();
-  const [data, setData] = useState([]);
-  const [quantity, setQuantity] = useState(data.length);
+  const [listFlashcard, setListFlashcard] = useState([]);
+  const [quantity, setQuantity] = useState(listFlashcard.length);
   const [collection, setCollection] = useState({});
   const [valueCollection, setValueCollection] = useState('');
   const [valueDescription, setValueDescription] = useState('');
   const [showCheck, setShowCheck] = useState(false);
+  const { data: session, status } = useSession();
 
   useEffect(() => {
     if (!router.query.id)
       return;
 
     const handler = async () => {
-      const fetch1 = await axios.get(`/api/collection/collection-detail?id=${router.query.id}`);
+      const fetch = await axios.get(`/api/collection/collection-detail?id=${router.query.id}&username=${session?.user.nickname}`);
 
-      if (!fetch1.data.data1.length || !fetch1.data.data2.length) {
+      if (!fetch.data.data1.length || !fetch.data.data2.length) {
         return router.push('/404');
       }
 
-      setData(fetch1.data.data1);
-      setCollection(fetch1.data.data2[0]);
+      setListFlashcard(fetch.data.data1);
+      setCollection(fetch.data.data2[0]);
     }
 
     handler();
   }, [router])
 
   useEffect(() => {
-    setQuantity(data.length);
-  }, [data])
+    setQuantity(listFlashcard.length);
+  }, [listFlashcard])
 
   useEffect(() => {
     setValueCollection(collection.collection);
@@ -98,9 +100,9 @@ function CollectionDetail() {
             </div>
           </div>
         </div>
-        {data.length ?
+        {listFlashcard.length ?
           <>
-            <Flashcard data={data} setData={setData} />
+            <Flashcard data={listFlashcard} setData={setListFlashcard} />
           </>
           :
           <div>

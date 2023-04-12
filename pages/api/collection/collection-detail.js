@@ -6,7 +6,7 @@ export default async function handler(req, res) {
 
   switch (method) {
     case "GET":
-      const data1 = await flashcard_getWithCollection(query.id);
+      const data1 = await flashcard_getWithCollection(query.id, query.username);
       const data2 = await collection_getOneCollection(query.id);
 
       if (!data1 || !data2) return res.status(400).send("Error occured.");
