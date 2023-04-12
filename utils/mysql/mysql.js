@@ -202,6 +202,17 @@ export async function topic_getAll() {
     return data;
 } // getAllTopic
 
+export async function topic_checkTopicExist(id) {
+    const query = `select count(topic_id) as topic_check from topic where topic_id = ${id};`;
+    const [data] = await pool().execute(query);
+
+    if (!data)
+        return false;
+
+    return data;
+} // getAllTopic
+
+
 export async function topic_getOneTopic(id) {
     const query = `select * from topic where topic_id = ${id};`;
     const [data] = await pool().execute(query);
@@ -213,7 +224,7 @@ export async function topic_getOneTopic(id) {
 } // getAllTopic
 
 export async function topic_countItem(username) {
-    const query = `select 
+    const query = `select
     t.topic AS topic,
     f.topic_id AS topic_id,
     count(f.topic_id) AS quantity
@@ -350,6 +361,17 @@ export async function collection_countItem(username) {
 
     return result;
 } // countCollectionItem
+
+export async function collection_checkCollectionExist(id, username) {
+    const query = `select count(collection_id) as 'check' from collection
+    where collection_id = ${id} and (username = '${username}' or username = '');`;
+    const [result] = await pool().execute(query);
+
+    if (!result)
+        return false;
+
+    return result[0];
+} // collection_checkCollectionExist
 
 export async function collection_add(collection, username) {
     const query = `insert into collection (collection, username) values(?, ?);`;

@@ -16,14 +16,17 @@ function TopicDetail() {
       return;
 
     const handler = async () => {
-      const fetch1 = await axios.get(`/api/topic/topic-detail?id=${router.query.id}`);
-
-      if (!fetch1.data.data1.length || !fetch1.data.data2.length) {
+      const fetch = await axios.get(`/api/topic/topic-check?id=${router.query.id}`);
+      const checkTopicExist = fetch.data[0].topic_check
+      
+      if (!checkTopicExist) 
         return router.push('/404');
-      }
+      
+      const fetchListTopic = await axios.get(`/api/topic/topic-detail?id=${router.query.id}`);
 
-      setData(fetch1.data.data1);
-      setTopic(fetch1.data.data2[0]);
+
+      setData(fetchListTopic.data.data1);
+      setTopic(fetchListTopic.data.data2[0]);
     }
 
     handler();

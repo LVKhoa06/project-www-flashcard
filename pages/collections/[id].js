@@ -24,16 +24,17 @@ function CollectionDetail() {
   useEffect(() => {
     if (!router.query.id)
       return;
-
+    
     const handler = async () => {
-      const fetch = await axios.get(`/api/collection/collection-detail?id=${router.query.id}&username=${session?.user.nickname}`);
+      const checkCollectionExist = await axios.get(`/api/collection/collection-check?id=${router.query.id}&username=${session?.user.nickname}`)
 
-      if (!fetch.data.data1.length || !fetch.data.data2.length) {
+      if (!checkCollectionExist.data.check)
         return router.push('/404');
-      }
+      
+      const fetchListCollection = await axios.get(`/api/collection/collection-detail?id=${router.query.id}&username=${session?.user.nickname}`);
 
-      setListFlashcard(fetch.data.data1);
-      setCollection(fetch.data.data2[0]);
+      setListFlashcard(fetchListCollection.data.data1);
+      setCollection(fetchListCollection.data.data2[0]);
     }
 
     handler();
