@@ -6,8 +6,10 @@ import { useEffect, useState } from 'react';
 import styles from '../../styles/Bin.module.scss'
 import Notification from '../notification/Notification';
 import ModalCheck from './CheckDeleting';
+import { useSession } from 'next-auth/react';
 
 function Bin() {
+    const { data: session, status } = useSession();
     const [data, setData] = useState([]);
     const [show, setShow] = useState(false);
     const [curId, setCurId] = useState();
@@ -18,6 +20,9 @@ function Bin() {
     })
 
     useEffect(() => {
+        if (!session) 
+            return;
+
         const handler = async () => {
             const fetch = await axios.get('/api/bin/bin');
             setData(fetch.data);

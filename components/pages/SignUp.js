@@ -23,7 +23,7 @@ function SignUp() {
 
   useEffect(() => {
     if (session)
-      router.back();
+      router.push('/');
 
   }, [session]);
 

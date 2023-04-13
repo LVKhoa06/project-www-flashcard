@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import styles from '../../styles/Flashcard.module.scss';
 import IconMenu from '../../assets/icon-menu';

@@ -23,7 +23,7 @@ export default function SignIn() {
 
   useEffect(() => {
     if (session)
-      router.back();
+      router.push('/');
 
   }, [session])
 
