@@ -44,11 +44,18 @@
         }
 
         .add-collection {
+            div {
+                position: relative;
+                display: flex;
+            }
 
             span {
-                font-size: 13px;
+                font-size: 12px;
                 margin-left: 5px;
                 color: red;
+                position: absolute;
+                bottom: -13px;
+                right: 70px;
             }
 
             span:hover {
@@ -63,7 +70,7 @@
                 border-radius: 8px;
                 outline: none;
                 border: 1px solid var(--color-grey-0);
-            }   
+            }
         }
 
         .input-container {
@@ -96,16 +103,18 @@
                 border: none;
                 border-radius: 6px;
                 color: var(--color-white-0);
-            }   
+            }
+        }
 
-            .create {
-                margin-top: 5px;
-                cursor: pointer;
+        .create {
+            display: flex;
+            align-items: center;
+            margin: 5px 0 0 2px;
+            cursor: pointer;
 
-                span {
-                    font-size: 14px;
-                    margin-right: 12px;
-                }
+            span {
+                font-size: 14px;
+                margin-right: 12px;
             }
         }
     }

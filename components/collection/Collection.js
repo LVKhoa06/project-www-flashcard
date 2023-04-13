@@ -2,6 +2,7 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 import styles from '../../styles/Collection.module.scss'
 import Notification from '../notification/Notification';
+import IconAdd from 'assets/icon-add';
 
 function Collection(props) {
     const { id, selected: initializedChecked, showModal, setShowModal, setShowMenu, result: collections, setResult: setCollections } = props;
@@ -135,7 +136,7 @@ function Collection(props) {
                             <div onClick={() => {
                                 setShowCreate(true);
                             }} className={styles.create}>
-                                <span>➕</span>
+                                <span><IconAdd width="20px" height="20px" fill="#666" viewBox="0 0 39 24" /></span>
                                 Create new collection
                             </div>
                         }
