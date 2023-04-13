@@ -22,6 +22,8 @@ function CollectionDetail() {
   const { data: session, status } = useSession();
 
   useEffect(() => {
+    if (!router) 
+      return;
     if (!router.query.id)
       return;
     

@@ -5,9 +5,12 @@ import IconCollection from 'assets/icon-collection';
 import IconTopic from 'assets/icon-topic';
 import IconSetting from 'assets/icon-setting';
 import IconClose from 'assets/icon-close';
+import IconSignOut from 'assets/icon-signout';
 import Link from 'next/link';
 import IconRecover from 'assets/icon-recover';
 import { signOut, useSession } from 'next-auth/react';
+import IconSignIn from 'assets/icon-signin';
+import IconSignUp from 'assets/icon-signup';
 
 function NavMobile(props) {
     const { show, setShow } = props;
@@ -47,17 +50,17 @@ function NavMobile(props) {
                             signOut({ callbackUrl: "/sign-in" })
                             setShow(false)
                         }} className={styles['item']}>
-                            <span ><IconCreate stroke='#3688ff' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' /></span>
+                            <span ><IconSignOut /></span>
                             <span>Sign-out</span>
                         </Link>
                         :
                         <>
                             <Link href="/sign-in" onClick={() => setShow(false)} className={styles['item']}>
-                                <span><IconCreate stroke='#3688ff' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' /></span>
+                                <span><IconSignIn /></span>
                                 <span>Sign-in</span>
                             </Link>
                             <Link href='/sign-up' onClick={() => setShow(false)} className={styles['item']}>
-                                <span ><IconCreate stroke='#3688ff' strokeLinecap='round' strokeLinejoin='round' strokeWidth='2' /></span>
+                                <span ><IconSignUp /></span>
                                 <span>Sign-up</span>
                             </Link>
                         </>

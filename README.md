@@ -58,6 +58,7 @@
 * [x] <a id="task3">Collections & topics request (list-topics|collection)</a>
 * [x] <a id="task4">Topic & collection page (Flashcard detail update error)</a>
 * [ ] <a id="task1">Authentication</a>
+* [ ] Collection page
 
 # REFACTOR 
 * [x] Refactor folder api & component (), 📝`mysql.js`'s functions name by domain (ex: flashcard_search(), ...topic_getAll, collection_getAll)
