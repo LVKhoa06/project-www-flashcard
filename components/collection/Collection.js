@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import styles from '../../styles/Collection.module.scss'
 import Notification from '../notification/Notification';
 import IconAdd from 'assets/icon-add';
+import LoadingSpinner from '../LoadingSpinner';
 
 function Collection(props) {
     const { id, selected: initializedChecked, showModal, setShowModal, setShowMenu, result: collections, setResult: setCollections } = props;
@@ -85,9 +86,9 @@ function Collection(props) {
         setShowModal(false);
         setShowMenu(false);
         setNotificationConfig({
-            message:'',
+            message: '',
             show: !notificationConfig.show,
-            type:''
+            type: ''
         })
     } // closeModalHandler
 
@@ -102,20 +103,23 @@ function Collection(props) {
                             <span onClick={() => closeModalHandler()}>x</span>
                         </div>
                         <div className={styles['collection-list']}>
-                            {collections.map((item, index) => {
-                                return (
-                                    <div key={item.collection_id} className={styles['input-container']}>
-                                        <input
-                                            id={item.collection_id}
-                                            type="checkbox"
-                                            checked={checkedStates[index]}
-                                            onChange={(e) => {
-                                                handlerOnChangeCheckbox(e, index, item.collection_id)
-                                            }} />
-                                        <label>{item.collection}</label>
-                                    </div>
-                                )
-                            })}
+                            {collections.length ?
+                                collections.map((item, index) => {
+                                    return (
+                                        <div key={item.collection_id} className={styles['input-container']}>
+                                            <input
+                                                id={item.collection_id}
+                                                type="checkbox"
+                                                checked={checkedStates[index]}
+                                                onChange={(e) => {
+                                                    handlerOnChangeCheckbox(e, index, item.collection_id)
+                                                }} />
+                                            <label>{item.collection}</label>
+                                        </div>
+                                    )
+                                }) :
+                                <LoadingSpinner />
+                            }
                         </div>
 
                         {showCreate ?

@@ -6,6 +6,7 @@ import styles from '../../styles/CreateFlashcard.module.scss'
 import Notification from "../notification/Notification";
 import Select from "../select";
 import { useSession } from "next-auth/react";
+import LoadingSpinner from "../LoadingSpinner";
 
 
 function Create() {
@@ -95,7 +96,6 @@ function Create() {
                         {session &&
                             <Select onChange={setTopicId} />
                         }
-
                     </div>
                     <div className={styles['container-input']}>
                         <input className={styles['input-term']} value={term} onChange={(e) => setTerm(e.target.value)} placeholder="Term" />
