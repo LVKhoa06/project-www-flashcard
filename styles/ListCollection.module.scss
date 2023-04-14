@@ -1,22 +1,37 @@
-$res_600 : "only screen and (max-width: 600px)";
+$res_680 : "only screen and (max-width: 680px)";
 
 .container {
     flex-wrap: wrap;
     display: flex;
     margin-top: 60px;
+    justify-content: center;
 }
 
 .collection {
-    width: max-content;
+    width: 47%;
     height: max-content;
     margin: 10px;
-    padding: 6px 0px 6px 10px;
+    padding: 12px 0px 12px 10px;
     position: relative;
-    border: 1px solid var(--color-grey-0);
+    border: 1px solid var(--color-white-3);
     border-radius: 5px;
     display: flex;
     align-items: center;
-    background-color: var(--color-white-0);
+    background-color: rgba($color: #00c8ff, $alpha: .03);
+    color:var(--color-black-2) ;
+    justify-content: space-between;
+}
+
+.term {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    h2 {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+    }
 }
 
 .quantity-container {
@@ -27,7 +42,7 @@ $res_600 : "only screen and (max-width: 600px)";
 
 .quantity-container span {
     padding-right: 20px;
-    font-size: 10px;
+    font-size: 11px;
     margin-left: 20px;
 }
 
@@ -103,20 +118,26 @@ $res_600 : "only screen and (max-width: 600px)";
     color: var(--color-black-1);
 }
 
-.delete-icon{
+.delete-icon {
     display: flex;
 }
 
- // Variable
+// Variable
 
-@mixin responsive_600() {
-    @media #{$res_600} {
+@mixin responsive_680() {
+    @media #{$res_680} {
         @content;
     }
 }
 
-@include responsive_600{
-    .collection h2 {
-        font-size: 17px;
+@include responsive_680 {
+
+    .collection {
+        width: 94%;
+
+        h2 {
+            font-size: 18px;
+        }
     }
+
 }

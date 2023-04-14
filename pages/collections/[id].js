@@ -10,6 +10,8 @@ import styles from '../../styles/ListCollection.module.scss';
 import { useRouter } from "next/router";
 import axios from "axios";
 import { useSession } from "next-auth/react";
+import CollectionDetailLoading from "@/components/loading/CollectionDetail";
+import HomeLoading from "@/components/loading/Flashcard";
 
 function CollectionDetail() {
   const router = useRouter();
@@ -19,22 +21,23 @@ function CollectionDetail() {
   const [valueCollection, setValueCollection] = useState('');
   const [valueDescription, setValueDescription] = useState('');
   const [showCheck, setShowCheck] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   const { data: session, status } = useSession();
 
   useEffect(() => {
-    if (!router) 
+    if (!router)
       return;
     if (!router.query.id)
       return;
-    
+
     const handler = async () => {
       const checkCollectionExist = await axios.get(`/api/collection/collection-check?id=${router.query.id}&username=${session?.user.nickname}`)
 
       if (!checkCollectionExist.data.check)
         return router.push('/404');
-      
-      const fetchListCollection = await axios.get(`/api/collection/collection-detail?id=${router.query.id}&username=${session?.user.nickname}`);
 
+      const fetchListCollection = await axios.get(`/api/collection/collection-detail?id=${router.query.id}&username=${session?.user.nickname}`);
+      setIsLoading(false);
       setListFlashcard(fetchListCollection.data.data1);
       setCollection(fetchListCollection.data.data2[0]);
     }
@@ -71,46 +74,52 @@ function CollectionDetail() {
         <title>{collection?.collection} - Collection</title>
       </Head>
       <div className={styles.container}>
-        <div className={styles.header}>
-          <div className={styles['container-left']}>
-            <img src={images.folder.src} />
-          </div>
-          <div className={styles['container-right']}>
-            <div className={styles['collection-name']}>
-              <input
-                value={valueCollection}
-                onChange={(e) => setValueCollection(e.target.value)}
-              />
-              <span onClick={(e) => submitCollectionName('collection')}>
-                <IconTick />
-              </span>
+        {
+          valueCollection ?
+            <div className={styles.header}>
+              <div className={styles['container-left']}>
+                <img src={images.folder.src} />
+              </div>
+              <div className={styles['container-right']}>
+                <div className={styles['collection-name']}>
+                  <input
+                    value={valueCollection}
+                    onChange={(e) => setValueCollection(e.target.value)}
+                  />
+                  <span onClick={(e) => submitCollectionName('collection')}>
+                    <IconTick />
+                  </span>
+                </div>
+                <div className={styles['collection-info']}>
+                  <span>{quantity} flashcard</span>
+                  <span onClick={(e) => setShowCheck(true)} className={styles['delete-icon']}>
+                    <IconBin className={styles['icon-bin']} viewBox='0 0 1024 1024' fill='#555' />
+                  </span>
+                </div>
+                <div className={styles['collection-description']}>
+                  <input
+                    value={valueDescription}
+                    placeholder='Description collection'
+                    onChange={(e) => setValueDescription(e.target.value)}
+                  />
+                  <span onClick={(e) => submitCollectionName('description')}>
+                    <IconTick />
+                  </span>
+                </div>
+              </div>
+            </div> :
+            <CollectionDetailLoading />
+        }
+
+        {isLoading ?
+          <HomeLoading /> :
+          listFlashcard.length ?
+            <>
+              <Flashcard data={listFlashcard} setData={setListFlashcard} />
+            </> :
+            <div>
+              <h1>Collection Empty</h1>
             </div>
-            <div className={styles['collection-info']}>
-              <span>{quantity} flashcard</span>
-              <span onClick={(e) => setShowCheck(true)} className={styles['delete-icon']}>
-                <IconBin className={styles['icon-bin']} viewBox='0 0 1024 1024' fill='#555' />
-              </span>
-            </div>
-            <div className={styles['collection-description']}>
-              <input
-                value={valueDescription}
-                placeholder='Description collection'
-                onChange={(e) => setValueDescription(e.target.value)}
-              />
-              <span onClick={(e) => submitCollectionName('description')}>
-                <IconTick />
-              </span>
-            </div>
-          </div>
-        </div>
-        {listFlashcard.length ?
-          <>
-            <Flashcard data={listFlashcard} setData={setListFlashcard} />
-          </>
-          :
-          <div>
-            <h1>Collection Empty</h1>
-          </div>
         }
         {showCheck ? <ModalCheck id={collection.collection_id} setShowCheck={setShowCheck} /> : ''}
       </div>

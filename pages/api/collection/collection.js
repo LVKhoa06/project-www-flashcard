@@ -5,7 +5,7 @@ import { getSession } from "next-auth/react";
 export default async function handler(req, res) {
   const { url, method, query, body, headers } = req;
   const session = await getSession({req});
-  const username = session.user.nickname;
+  const username = session?.user.nickname;
 
   switch (method) {
     case "GET":

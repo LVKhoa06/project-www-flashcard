@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styles from '../../styles/ListCollection.module.scss'
 import { useSession } from 'next-auth/react';
+import TopicAndCollectionLoading from '../loading/TopicAndCollection';
 
 function ListCollections() {
     const [dataCountCollection, setDataCountCollection] = useState([]);
@@ -11,7 +12,7 @@ function ListCollections() {
     const { data: session, status } = useSession();
 
     useEffect(() => {
-        if (!session) 
+        if (!session)
             return;
 
         const handler = async () => {
@@ -29,22 +30,28 @@ function ListCollections() {
             <Head>
                 <title>List Collection</title>
             </Head>
-            <div className={styles.container}>
-                {listCollection.map((item, index) => {
-                    const quantity = dataCountCollection.find(itemx => itemx.collection == item.collection)
+            {
+                listCollection.length && dataCountCollection.length ?
+                    <div className={styles.container}>
+                        {listCollection.map((item, index) => {
+                            const quantity = dataCountCollection.find(itemx => itemx.collection == item.collection)
 
-                    return (
-                        <Link href={`/collections/${item.collection_id}`} className={styles.collection} key={index}>
-                            <div className={''}>
-                                <h2>{item.collection}</h2>
-                            </div>
-                            <div className={styles['quantity-container']}>
-                                <span>{quantity ? `${quantity.quantity} flashcard` : 'Empty'}</span>
-                            </div>
-                        </Link>
-                    )
-                })}
-            </div>
+                            return (
+                                <Link href={`/collections/${item.collection_id}`} className={styles.collection} key={index}>
+                                    <div className={styles.term}>
+                                        <h2>{item.collection}</h2>
+                                    </div>
+                                    <div className={styles['quantity-container']}>
+                                        <span>{quantity ? `${quantity.quantity} flashcard` : 'Empty'}</span>
+                                    </div>
+                                </Link>
+                            )
+                        })}
+                    </div> :
+                    <TopicAndCollectionLoading />
+            }
+
+
         </>
     )
 }

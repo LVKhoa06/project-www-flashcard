@@ -5,7 +5,7 @@ export default async function handler(req, res) {
   // reusable
   const { url, method, query, body, headers } = req;
   const session = await getSession({req});
-  const username = session.user.nickname
+  const username = session?.user.nickname
 
   switch (method) {
     case "GET":

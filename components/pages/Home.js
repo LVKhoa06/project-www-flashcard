@@ -4,6 +4,7 @@ import styles from '../../styles/Home.module.scss';
 import Flashcard from '../flashcard/Flashcard';
 import SortAndFilter from '../sort_and_filter/SortAndFilter';
 import { useSession } from 'next-auth/react';
+import HomeLoading from '../loading/Flashcard';
 
 function Home() {
     const configUseSortAndFilter = { sort: true, filter: true }
@@ -12,10 +13,9 @@ function Home() {
     const { data: session, status } = useSession();
 
     useEffect(() => {
-        if (!session) 
+        if (!session)
             return;
     }, [])
-
 
     return (
         <>
@@ -23,9 +23,15 @@ function Home() {
                 <title>Flashcard</title>
             </Head>
             <SortAndFilter use={configUseSortAndFilter} setData={setData} listTopic={listTopic} setListTopic={setListTopic} />
-            <div className={styles.container}>
-                <Flashcard data={data} setData={setData} />
-            </div>
+            {data.length ?
+                <div className={styles.container}>
+                    <Flashcard data={data} setData={setData} />
+                </div> :
+                <HomeLoading />
+            }
+
+
+
         </>
     )
 }

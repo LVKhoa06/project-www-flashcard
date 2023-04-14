@@ -1,25 +1,30 @@
- $res_600 : "only screen and (max-width: 600px)";
+ $res_680 : "only screen and (max-width: 680px)";
 
  .container {
     flex-wrap: wrap;
     display: flex;
-    margin-top: 60px;
+    margin-top: 80px;
+    justify-content: center;
 }
 
 .topic{
-    width: max-content;
+    width: 47%;
     height: max-content ;
     margin: 10px;
-    padding:  6px 0px 6px 10px;
+    padding:  12px 0px 12px 10px;
     position: relative;
-    border: 1px solid var(--color-grey-0);
+    border: 1px solid var(--color-white-3);
     border-radius: 5px;
     display: flex;
     align-items: center;
-    background-color: var(--color-white-0);
+    justify-content: space-between;
+    background-color: rgba($color: #00c8ff, $alpha: .03);
+    color:var(--color-black-2) ;
 }
 
 .quantity-container {
+    // position: absolute;
+    // right: 0;
     height: 100%;
     display: flex;
     align-items: center;
@@ -27,20 +32,21 @@
 
 .quantity-container span{
     padding-right: 20px;
-    font-size: 10px;
+    font-size: 11px;
     margin-left: 20px;
 }
 
-@mixin responsive_600() {
-    @media #{$res_600} {
+@mixin responsive_680() {
+    @media #{$res_680} {
         @content;
     }
 }
 
-@include responsive_600{
-    .quantity-container span{
-        font-size: 10px;
+@include responsive_680{
+    .topic {
+        width: 94%;
     }
+
     .topic h2{
         font-size: 18px;
     }

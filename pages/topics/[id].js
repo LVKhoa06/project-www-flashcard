@@ -5,11 +5,13 @@ import styles from '../../styles/ListTopic.module.scss'
 import Protector from "@/components/Protector";
 import { useRouter } from "next/router";
 import axios from "axios";
+import HomeLoading from "@/components/loading/Flashcard";
 
 function TopicDetail() {
   const router = useRouter();
   const [data, setData] = useState([]);
   const [topic, setTopic] = useState({});
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     if (!router.query.id)
@@ -18,13 +20,13 @@ function TopicDetail() {
     const handler = async () => {
       const fetch = await axios.get(`/api/topic/topic-check?id=${router.query.id}`);
       const checkTopicExist = fetch.data[0].topic_check
-      
-      if (!checkTopicExist) 
+
+      if (!checkTopicExist)
         return router.push('/404');
-      
+
       const fetchListTopic = await axios.get(`/api/topic/topic-detail?id=${router.query.id}`);
 
-
+      setIsLoading(false);
       setData(fetchListTopic.data.data1);
       setTopic(fetchListTopic.data.data2[0]);
     }
@@ -32,15 +34,21 @@ function TopicDetail() {
     handler();
   }, [router]);
 
-
   return (
     <Protector>
       <Head>
         <title>{topic.topic} - Topic</title>
       </Head>
-      <div className={styles.container}>
-        <Flashcard data={data} setData={setData} />
-      </div>
+      {isLoading ?
+        <HomeLoading /> :
+        data.length ?
+          <div className={styles.container}>
+            <Flashcard data={data} setData={setData} />
+          </div> :
+          <div className={styles.container}>
+            <h1>Topic Empty.</h1>
+          </div>
+      }
     </Protector>
   );
 }
