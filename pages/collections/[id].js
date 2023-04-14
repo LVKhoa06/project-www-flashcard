@@ -25,11 +25,9 @@ function CollectionDetail() {
   const { data: session, status } = useSession();
 
   useEffect(() => {
-    if (!router)
+    if (!router.query.id || !session?.user.nickname)
       return;
-    if (!router.query.id)
-      return;
-
+      
     const handler = async () => {
       const checkCollectionExist = await axios.get(`/api/collection/collection-check?id=${router.query.id}&username=${session?.user.nickname}`)
 
@@ -43,7 +41,7 @@ function CollectionDetail() {
     }
 
     handler();
-  }, [router])
+  }, [router, session])
 
   useEffect(() => {
     setQuantity(listFlashcard.length);
