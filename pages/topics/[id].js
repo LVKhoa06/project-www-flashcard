@@ -5,7 +5,8 @@ import styles from '../../styles/ListTopic.module.scss'
 import Protector from "@/components/Protector";
 import { useRouter } from "next/router";
 import axios from "axios";
-import HomeLoading from "@/components/loading/Flashcard";
+import Loading from "@/components/Loading";
+import stylesF from '../../styles/Flashcard.module.scss';
 
 function TopicDetail() {
   const router = useRouter();
@@ -40,7 +41,7 @@ function TopicDetail() {
         <title>{topic.topic} - Topic</title>
       </Head>
       {isLoading ?
-        <HomeLoading /> :
+        <Loading classNameContainer={styles.container} quantity={16} classNameBox={stylesF.flashcard} /> :
         data.length ?
           <div className={styles.container}>
             <Flashcard data={data} setData={setData} />

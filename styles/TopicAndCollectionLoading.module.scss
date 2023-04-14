@@ -1,3 +1,5 @@
+$res_600 : "only screen and (max-width: 600px)";
+
 .container {
     flex-wrap: wrap;
     display: flex;
@@ -18,12 +20,25 @@
     0% {
         opacity: 1;
     }
-  
+
     50% {
         opacity: 0.6;
     }
-  
+
     100% {
         opacity: 1;
     }
-  }
+}
+
+@mixin responsive_600() {
+    @media #{$res_600} {
+        @content;
+    }
+}
+
+@include responsive_600 {
+    .box {
+        width: 90%;
+        min-width: 90%;
+    }
+}

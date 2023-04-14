@@ -1,0 +1,26 @@
+.container {
+    display: flex;
+    width: 100%;
+}
+
+.box {
+    background-color: #d1d1d1 !important;
+    animation: blink 1.2s infinite;
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.6;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

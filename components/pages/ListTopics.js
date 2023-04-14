@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styles from '../../styles/ListTopic.module.scss'
 import { useSession } from 'next-auth/react';
-import TopicAndCollectionLoading from '../loading/TopicAndCollection';
+import Loading from '../Loading';
 
 function ListTopics() {
     const [listTopicQuantity, setListTopicQuantity] = useState([]);
@@ -28,7 +28,7 @@ function ListTopics() {
             <Head>
                 <title>List Topics</title>
             </Head>
-            
+
             {listTopic.length && listTopicQuantity.length ?
                 <div className={styles.container}>
                     {listTopic.map(item => {
@@ -46,7 +46,7 @@ function ListTopics() {
                         )
                     })}
                 </div> :
-                <TopicAndCollectionLoading />
+                <Loading classNameContainer={styles.container} quantity={16} classNameBox={styles.topic} />
 
             }
 

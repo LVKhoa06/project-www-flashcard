@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styles from '../../styles/ListCollection.module.scss'
 import { useSession } from 'next-auth/react';
-import TopicAndCollectionLoading from '../loading/TopicAndCollection';
+import Loading from '../Loading';
 
 function ListCollections() {
     const [dataCountCollection, setDataCountCollection] = useState([]);
@@ -48,7 +48,7 @@ function ListCollections() {
                             )
                         })}
                     </div> :
-                    <TopicAndCollectionLoading />
+                    <Loading classNameContainer={styles.container} quantity={16} classNameBox={styles.collection}/>
             }
 
 

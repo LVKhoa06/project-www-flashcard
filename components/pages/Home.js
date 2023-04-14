@@ -1,10 +1,11 @@
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import styles from '../../styles/Home.module.scss';
+import stylesF from '../../styles/Flashcard.module.scss';
 import Flashcard from '../flashcard/Flashcard';
 import SortAndFilter from '../sort_and_filter/SortAndFilter';
 import { useSession } from 'next-auth/react';
-import HomeLoading from '../loading/Flashcard';
+import Loading from '../Loading';
 
 function Home() {
     const configUseSortAndFilter = { sort: true, filter: true }
@@ -27,11 +28,8 @@ function Home() {
                 <div className={styles.container}>
                     <Flashcard data={data} setData={setData} />
                 </div> :
-                <HomeLoading />
+                <Loading classNameContainer={styles.container} quantity={16} classNameBox={stylesF.flashcard}/>
             }
-
-
-
         </>
     )
 }

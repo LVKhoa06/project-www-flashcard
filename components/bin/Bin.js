@@ -7,7 +7,7 @@ import styles from '../../styles/Bin.module.scss'
 import Notification from '../notification/Notification';
 import ModalCheck from './CheckDeleting';
 import { useSession } from 'next-auth/react';
-import BinLoading from '../loading/Bin';
+import Loading from '../Loading';
 
 function Bin() {
     const { data: session, status } = useSession();
@@ -64,7 +64,7 @@ function Bin() {
                 <title>Flashcard Bin</title>
             </Head>
             {isLoading ?
-                <BinLoading /> :
+                <Loading classNameContainer={styles.container} quantity={6} classNameBox={styles.item} /> :
                 data.length ?
                     <div className={styles.container}>
                         {

@@ -10,8 +10,8 @@ import styles from '../../styles/ListCollection.module.scss';
 import { useRouter } from "next/router";
 import axios from "axios";
 import { useSession } from "next-auth/react";
-import CollectionDetailLoading from "@/components/loading/CollectionDetail";
-import HomeLoading from "@/components/loading/Flashcard";
+import stylesF from '../../styles/Flashcard.module.scss';
+import Loading from "@/components/Loading";
 
 function CollectionDetail() {
   const router = useRouter();
@@ -27,7 +27,7 @@ function CollectionDetail() {
   useEffect(() => {
     if (!router.query.id || !session?.user.nickname)
       return;
-      
+
     const handler = async () => {
       const checkCollectionExist = await axios.get(`/api/collection/collection-check?id=${router.query.id}&username=${session?.user.nickname}`)
 
@@ -106,11 +106,12 @@ function CollectionDetail() {
                 </div>
               </div>
             </div> :
-            <CollectionDetailLoading />
+            <Loading classNameBox={styles.header} quantity={1} />
+
         }
 
         {isLoading ?
-          <HomeLoading /> :
+          <Loading classNameContainer={styles.container} quantity={12} classNameBox={stylesF.flashcard} /> :
           listFlashcard.length ?
             <>
               <Flashcard data={listFlashcard} setData={setListFlashcard} />
