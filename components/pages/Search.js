@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import Head from 'next/head';
 import Flashcard from '../flashcard/Flashcard';
 import styles from '../../styles/Home.module.scss';
-import Loading from "../Loading";
+import Loading from "../loading/Loading";
 
 function Search() {
     const router = useRouter();

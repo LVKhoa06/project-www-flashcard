@@ -5,7 +5,7 @@ import stylesF from '../../styles/Flashcard.module.scss';
 import Flashcard from '../flashcard/Flashcard';
 import SortAndFilter from '../sort_and_filter/SortAndFilter';
 import { useSession } from 'next-auth/react';
-import Loading from '../Loading';
+import Loading from '../loading/Loading';
 
 function Home() {
     const configUseSortAndFilter = { sort: true, filter: true }

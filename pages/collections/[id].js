@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import { useSession } from "next-auth/react";
 import stylesF from '../../styles/Flashcard.module.scss';
-import Loading from "@/components/Loading";
+import Loading from "@/components/loading/Loading";
 
 function CollectionDetail() {
   const router = useRouter();

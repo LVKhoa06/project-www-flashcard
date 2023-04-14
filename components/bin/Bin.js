@@ -7,7 +7,7 @@ import styles from '../../styles/Bin.module.scss'
 import Notification from '../notification/Notification';
 import ModalCheck from './CheckDeleting';
 import { useSession } from 'next-auth/react';
-import Loading from '../Loading';
+import Loading from '../loading/Loading';
 
 function Bin() {
     const { data: session, status } = useSession();

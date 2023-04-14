@@ -136,3 +136,9 @@ html *::-webkit-scrollbar-track {
 .showm {
   display: flex !important;
 }
+
+.disable {
+  pointer-events: none !important;
+  cursor: no-drop !important;
+  opacity: .6 !important;
+}

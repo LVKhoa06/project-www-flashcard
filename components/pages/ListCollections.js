@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import styles from '../../styles/ListCollection.module.scss'
 import { useSession } from 'next-auth/react';
-import Loading from '../Loading';
+import Loading from '../loading/Loading';
 
 function ListCollections() {
     const [dataCountCollection, setDataCountCollection] = useState([]);

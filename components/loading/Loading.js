@@ -1,4 +1,4 @@
-import classes from '../styles/Loading.module.scss';
+import classes from '../../styles/Loading.module.scss';
 
 function Loading(props) {
     const { classNameBox, classNameContainer, styles, quantity } = props;
@@ -7,9 +7,9 @@ function Loading(props) {
     return (
         <div className={`${classes.container} ${classNameContainer}`}>
             {
-                arr.map(() => {
+                arr.map((item, index) => {
                     return (
-                        <div className={`${classes.box} ${classNameBox}`}>
+                        <div key={index} className={`${classes.box} ${classNameBox}`}>
                         </div>
                     )
                 })

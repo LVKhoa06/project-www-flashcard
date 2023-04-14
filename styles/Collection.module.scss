@@ -11,6 +11,21 @@
     z-index: 999;
     cursor: default;
 
+    .loading{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-black-2);
+    font-weight: 600;
+    font-size: 15px;
+    width: 100%;
+    }
+
+    .input-loading{
+        position: absolute;
+        right: 0;
+    }
+
     .modal {
         background-color: var(--color-white-0);
         height: max-content;
@@ -36,6 +51,12 @@
             h3 {
                 font-size: 16px;
                 font-weight: 500;
+                margin-right: 8px;
+            }
+
+            .header-left {
+                display: flex;
+                align-items: center;
             }
         }
 
@@ -77,6 +98,7 @@
             margin-bottom: 10px;
             display: flex;
             align-items: center;
+            position: relative;
 
             input {
                 margin-right: 16px;

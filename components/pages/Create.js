@@ -6,7 +6,7 @@ import styles from '../../styles/CreateFlashcard.module.scss'
 import Notification from "../notification/Notification";
 import Select from "../select";
 import { useSession } from "next-auth/react";
-import LoadingSpinner from "../LoadingSpinner";
+import LoadingSpinner from "../loading/LoadingSpinner";
 
 
 function Create() {

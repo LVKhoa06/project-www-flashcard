@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import styles from '../../styles/Collection.module.scss'
 import Notification from '../notification/Notification';
 import IconAdd from 'assets/icon-add';
-import LoadingSpinner from '../LoadingSpinner';
+import LoadingSpinner from '../loading/LoadingSpinner';
 
 function Collection(props) {
     const { id, selected: initializedChecked, showModal, setShowModal, setShowMenu, result: collections, setResult: setCollections } = props;
@@ -11,6 +11,9 @@ function Collection(props) {
     const [value, setValue] = useState('');
     const [notification, setNotification] = useState('');
     const [checkedStates, setCheckedStates] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isCreateCollection, setIsCreateCollection] = useState(false);
+    const [curId, setCurId] = useState();
 
     const [notificationConfig, setNotificationConfig] = useState({
         show: false,
@@ -30,9 +33,10 @@ function Collection(props) {
 
     const handlerOnChangeCheckbox = async (e, i, collection_id) => {
         const updatedCheckedState = checkedStates?.map((item, index) => index === i ? !item : item);
-
+        setCurId(collection_id);
 
         if (e.target.checked) {
+            setIsLoading(true);
             await axios.patch(
                 '/api/collection/collection',
                 {
@@ -43,6 +47,7 @@ function Collection(props) {
                     "Content-Type": "application/json",
                 }
             )
+            setIsLoading(false);
             setCheckedStates(updatedCheckedState);
             setNotificationConfig({
                 message: 'Successfully added to the collection',
@@ -50,8 +55,10 @@ function Collection(props) {
                 show: !notificationConfig.show
             })
         } else {
+            setIsLoading(true);
             await axios.delete(`/api/collection/collection?f_id=${id}&c_id=${collection_id}`)
 
+            setIsLoading(false);
             setCheckedStates(updatedCheckedState);
             setNotificationConfig({
                 message: 'Flashcard removed from collection',
@@ -63,6 +70,7 @@ function Collection(props) {
 
     const addCollectionHandler = async () => {
         if (value) {
+            setIsCreateCollection(true);
             await axios.post(
                 "/api/collection/collection",
                 {
@@ -72,11 +80,11 @@ function Collection(props) {
                     "Content-Type": "application/json",
                 }
             );
-
             const data = await axios.get(`/api/collection/list-collection`);
             setCollections(data.data);
 
             setNotification('')
+            setIsCreateCollection(false);
         } else setNotification('Please enter collection name');
         setValue('');
     } // addCollectionHandler
@@ -106,8 +114,9 @@ function Collection(props) {
                             {collections.length ?
                                 collections.map((item, index) => {
                                     return (
-                                        <div key={item.collection_id} className={styles['input-container']}>
+                                        <div id={`collection-${item.collection_id}`} key={item.collection_id} className={styles['input-container']}>
                                             <input
+                                                disabled={isLoading}
                                                 id={item.collection_id}
                                                 type="checkbox"
                                                 checked={checkedStates[index]}
@@ -115,10 +124,20 @@ function Collection(props) {
                                                     handlerOnChangeCheckbox(e, index, item.collection_id)
                                                 }} />
                                             <label>{item.collection}</label>
+                                            {
+
+                                                isLoading && curId === item.collection_id ?
+                                                    <div className={styles['input-loading']}>
+                                                        <LoadingSpinner />
+                                                    </div> :
+                                                    ""
+                                            }
                                         </div>
                                     )
                                 }) :
-                                <LoadingSpinner />
+                                <div className={styles.loading}>
+                                    <LoadingSpinner />
+                                </div>
                             }
                         </div>
 
@@ -131,7 +150,7 @@ function Collection(props) {
                                     </div>
                                 </div>
                                 <div className={styles.footer}>
-                                    <button onClick={() => {
+                                    <button className={`${isCreateCollection ? 'disable' : ''}`} onClick={() => {
                                         addCollectionHandler();
                                     }}>Create</button>
                                 </div>
