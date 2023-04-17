@@ -11,6 +11,7 @@ import IconRecover from 'assets/icon-recover';
 import { signOut, useSession } from 'next-auth/react';
 import IconSignIn from 'assets/icon-signin';
 import IconSignUp from 'assets/icon-signup';
+import IconProfile from 'assets/icon-profile';
 
 function NavMobile(props) {
     const { show, setShow } = props;
@@ -46,13 +47,19 @@ function NavMobile(props) {
 
 
                     {session ?
-                        <Link href='/' onClick={() => {
-                            signOut({ callbackUrl: "/sign-in" })
-                            setShow(false)
-                        }} className={styles['item']}>
-                            <span ><IconSignOut /></span>
-                            <span>Sign-out</span>
-                        </Link>
+                        <>
+                            <Link href='/sign-up' onClick={() => setShow(false)} className={styles['item']}>
+                                <span ><IconProfile /></span>
+                                <span>Account</span>
+                            </Link>
+                            <Link href='/' onClick={() => {
+                                signOut({ callbackUrl: "/sign-in" })
+                                setShow(false)
+                            }} className={styles['item']}>
+                                <span ><IconSignOut /></span>
+                                <span>Sign-out</span>
+                            </Link>
+                        </>
                         :
                         <>
                             <Link href="/sign-in" onClick={() => setShow(false)} className={styles['item']}>
@@ -64,14 +71,13 @@ function NavMobile(props) {
                                 <span>Sign-up</span>
                             </Link>
                         </>
-
                     }
-                    <div>
+                    {/* <div>
                         <div className={styles['item']}>
                             <span><IconSetting stroke='#3688ff' fillRule='evenodd' clipRule='evenodd' strokeLinejoin='round' strokeMiterlimit='2' viewBox="0 0 32 32" /></span>
                             <span>Setttings</span>
                         </div>
-                    </div>
+                    </div> */}
                 </div>
             </div> : ''
 

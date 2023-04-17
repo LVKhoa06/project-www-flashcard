@@ -1,0 +1,30 @@
+$res_600 : "only screen and (max-width: 600px)";
+
+.container {
+    margin-top: 65px;
+
+    input {
+        width: 140px;
+        border-radius: 5px;
+        outline: none;
+        border: 1px solid #777;
+        height: 24px;
+        background-color: white
+    }
+}
+
+@mixin responsive_600() {
+    @media #{$res_600} {
+        @content;
+    }
+}
+
+@include responsive_600 {
+    .container {
+    
+        input {
+            width: 100px;
+            font-size: 12px;
+        }
+    }
+}
