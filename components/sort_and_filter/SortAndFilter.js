@@ -13,7 +13,7 @@ const CONST_SORT_CASE = {
 }
 
 function SortAndFilter(props) {
-    const { setData, setListTopic, use: config } = props
+    const { setData, setListTopic, use: config, setIsLoading } = props
     const { none, alphabeticallyASC, alphabeticallyDESC, dateASC, dateDESC } = CONST_SORT_CASE
     const [sortConfig, setSortConfig] = useState({ orderBy: 'creation_time', direction: 'desc' });
     const { orderBy, direction } = sortConfig;
@@ -38,6 +38,7 @@ function SortAndFilter(props) {
             if (session) {
                 const data = await axios.get(`/api/flashcard/home?topic_id=${topicId}&orderBy=${orderBy}&direction=${direction}&username=${session?.user.nickname}`);
                 setData(data.data);
+                setIsLoading(false);
             }
         }
         handler();

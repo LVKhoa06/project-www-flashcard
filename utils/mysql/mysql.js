@@ -188,6 +188,16 @@ export async function flashcard_getWithKeyword(key, username) {
         return false;
     return result;
 } // searchFlashcard
+
+export async function flashcard_getWithDate(date, username) {
+    const query = ` 
+    select * from flashcard where username = '${username}' and (creation_time = "${date}")`
+    const [result] = await pool().execute(query);
+
+    if (!result)
+        return false;
+    return result;
+} // flashcard_getWithDate
 //#endregion Flashcard -------------------------------------------- END
 
 
