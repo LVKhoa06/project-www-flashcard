@@ -13,17 +13,25 @@ const CONST_SORT_CASE = {
 }
 
 function SortAndFilter(props) {
-    const { setData, setListTopic, use: config, setIsLoading } = props
+    const {
+        setData,
+        setListTopic,
+        use: config,
+        setIsLoading,
+        orderBy,
+        direction,
+        setSortConfig,
+        topicId,
+        setTopicId,
+        value
+    } = props
     const { none, alphabeticallyASC, alphabeticallyDESC, dateASC, dateDESC } = CONST_SORT_CASE
-    const [sortConfig, setSortConfig] = useState({ orderBy: 'creation_time', direction: 'desc' });
-    const { orderBy, direction } = sortConfig;
-    const [topicId, setTopicId] = useState('');
     const { data: session, status } = useSession();
 
     useEffect(() => {
         if (!session)
             return;
-            
+
         if (config.filter) {
             const handler = async () => {
                 const data = await axios.get("/api/topic/list-topic");
@@ -36,13 +44,13 @@ function SortAndFilter(props) {
     useEffect(() => {
         const handler = async () => {
             if (session) {
-                const data = await axios.get(`/api/flashcard/home?topic_id=${topicId}&orderBy=${orderBy}&direction=${direction}&username=${session?.user.nickname}`);
+                const data = await axios.get(`/api/flashcard/home?topic_id=${topicId}&orderBy=${orderBy}&direction=${direction}&date=${value}`);
                 setData(data.data);
                 setIsLoading(false);
             }
         }
         handler();
-    }, [sortConfig, topicId, session]);
+    }, [orderBy, direction, topicId, session]);
 
     const updateSortConfig = async (value) => {
         if (value == none) return;

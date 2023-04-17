@@ -107,7 +107,6 @@ function CollectionDetail() {
               </div>
             </div> :
             <Loading classNameBox={styles.header} quantity={1} />
-
         }
 
         {isLoading ?

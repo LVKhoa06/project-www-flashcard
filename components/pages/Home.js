@@ -13,6 +13,10 @@ function Home() {
     const [data, setData] = useState([]);
     const [listTopic, setListTopic] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [sortConfig, setSortConfig] = useState({ orderBy: 'creation_time', direction: 'desc' });
+    const { orderBy, direction } = sortConfig;
+    const [topicId, setTopicId] = useState('');
+    const [value, setValue] = useState('');
 
     const { data: session, status } = useSession();
 
@@ -27,8 +31,27 @@ function Home() {
                 <title>Flashcard</title>
             </Head>
             <div className={styles.sort}>
-                <SortAndFilter setIsLoading={setIsLoading} use={configUseSortAndFilter} setData={setData} listTopic={listTopic} setListTopic={setListTopic} />
-                <FilterWidthDate setData={setData} />
+                <SortAndFilter
+                    setIsLoading={setIsLoading}
+                    use={configUseSortAndFilter}
+                    setData={setData}
+                    listTopic={listTopic}
+                    setListTopic={setListTopic}
+                    setSortConfig={setSortConfig}
+                    orderBy={orderBy}
+                    direction={direction}
+                    topicId={topicId}
+                    value={value}
+                    setTopicId={setTopicId}
+                />
+                <FilterWidthDate
+                    orderBy={orderBy}
+                    direction={direction}
+                    topicId={topicId}
+                    setData={setData}
+                    value={value}
+                    setValue={setValue}
+                />
             </div>
             {
                 isLoading ?

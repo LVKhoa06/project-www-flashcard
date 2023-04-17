@@ -1,11 +1,15 @@
 import { flashcard_remove, flashcard_update, flashcard_getWithCondition } from "../../../utils/mysql/mysql";
+import { getSession } from "next-auth/react";
 
 export default async function handler(req, res) {
   const { url, method, query, body, headers } = req;
+  const session = await getSession({req});
+  const username = session?.user.nickname;
+
 
   switch (method) {
     case "GET":
-      const data = await flashcard_getWithCondition(query.topic_id, query.username, query.orderBy, query.direction);
+      const data = await flashcard_getWithCondition(query.topic_id, username, query.date, query.orderBy, query.direction);
 
       if (!data) return res.status(400).send("Error occured.");
       res.status(201).json(data);
