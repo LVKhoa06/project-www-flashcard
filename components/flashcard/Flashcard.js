@@ -7,7 +7,7 @@ import FlashcardDetail from "./Detail";
 import Notification from "../notification/Notification";
 
 function Flashcard(props) {
-    const { data, setData } = props
+    const { data, setData, setListFlashcard } = props
     const [showMenu, setShowMenu] = useState(false);
     const [curId, setCurId] = useState(0);
     const [show, setShow] = useState(false);
@@ -96,7 +96,7 @@ function Flashcard(props) {
                                 setShowMenu(!showMenu);
                             }} className={styles['menu-container']}>
                             <IconMenu width='20px' height='20px' />
-                            <MenuFlashcard setDelected={setDelected} id={id} setShowMenu={setShowMenu} setData={setData} />
+                            <MenuFlashcard setListFlashcard={setListFlashcard} setDelected={setDelected} id={id} setShowMenu={setShowMenu} setData={setData} />
                         </div>
                     </div>
                 );

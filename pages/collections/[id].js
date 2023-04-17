@@ -113,7 +113,7 @@ function CollectionDetail() {
           <Loading classNameContainer={styles.container} quantity={12} classNameBox={stylesF.flashcard} /> :
           listFlashcard.length ?
             <>
-              <Flashcard data={listFlashcard} setData={setListFlashcard} />
+              <Flashcard setListFlashcard={setListFlashcard} data={listFlashcard} setData={setListFlashcard} />
             </> :
             <div>
               <h1>Collection Empty</h1>

@@ -4,7 +4,7 @@ import styles from '../../styles/MenuFlashcard.module.scss'
 import Collection from './Collection';
 
 function MenuFlashcard(props) {
-    const { id, setShowMenu, setData, setDelected } = props;
+    const { id, setShowMenu, setData, setDelected, setListFlashcard } = props;
     const [showModal, setShowModal] = useState(false);
     const [result, setResult] = useState([]);
     const [selected, setSelected] = useState([]);
@@ -44,7 +44,7 @@ function MenuFlashcard(props) {
                     deleteFlashcardHandler(id)
                 }}>Delete </h4>
             </div>
-            <Collection selected={selected} id={id} result={result} setResult={setResult} showModal={showModal} setShowModal={setShowModal} setShowMenu={setShowMenu} />
+            <Collection setListFlashcard={setListFlashcard} selected={selected} id={id} result={result} setResult={setResult} showModal={showModal} setShowModal={setShowModal} setShowMenu={setShowMenu} />
         </>
 
     );

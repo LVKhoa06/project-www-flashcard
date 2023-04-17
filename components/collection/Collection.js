@@ -4,9 +4,19 @@ import styles from '../../styles/Collection.module.scss'
 import Notification from '../notification/Notification';
 import IconAdd from 'assets/icon-add';
 import LoadingSpinner from '../loading/LoadingSpinner';
+import { useRouter } from 'next/router';
 
 function Collection(props) {
-    const { id, selected: initializedChecked, showModal, setShowModal, setShowMenu, result: collections, setResult: setCollections } = props;
+    const {
+        id,
+        selected: initializedChecked,
+        showModal,
+        setShowModal,
+        setShowMenu,
+        result: collections,
+        setResult: setCollections,
+        setListFlashcard
+    } = props;
     const [showCreate, setShowCreate] = useState(false);
     const [value, setValue] = useState('');
     const [notification, setNotification] = useState('');
@@ -14,12 +24,22 @@ function Collection(props) {
     const [isLoading, setIsLoading] = useState(false);
     const [isCreateCollection, setIsCreateCollection] = useState(false);
     const [curId, setCurId] = useState();
+    const [isDeleted, setIsDeteted] = useState(false);
+    const [collectionPageId, setCollectionPageId] = useState('');
+    const router = useRouter();
 
     const [notificationConfig, setNotificationConfig] = useState({
         show: false,
         type: '',
         message: ''
     })
+
+    useEffect(() => {
+        if (!router.query.id)
+            return;
+
+        setCollectionPageId(router.query.id);
+    }, [router.query.id])
 
     useEffect(() => {
         let defaultCheckedState = [];
@@ -46,7 +66,9 @@ function Collection(props) {
                 {
                     "Content-Type": "application/json",
                 }
-            )
+            );
+
+            setIsDeteted(false);
             setIsLoading(false);
             setCheckedStates(updatedCheckedState);
             setNotificationConfig({
@@ -57,6 +79,9 @@ function Collection(props) {
         } else {
             setIsLoading(true);
             await axios.delete(`/api/collection/collection?f_id=${id}&c_id=${collection_id}`)
+
+            if (collectionPageId == collection_id)
+                setIsDeteted(true);
 
             setIsLoading(false);
             setCheckedStates(updatedCheckedState);
@@ -97,7 +122,13 @@ function Collection(props) {
             message: '',
             show: !notificationConfig.show,
             type: ''
-        })
+        });
+
+        if (setListFlashcard && isDeleted) {
+            setListFlashcard((prev) => {
+                return prev.filter((item) => item.id !== id)
+            })
+        }
     } // closeModalHandler
 
     return (
@@ -125,7 +156,6 @@ function Collection(props) {
                                                 }} />
                                             <label>{item.collection}</label>
                                             {
-
                                                 isLoading && curId === item.collection_id ?
                                                     <div className={styles['input-loading']}>
                                                         <LoadingSpinner />
