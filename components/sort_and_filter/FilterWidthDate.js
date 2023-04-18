@@ -3,13 +3,16 @@ import { useEffect, useState } from "react";
 import styles from '../../styles/FilterWidthDate.module.scss';
 
 function FilterWidthDate(props) {
-    const { setData, topicId, direction, orderBy, value, setValue } = props
+    const { setData, topicId, direction, orderBy, value, setValue, setIsLoading } = props
 
     useEffect(() => {
         if (!value)
             return;
         const handler = async () => {
+            setIsLoading(true);
+
             const data = await axios.get(`/api/flashcard/home?topic_id=${topicId}&orderBy=${orderBy}&direction=${direction}&date=${value}`);
+            setIsLoading(false);
             setData(data.data);
         }
 
@@ -22,8 +25,11 @@ function FilterWidthDate(props) {
 
         if (!date) {
             const handler = async () => {
+                setIsLoading(true);
+                
                 const data = await axios.get(`/api/flashcard/home?topic_id=${topicId}&orderBy=${orderBy}&direction=${direction}`);
                 setData(data.data);
+                setIsLoading(false);
             }
             handler();
 

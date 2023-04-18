@@ -34,7 +34,9 @@ function SortAndFilter(props) {
 
         if (config.filter) {
             const handler = async () => {
+                setIsLoading(true);
                 const data = await axios.get("/api/topic/list-topic");
+                setIsLoading(false);
                 setListTopic(data.data.filter(item => item.topic_id !== -1));
             }
             handler();
@@ -44,6 +46,7 @@ function SortAndFilter(props) {
     useEffect(() => {
         const handler = async () => {
             if (session) {
+                setIsLoading(true);
                 const data = await axios.get(`/api/flashcard/home?topic_id=${topicId}&orderBy=${orderBy}&direction=${direction}&date=${value}`);
                 setData(data.data);
                 setIsLoading(false);

@@ -45,6 +45,7 @@ function Home() {
                     setTopicId={setTopicId}
                 />
                 <FilterWidthDate
+                    setIsLoading={setIsLoading}
                     orderBy={orderBy}
                     direction={direction}
                     topicId={topicId}

@@ -45,13 +45,16 @@ function NavMobile(props) {
                         <span>Bin</span>
                     </Link>
 
-
+                    <Link href="/" onClick={() => setShow(false)} className={styles['item']}>
+                        <span><IconSetting width="27px" stroke='#3688ff' fillRule='evenodd' clipRule='evenodd' strokeLinejoin='round' strokeMiterlimit='2' viewBox="0 0 35 30" /></span>
+                        <span>Setttings</span>
+                    </Link>
                     {session ?
                         <>
-                            <Link href='/sign-up' onClick={() => setShow(false)} className={styles['item']}>
+                            {/* <Link href='/sign-up' onClick={() => setShow(false)} className={styles['item']}>
                                 <span ><IconProfile /></span>
                                 <span>Account</span>
-                            </Link>
+                            </Link> */}
                             <Link href='/' onClick={() => {
                                 signOut({ callbackUrl: "/sign-in" })
                                 setShow(false)
@@ -72,12 +75,6 @@ function NavMobile(props) {
                             </Link>
                         </>
                     }
-                    {/* <div>
-                        <div className={styles['item']}>
-                            <span><IconSetting stroke='#3688ff' fillRule='evenodd' clipRule='evenodd' strokeLinejoin='round' strokeMiterlimit='2' viewBox="0 0 32 32" /></span>
-                            <span>Setttings</span>
-                        </div>
-                    </div> */}
                 </div>
             </div> : ''
 
