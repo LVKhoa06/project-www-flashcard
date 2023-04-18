@@ -35,7 +35,7 @@ function Search() {
                 <Loading /> :
                 data.length ?
                     <div className={styles.container_search}>
-                        <Flashcard data={data} setData={setData} />
+                        <Flashcard listFlashcard={data} setData={setData} />
                     </div> :
                     <div className={styles.container_search}>
                         <h1>No flashcards found matching ' a '</h1>

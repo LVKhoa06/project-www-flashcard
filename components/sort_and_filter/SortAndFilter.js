@@ -62,10 +62,10 @@ function SortAndFilter(props) {
             return setSortConfig({ orderBy: 'term', direction: 'desc' });
 
         if (value == dateASC)
-            return setSortConfig({ orderBy: 'creation_time', direction: 'asc' });
+            return setSortConfig({ orderBy: 'creation_time', direction: 'desc' });
 
         if (value == dateDESC)
-            return setSortConfig({ orderBy: 'creation_time', direction: 'desc' });
+            return setSortConfig({ orderBy: 'creation_time', direction: 'asc' });
     } // updateSortConfig
 
     return (

@@ -10,7 +10,7 @@ import stylesF from '../../styles/Flashcard.module.scss';
 
 function TopicDetail() {
   const router = useRouter();
-  const [data, setData] = useState([]);
+  const [listFlashcard, setListFlashcard] = useState([]);
   const [topic, setTopic] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
@@ -28,7 +28,7 @@ function TopicDetail() {
       const fetchListTopic = await axios.get(`/api/topic/topic-detail?id=${router.query.id}`);
 
       setIsLoading(false);
-      setData(fetchListTopic.data.data1);
+      setListFlashcard(fetchListTopic.data.data1);
       setTopic(fetchListTopic.data.data2[0]);
     }
 
@@ -42,9 +42,9 @@ function TopicDetail() {
       </Head>
       {isLoading ?
         <Loading classNameContainer={styles.container} quantity={16} classNameBox={stylesF.flashcard} /> :
-        data.length ?
+        listFlashcard.length ?
           <div className={styles.container}>
-            <Flashcard data={data} setData={setData} />
+            <Flashcard listFlashcard={listFlashcard} setListFlashcard={setListFlashcard} />
           </div> :
           <div className={styles.container}>
             <h1>Topic Empty.</h1>

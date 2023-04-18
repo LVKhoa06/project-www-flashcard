@@ -4,14 +4,14 @@ import styles from '../../styles/MenuFlashcard.module.scss'
 import Collection from './Collection';
 
 function MenuFlashcard(props) {
-    const { id, setShowMenu, setData, setDelected, setListFlashcard } = props;
+    const { id, setShowMenu, setListFlashcard, setDelected} = props;
     const [showModal, setShowModal] = useState(false);
     const [result, setResult] = useState([]);
     const [selected, setSelected] = useState([]);
 
     const deleteFlashcardHandler = async (id) => {
         await axios.delete(`/api/flashcard/home?id=${id}`);
-        setData(prev => {
+        setListFlashcard(prev => {
             return prev.filter(item => {
                 return item.id !== id;
             })
@@ -44,7 +44,16 @@ function MenuFlashcard(props) {
                     deleteFlashcardHandler(id)
                 }}>Delete </h4>
             </div>
-            <Collection setListFlashcard={setListFlashcard} selected={selected} id={id} result={result} setResult={setResult} showModal={showModal} setShowModal={setShowModal} setShowMenu={setShowMenu} />
+            <Collection
+                setListFlashcard={setListFlashcard}
+                selected={selected}
+                id={id}
+                result={result}
+                setResult={setResult}
+                showModal={showModal}
+                setShowModal={setShowModal}
+                setShowMenu={setShowMenu}
+            />
         </>
 
     );

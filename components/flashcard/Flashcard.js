@@ -7,7 +7,7 @@ import FlashcardDetail from "./Detail";
 import Notification from "../notification/Notification";
 
 function Flashcard(props) {
-    const { data, setData, setListFlashcard } = props
+    const { listFlashcard, setListFlashcard } = props
     const [showMenu, setShowMenu] = useState(false);
     const [curId, setCurId] = useState(0);
     const [show, setShow] = useState(false);
@@ -31,11 +31,11 @@ function Flashcard(props) {
 
     useEffect(() => {
         const item = []
-        data.forEach(i => {
+        listFlashcard.forEach(i => {
             item.push((Math.ceil(Math.random() * 20)))
         });
         setImgIndex(item);
-    }, [data]);
+    }, [listFlashcard]);
 
     useEffect(() => {
         const menu = document.querySelector(`#menu-${curId}`);
@@ -49,7 +49,7 @@ function Flashcard(props) {
     }, [showMenu, curId])
 
     useEffect(() => {
-        if (curId) 
+        if (curId)
             setNotificationConfig({
                 message: 'Delete Flashcard Successfully',
                 type: 'success',
@@ -65,18 +65,26 @@ function Flashcard(props) {
     return (
         <>
             {<Notification config={notificationConfig} />}
-            {show && <FlashcardDetail setData={setData} show={show} setShow={setShow} imgIndex={imgIndex} index={curDetailId} data={data[curDetailId]} />}
-            {data.map((item, index) => {
+            {show &&
+                <FlashcardDetail
+                    setListFlashcard={setListFlashcard}
+                    flashcard={listFlashcard[curDetailId]}
+                    show={show}
+                    setShow={setShow}
+                    imgIndex={imgIndex}
+                    index={curDetailId}
+                />}
+            {listFlashcard.map((item, index) => {
                 const id = item.id;
                 const img = images[`img${imgIndex[index]}`];
                 return (
                     <div onClick={(e) => detailHandler(e, index)} id={id} /*title={topicName}*/ className={`${styles.flashcard}`} key={id}>
                         <div
-                        style={{
-                            backgroundImage: `url("${item.img ? item.img : img?.src}")`,
-                        }}
-                         className={styles.img}
-                         ></div>
+                            style={{
+                                backgroundImage: `url("${item.img ? item.img : img?.src}")`,
+                            }}
+                            className={styles.img}
+                        ></div>
                         <div className={styles['wrap-content']}>
                             <div className={styles['wrap-title']}>
                                 <h2
@@ -96,7 +104,12 @@ function Flashcard(props) {
                                 setShowMenu(!showMenu);
                             }} className={styles['menu-container']}>
                             <IconMenu width='20px' height='20px' />
-                            <MenuFlashcard setListFlashcard={setListFlashcard} setDelected={setDelected} id={id} setShowMenu={setShowMenu} setData={setData} />
+                            <MenuFlashcard
+                                setDelected={setDelected}
+                                id={id}
+                                setShowMenu={setShowMenu}
+                                setListFlashcard={setListFlashcard}
+                            />
                         </div>
                     </div>
                 );

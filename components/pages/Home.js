@@ -59,7 +59,7 @@ function Home() {
                     :
                     data.length ?
                         <div className={styles.container}>
-                            <Flashcard data={data} setData={setData} />
+                            <Flashcard listFlashcard={data} setListFlashcard={setData} />
                         </div> :
                         <div className={styles.container}>
                             <h1>No flashcards</h1>
