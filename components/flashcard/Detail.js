@@ -1,7 +1,6 @@
 import images from "assets";
 import IconClose from "assets/icon-close";
 import axios from "axios";
-import { useSession } from "next-auth/react";
 import Head from "next/head";
 import { useEffect, useState } from "react";
 import styles from '../../styles/Flashcard.module.scss'
@@ -10,14 +9,14 @@ import Notification from "../notification/Notification";
 import Select from "../select";
 
 function FlashcardDetail(props) {
-    const { data, imgIndex, index, setShow, setData } = props;
-    const [result, setResult] = useState([data]);
-    const [valueTerm, setValueTerm] = useState(data.term);
-    const [valueDesc, setValueDesc] = useState(data.description);
+    const { flashcard, imgIndex, index, setShow, setListFlashcard } = props;
+    const [result, setResult] = useState([flashcard]);
+    const [valueTerm, setValueTerm] = useState(flashcard?.term);
+    const [valueDesc, setValueDesc] = useState(flashcard?.description);
     const [curTopic, setCurtopic] = useState();
     const [showChangeImg, setShowChangeImg] = useState(false);
     const [curImg, setCurImg] = useState('');
-
+    const [isChangedTopic, setIsChangedTopic] = useState(false);
     const [notificationConfig, setNotificationConfig] = useState({
         show: false,
         type: '',
@@ -26,18 +25,18 @@ function FlashcardDetail(props) {
 
     useEffect(() => {
         const handler = async () => {
-            const fetch = await axios.get(`/api/topic/cur-topic?id=${data.id}`);
+            const fetch = await axios.get(`/api/topic/cur-topic?id=${flashcard.id}`);
             setCurtopic(fetch.data);
         }
         handler();
 
-        setCurImg(data.img);
+        setCurImg(flashcard.img);
     }, []);
 
 
     useEffect(() => {
-        setResult([data]);
-    }, [data]);
+        setResult([flashcard]);
+    }, [flashcard]);
 
     const updateFlashcardHandler = async (e, field, id) => {
         const handler = async (value) => {
@@ -105,10 +104,12 @@ function FlashcardDetail(props) {
     } // updateFlashcardHandler
 
     const changeTopic = async (value) => {
+        setIsChangedTopic(+value !== curTopic[0].topic_id);
+
         await axios.patch(
             '/api/topic/cur-topic',
             {
-                id: data.id,
+                id: flashcard.id,
                 topic_id: value
             },
             {
@@ -120,8 +121,19 @@ function FlashcardDetail(props) {
             message: 'Update flashcard topic successfully.',
             type: 'success',
             show: !notificationConfig.show
-        })
+        });
     } // changeTopic
+
+    const closeModal = async () => {
+        if (isChangedTopic)
+            await setListFlashcard(prev => {
+                return prev.filter((item) => item.id !== flashcard.id);
+            })
+
+        setTimeout(() => {
+            setShow(false);
+        }, 100)
+    } // closeModal
 
     return (
         <>
@@ -133,7 +145,7 @@ function FlashcardDetail(props) {
                 const img = images[`img${imgIndex ? imgIndex[index] : Math.ceil(Math.random() * 20)}`];
                 return (
                     <div
-                        onClick={() => setShow(false)}
+                        onClick={() => closeModal()}
                         className={styles.overlay} key={item.id}
                     >
                         <div
@@ -143,7 +155,7 @@ function FlashcardDetail(props) {
                             }}
                             className={styles.container}
                         >
-                            <h1 onClick={() => setShow(false)} className={styles.close}><IconClose /></h1>
+                            <h1 onClick={() => closeModal()} className={styles.close}><IconClose /></h1>
                             <div className={styles['container-left']}>
                                 <div
                                     className={styles['img-fc']}
@@ -155,7 +167,7 @@ function FlashcardDetail(props) {
                                         backgroundImage: `url("${curImg ? curImg : img?.src}")`,
                                     }}
                                 >
-                                    {showChangeImg && <GetImg setImg={setCurImg} id={data.id} setData={setData} />}
+                                    {showChangeImg && <GetImg setImg={setCurImg} id={flashcard.id} setData={setListFlashcard} />}
 
                                 </div>
                                 <Select onChange={changeTopic} selected={curTopic ? curTopic[0].topic_id : ''} />
@@ -164,11 +176,11 @@ function FlashcardDetail(props) {
                                 <input
                                     onChange={(e) => setValueTerm(e.target.value)}
                                     onKeyUp={(e) => updateFlashcardHandler(e, 'term', item.id)}
-                                    defaultValue={data?.term}
+                                    defaultValue={flashcard?.term}
                                 />
                                 <textarea
                                     onChange={(e) => setValueDesc(e.target.value)}
-                                    defaultValue={data?.description}
+                                    defaultValue={flashcard?.description}
                                 />
                                 <button
                                     onClick={(e) => {
