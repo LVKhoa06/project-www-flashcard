@@ -71,7 +71,7 @@ function Search() {
                     }} className={styles.button} type="submit"><IconSearch /></button>
                 </div>
                 <div
-                    className={`${styles.container_result} ${value.length && isFocus ? 'show' : ''} ${value.length && isFocus && !searchResult.length ? 'flicker' : ''}`}
+                    className={`${styles.container_result} ${value.length && isFocus ? 'show' : ''} ${value.length && isFocus && !searchResult.length && isLoading ? 'flicker' : ''}`}
                 >
                     {isLoading ?
                         <p>Looking for flashcards matching ' {value} '</p> :

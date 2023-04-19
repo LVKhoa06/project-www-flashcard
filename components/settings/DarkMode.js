@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import styles from '../../styles/DarkMode.module.scss';
+import IconSun from 'assets/icon-sun';
+import IconMoon from 'assets/icon-moon';
 function DarkMode({ onMouseDown }) {
     const [darkMode, setDarkMode] = useState(
         typeof window === "undefined" ? '' :
@@ -32,7 +34,11 @@ function DarkMode({ onMouseDown }) {
             className={styles.toggle}
             onClick={() => (darkMode ? setDarkMode(false) : setDarkMode(true))}
         >
-            <div className={styles.toggleInner} />
+            <div className={styles.toggleInner}>
+                {darkMode ?
+                    <IconMoon width="20px" /> :
+                    <IconSun width="18px" viewBox="0 0 64 64" enable-background="new 0 0 64 64" />}
+            </div>
         </div>
     );
 }

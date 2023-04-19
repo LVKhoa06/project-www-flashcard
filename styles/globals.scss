@@ -35,8 +35,7 @@ body {
   overflow-x: hidden;
 }
 
-body {
-}
+body {}
 
 a {
   color: inherit;
@@ -79,12 +78,17 @@ html *::-webkit-scrollbar-track {
 }
 
 .flicker {
-  animation: flickerBackground 1s infinite;
+  animation: flickerBackground 1.2s infinite;
 }
 
 @keyframes flickerBackground {
   0% {
+    background-color: var(--background-color-5);
+  }
+
+  50% {
     background-color: var(--background-color-2);
+
   }
 
   100% {
@@ -92,33 +96,47 @@ html *::-webkit-scrollbar-track {
   }
 }
 
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.6;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
 .notification {
-    position: fixed;
-    bottom: 20px;
-    left: 18px;
-    width: max-content;
-    min-width: 300px;
-    height: 60px;
-    display: none;
-    border-radius: 8px;
-    align-items: center;
-    color: var(--color-white-0);
-    text-shadow: 0 0 10px 15px var(--color-black-0);
-    cursor: pointer;
-    box-shadow: 0 0 5px -3px var(--color-grey-1);
-    padding: 0px 20px;
-    z-index: 999999;
+  position: fixed;
+  bottom: 20px;
+  left: 18px;
+  width: max-content;
+  min-width: 300px;
+  height: 60px;
+  display: none;
+  border-radius: 8px;
+  align-items: center;
+  color: var(--color-white-0);
+  text-shadow: 0 0 10px 15px var(--color-black-0);
+  cursor: pointer;
+  box-shadow: 0 0 5px -3px var(--color-grey-1);
+  padding: 0px 20px;
+  z-index: 999999;
 
-    p {
-      font-size: 15px;
-      font-weight: 700;
-      text-shadow: 0px 0px 1px var(--color-grey-1);
-    }
+  p {
+    font-size: 15px;
+    font-weight: 700;
+    text-shadow: 0px 0px 1px var(--color-grey-1);
+  }
 
-    span {
-      display: flex;
-      margin-right: 15px;
-    }
+  span {
+    display: flex;
+    margin-right: 15px;
+  }
 }
 
 .warning {
