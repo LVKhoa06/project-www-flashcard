@@ -1,7 +1,7 @@
 .menu_list{
     position: absolute;
     z-index: 9;
-    background-color: var(--color-white-0);
+    background-color: var(--background-color-2);
     border-radius: 8px;
     box-shadow: 0 0 7px -3px;
     width: max-content;
@@ -18,7 +18,7 @@
 }
 
 .menu_list h4:hover {
-    background-color: rgb(227, 227, 227);
+    background-color: var(--background-color-4);
 }
 
 .show {

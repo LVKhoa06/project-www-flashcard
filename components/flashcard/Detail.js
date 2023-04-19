@@ -7,6 +7,7 @@ import styles from '../../styles/Flashcard.module.scss'
 import GetImg from "../image/GetImg";
 import Notification from "../notification/Notification";
 import Select from "../select";
+import DarkMode from "../settings/DarkMode";
 
 function FlashcardDetail(props) {
     const { flashcard, imgIndex, index, setShow, setListFlashcard } = props;
@@ -125,7 +126,7 @@ function FlashcardDetail(props) {
     } // changeTopic
 
     const closeModal = async () => {
-        if (isChangedTopic)
+        if (isChangedTopic && setListFlashcard)
             await setListFlashcard(prev => {
                 return prev.filter((item) => item.id !== flashcard.id);
             })
@@ -155,6 +156,7 @@ function FlashcardDetail(props) {
                             }}
                             className={styles.container}
                         >
+                            <DarkMode/>
                             <h1 onClick={() => closeModal()} className={styles.close}><IconClose /></h1>
                             <div className={styles['container-left']}>
                                 <div

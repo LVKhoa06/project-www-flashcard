@@ -18,8 +18,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: rgba($color: #00c8ff, $alpha: .03);
-    color:var(--color-black-2) ;
+    background-color: var(--background-color-6);
+    color: var(--text-color-3);
+
 }
 
 .quantity-container {

@@ -16,8 +16,9 @@ $res_600 : "only screen and (max-width: 600px)";
         min-height: 90px;
         justify-content: space-between;
         border-radius: 10px;
-        box-shadow: 0 0 5px -1px var(--primary-color);
+        box-shadow: 0 0 5px -1px var(--boxshadow-color-1);
         padding-bottom: 4px;
+        background-color: var(--background-color-1);
 
         .container-icon {
             margin-right: 20px;
@@ -33,6 +34,7 @@ $res_600 : "only screen and (max-width: 600px)";
                 align-items: center;
 
                 svg {
+                    fill: var(--text-color-3);
                     height: 30px;
                 }
             }
@@ -42,6 +44,7 @@ $res_600 : "only screen and (max-width: 600px)";
                 align-items: center;
 
                 svg {
+                    fill: var(--text-color-3);
                     height: 19px;
                 }
             }
@@ -56,12 +59,12 @@ $res_600 : "only screen and (max-width: 600px)";
             justify-content: space-evenly;
 
             p {
-                color: var(--color-black-2);
+                color: var(--text-color-2);
                 font-size: 14px;
             }
 
             h2 {
-                color: var(--color-black-2);
+                color: var(--text-color-2);
             }
         }
 

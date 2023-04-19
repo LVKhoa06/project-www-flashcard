@@ -14,6 +14,8 @@
   --color-grey-2: #777;
 }
 
+
+
 #__next {
   height: 100%;
 }
@@ -34,7 +36,6 @@ body {
 }
 
 body {
-  background-color: rgb(250, 253, 255)
 }
 
 a {
@@ -65,12 +66,12 @@ html *::-webkit-scrollbar {
 
 html *::-webkit-scrollbar-thumb {
   border-radius: 4px;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: #0000001a;
 }
 
 html *::-webkit-scrollbar-track {
   border-radius: 0;
-  background-color: rgba(0, 0, 0, 0);
+  background-color: #00000000;
 }
 
 .underline {
@@ -83,11 +84,11 @@ html *::-webkit-scrollbar-track {
 
 @keyframes flickerBackground {
   0% {
-    background-color: var(--color-white-0);
+    background-color: var(--background-color-2);
   }
 
   100% {
-    background-color: var(--color-white-1);
+    background-color: var(--background-color-5);
   }
 }
 
@@ -105,7 +106,6 @@ html *::-webkit-scrollbar-track {
     text-shadow: 0 0 10px 15px var(--color-black-0);
     cursor: pointer;
     box-shadow: 0 0 5px -3px var(--color-grey-1);
-    background-color: var(--color-white-0);
     padding: 0px 20px;
     z-index: 999999;
 

@@ -13,8 +13,8 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-    background-color: var(--color-white-0);
-    box-shadow: 0 0 5px -2px;
+    background-color: var(--background-color-2);
+    box-shadow: 0 0 6px -2px var(--text-color-1);
     border-radius: 8px;
 
     h2 {
@@ -32,6 +32,8 @@
                 height: 35px;
                 padding-left: 8px;
                 margin-bottom: 12px;
+                background-color: var(--background-color-2);
+                color: var(--text-color-1);
             }
 
             input:focus {
@@ -50,10 +52,11 @@
                 color: var(--color-grey-0);
                 border: 2px solid var(--primary-color);
                 height: 35px;
-                background-color: var(--color-white-0);
+                background-color: var(--background-color-2);
                 font-weight: 700;
                 transition: 0.4s;
                 cursor: pointer;
+                color: var(--text-color-3);
             }
 
             button:hover {

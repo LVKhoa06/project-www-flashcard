@@ -11,27 +11,27 @@
     z-index: 999;
     cursor: default;
 
-    .loading{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--color-black-2);
-    font-weight: 600;
-    font-size: 15px;
-    width: 100%;
+    .loading {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-black-2);
+        font-weight: 600;
+        font-size: 15px;
+        width: 100%;
     }
 
-    .input-loading{
+    .input-loading {
         position: absolute;
         right: 0;
     }
 
     .modal {
-        background-color: var(--color-white-0);
+        background-color: var(--background-color-2);
         height: max-content;
         padding: 0px 24px 10px 24px;
         border-radius: 8px;
-        box-shadow: 0 0 9px -5px;
+        box-shadow: 0 0 8px -3px var(--boxshadow-color-2);
         min-width: 260px;
         z-index: 99;
 
@@ -46,6 +46,7 @@
                 cursor: pointer;
                 padding: 0 10px;
                 margin-right: -16px;
+                color: var(--text-color-1);
             }
 
             h3 {
@@ -91,6 +92,8 @@
                 border-radius: 8px;
                 outline: none;
                 border: 1px solid var(--color-grey-0);
+                background-color: var(--background-color-2);
+                color: var(--text-color-1);
             }
         }
 

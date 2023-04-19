@@ -1,4 +1,6 @@
 import '../styles/globals.scss'
+import '../styles/Dark.scss'
+import '../styles/Light.scss'
 import { SessionProvider } from "next-auth/react";
 import Head from 'next/head'
 import Navbar from '@/components/Navbar/Navbar';

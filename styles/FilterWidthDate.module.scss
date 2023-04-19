@@ -7,9 +7,11 @@ $res_600 : "only screen and (max-width: 600px)";
         width: 140px;
         border-radius: 5px;
         outline: none;
-        border: 1px solid #777;
+        border: 1px solid var(--color-grey-1);
         height: 24px;
-        background-color: white
+        background-color: var(--background-color-2);
+        color: var(--text-color-1);
+        padding-left: 6px;
     }
 }
 

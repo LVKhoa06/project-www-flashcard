@@ -5,6 +5,7 @@ import Notification from '../notification/Notification';
 import IconAdd from 'assets/icon-add';
 import LoadingSpinner from '../loading/LoadingSpinner';
 import { useRouter } from 'next/router';
+import DarkMode from '../settings/DarkMode';
 
 function Collection(props) {
     const {
@@ -173,6 +174,7 @@ function Collection(props) {
 
                         {showCreate ?
                             <>
+                                <DarkMode />
                                 <div className={styles['add-collection']}>
                                     <div>
                                         <input value={value} onChange={(e) => setValue(e.target.value)} placeholder="Enter collection name" />
@@ -186,12 +188,16 @@ function Collection(props) {
                                 </div>
                             </>
                             :
-                            <div onClick={() => {
-                                setShowCreate(true);
-                            }} className={styles.create}>
-                                <span><IconAdd width="20px" height="20px" fill="#666" viewBox="0 0 39 24" /></span>
-                                Create new collection
-                            </div>
+                            <>
+                                <DarkMode />
+                                <div onClick={() => {
+                                    setShowCreate(true);
+                                }} className={styles.create}>
+                                    <span><IconAdd width="20px" height="20px" fill="#666" viewBox="0 0 39 24" /></span>
+                                    Create new collection
+                                </div>
+                            </>
+
                         }
                     </div>
                 </div>

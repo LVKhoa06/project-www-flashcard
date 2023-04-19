@@ -3,7 +3,7 @@
  $res_950 : "only screen and (max-width: 950px) and (min-width: 819px)";
 
  .topnav {
-   background-color: var(--color-white-0);
+   background-color: var(--background-color-2);
    display: flex;
    align-items: center;
    border: 1px solid var(--color-grey-0);
@@ -34,7 +34,7 @@
  }
 
  .topnav .item {
-   color: var(--color-black-2);
+   color: var(--text-color-3);
    text-align: center;
    padding: 14px 16px;
    text-decoration: none;
@@ -71,7 +71,6 @@
  .sign-in {
    color: var(--color-black-2);
    text-align: center;
-   //  padding: 0px 16px;
    text-decoration: none;
    font-size: 17px;
    display: flex;
@@ -88,13 +87,13 @@
  }
 
  .topnav .item:hover {
-   background-color: var(--color-white-2);
-   color: var(--color-black-0);
+   background-color: var(--background-color-6);
+   color: var(--text-color-1);
  }
 
  .topnav .menu_item:hover {
-   background-color: var(--color-white-2);
-   color: var(--color-black-0);
+   background-color: var(--background-color-6);
+   color: var(--text-color-1);
  }
 
  .icon {
@@ -144,6 +143,10 @@
      margin: 0 10px;
      display: flex;
      cursor: pointer;
+
+     path {
+      stroke: var(--text-color-3);
+     }
    }
 
    .top-left {

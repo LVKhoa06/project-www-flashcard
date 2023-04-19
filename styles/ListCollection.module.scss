@@ -13,12 +13,12 @@ $res_680 : "only screen and (max-width: 680px)";
     margin: 10px;
     padding: 12px 0px 12px 10px;
     position: relative;
-    border: 1px solid var(--color-white-3);
+    border: 1px solid var(--color-grey-0);
     border-radius: 5px;
     display: flex;
     align-items: center;
-    background-color: rgba($color: #00c8ff, $alpha: .03);
-    color:var(--color-black-2) ;
+    background-color: var(--background-color-6);
+    color: var(--text-color-3);
     justify-content: space-between;
 }
 
@@ -52,7 +52,7 @@ $res_680 : "only screen and (max-width: 680px)";
     height: 201px;
     border-bottom: 1px solid;
     margin-bottom: 20px;
-    background-color: var(--color-white-0);
+    background-color: var(--background-color-3);
 }
 
 .container-left img {
@@ -80,14 +80,20 @@ $res_680 : "only screen and (max-width: 680px)";
     align-items: center;
     cursor: pointer;
     margin-right: 8px;
+
+    circle,
+    path {
+        stroke: var(--text-color-1);
+    }
 }
 
 .collection-name input {
     border: none;
     outline: none;
     font-size: 28px;
-    color: var(--color-black-1);
+    color: var(--text-color-1);
     width: 90%;
+    background-color: var(--background-color-3);
 }
 
 .collection-description input {
@@ -95,7 +101,8 @@ $res_680 : "only screen and (max-width: 680px)";
     outline: none;
     width: 90%;
     font-size: 20px;
-    color: var(--color-black-1);
+    color: var(--text-color-1);
+    background-color: var(--background-color-3)
 }
 
 .collection-info {
@@ -105,21 +112,29 @@ $res_680 : "only screen and (max-width: 680px)";
 }
 
 .collection-info span {
-    color: var(--color-black-1);
+    color: var(--text-color-1);
     font-size: 14px;
 }
 
 .icon-bin {
     margin-right: 10px;
     cursor: pointer;
+
+    svg {
+        fill: red;
+    }
 }
 
 .header input::placeholder {
-    color: var(--color-black-1);
+    color: var(--text-color-1);
 }
 
 .delete-icon {
     display: flex;
+
+    svg {
+        fill: var(--text-color-1)
+    }
 }
 
 // Variable

@@ -6,35 +6,35 @@ import bcrypt from "bcrypt";
 export async function changePassword(id, mat_khau, mat_khau_moi) {
     const querySelectPass = `select mat_khau from users where id = ?`;
     const [users] = await pool().execute(querySelectPass, [id]);
-  
+
     if (!users.length)
-      return {
-        success: false,
-        message: "Server error: No such user",
-      };
-  
+        return {
+            success: false,
+            message: "Server error: No such user",
+        };
+
     if (users[0].mat_khau !== mat_khau)
-      return {
-        success: false,
-        message: "Wrong password.",
-      };
-  
+        return {
+            success: false,
+            message: "Wrong password.",
+        };
+
     const password_hashed = await bcrypt.hash(mat_khau_moi.toString(), 10);
     const query = `update users set mat_khau = ?, password_hashed = ? where id = ?`;
     const values = [mat_khau_moi, password_hashed, id];
     const [result] = await pool().execute(query, values);
-  
+
     if (result?.affectedRows !== 1)
-      return {
-        success: false,
-        message: "Error occured.",
-      };
-  
+        return {
+            success: false,
+            message: "Error occured.",
+        };
+
     return {
-      success: true,
-      message: "",
+        success: true,
+        message: "",
     };
-  } // changePassword
+} // changePassword
 
 export async function signIn(nickname, passwordPlain) {
     const query = `select * from users where nickname = '${nickname}';`;
@@ -174,13 +174,11 @@ export async function flashcard_update(id, field, value) {
 } // updateFlashcard
 
 export async function flashcard_getWithCondition(topic_id, username, date, orderBy, direction) {
-    console.log(date);
     let query = `select * from flashcard 
     ${topic_id && username ? `where topic_id = ${topic_id} and username = '${username}'${date ? `and creation_time = "${date}"` : ''} ` :
             `where username = '${username}' ${date ? `and creation_time = "${date}"` : ''}`}
     ${orderBy ? `order by ${orderBy} ${direction}` : ''};`
 
-    console.log(query);
     const [data] = await pool().execute(query);
 
     if (!data)

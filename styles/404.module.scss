@@ -7,13 +7,14 @@
     flex-direction: column;
 
     h1 {
-        color: var(--color-black-1);
+        color: var(--text-color-2);
     }
 
     a {
         cursor: pointer;
         font-weight: 600;
         margin-top: 20px;
+        color: var(--text-color-1);
         text-decoration:underline;
     }
 }
