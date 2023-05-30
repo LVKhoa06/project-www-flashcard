@@ -6,10 +6,11 @@ import styles from '../../styles/Navbar.module.scss';
 import Add from './Add';
 import NavMobile from './NavMobile';
 import Search from './Search';
-import DarkMode from '../settings/DarkMode';
+import Settings from '../settings/Settings';
 
 function Navbar() {
     const [show, setShow] = useState(false);
+    const [showSetting, setShowSetting] = useState(false);
     const { data: session, status } = useSession();
 
     return (
@@ -28,7 +29,6 @@ function Navbar() {
                 </div>
                 <div className={styles['top-right']}>
                     <Add />
-                    <DarkMode/>
                     {session ?
                         <Link onClick={() => signOut({ callbackUrl: "/sign-in" })} className={styles['sign-up']} href="/">
                             <span>Sign-out</span>
@@ -43,10 +43,11 @@ function Navbar() {
                             </Link>
                         </>
                     }
-
+                
                 </div>
             </div>
-            <NavMobile show={show} setShow={setShow} />
+            {showSetting ? <Settings show={showSetting} setShow={setShowSetting}/> : ''}
+            <NavMobile showSetting={showSetting} setShowSetting={setShowSetting} show={show} setShow={setShow} />
         </>
     );
 }

@@ -35,7 +35,9 @@ body {
   overflow-x: hidden;
 }
 
-body {}
+body {
+  background-color: var(--background-color-2);
+}
 
 a {
   color: inherit;

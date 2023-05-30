@@ -22,11 +22,9 @@
     margin-top: 20px;
     cursor: pointer;
 
-
     path {
         stroke: var(--text-color-1);
     }
-
 }
 
 .container-menu {
@@ -40,6 +38,7 @@
     align-items: center;
     font-size: 22px;
     cursor: pointer;
+    color: var(--text-color-1);
 }
 
 .item span {

@@ -5,8 +5,24 @@ import { SessionProvider } from "next-auth/react";
 import Head from 'next/head'
 import Navbar from '@/components/Navbar/Navbar';
 import images from 'assets';
+import { useEffect, useState } from 'react';
 
 export default function App({ Component, pageProps }) {
+
+  useEffect(() => {
+    const html = window.document.getElementsByTagName('HTML')[0];
+    const darkMode = typeof window === "undefined" ? '' :
+      window.localStorage.getItem('theme') === 'dark'
+
+    if (darkMode) {
+      html.setAttribute('data-theme', 'dark');
+      window.localStorage.setItem('theme', 'dark');
+    } else {
+      html.setAttribute('data-theme', 'light');
+      window.localStorage.setItem('theme', 'light');
+    }
+  }, []);
+
   return (
     <>
       <Head>

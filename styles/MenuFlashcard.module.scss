@@ -8,6 +8,8 @@
     display: none;
     flex-direction: column;
     left: -112px;
+    box-shadow:  0 0 8px -3px var(--boxshadow-color-2);
+   
 }
 
 .menu_list h4 {
@@ -15,6 +17,7 @@
     border-radius: 8px;
     font-size: 14px;
     font-weight: 500;
+    color: var(--text-color-1);
 }
 
 .menu_list h4:hover {

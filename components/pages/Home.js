@@ -10,11 +10,11 @@ import FilterWidthDate from '../sort_and_filter/FilterWidthDate';
 
 function Home() {
     const configUseSortAndFilter = { sort: true, filter: true }
+    const [sortConfig, setSortConfig] = useState({ orderBy: 'creation_time', direction: 'desc' });
+    const { orderBy, direction } = sortConfig;
     const [data, setData] = useState([]);
     const [listTopic, setListTopic] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [sortConfig, setSortConfig] = useState({ orderBy: 'creation_time', direction: 'desc' });
-    const { orderBy, direction } = sortConfig;
     const [topicId, setTopicId] = useState('');
     const [value, setValue] = useState('');
 

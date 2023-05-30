@@ -174,7 +174,6 @@ function Collection(props) {
 
                         {showCreate ?
                             <>
-                                <DarkMode />
                                 <div className={styles['add-collection']}>
                                     <div>
                                         <input value={value} onChange={(e) => setValue(e.target.value)} placeholder="Enter collection name" />
@@ -189,7 +188,6 @@ function Collection(props) {
                             </>
                             :
                             <>
-                                <DarkMode />
                                 <div onClick={() => {
                                     setShowCreate(true);
                                 }} className={styles.create}>

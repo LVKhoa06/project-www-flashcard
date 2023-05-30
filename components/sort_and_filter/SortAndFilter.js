@@ -27,7 +27,8 @@ function SortAndFilter(props) {
     } = props
     const { none, alphabeticallyASC, alphabeticallyDESC, dateASC, dateDESC } = CONST_SORT_CASE
     const { data: session, status } = useSession();
-
+    const [quantity, setQuantity] = useState(localStorage.getItem('paging'));
+    
     useEffect(() => {
         if (!session)
             return;
@@ -46,16 +47,17 @@ function SortAndFilter(props) {
             if (session) {
                 setIsLoading(true);
               
-                const data = await axios.get(`/api/flashcard/home?topic_id=${topicId}&orderBy=${orderBy}&direction=${direction}&date=${value}`);
+                const data = await axios.get(`/api/flashcard/home?topic_id=${topicId}&orderBy=${orderBy}&direction=${direction}&date=${value}&quantity=${localStorage.getItem('paging')}`);
                 setData(data.data);
                 setIsLoading(false);
             }
         }
         handler();
-    }, [orderBy, direction, topicId, session]);
+    }, [orderBy, direction, topicId, session, quantity]);
 
     const updateSortConfig = async (value) => {
-        if (value == none) return;
+        if (value == none) 
+            return;
 
         if (value == alphabeticallyASC)
             return setSortConfig({ orderBy: 'term', direction: 'asc' });

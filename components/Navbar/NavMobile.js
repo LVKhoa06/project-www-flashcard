@@ -11,10 +11,10 @@ import IconRecover from 'assets/icon-recover';
 import { signOut, useSession } from 'next-auth/react';
 import IconSignIn from 'assets/icon-signin';
 import IconSignUp from 'assets/icon-signup';
-import IconProfile from 'assets/icon-profile';
+import { useState } from 'react';
 
 function NavMobile(props) {
-    const { show, setShow } = props;
+    const { show, setShow, setShowSetting, showSetting } = props;
     const { data: session, status } = useSession();
 
     return (
@@ -45,10 +45,13 @@ function NavMobile(props) {
                         <span>Bin</span>
                     </Link>
 
-                    <Link href="/" onClick={() => setShow(false)} className={styles['item']}>
+                    <div onClick={() => {
+                        setShowSetting(true);
+                        setShow(false);
+                    }} className={styles['item']}>
                         <span><IconSetting width="27px" stroke='#3688ff' fillRule='evenodd' clipRule='evenodd' strokeLinejoin='round' strokeMiterlimit='2' viewBox="0 0 35 30" /></span>
-                        <span>Setttings</span>
-                    </Link>
+                        <span>Settings</span>
+                    </div>
                     {session ?
                         <>
                             {/* <Link href='/sign-up' onClick={() => setShow(false)} className={styles['item']}>

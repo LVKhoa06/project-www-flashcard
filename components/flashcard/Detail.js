@@ -25,6 +25,9 @@ function FlashcardDetail(props) {
     })
 
     useEffect(() => {
+        if (!flashcard) 
+            return
+
         const handler = async () => {
             const fetch = await axios.get(`/api/topic/cur-topic?id=${flashcard.id}`);
             setCurtopic(fetch.data);
@@ -142,12 +145,12 @@ function FlashcardDetail(props) {
             <Head>
                 <title>Flashcard - {result[0]?.term}</title>
             </Head>
-            {result.map(item => {
+            {result.map((item, index) => {
                 const img = images[`img${imgIndex ? imgIndex[index] : Math.ceil(Math.random() * 20)}`];
                 return (
                     <div
                         onClick={() => closeModal()}
-                        className={styles.overlay} key={item.id}
+                        className={styles.overlay} key={index}
                     >
                         <div
                             onClick={(e) => {
@@ -156,7 +159,6 @@ function FlashcardDetail(props) {
                             }}
                             className={styles.container}
                         >
-                            <DarkMode/>
                             <h1 onClick={() => closeModal()} className={styles.close}><IconClose /></h1>
                             <div className={styles['container-left']}>
                                 <div

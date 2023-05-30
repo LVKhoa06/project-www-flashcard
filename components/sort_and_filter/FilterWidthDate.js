@@ -4,6 +4,7 @@ import styles from '../../styles/FilterWidthDate.module.scss';
 
 function FilterWidthDate(props) {
     const { setData, topicId, direction, orderBy, value, setValue, setIsLoading } = props
+    const [quantity, setQuantity] = useState(localStorage.getItem('paging'));
 
     useEffect(() => {
         if (!value)
@@ -11,13 +12,13 @@ function FilterWidthDate(props) {
         const handler = async () => {
             setIsLoading(true);
 
-            const data = await axios.get(`/api/flashcard/home?topic_id=${topicId}&orderBy=${orderBy}&direction=${direction}&date=${value}`);
+            const data = await axios.get(`/api/flashcard/home?topic_id=${topicId}&orderBy=${orderBy}&direction=${direction}&date=${value}&quantity=${localStorage.getItem('paging')}`);
             setIsLoading(false);
             setData(data.data);
         }
 
         handler();
-    }, [value]);
+    }, [value, quantity]);
 
     const onChangeHandler = async (e) => {
         const date = e.target.value;
@@ -32,7 +33,6 @@ function FilterWidthDate(props) {
                 setIsLoading(false);
             }
             handler();
-
         }
     } // onChangeHandler
 

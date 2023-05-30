@@ -52,6 +52,7 @@
             h3 {
                 font-size: 16px;
                 font-weight: 500;
+                color: var(--text-color-1);
                 margin-right: 8px;
             }
 
@@ -112,6 +113,8 @@
 
             label {
                 font-size: 15px;
+                color: var(--text-color-1);
+
             }
         }
 
@@ -129,12 +132,21 @@
                 border-radius: 6px;
                 color: var(--color-white-0);
             }
+
+            button:hover {
+                opacity: .9;
+            }
+
+            button:active {
+                opacity: .8;
+            }
         }
 
         .create {
             display: flex;
             align-items: center;
             margin: 10px 0 0 2px;
+            color: var(--text-color-1);
             cursor: pointer;
 
             span {

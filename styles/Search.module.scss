@@ -71,7 +71,7 @@
    width: 100%;
    padding-top: 8px;
    border-radius: 8px;
-   background: var(--color-white-0);
+   background: var(--background-color-2);
    box-shadow: rgb(0 0 0 / 12%) 0px 2px 12px;
    display: none;
    flex-direction: column;
@@ -79,6 +79,12 @@
    padding: 10px;
    align-items: center;
    justify-content: center;
+   box-shadow: 0 0 8px -3px var(--boxshadow-color-2);
+
+
+   p {
+    color: var(--text-color-1);
+   }
  }
 
  .search_item {
@@ -99,12 +105,13 @@
  .left_item h3 {
    font-size: 18px;
    font-weight: 600;
+   color: var(--text-color-1);
  }
 
  .left_item span {
    white-space: nowrap;
    font-size: 14px;
-   color: var(--color-grey-2);
+   color: var(--text-color-3);
  }
 
  .right_item {
